@@ -1,0 +1,266 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+import React, { useEffect, useState } from "react";
+import parse from "html-react-parser";
+import { Divider, message } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import hljs from "highlight.js";
+import { LIKE_POST_REQUEST, LOAD_POST_REQUEST, UNLIKE_POST_REQUEST } from "../../../@reducers/post";
+import styled from "styled-components";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { LOAD_INFO_REQUEST } from "../../../@reducers/user";
+import dayjs from "dayjs";
+import { RootState } from "../../../@reducers";
+import Head from "next/head";
+import { RED_COLOR } from "../../../config";
+import CommentForm from "../../../components/Blog/Comments/CommentForm";
+import ArticlePost from "../../../components/Blog/Articles/ArticlePost";
+import RemoteControl from "../../../components/Blog/Comments/RemoteControl";
+import wrapper from "../../../@store/configureStore";
+import axios from "axios";
+import { IStore } from "../../../types";
+import { END } from "@redux-saga/core";
+import { useRouter } from "next/dist/client/router";
+dayjs.locale("kor");
+
+const Heart = styled.a`
+  display: inline-block;
+  margin: 0 0.5rem 0 1rem;
+  font-size: 1.5rem;
+  &:hover {
+    color: ${RED_COLOR};
+    -webkit-animation: heartBeat 1s;
+    animation: heartBeat 1s;
+  }
+`;
+
+const HeartLiked = styled.a`
+  display: inline-block;
+  margin: 0 0.5rem 0 1rem;
+  font-size: 1.5rem;
+  color: ${RED_COLOR};
+  &:hover {
+    color: ${RED_COLOR};
+    span {
+      color: ${RED_COLOR};
+    }
+  }
+`;
+
+function BlogPostPage() {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const {
+    post,
+    unlikePostDone,
+    likePostDone,
+    addCommentDone,
+    editCommentDone,
+    removeCommentDone,
+    likeCommentDone,
+    unlikeCommentDone,
+    addSubCommentDone,
+    removeSubCommentDone,
+    editSubCommentDone,
+    prevPost,
+    nextPost,
+  } = useSelector((state: RootState) => state.post);
+  const { user } = useSelector((state: RootState) => state.user);
+  const [Fullcontent, setFullcontent] = useState("");
+
+  useEffect(() => {
+    const tagContent = post?.content?.split(/(#[^\s#+^<]+)/g).map((v) => {
+      if (v.match(/(#.*")/g)) {
+        return v;
+      }
+      if (v.match(/(#youtube:)/g)) {
+        return `<iframe class="youtube" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="https://www.youtube.com/embed/${v.slice(
+          9
+        )}"></iframe>`;
+      }
+      if (v.match(/(#[^\s#+^<]+)/g)) {
+        return `<a class="hashtag">${v}</a>`;
+      }
+      return v;
+    });
+    const fullContentRemoveComma = post && tagContent?.join("");
+    fullContentRemoveComma && setFullcontent(fullContentRemoveComma);
+  }, [post]);
+  useEffect(() => {
+    const postId = router.pathname;
+    if (!postId) {
+      router.push("");
+    }
+    dispatch({
+      type: LOAD_POST_REQUEST,
+      data: { postId: router.query.id, UserId: user?.id, category: router.query.category },
+      //category: match.params.category
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    router.pathname,
+    likePostDone,
+    unlikePostDone,
+    addCommentDone,
+    editCommentDone,
+    removeCommentDone,
+    likeCommentDone,
+    unlikeCommentDone,
+    addSubCommentDone,
+    removeSubCommentDone,
+    editSubCommentDone,
+  ]);
+
+  useEffect(() => {
+    document.querySelectorAll("pre code").forEach((v: any) => {
+      hljs.highlightBlock(v);
+    });
+  }, [Fullcontent]);
+
+  useEffect(() => {
+    if (addCommentDone) {
+      message.success("Added comment 🥰");
+    }
+  }, [addCommentDone]);
+
+  const onClickLike = () => {
+    if (!user) {
+      message.error("You can thumbs up when you are logged in 😿");
+      return;
+    }
+    dispatch({
+      type: LIKE_POST_REQUEST,
+      data: { PostId: post?.id, UserId: user.id },
+    });
+  };
+
+  const liked = user && post?.PostLikers?.find((v) => v.id === user.id);
+
+  const onClickUnlike = () => {
+    dispatch({
+      type: UNLIKE_POST_REQUEST,
+      data: { PostId: post?.id, UserId: user?.id },
+    });
+  };
+  useEffect(() => {
+    dispatch({
+      type: LOAD_INFO_REQUEST,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleImgError = (e: React.SyntheticEvent) => {
+    (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
+  };
+
+  return (
+    <>
+      <Head>
+        <title>Noah world | {post?.title.slice(0, 10)}...</title>
+      </Head>
+      {post && (
+        <div>
+          <h1 style={{ lineHeight: "1.5" }} className="post_main_title">
+            {post.title}
+          </h1>
+          <Divider className="blog_post_divier" />
+          <ul
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              fontSize: "1.1rem",
+              marginBottom: "5rem",
+              color: "rgba(0,0,0,0.2)",
+            }}
+          >
+            <li>{dayjs(post.createdAt).format("YYYY.MM.DD")}</li>
+            <li>·&nbsp;{post.hit} views</li>
+            <li>·&nbsp;{post.PostLikers?.length} likes</li>
+          </ul>
+          <div style={{ position: "relative", display: "flex", justifyContent: "space-between" }}>
+            <div className="blog_post_article">
+              <div className="tui-editor-contents" style={{ marginBottom: "3rem" }}>
+                {post?.thumbnail || post?.imagePath ? (
+                  <>
+                    <img
+                      alt={post.title}
+                      style={{ width: "100%", marginBottom: "6rem" }}
+                      src={post?.thumbnail ? post.thumbnail : post.imagePath}
+                      onError={handleImgError}
+                    />
+                  </>
+                ) : null}
+                {Fullcontent && parse(Fullcontent)}
+              </div>
+              <h4 style={{ margin: "5rem 0 1rem 0", fontSize: "1.5rem", fontWeight: "bold" }}>
+                Do you like this Post?{" "}
+                {liked ? (
+                  <HeartLiked onClick={onClickUnlike}>
+                    <HeartFilled />
+                  </HeartLiked>
+                ) : (
+                  <Heart onClick={onClickLike}>
+                    <HeartOutlined />
+                  </Heart>
+                )}
+                <span style={{ fontSize: "1rem" }}>{post.PostLikers?.length}</span>
+              </h4>
+              <CommentForm />
+              <h4 style={{ margin: "5rem 0 1rem 0", fontSize: "1.5rem", fontWeight: "bold" }}>
+                More posts
+              </h4>
+              <div
+                style={{
+                  overflow: "auto",
+                  height: "280px",
+                  marginTop: "1rem",
+                  borderTop: "1px solid rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <div
+                  style={{
+                    padding: "1rem 0.5rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <span>Title</span>
+                  <span>Date</span>
+                </div>
+                {prevPost?.map((article, i) => (
+                  <ArticlePost key={i} article={article} />
+                ))}
+                {nextPost?.map((article, i) => (
+                  <ArticlePost key={i} article={article} />
+                ))}
+              </div>
+            </div>
+            <RemoteControl Fullcontent={Fullcontent} />
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+  const cookie = context.req ? context.req.headers.cookie : "";
+  axios.defaults.headers.Cookie = "";
+  if (context.req && cookie) {
+    axios.defaults.headers.Cookie = cookie;
+  }
+  context.store.dispatch({
+    type: LOAD_INFO_REQUEST,
+  });
+  context.store.dispatch({
+    type: LOAD_POST_REQUEST,
+    data: { postId: context.params.id, category: context.query.category },
+  });
+  context.store.dispatch(END);
+  await (context.store as IStore).sagaTask.toPromise();
+});
+
+export default BlogPostPage;
