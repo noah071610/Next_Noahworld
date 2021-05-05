@@ -119,7 +119,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   if (category === "tech" || category === "daily" || category === "culture") {
     context.store.dispatch({
       type: LOAD_CATEGORY_POSTS_REQUEST,
-      data: context.query.category,
+      data: category,
     });
   } else {
     return {

@@ -1,6 +1,4 @@
 import { Editor } from "@toast-ui/react-editor";
-import "codemirror/lib/codemirror.css";
-import "@toast-ui/editor/dist/toastui-editor.css";
 import { useDispatch, useSelector } from "react-redux";
 import { UPLOAD_POST_IMAGE_REQUEST } from "../../@reducers/post";
 import { RootState } from "../../@reducers";
