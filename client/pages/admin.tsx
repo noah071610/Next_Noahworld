@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "antd/lib/form/Form";
-import { Button, Radio, Modal, Input, message } from "antd";
+import { Button, Input, message, Radio } from "antd";
 import {
   ADD_POST_REQUEST,
   EDIT_POST_REQUEST,
@@ -17,8 +17,32 @@ import useInput from "../util/useInput";
 import UserProfile from "../components/Blog/Profile/UserProfile";
 import { useRouter } from "next/dist/client/router";
 import dynamic from "next/dynamic";
+import AdminModal from "../components/Blog/Admin/AdminModal";
+import EditorMenu from "../components/Blog/Admin/EditorMenu";
+import styled from "@emotion/styled";
 
-const PostEditor = dynamic(() => import("../components/Blog/Editor"), { ssr: false });
+const PostEditor = dynamic(() => import("../components/Blog/Admin/Editor"), { ssr: false });
+
+const PostForm = styled(Form)`
+  margin: 3rem 0;
+  .form_title {
+    marginbottom: 1rem;
+  }
+  div {
+    display: flex;
+    .form_image {
+      margin-bottom: 1rem;
+      width: 50%;
+    }
+    span {
+      margin: 0 1rem;
+    }
+    button {
+      margin-bottom: 1rem;
+      width: 20%;
+    }
+  }
+`;
 
 function Admin() {
   const router = useRouter();
@@ -35,24 +59,19 @@ function Admin() {
     editPostDone,
   } = useSelector((state: RootState) => state.post);
   const [content, , setContent] = useInput("");
-  const [radioValue, setRadioValue] = useState("tech");
-  const [typeValue, setTypeValue] = useState("word");
-  const [password, onChangePassword] = useInput("");
   const [thumbnail, onChangeThumbnail, setthumbnail] = useInput("");
   const [title, onChangeTitle, setTitle] = useInput("");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [PostId, setPostId] = useState<number | null>(null);
   const [tags, setTags] = useState<HashtagsInter[]>();
-
+  const [password, onChangePassword] = useInput("");
   const [question, onChangeQuestion] = useInput("");
   const [answer, onChangeAnswer] = useInput("");
+  const [postValue, setPostValue] = useState("tech");
+  const [classValue, setClassValue] = useState("word");
   const [quizForm, setQuizForm] = useState(false);
   const editorRef = useRef<any>(null);
   const imageInput = useRef<HTMLInputElement | null>(null);
-
-  // const onClickImageUpload = useCallback(() => {
-  //   imageInput.current.click();
-  // }, []);
 
   const onChangeImages = useCallback((e) => {
     const imageFormData = new FormData();
@@ -61,35 +80,6 @@ function Admin() {
       type: UPLOAD_IMAGES_REQUEST,
       data: imageFormData,
     });
-  }, []);
-
-  //==authorize==
-  useEffect(() => {
-    if (!user || !user.admin || user.id !== 1) {
-      router.back();
-    }
-  }, []);
-
-  useEffect(() => {
-    dispatch({
-      type: UPLOAD_IMAGES_CLEAR,
-    });
-  }, []);
-
-  useEffect(() => {
-    if (postEditOn && post) {
-      setContent(post.content);
-      setTitle(post.title);
-      setthumbnail(post.thumbnail);
-      setRadioValue(post.category);
-      setPostId(post.id);
-      setTags(post?.HashTags);
-    } else {
-      dispatch({
-        type: POST_EDIT_OFF,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const showModal = useCallback(() => {
@@ -121,7 +111,7 @@ function Admin() {
       thumbnail,
       title,
       imagePath,
-      category: radioValue,
+      category: postValue,
       content,
       UserId: user?.id,
       password,
@@ -145,13 +135,13 @@ function Admin() {
     if (question && answer && quizForm) {
       dispatch({
         type: ADD_QUIZ_REQUEST,
-        data: { type: typeValue, question, answer, password, UserId: user?.id },
+        data: { type: classValue, question, answer, password, UserId: user?.id },
       });
     }
     setIsModalVisible(false);
     setQuizForm(false);
   }, [
-    typeValue,
+    classValue,
     question,
     answer,
     password,
@@ -162,7 +152,7 @@ function Admin() {
     thumbnail,
     PostId,
     tags,
-    radioValue,
+    postValue,
   ]);
 
   const handleCancel = useCallback(() => {
@@ -170,11 +160,33 @@ function Admin() {
     setQuizForm(false);
   }, []);
 
-  // function uploadImage(blob) {
-  //   let formData = new FormData();
-  //   formData.append("image", blob);
-  //   console.log(formData);
-  // }
+  const onClickUploadImage = useCallback(() => {
+    dispatch({
+      type: UPLOAD_IMAGES_CLEAR,
+    });
+    setthumbnail("");
+  }, []);
+
+  useEffect(() => {
+    if (!user || !user.admin || user.id !== 1) {
+      router.back();
+    }
+    dispatch({
+      type: UPLOAD_IMAGES_CLEAR,
+    });
+    if (postEditOn && post) {
+      setContent(post.content);
+      setTitle(post.title);
+      setthumbnail(post.thumbnail);
+      setPostValue(post.category);
+      setPostId(post.id);
+      setTags(post?.HashTags);
+    } else {
+      dispatch({
+        type: POST_EDIT_OFF,
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (uploadPostImageDone) {
@@ -197,70 +209,30 @@ function Admin() {
   return (
     <>
       <UserProfile />
-      <Form onFinish={showModal} style={{ margin: "3rem 0" }}>
+      <PostForm onFinish={showModal}>
         <h2>ADD POST</h2>
         <h4>Title</h4>
-        <Input value={title} onChange={onChangeTitle} style={{ marginBottom: "1rem" }} />
+        <Input value={title} onChange={onChangeTitle} className="form_title" />
         <h4>Thumbnail</h4>
-        <div style={{ display: "flex" }}>
+        <div>
           <Input
             value={thumbnail}
             onChange={onChangeThumbnail}
             placeholder="http://"
             disabled={uploadImagesDone ? true : false}
-            style={{ marginBottom: "1rem", width: "50%" }}
+            className="form_image"
           />{" "}
-          <span style={{ margin: "0 1rem" }}>or</span>
+          <span>or</span>
           <input type="file" name="image" multiple ref={imageInput} onChange={onChangeImages} />
           {uploadImagesDone ? (
-            <button
-              style={{ marginBottom: "1rem", width: "20%" }}
-              className="public_btn"
-              onClick={() => {
-                dispatch({
-                  type: UPLOAD_IMAGES_CLEAR,
-                });
-                setthumbnail("");
-              }}
-            >
+            <button className="public_btn" onClick={onClickUploadImage}>
               CALCLE IMAGE
             </button>
           ) : null}
         </div>
         <PostEditor post={post} editorRef={editorRef} />
-        <div style={{ display: "flex", alignItems: "center", margin: "1rem 0" }}>
-          <Radio.Group
-            style={{ width: "50%" }}
-            onChange={(e) => setRadioValue(e.target.value)}
-            value={radioValue}
-          >
-            <Radio value="tech">Infomation Technology</Radio>
-            <Radio value="daily">Daily</Radio>
-            <Radio value="class">Korean Class</Radio>
-            <Radio value="culture">Korean Culture</Radio>
-          </Radio.Group>
-          {postEditOn ? (
-            <>
-              <Button type="primary" htmlType="submit" style={{ width: "25%" }}>
-                EDIT
-              </Button>
-              <Button
-                onClick={() => {
-                  dispatch({ type: POST_EDIT_ON });
-                  router.push("/");
-                }}
-                style={{ width: "25%" }}
-              >
-                CANCEL
-              </Button>
-            </>
-          ) : (
-            <Button htmlType="submit" style={{ width: "50%" }}>
-              UPLOAD
-            </Button>
-          )}
-        </div>
-      </Form>
+        <EditorMenu postEditOn={postEditOn} postValue={postValue} setPostValue={setPostValue} />
+      </PostForm>
       <div style={{ display: "flex" }}>
         <div style={{ width: "100%" }}>
           <h2>日本語講座作成</h2>
@@ -270,8 +242,8 @@ function Admin() {
           <Input.TextArea value={answer} onChange={onChangeAnswer} />
           <Radio.Group
             style={{ width: "50%" }}
-            onChange={(e) => setTypeValue(e.target.value)}
-            value={typeValue}
+            onChange={(e) => setClassValue(e.target.value)}
+            value={classValue}
           >
             <Radio value="word">Word</Radio>
             <Radio value="quiz">Quiz</Radio>
@@ -287,26 +259,13 @@ function Admin() {
           </Button>
         </div>
       </div>
-      <Modal
-        title="Please Enter Admin password"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <p>
-          This fucntion is for ADMIN only. If you are not a administrator, please go back and
-          feedback to us. Thank you for your cooperatation.
-        </p>
-        <p>
-          이 기능은 관리자 전용입니다. 예기치 못하게 오셨을경우 피드백 주시면 정말 감사하겠습니다.
-          협력해주셔서 감사합니다.
-        </p>
-        <p>
-          この機能は管理者専用でございます、何が問題が発生した場合は管理者に直接ご連絡して頂ければ幸いだと思います。
-        </p>
-        <br />
-        <Input.Password value={password} onChange={onChangePassword} />
-      </Modal>
+      <AdminModal
+        isModalVisible={isModalVisible}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
+        password={password}
+        onChangePassword={onChangePassword}
+      />
     </>
   );
 }

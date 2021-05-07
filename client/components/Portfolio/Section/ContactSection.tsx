@@ -1,6 +1,6 @@
 import { Col, message, Row } from "antd";
-import { FC } from "react";
-import styled from "styled-components";
+import React, { FC } from "react";
+import styled from "@emotion/styled";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Articles from "../Articles";
 import Title from "../Decorator/Title";

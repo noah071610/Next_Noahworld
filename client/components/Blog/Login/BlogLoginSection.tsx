@@ -1,11 +1,12 @@
-import { FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { Form, Input, Button, Divider, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { BLUE_COLOR } from "../../../config";
 import { RootState } from "../../../@reducers";
 import { LOG_IN_REQUEST } from "../../../@reducers/user";
 import { useRouter } from "next/dist/client/router";
+import { css } from "@emotion/react";
 
 const GoogleBtn = styled.button`
   box-sizing: border-box;
@@ -47,6 +48,11 @@ const GoogleBtn = styled.button`
   }
 `;
 
+const GoogleLogin = css`
+  margin: 0 0 0 1rem;
+  font-weight: normal;
+`;
+
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
   required: "${name} is required!",
@@ -74,7 +80,7 @@ const BlogLoginSection: FC<LoginProps> = ({ onClickSignUp }) => {
     });
   };
 
-  const onFinishFailed = (errorInfo: any) => {
+  const onFinishFailed = () => {
     message.error("Unexpected Erorr! please try again or feedback to us");
   };
 
@@ -94,8 +100,8 @@ const BlogLoginSection: FC<LoginProps> = ({ onClickSignUp }) => {
 
   return (
     <>
-      <div className="login_title" style={{ margin: "3rem 0" }}>
-        <h1 style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+      <div className="login_title">
+        <h1>
           Login now!{" "}
           <img
             alt="login_icon"
@@ -132,7 +138,7 @@ const BlogLoginSection: FC<LoginProps> = ({ onClickSignUp }) => {
         <a href="https://api.noahworld.site/auth/google">
           <div>
             <img alt="google" src="https://img.icons8.com/color/144/000000/google-logo.png" />
-            <h3 style={{ margin: "0 0 0 1rem", fontWeight: "normal" }}>Sign in with Google</h3>
+            <h3 css={GoogleLogin}>Sign in with Google</h3>
           </div>
         </a>
       </GoogleBtn>

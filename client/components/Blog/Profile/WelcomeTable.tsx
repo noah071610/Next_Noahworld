@@ -1,8 +1,8 @@
 import { Col, Divider, Row } from "antd";
-import { FC } from "react";
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { RootState } from "../../../@reducers";
 import { BLUE_COLOR } from "../../../config";
 

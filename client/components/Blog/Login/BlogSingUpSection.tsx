@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { Form, Input, Button, Divider, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../@reducers";

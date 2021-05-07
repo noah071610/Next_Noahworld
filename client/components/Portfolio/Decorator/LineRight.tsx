@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import React from "react";
+import styled from "@emotion/styled";
 import { GRAY_COLOR, MAIN_COLOR } from "../../../config";
 
 const Divder = styled.div`

@@ -1,5 +1,7 @@
-import styled, { keyframes } from "styled-components";
+import React from "react";
+import styled from "@emotion/styled";
 import Slider from "react-slick";
+import { keyframes } from "@emotion/react";
 
 const rotatingRight = keyframes`
  to {

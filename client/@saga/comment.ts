@@ -203,6 +203,7 @@ function editSubCommentAPI(data: SubCommentData) {
 function* editSubComment(action: EditSubCommentInter) {
   try {
     const { data } = yield call(editSubCommentAPI, action.data);
+    console.log(data);
     yield put({
       type: EDIT_SUB_COMMENT_SUCCESS,
       data,

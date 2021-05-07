@@ -1,5 +1,5 @@
-import styled from "styled-components";
-
+import styled from "@emotion/styled";
+import React from "react";
 const ClassMainPoster = styled.section`
   box-shadow: 4px 8px 10px 0px rgba(0, 0, 0, 0.15);
   background: linear-gradient(180deg, rgba(251, 255, 253, 1) 15%, rgba(226, 150, 153, 0.8) 100%);
@@ -7,6 +7,25 @@ const ClassMainPoster = styled.section`
   paddingtop: 3rem;
   margin: 3rem 0;
   height: 100%;
+  div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    h2 {
+      padding-left: 0.5rem;
+      display: flex;
+      align-items: center;
+      img {
+        width: 3rem;
+        margin-left: 0.5rem;
+      }
+    }
+    .class_intro_text {
+      width: 70%;
+    }
+  }
 `;
 
 export default function ClassPoster() {
@@ -18,23 +37,11 @@ export default function ClassPoster() {
         src="/images/blog/class_study.png"
         className="blog_class_poster_girl"
       />
-      <div
-        style={{
-          position: "relative",
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          overflow: "hidden",
-        }}
-      >
-        <h2
-          style={{ paddingLeft: "0.5rem", display: "flex", alignItems: "center" }}
-          className="blog_class_poster_title"
-        >
+      <div>
+        <h2 className="blog_class_poster_title">
           楽しく始まる韓国語教室
           <img
             alt="class_poster_flag"
-            style={{ width: "3rem", marginLeft: "0.5rem" }}
             src="https://img.icons8.com/plasticine/100/000000/south-korea.png"
           />
         </h2>
@@ -51,7 +58,7 @@ export default function ClassPoster() {
           data-aos-anchor-placement="top-bottom"
           data-aos-delay="700"
           alt="class_intro_text"
-          style={{ width: "70%" }}
+          className="class_intro_text"
           src="./images/blog/kankokugo.png"
         />
       </div>

@@ -1,6 +1,6 @@
+import React, { FC, memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FC, memo, useEffect } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { SUB_COLOR } from "../../config";

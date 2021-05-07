@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import dayjs from "dayjs";
-import { FC } from "react";
+import React, { FC } from "react";
 import { ArticleInter } from "../../../types";
 import { useRouter } from "next/dist/client/router";
 dayjs.locale("kor");

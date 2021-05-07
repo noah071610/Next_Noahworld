@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, memo } from "react";
+import React, { FC, memo } from "react";
 import Link from "next/link";
 import Scrollspy from "react-scrollspy";
 import { NavInter } from "../../../types";

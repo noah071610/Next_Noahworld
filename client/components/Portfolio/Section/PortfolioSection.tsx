@@ -1,7 +1,7 @@
-import { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef } from "react";
 // // @ts-ignore
 // import { Carousel } from "3d-react-carousal";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import VanillaTilt from "vanilla-tilt";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

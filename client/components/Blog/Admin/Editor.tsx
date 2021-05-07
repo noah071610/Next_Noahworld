@@ -1,7 +1,8 @@
+import React from "react";
 import { Editor } from "@toast-ui/react-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { UPLOAD_POST_IMAGE_REQUEST } from "../../@reducers/post";
-import { RootState } from "../../@reducers";
+import { UPLOAD_POST_IMAGE_REQUEST } from "../../../@reducers/post";
+import { RootState } from "../../../@reducers";
 import colorSyntaxPlugin from "@toast-ui/editor-plugin-color-syntax";
 
 function PostEditor({ post, editorRef }): JSX.Element {

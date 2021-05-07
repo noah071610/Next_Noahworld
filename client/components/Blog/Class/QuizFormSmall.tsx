@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Input, message } from "antd";
-import { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { ArrowRightOutlined, EnterOutlined } from "@ant-design/icons";
 import { RootState } from "../../../@reducers";
 import useInput from "../../../util/useInput";

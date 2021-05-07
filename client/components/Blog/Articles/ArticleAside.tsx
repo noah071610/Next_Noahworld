@@ -2,7 +2,7 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { BLUE_COLOR } from "../../../config";
-import { FC } from "react";
+import React, { FC } from "react";
 import { ArticleInter } from "../../../types";
 import { useRouter } from "next/dist/client/router";
 dayjs.extend(relativeTime);

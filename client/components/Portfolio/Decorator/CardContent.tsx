@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { FC } from "react";
+import styled from "@emotion/styled";
+import React, { FC } from "react";
 import { MAIN_COLOR } from "../../../config";
 
 const Square = styled.div`

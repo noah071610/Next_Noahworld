@@ -1,10 +1,11 @@
 import { Col, Divider } from "antd";
 import { useRouter } from "next/dist/client/router";
-import { FC } from "react";
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { RootState } from "../../../@reducers";
 import { BLUE_COLOR } from "../../../config";
+import { NoPostProfile, ProfilePointTitle, TitleProfile } from "../../../styles/emotion";
 
 const RecentTable = styled(Col)`
   transition: all 0.3s;
@@ -26,40 +27,20 @@ export const ViewTable: FC<{ visible: Boolean }> = ({ visible }) => {
       {recentViewPost ? (
         <div onClick={() => router.push(`/${recentViewPost?.category}/post/${recentViewPost?.id}`)}>
           <h3 style={{ margin: "1rem 0" }}>
-            · Post Number:{" "}
-            <span style={{ color: BLUE_COLOR, marginLeft: "0.3rem" }}>{recentViewPost?.id}</span>
+            · Post Number: <span css={ProfilePointTitle}>{recentViewPost?.id}</span>
           </h3>
           <h3 style={{ margin: "1rem 0" }}>
             · Post Title: <br />
           </h3>
-          <span
-            style={{
-              whiteSpace: "nowrap",
-              display: "inline-block",
-              marginLeft: "0.5rem",
-              width: "100%",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {recentViewPost?.title}
-          </span>
+          <span css={TitleProfile}>{recentViewPost?.title}</span>
           <h3 style={{ margin: "1rem 0" }}>
             · Total Post Views:
-            <span style={{ color: BLUE_COLOR, marginLeft: "0.3rem" }}>{recentViewPost?.hit}</span>
+            <span css={ProfilePointTitle}>{recentViewPost?.hit}</span>
           </h3>
         </div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-            opacity: "0.3",
-          }}
-        >
+        <div css={NoPostProfile}>
           <img
-            style={{ width: "100px" }}
             alt="noPost"
             src="https://icons.iconarchive.com/icons/iconsmind/outline/256/Inbox-Empty-icon.png"
           />

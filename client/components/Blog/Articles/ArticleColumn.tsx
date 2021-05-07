@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { FC } from "react";
+import React, { FC } from "react";
 import { ArticleInter } from "../../../types";
 dayjs.extend(relativeTime);
 dayjs.locale("kor");

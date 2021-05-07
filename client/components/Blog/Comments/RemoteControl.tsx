@@ -9,9 +9,8 @@ import {
 } from "@ant-design/icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider, Input, message, Timeline } from "antd";
-import Modal from "antd/lib/modal/Modal";
-import { FC, useCallback, useEffect, useState } from "react";
+import { Divider, message, Timeline } from "antd";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Scrollspy from "react-scrollspy";
@@ -20,6 +19,28 @@ import { POST_EDIT_ON } from "../../../@reducers/blog";
 import { REMOVE_POST_REQUEST } from "../../../@reducers/post";
 import useInput from "../../../util/useInput";
 import { useRouter } from "next/dist/client/router";
+import AdminModal from "../Admin/AdminModal";
+import { css } from "@emotion/react";
+
+const RemoteControlWrapper = (FixedRemote: boolean) => css`
+  width: 270px;
+  padding-left: 2rem;
+  flexd-direction: column;
+  height: 100%;
+  position: ${FixedRemote ? "sticky" : "static"};
+  top: 5.375rem;
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  ul:first-of-type {
+    overflow: hidden;
+    li {
+      margin: 0;
+    }
+  }
+`;
 
 const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   const dispatch = useDispatch();
@@ -27,7 +48,6 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
     (state: RootState) => state.post
   );
   const { user } = useSelector((state: RootState) => state.user);
-  // eslint-disable-next-line no-unused-vars
   const [password, onChangePassword] = useInput("");
   const [FixedRemote, setFixedRemote] = useState(false);
   const [headers, setHeaders] = useState<string[]>([]);
@@ -90,21 +110,15 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
     }
   }, [dispatch, router, removePostDone]);
 
+  const onClickList = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
-    <div
-      className="remocontrol"
-      style={{
-        width: "270px",
-        paddingLeft: "2rem",
-        flexDirection: "column",
-        height: "100%",
-        position: FixedRemote ? "sticky" : "static",
-        top: "5.375rem",
-      }}
-    >
-      <h2 style={{ fontSize: "1rem", marginBottom: "1rem", lineHeight: "1.5" }}>{post?.title}</h2>
-      <ul style={{ overflow: "hidden" }}>
-        <li style={{ margin: 0 }}>
+    <div className="remocontrol" css={RemoteControlWrapper(FixedRemote)}>
+      <h2>{post?.title}</h2>
+      <ul>
+        <li>
           <Link href={"/"}>
             <a>
               <HomeFilled />
@@ -112,7 +126,7 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           </Link>
         </li>
         <Divider type="vertical" />
-        <li style={{ margin: "0 0 1rem 0" }}>
+        <li>
           <a
             onClick={() =>
               router.push(`/${post?.category === "culture" ? "class" : post?.category}`)
@@ -122,7 +136,7 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           </a>
         </li>
         <Divider type="vertical" />
-        <li onClick={() => window.scrollTo({ top: 0 })} style={{ margin: 0 }}>
+        <li onClick={onClickList}>
           {prevPost[0] ? (
             <Link href={`/${post?.category}/post/${prevPost[0].id}`}>
               <a>
@@ -134,7 +148,7 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           )}
         </li>
         <Divider type="vertical" />
-        <li onClick={() => window.scrollTo({ top: 0 })} style={{ margin: 0 }}>
+        <li onClick={onClickList}>
           {nextPost[0] ? (
             <Link href={`/${post?.category}/post/${nextPost[0].id}`}>
               <a>
@@ -146,15 +160,15 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           )}
         </li>
         <Divider type="vertical" />
-        <li style={{ margin: 0 }}>
-          <a onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+        <li>
+          <a onClick={onClickList}>
             <VerticalAlignTopOutlined />
           </a>
         </li>
         {user?.id === 1 && user.admin && (
           <>
             <Divider type="vertical" />
-            <li style={{ margin: 0 }}>
+            <li>
               <a
                 onClick={() => {
                   dispatch({
@@ -167,7 +181,7 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
               </a>
             </li>
             <Divider type="vertical" />
-            <li style={{ margin: 0 }}>
+            <li>
               <a onClick={() => showModal()}>
                 <FontAwesomeIcon icon={faTrash} />
               </a>
@@ -190,26 +204,13 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           <a href={`#comment`}>Comments</a>
         </Timeline.Item>
       </Scrollspy>
-      <Modal
-        title="Please Enter Admin password"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <p>
-          This fucntion is for ADMIN only. If you are not a administrator, please go back and
-          feedback to us. Thank you for your cooperation.
-        </p>
-        <p>
-          이 기능은 관리자 전용이며 관리자용 비밀번호가 필요합니다. 예상치 못하게 접근하셨을 경우
-          피드백 주시면 정말 감사하겠습니다. 협력해주셔서 감사합니다.
-        </p>
-        <p>
-          この機能は管理者専用でございます、何が問題が発生した場合は管理者にご連絡して頂ければ幸いだと思います。
-        </p>
-        <br />
-        <Input.Password value={password} onChange={onChangePassword} />
-      </Modal>
+      <AdminModal
+        isModalVisible={isModalVisible}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
+        password={password}
+        onChangePassword={onChangePassword}
+      />
     </div>
   );
 };

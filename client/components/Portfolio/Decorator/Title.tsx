@@ -1,5 +1,5 @@
-import { FC } from "react";
-import styled from "styled-components";
+import React, { FC } from "react";
+import styled from "@emotion/styled";
 import DividerLeftPoint from "./DividerLeftPoint";
 
 const TitleSub = styled.h2`

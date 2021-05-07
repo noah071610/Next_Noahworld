@@ -1,8 +1,9 @@
 import { DoubleLeftOutlined } from "@ant-design/icons";
-import { FC, memo, ReactNode, useCallback } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { FC, memo, ReactNode, useCallback } from "react";
+import styled from "@emotion/styled";
 import Footer from "./Footer";
 import Header from "./Header";
+import { keyframes } from "@emotion/react";
 
 const scrollEffect = keyframes`
 to {
@@ -34,7 +35,7 @@ const AppLayout: FC = memo(({ children }: { children: ReactNode }) => {
   return (
     <>
       <div className="pageWrapper">
-        <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
+        <div className="page">
           <Header />
           {children}
         </div>

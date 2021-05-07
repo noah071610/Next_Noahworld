@@ -1,17 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { EditFilled } from "@ant-design/icons";
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Input, message } from "antd";
-import { FC, useCallback, useState } from "react";
+import { message } from "antd";
+import React, { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { SubCommentProps } from "../../../types";
 import { RootState } from "../../../@reducers";
 import useInput from "../../../util/useInput";
-import { EDIT_SUB_COMMENT_REQUEST, REMOVE_SUB_COMMENT_REQUEST } from "../../../@reducers/post";
+import { REMOVE_SUB_COMMENT_REQUEST } from "../../../@reducers/post";
+import { DeleteComment } from "../../../styles/emotion";
+import CommentContent from "./CommentContent";
+import CommentMenu from "./CommentMenu";
 dayjs.locale("kor");
 dayjs.extend(relativeTime);
 
@@ -51,9 +51,6 @@ const SpeechBubble = styled.div`
   transition: all 0.3s;
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
-    &:before {
-      border-top: 1rem solid rgba(0, 0, 0, 0.1);
-    }
   }
   &:before {
     transition: all 0.3s;
@@ -95,125 +92,30 @@ const SubComments: FC<SubCommentProps> = ({ subComment, CommentId }) => {
     });
   };
 
-  const onClickEditComment = useCallback(() => {
-    dispatch({
-      type: EDIT_SUB_COMMENT_REQUEST,
-      data: { CommentId, SubCommentId, content: editText },
-    });
-    message.success("Successfully edited your reply 👍");
-    setEditForm(false);
-  }, [dispatch, CommentId, SubCommentId, editText]);
-
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = `/images/blog/default-user.png`;
-  };
-
   return (
     <>
       {subComment?.User && (
         <CommentWrapper>
           <SpeechBubble>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-              }}
-            >
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <img
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    borderRadius: "50%",
-                  }}
-                  src={
-                    subComment.User?.icon
-                      ? subComment.User.icon.replace(/\/thumb\//, "/original/")
-                      : "/images/blog/default-user.png"
-                  }
-                  onError={handleImgError}
-                  alt="profile"
-                />
-              </div>
-              <div style={{ marginLeft: "2rem", width: "100%" }}>
-                <a
-                  style={{
-                    fontSize: "1rem",
-                    display: "inline-block",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {subComment.User.name}{" "}
-                </a>
-                <span
-                  style={{ color: "rgba(0,0,0,0.5)", marginLeft: "0.5rem", fontSize: "0.8rem" }}
-                >
-                  {dayjs().to(dayjs(subComment.createdAt), true)}&nbsp;ago
-                </span>
-
-                {editForm ? (
-                  <Input.TextArea
-                    style={{ width: "100%" }}
-                    value={editText}
-                    defaultValue={subComment.content}
-                    onChange={onChangeEditText}
-                  />
-                ) : (
-                  <p style={{ width: "100%", margin: 0 }}>{subComment.content}</p>
-                )}
-              </div>
-            </div>
-            {editForm ? (
-              <div
-                className="edit_form"
-                style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
-              >
-                <Button onClick={onClickEditComment} type="primary" style={{ marginTop: "0.8rem" }}>
-                  EDIT
-                </Button>
-                <Button onClick={() => setEditForm(false)} style={{ marginTop: "0.8rem" }}>
-                  CANCEL
-                </Button>
-              </div>
-            ) : (
-              <ul
-                style={{
-                  margin: "0.5rem 0 0 0",
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-              >
-                {user && user.id === subComment.UserId ? (
-                  <>
-                    <li>
-                      <a>
-                        <EditFilled onClick={() => setEditForm(true)} />
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <FontAwesomeIcon onClick={() => setRemoveModal(true)} icon={faTrashAlt} />
-                      </a>
-                    </li>
-                  </>
-                ) : null}
-              </ul>
-            )}
-            <div
-              style={{
-                visibility: removeModal ? "initial" : "hidden",
-                animation: removeModal ? "0.5s fadeIn" : "none",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-              className="blog_comment_deleteModal"
-            >
-              <h2 style={{ textAlign: "center", color: "white" }}>
-                Would you really like to delete? 😢
-              </h2>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+            <CommentContent
+              comment={subComment}
+              editText={editText}
+              editForm={editForm}
+              onChangeEditText={onChangeEditText}
+            />
+            <CommentMenu
+              user={user}
+              SubCommentId={SubCommentId}
+              CommentId={CommentId}
+              comment={subComment}
+              editText={editText}
+              editForm={editForm}
+              setEditForm={setEditForm}
+              setRemoveModal={setRemoveModal}
+            />
+            <div css={DeleteComment(removeModal)} className="blog_comment_deleteModal">
+              <h2>Would you really like to delete? 😢</h2>
+              <div>
                 <a onClick={onClickRemove} className="confirmBtn" style={{ marginRight: "2rem" }}>
                   YES
                 </a>

@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { Divider, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import hljs from "highlight.js";
 import { LIKE_POST_REQUEST, LOAD_POST_REQUEST, UNLIKE_POST_REQUEST } from "../../../@reducers/post";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { LOAD_INFO_REQUEST } from "../../../@reducers/user";
 import dayjs from "dayjs";
@@ -22,6 +22,7 @@ import axios from "axios";
 import { IStore } from "../../../types";
 import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
+import { css } from "@emotion/react";
 dayjs.locale("kor");
 
 const Heart = styled.a`
@@ -47,6 +48,38 @@ const HeartLiked = styled.a`
     }
   }
 `;
+const PostDesc = css`
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.1rem;
+  margin-bottom: 5rem;
+  color: rgba(0, 0, 0, 0.2);
+`;
+
+const PostSubTitle = css`
+  margin: 5rem 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+const MorePostWrapper = css`
+  overflow: auto;
+  height: 280px;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  div:first-child {
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const PostWrapper = css`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+`;
 
 function BlogPostPage() {
   const router = useRouter();
@@ -69,6 +102,24 @@ function BlogPostPage() {
   } = useSelector((state: RootState) => state.post);
   const { user } = useSelector((state: RootState) => state.user);
   const [Fullcontent, setFullcontent] = useState("");
+  const liked = user && post?.PostLikers?.find((v) => v.id === user.id);
+
+  const onClickUnlike = () => {
+    dispatch({
+      type: UNLIKE_POST_REQUEST,
+      data: { PostId: post?.id, UserId: user?.id },
+    });
+  };
+  useEffect(() => {
+    dispatch({
+      type: LOAD_INFO_REQUEST,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleImgError = (e: React.SyntheticEvent) => {
+    (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
+  };
 
   useEffect(() => {
     const tagContent = post?.content?.split(/(#[^\s#+^<]+)/g).map((v) => {
@@ -88,6 +139,7 @@ function BlogPostPage() {
     const fullContentRemoveComma = post && tagContent?.join("");
     fullContentRemoveComma && setFullcontent(fullContentRemoveComma);
   }, [post]);
+
   useEffect(() => {
     const postId = router.pathname;
     if (!postId) {
@@ -96,7 +148,6 @@ function BlogPostPage() {
     dispatch({
       type: LOAD_POST_REQUEST,
       data: { postId: router.query.id, UserId: user?.id, category: router.query.category },
-      //category: match.params.category
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -125,7 +176,7 @@ function BlogPostPage() {
     }
   }, [addCommentDone]);
 
-  const onClickLike = () => {
+  const onClickLike = useCallback(() => {
     if (!user) {
       message.error("You can thumbs up when you are logged in 😿");
       return;
@@ -134,114 +185,69 @@ function BlogPostPage() {
       type: LIKE_POST_REQUEST,
       data: { PostId: post?.id, UserId: user.id },
     });
-  };
-
-  const liked = user && post?.PostLikers?.find((v) => v.id === user.id);
-
-  const onClickUnlike = () => {
-    dispatch({
-      type: UNLIKE_POST_REQUEST,
-      data: { PostId: post?.id, UserId: user?.id },
-    });
-  };
-  useEffect(() => {
-    dispatch({
-      type: LOAD_INFO_REQUEST,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
-  };
 
   return (
     <>
       <Head>
         <title>Noah world | {post?.title.slice(0, 10)}...</title>
       </Head>
-      {post && (
-        <div>
-          <h1 style={{ lineHeight: "1.5" }} className="post_main_title">
-            {post.title}
-          </h1>
-          <Divider className="blog_post_divier" />
-          <ul
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              fontSize: "1.1rem",
-              marginBottom: "5rem",
-              color: "rgba(0,0,0,0.2)",
-            }}
-          >
-            <li>{dayjs(post.createdAt).format("YYYY.MM.DD")}</li>
-            <li>·&nbsp;{post.hit} views</li>
-            <li>·&nbsp;{post.PostLikers?.length} likes</li>
-          </ul>
-          <div style={{ position: "relative", display: "flex", justifyContent: "space-between" }}>
-            <div className="blog_post_article">
-              <div className="tui-editor-contents" style={{ marginBottom: "3rem" }}>
-                {post?.thumbnail || post?.imagePath ? (
-                  <>
-                    <img
-                      alt={post.title}
-                      style={{ width: "100%", marginBottom: "6rem" }}
-                      src={post?.thumbnail ? post.thumbnail : post.imagePath}
-                      onError={handleImgError}
-                    />
-                  </>
-                ) : null}
-                {Fullcontent && parse(Fullcontent)}
-              </div>
-              <h4 style={{ margin: "5rem 0 1rem 0", fontSize: "1.5rem", fontWeight: "bold" }}>
-                Do you like this Post?{" "}
-                {liked ? (
-                  <HeartLiked onClick={onClickUnlike}>
-                    <HeartFilled />
-                  </HeartLiked>
-                ) : (
-                  <Heart onClick={onClickLike}>
-                    <HeartOutlined />
-                  </Heart>
-                )}
-                <span style={{ fontSize: "1rem" }}>{post.PostLikers?.length}</span>
-              </h4>
-              <CommentForm />
-              <h4 style={{ margin: "5rem 0 1rem 0", fontSize: "1.5rem", fontWeight: "bold" }}>
-                More posts
-              </h4>
-              <div
-                style={{
-                  overflow: "auto",
-                  height: "280px",
-                  marginTop: "1rem",
-                  borderTop: "1px solid rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <div
-                  style={{
-                    padding: "1rem 0.5rem",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  <span>Title</span>
-                  <span>Date</span>
-                </div>
-                {prevPost?.map((article, i) => (
-                  <ArticlePost key={i} article={article} />
-                ))}
-                {nextPost?.map((article, i) => (
-                  <ArticlePost key={i} article={article} />
-                ))}
-              </div>
+      <h1 style={{ lineHeight: "1.5" }} className="post_main_title">
+        {post.title}
+      </h1>
+      <Divider className="blog_post_divier" />
+      <ul css={PostDesc}>
+        <li>{dayjs(post.createdAt).format("YYYY.MM.DD")}</li>
+        <li>·&nbsp;{post.hit} views</li>
+        <li>·&nbsp;{post.PostLikers?.length} likes</li>
+      </ul>
+      <div css={PostWrapper}>
+        <div className="blog_post_article">
+          <div className="tui-editor-contents" style={{ marginBottom: "3rem" }}>
+            <img
+              alt={post.title}
+              style={{ width: "100%", marginBottom: "6rem" }}
+              src={
+                post?.thumbnail
+                  ? post.thumbnail
+                  : post.imagePath
+                  ? post.imagePath.replace(/\/thumb\//, "/original/")
+                  : "/images/blog/noImage.gif"
+              }
+              onError={handleImgError}
+            />
+            {Fullcontent && parse(Fullcontent)}
+          </div>
+          <h4 css={PostSubTitle}>
+            Do you like this Post?{" "}
+            {liked ? (
+              <HeartLiked onClick={onClickUnlike}>
+                <HeartFilled />
+              </HeartLiked>
+            ) : (
+              <Heart onClick={onClickLike}>
+                <HeartOutlined />
+              </Heart>
+            )}
+            <span style={{ fontSize: "1rem" }}>{post.PostLikers?.length}</span>
+          </h4>
+          <CommentForm />
+          <h4 css={PostSubTitle}>More posts</h4>
+          <div css={MorePostWrapper}>
+            <div>
+              <span>Title</span>
+              <span>Date</span>
             </div>
-            <RemoteControl Fullcontent={Fullcontent} />
+            {prevPost?.map((article, i) => (
+              <ArticlePost key={i} article={article} />
+            ))}
+            {nextPost?.map((article, i) => (
+              <ArticlePost key={i} article={article} />
+            ))}
           </div>
         </div>
-      )}
+        <RemoteControl Fullcontent={Fullcontent} />
+      </div>
     </>
   );
 }

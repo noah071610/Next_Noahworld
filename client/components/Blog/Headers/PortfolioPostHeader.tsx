@@ -3,7 +3,7 @@ import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import { faHome, faPaste } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "antd";
-import { FC, memo } from "react";
+import React, { FC, memo } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { RootState } from "../../../@reducers";

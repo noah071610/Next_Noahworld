@@ -1,7 +1,7 @@
 import { Popover } from "antd";
 import Col from "antd/lib/col";
-import { FC } from "react";
-import styled from "styled-components";
+import React, { FC } from "react";
+import styled from "@emotion/styled";
 import { BG_COLOR } from "../../../config";
 import { Portfolio_SkillBox } from "../../../types";
 

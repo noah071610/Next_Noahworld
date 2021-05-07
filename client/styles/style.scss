@@ -310,7 +310,7 @@ a {
   }
   .table {
     display: flex;
-    div:first-child {
+    div:first-of-type {
       margin-right: 2rem;
     }
   }
@@ -320,7 +320,7 @@ a {
   @media only screen and (max-width: 765px) {
     .table {
       display: block;
-      div:first-child {
+      div:first-of-type {
         margin-right: 0;
       }
     }
@@ -567,6 +567,7 @@ h1 {
     width: 70%;
     margin-right: 2rem;
     &_big {
+      margin-bottom: 3rem;
       display: block;
     }
     &_small {
@@ -690,7 +691,7 @@ h1 {
     display: flex;
     flex-direction: column;
     &_tag {
-      margin: 0;
+      margin: 0 0 0 0.5rem;
       padding: 1rem;
       li {
         margin: 0.5rem 1rem 0.5rem 0;
@@ -763,6 +764,9 @@ h1 {
     }
   }
   &_class {
+    &_basic {
+      padding: 1rem;
+    }
     &_small_poster {
       display: none;
     }
@@ -790,8 +794,23 @@ h1 {
       display: flex;
       padding: 0.5rem;
       transition: all 0.3s;
-      span {
+      align-items: center;
+      p {
         transition: all 0.1s linear;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        height: 0.9rem;
+        -webkit-line-clamp: 1;
+        line-height: 1.1;
+        word-wrap: break-word;
+        overflow: hidden;
+        font-size: 0.9rem;
+        text-overflow: ellipsis;
+        margin: 0;
+      }
+      span {
+        font-size: 2rem;
+        margin-right: 2rem;
       }
       &:hover {
         color: black;
@@ -847,10 +866,15 @@ h1 {
       z-index: 1;
       width: 100%;
       height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       background-color: rgba(0, 0, 0, 0.6);
       .confirmBtn {
         color: white;
         font-size: 1.3rem;
+        margin: 0.5rem 1rem 0 1rem;
         &:hover {
           color: $BLUE_COLOR;
         }
@@ -973,6 +997,10 @@ h1 {
   margin-top: 3rem;
   padding: 0 2rem;
   position: relative;
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
 }
 .logo {
   width: 560px;
@@ -993,15 +1021,20 @@ h1 {
   text-align: center;
 }
 
-.header_logo {
-  height: 180px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 3rem;
+.header {
   position: relative;
-  z-index: 2;
-  background-color: white;
+  width: 100%;
+  margin: 0 auto;
+  &_logo {
+    height: 180px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+    background-color: white;
+  }
 }
 
 .link_to_port {
@@ -1043,6 +1076,10 @@ h1 {
     padding: 4rem;
     box-shadow: 4px 8px 21px 1px rgba(0, 0, 0, 0.15);
     background-color: white;
+    img {
+      width: 50%;
+      margin: 2rem 0;
+    }
   }
 }
 
@@ -1056,8 +1093,12 @@ h1 {
     width: 45%;
   }
   &_title {
+    margin: 3rem 0;
     h1 {
       font-size: 3.3rem;
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
     }
     img {
       width: 100px;
@@ -1079,6 +1120,15 @@ h1 {
 .search_title {
   margin: 4rem 1rem;
   font-size: 2.3rem;
+  line-height: 1.3;
+  span:first-of-type {
+    color: $BLUE_COLOR;
+  }
+  span:last-child {
+    color: BLUE_COLOR;
+    margin: 0 1rem;
+    font-size: 1.2rem;
+  }
 }
 
 .remoteControl {
@@ -1115,6 +1165,41 @@ h1 {
   span {
     font-size: 1rem;
   }
+}
+
+.comment_main_content {
+  width: 100%;
+  display: flex;
+  div:first-of-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+  }
+  div:last-child {
+    margin-left: 2rem;
+    width: 100%;
+    a {
+      font-size: 1rem;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    span {
+      color: rgba(0, 0, 0, 0.5);
+      margin-left: 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.edit_form {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 //===== BLOG MEDIA QUERY=========
 
@@ -1296,7 +1381,6 @@ h1 {
     z-index: 1;
     li {
       width: 100%;
-      padding: 1rem 0;
       transition: all 0.3s;
       &:hover {
         background-color: rgba(0, 0, 0, 0.1);
@@ -1379,9 +1463,21 @@ h1 {
           padding-top: 2rem;
           text-align: center;
           font-size: 2.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 3rem;
+            margin-left: 0.5rem;
+          }
         }
-        .class_poster_girl {
+        div {
+          display: flex;
+          justify-content: center;
           width: 100%;
+          .class_poster_girl {
+            width: 100%;
+          }
         }
       }
       &_poster {
@@ -1505,6 +1601,7 @@ h1 {
     }
     &_main {
       &_big {
+        margin-bottom: 3rem;
         display: none;
       }
       &_small {

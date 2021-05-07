@@ -1,5 +1,4 @@
-import { memo, useEffect } from "react";
-import styled from "styled-components";
+import React, { memo, useEffect } from "react";
 import Col from "antd/lib/col";
 import Row from "antd/lib/row";
 import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
@@ -23,6 +22,7 @@ import wrapper from "../../@store/configureStore";
 import { LOAD_INFO_REQUEST } from "../../@reducers/user";
 import { END } from "@redux-saga/core";
 import { IStore } from "../../types";
+import styled from "@emotion/styled";
 
 const Img = styled.img`
   width: 170px;
@@ -108,14 +108,11 @@ const PortfolioMainPage = memo(() => {
       type: CHAGE_HEADER,
       header: "portfolio",
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     dispatch({
       type: OFF_ABOUT,
     });
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

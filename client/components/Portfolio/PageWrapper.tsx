@@ -1,5 +1,5 @@
-import { FC, ReactNode } from "react";
-import styled from "styled-components";
+import React, { FC, ReactNode } from "react";
+import styled from "@emotion/styled";
 
 const Div = styled.div`
   position: relative;

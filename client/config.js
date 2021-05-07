@@ -87,14 +87,14 @@ export const skills = [
     name: "React",
     src: "https://img.icons8.com/color/144/000000/react-native.png",
     desc:
-      "Hooks 문법, Router적용, Redux와 비동기를 위한 saga외 여러 라이브러리를 응용하며 생명주기같은 React의 SPA 특성을 이해합니다.",
+      "Hooks 문법, Router적용, Redux와 비동기를 위한 saga, thunk 외 여러 라이브러리를 응용하며 렌더링최소화 및 생명주기같은 React의 SPA 특성을 이해합니다.",
     level: true,
   },
   {
     name: "Next.js",
     src: "https://docs.microsoft.com/ko-kr/windows/images/nextjs-logo.png",
     desc:
-      "사용자 만족도와 검색엔진 효율성을 높히는 서버사이드렌더링의 특성을 이해하며 Next.js를 React에 적용합니다.",
+      "사용자 만족도와 검색엔진 효율성을 높아는 서버사이드렌더링의 특성을 이해하며 Next.js를 React에 적용합니다.",
     level: true,
   },
   {
@@ -114,19 +114,14 @@ export const skills = [
 
 export const sub_skills = [
   {
-    name: "Webpack",
-    src: "https://t1.daumcdn.net/cfile/tistory/999AF54B5B93D78C25",
+    name: "Axios",
+    src:
+      "https://media-exp1.licdn.com/dms/image/C4E0BAQGlN3RJvKmwEg/company-logo_200_200/0/1571253448818?e=2159024400&v=beta&t=VYfrSozq3kSw5_404tR4xYFMH0uFQNmQNrweQcJkbGw",
     level: true,
   },
   {
     name: "Express",
     src: "https://www.mementotech.in/assets/images/icons/express.png",
-    level: true,
-  },
-  {
-    name: "Passport.js",
-    src:
-      "https://leolanchas.com/wp-content/uploads/2013/07/0d184ee3-fd8d-4b94-acf4-b4e686e57375.png",
     level: true,
   },
   {
@@ -140,14 +135,29 @@ export const sub_skills = [
     level: true,
   },
   {
+    name: "Emotion.js",
+    src: "https://cdn-images-1.medium.com/max/1600/1*gGzRmUKNOC_X7klFjTk8EA.png",
+    level: true,
+  },
+  {
     name: "AWS",
     src:
       "https://images.squarespace-cdn.com/content/v1/52ca3b73e4b04a45ef2c5cb6/1551884861331-C9U2RHJQLOPL9F332X5O/ke17ZwdGBToddI8pDm48kK6x8IOhzX_rTtQGKY1qp-hZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7XaGPskfQtVutuSA2B-JW6wkqqV024XP-059DP6wRYqYVUGMzsBxTo2UlkZq10GTrg/AWS_blog_01.PNG",
     level: true,
   },
   {
-    name: "MongoDB",
-    src: "https://img.icons8.com/color/144/000000/mongodb.png",
+    name: "Passport.js",
+    src:
+      "https://leolanchas.com/wp-content/uploads/2013/07/0d184ee3-fd8d-4b94-acf4-b4e686e57375.png",
+  },
+  {
+    name: "Babel",
+    src:
+      "https://cdn.imgbin.com/8/4/22/imgbin-source-to-source-compiler-javascript-ecmascript-node-js-that-s-Kft9K4nE9YHrMp6sdq0BQ09cK.jpg",
+  },
+  {
+    name: "Webpack",
+    src: "https://t1.daumcdn.net/cfile/tistory/999AF54B5B93D78C25",
   },
   {
     name: "Postman",
@@ -182,6 +192,88 @@ export const languages = [
     popup: true,
     licenseKor: "2019년 일본어",
     content: jap_desc,
+  },
+];
+
+export const dataSource = [
+  {
+    key: "1",
+    name: "토익",
+    date: 2018,
+    summary: "영어 자격증 (기간만료)",
+    score: "925",
+  },
+  {
+    key: "2",
+    name: "매일경제테스트",
+    date: 2018,
+    summary: "경제,경영관련 자격증",
+    score: "Pass",
+  },
+  {
+    key: "3",
+    name: "국외여행인솔자 자격증",
+    date: 2019,
+    summary: "해외에서 인정하는 한국관광협회의 국외 인솔자  자격증",
+    score: "Pass",
+  },
+  {
+    key: "4",
+    name: "JLPT",
+    date: 2019,
+    summary: "일본어 자격증",
+    score: "1급",
+  },
+  {
+    key: "5",
+    name: "일본어 통역안내사 자격증 (국가전문자격)",
+    date: 2019,
+    summary: "한국사1급에 준하며 일본어 통번역 능력을 입증하는 국가전문자격증",
+    score: "Pass",
+  },
+  {
+    key: "6",
+    name: "영어 통역안내사 자격증 (국가전문자격)",
+    date: 2020,
+    summary: "한국사1급에 준하며 영어 통번역 능력을 입증하는 국가전문자격증",
+    score: "Pass",
+  },
+  {
+    key: "7",
+    name: "정보처리기사 (국가기술자격)",
+    date: 2021,
+    summary: "IT관련 소양을 입증하는 국가기술자격증",
+    score: "Pass",
+  },
+  {
+    key: "8",
+    name: "학점은행제 경영학사",
+    date: 2021,
+    summary: "2021년 6월 졸업예정",
+    score: "학사",
+  },
+];
+
+export const columns = [
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+  },
+  {
+    title: "Summary",
+    dataIndex: "summary",
+    key: "summary",
+  },
+  {
+    title: "Score",
+    dataIndex: "score",
+    key: "score",
   },
 ];
 

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import { Divider } from "antd";
-import { memo } from "react";
+import React, { memo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
 

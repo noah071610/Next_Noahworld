@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^6.0.2",
-    "nodemon": "^2.0.7",
-    "react-no-ssr": "^1.1.0"
+    "nodemon": "^2.0.7"
   }
 }

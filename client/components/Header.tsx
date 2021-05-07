@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { message } from "antd";
 import { LOG_OUT_REQUEST } from "../@reducers/user";
 import { RootState } from "../@reducers";
 import BlogHeader from "./Blog/Headers/BlogHeader";
-import BlogSmallHeader from "./Blog/Headers/BlogSmallHeader";
+import BlogSmallHeader from "./Blog/Headers/SmallHeaders/BlogSmallHeader";
 import { navContents } from "../config";
 import { useRouter } from "next/dist/client/router";
 import { PortfolioHeader } from "./Blog/Headers/PortfolioHeader";
@@ -22,12 +22,17 @@ const LogoMain = styled.img`
 `;
 
 const Header = memo(() => {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [FixedNavbar, setFixedNavbar] = useState(false);
   const { header } = useSelector((state: RootState) => state.blog);
   const { user, logOutDone, logOutError } = useSelector((state: RootState) => state.user);
 
-  const dispatch = useDispatch();
-  const router = useRouter();
+  const onClickLogOut = useCallback(() => {
+    dispatch({
+      type: LOG_OUT_REQUEST,
+    });
+  }, []);
 
   useEffect(() => {
     function scrollCallBack() {
@@ -43,12 +48,6 @@ const Header = memo(() => {
     };
   }, []);
 
-  const onClickLogOut = useCallback(() => {
-    dispatch({
-      type: LOG_OUT_REQUEST,
-    });
-  }, [dispatch]);
-
   useEffect(() => {
     if (logOutDone) {
       message.success("Log out is done, Thank you for visiting.");
@@ -61,14 +60,7 @@ const Header = memo(() => {
   }, [logOutDone, logOutError]);
 
   return (
-    <header
-      style={{
-        position: "relative",
-        width: "100%",
-        margin: "0 auto",
-      }}
-      className="header"
-    >
+    <header className="header">
       <div className="space_small_on" />
       <div className="header_logo">
         <Link href={"/"}>

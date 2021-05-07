@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { message } from "antd";
-import { FC, useCallback, useEffect } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { RootState } from "../../../@reducers";
 import { ADD_SUB_COMMENT_REQUEST } from "../../../@reducers/post";
 import { SubCommentProps } from "../../../types";
@@ -17,6 +17,16 @@ const CommentFormWrapper = styled.div`
   padding: 1rem 0.5rem 1rem 2rem;
   button {
     width: 20%;
+  }
+  img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin: 0 1rem;
+  }
+  div {
+    width: 100%;
+    display: flex;
   }
   @media only screen and (max-width: 576px) {
     padding-left: 0.5rem;
@@ -62,12 +72,6 @@ const SubCommentForm: FC<SubCommentProps> = ({ CommentId }) => {
     <>
       <CommentFormWrapper className="blog_post_comment">
         <img
-          style={{
-            width: "2rem",
-            height: "2rem",
-            borderRadius: "50%",
-            margin: "0 1rem",
-          }}
           src={
             user?.icon
               ? user.icon.replace(/\/thumb\//, "/original/")
@@ -76,7 +80,7 @@ const SubCommentForm: FC<SubCommentProps> = ({ CommentId }) => {
           alt="profile"
           onError={handleImgError}
         />
-        <div style={{ width: "100%", display: "flex" }}>
+        <div>
           <input
             className="public_input"
             value={content}

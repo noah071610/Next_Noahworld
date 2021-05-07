@@ -1,12 +1,12 @@
 import { Col } from "antd";
-import { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import styled, { css } from "styled-components";
+import styled from "@emotion/styled";
 import { RootState } from "../../../@reducers";
 import useToggle from "../../../util/useToggle";
 
-const mixinStyles = css`
+const NextBtn = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -15,10 +15,6 @@ const mixinStyles = css`
   width: 30%;
   background-color: white;
   color: black;
-`;
-
-const NextBtn = styled.button`
-  ${mixinStyles}
 `;
 
 const WordForm = memo(() => {

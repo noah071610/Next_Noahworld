@@ -1,5 +1,5 @@
 import { Col, Divider, Row } from "antd";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LOAD_CATEGORY_POSTS_REQUEST, LOAD_MORE_POSTS_REQUEST } from "../../@reducers/post";
 import { LOAD_INFO_REQUEST } from "../../@reducers/user";
@@ -16,6 +16,8 @@ import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
 
 function BlogCategoryPage() {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const {
     techPosts,
     dailyPosts,
@@ -25,8 +27,7 @@ function BlogCategoryPage() {
     countPosts,
   } = useSelector((state: RootState) => state.post);
   const { user } = useSelector((state: RootState) => state.user);
-  const router = useRouter();
-  const dispatch = useDispatch();
+
   let category = router.query.category;
 
   useEffect(() => {
@@ -34,13 +35,11 @@ function BlogCategoryPage() {
       type: LOAD_CATEGORY_POSTS_REQUEST,
       data: category,
     });
-  }, []);
-
-  useEffect(() => {
     dispatch({
       type: LOAD_INFO_REQUEST,
     });
   }, []);
+
   useEffect(() => {
     function onScroll() {
       if (
@@ -74,37 +73,32 @@ function BlogCategoryPage() {
         <title>Noah world | {category}</title>
       </Head>
       {user && <UserProfile />}
-      {(techPosts || dailyPosts) && (
-        <div>
-          <h2 className="blog_category_header">
-            {(category as string).toUpperCase() + " POSTS"}
-            <br className="br_category" />
-            <span className="blog_category_count">
-              +&nbsp;
-              <CountUp duration={4} start={0} end={countPosts?.length} />
-              &nbsp;posts.
-            </span>
-          </h2>
-          <div className="blog_category_big">
-            <ArticleRow article={dailyPosts[0] || techPosts[0]} />
-            <Divider />
-          </div>
-          <div className="blog_category_medium">
-            <ArticleColumn article={dailyPosts[0] || techPosts[0]} />
-            <Divider />
-          </div>
-          <div className="blog_category_small">
-            <ArticleColumn article={dailyPosts[0] || techPosts[0]} />
-          </div>
-          <Row>
-            {(techPosts || dailyPosts).slice(1).map((v, i) => (
-              <Col key={i} xs={24} sm={12} lg={8}>
-                <ArticleColumn article={v} />
-              </Col>
-            ))}
-          </Row>
+      <div>
+        <h2 className="blog_category_header">
+          {(category as string).toUpperCase() + " POSTS"}
+          <br className="br_category" />
+          <span className="blog_category_count">
+            +&nbsp;
+            <CountUp duration={4} start={0} end={countPosts?.length} />
+            &nbsp;posts.
+          </span>
+        </h2>
+        <div className="blog_category_big">
+          <ArticleRow article={dailyPosts[0] || techPosts[0]} />
+          <Divider />
         </div>
-      )}
+        <div className="blog_category_medium">
+          <ArticleColumn article={dailyPosts[0] || techPosts[0]} />
+          <Divider className="blog_category_small" />
+        </div>
+        <Row>
+          {(techPosts || dailyPosts).slice(1).map((v, i) => (
+            <Col key={i} xs={24} sm={12} lg={8}>
+              <ArticleColumn article={v} />
+            </Col>
+          ))}
+        </Row>
+      </div>
     </>
   );
 }

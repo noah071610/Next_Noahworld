@@ -1,5 +1,5 @@
 import { Input, message } from "antd";
-import { memo, useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { SEARCH_KEYWORD_REQUEST } from "../../../@reducers/blog";
