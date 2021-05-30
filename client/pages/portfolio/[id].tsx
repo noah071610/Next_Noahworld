@@ -98,9 +98,7 @@ const PortfolioPostPage: FC = memo(() => {
           </Articles>
           <Articles>
             <Title title="Summary" />
-            <div data-aos="fade-in" data-aos-duration="1000" className="portfolio_summary">
-              {portfolio?.desc && parse(portfolio.desc)}
-            </div>
+            <div data-aos="fade-in" data-aos-duration="1000" className="portfolio_summary"></div>
           </Articles>
         </PageWrapper>
       </Home>
