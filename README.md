@@ -1,37 +1,64 @@
-# Noah World - Place to step up
 
----
+<br/>
 
-## 반갑습니다. 신뢰를 주는 장현수(Noah) 입니다.
+<div align=center><a href="https://github.com/noah071610/Next_NoahWorld"><img src="https://user-images.githubusercontent.com/74864925/120079497-12334a00-c0ef-11eb-9b73-28eaab517f1c.png"/></a></div>
 
-성급하지 않지만, 꾸준히, 누구보다 즐겁고 열정 있게 신입 프론트엔드 개발자라는 목표를 향해 나아가고 있습니다.
+# <div align=center>Noah world Blog</div> 
+#### <div align=center>Place to step up.</div>
 
-이번에 개인적인 블로그를 개설하게 되었습니다. 블로그에 대한 전반적인 정보와 내용, 기술, 피드백과 특이사항을 알려드리겠습니다.
+<br/>
 
----
+<div align=center>
+<img src="https://travis-ci.org/joemccann/dillinger.svg?branch=master"/>&nbsp
+  <img src="https://img.shields.io/github/stars/noah071610/Next_NoahWorld?style=social"/>&nbsp
+  <img src="https://img.shields.io/github/watchers/noah071610/Next_NoahWorld?style=social"/>&nbsp
+</div>
 
-## 프로젝트 개요
+<br/>
 
-- 프로젝트 제목 : Noah World - Place to step up (개인 블로그)
-- 프로젝트 인원 : 장현수(Noah) 외 0명
-- 프로젝트 기간 : 2/4 ~ 3/29 (55 days)
-- 프로젝트 사용 기술:
-  1. **Markup Language** : Html (+ CSS , SCSS)
-  2. **Frontend** : Javascript , React
-  3. **Backend** : Node.js , AWS
-  4. **Database** : Mysql (Sequelize)
-  5. **Information security** : Node.js
-  6. Others : Photo Shop, Notion
-- 프로젝트 사용 외국어:
-  1. 영어(전반적인 블로그)
-  2. 일본어(한국어 강의 페이지)
-  3. 한국어(포트폴리오 페이지)
+<div align=center>
+<img src="https://img.shields.io/badge/Photoshop-31A8FF?style=flat-square&logo=adobe-photoshop&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/SCSS-CC6699?style=flat-square&logo=Sass&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next-dot-js&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Redux_Saga-999999?style=flat-square&logo=Redux-Saga&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Emotion-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Antd-0170FE?style=flat-square&logo=Ant-design&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node-dot-js&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Passport-34E27A?style=flat-square&logo=Passport&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Google_Login-4285F4?style=flat-square&logo=Google-Cloud&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Babel-F9DC3E?style=flat-square&logo=Babel&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Webpack-8DD6F9?style=flat-square&logo=Webpack&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=flat-square&logo=Amazon-AWS&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=Linux&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=PM2&logoColor=white"/>&nbsp;
+</div>
 
----
+<br/>
 
-## 프로젝트 내용
+<div align=center>
+  <a href="https://github.com/noah071610" target="_blank"><img src="https://image.flaticon.com/icons/png/24/25/25657.png"/></a>&nbsp
+  <a href="https://www.instagram.com/salmonchobab" target="_blank"><img src="https://image.flaticon.com/icons/png/24/1409/1409946.png"/></a>&nbsp
+  <a href="https://velog.io/@noah071610" target="_blank"><img width="24" src="https://api.faviconkit.com/velog.io/144"/></a>&nbsp
+  <a href="noah071610@naver.com"><img width="24" src="https://lh3.googleusercontent.com/proxy/jSPGDpNbX6xztXCy4axN0zvpdCa2wNWkv5TTHCKpfvEGVXeDOZUbpq9GTXFopXYO5z1KDvhPh__zEnUUSZTyy0xuONNtSHSDXIfyGE-T81k"/></a>&nbsp
+  <a href="https://velog.io/@noah071610" target="_blank"><img src="https://image.flaticon.com/icons/png/24/3135/3135715.png"/></a>&nbsp
+</div>
 
-### #무리하지않는 깔끔한 디자인을 목표로 개설한 개인 블로그.
+<br/><br/><br/><br/>
+
+
+## About Noah World.
+#### 무리하지않는 깔끔한 디자인을 목표로 개설한 개인 블로그.
+
+<br/>
+<br/>
 
 - **페이지 전반**
 
@@ -49,67 +76,505 @@
 
 관리자만 접근할 수 있는 어드민 페이지를 이용해 관리자만 게시글을 작성 수정 삭제 할 수 있습니다.
 
-### #활용 기술 - Frontend
+<br/>
+<br/>
 
-- React + Typescript 그리고 Next.js를 사용해 안정성을 갖춘 서버사이드렌더링 사이트를 구축했습니다.
-- Redux에 Redux Saga를 추가해 비동기도 가능하게 했고 서버통신시 요청-성공-실패-초기화 단계그리고 try..catch 예외처리를 통해서 에러관리를 했으며 Redux Devtool을 통한 안정적인 프론트엔드 개발을 하였습니다.
-- 404 Not Found 페이지와 Loading 화면, 인피니트 스크롤 페이징 방식등을 적용했습니다.
-- hoisting 에 위험이있는 var는 사용하지 않고 const 그리고 let을 사용했습니다.
-- 직접적이게 위치를 바꾸는 것보단 transform으로 위치를 변경하는 등 가능한한 css 최적화를 고려하고 만들었습니다.
-- 메인컬러, dispatch타입 등은 유지보수를 위해 전역변수를 사용했습니다. (LOGIN_REQUEST, $BLUE_COLOR)
-- 반응형을 보장하며 모바일 사이즈부터 PC사이즈까지 고려했습니다.
-- WYSIWYG 시스템을 이용해 게시글 작성시 풍성한 게시글 (코드하이라이트,유튜브링크) 작성이 가능합니다.
-- 대댓글이 3개 이상되면 더보기로 바뀌거나, 단어랜덤배치와 작은부분도 신경쓰며
+## Summary.
 
-  디테일에 최선을 다했습니다.
+![jeshoots-com-pUAM5hPaCRI-unsplash](https://user-images.githubusercontent.com/74864925/120084019-e96b7e80-c107-11eb-8e42-d2e4acbc90d2.png)
 
-### #활용 기술 - Backend + Database
+- 프로젝트 인원 : 장현수(Noah) 외 0명
+- 프로젝트 기간 : 2021/02 ~ 2021/04
+- 프로젝트 언어:
 
-- cors 미들웨어를 사용해 기본적인 브라우저-프론트서버-백서버간 cors 문제를 해결했습니다.
+    + 영어 (전반적인 블로그)
+    + 일본어 (한국어 강의 페이지)
+    + 한국어 (포트폴리오 페이지)
 
-* 서버 개설전 데이터개념을 체계화하고 스키마를 미리 구상했습니다.
+<br/><br/>
 
-* Restful API의 get, post, delete, patch 원칙을 준수하기 위해 노력했습니다.
+## Explain about Noah World.
 
-* 게시글 페이지안 리모컨부분은 헤더를 자동으로 인식해 타임라인을 생성합니다.
+<br/>
 
-* 게시글 작성시 #태그 를 작성하면 정규식을 사용해 자동으로 해쉬태그가 생성되며 데이터베이스에 저장합니다. 수정시 기존 해쉬태그들을 제거후 수정본에 맞춰 재생성합니다.
+#### 📍 &nbsp;  회원가입및 로그인아웃, 비밀번호 변경, 탈퇴 외 로그인유지 기능 구현.
 
-* 게시글 페이지에선 html parser를 이용해 text로 데이터베이스에 저장된 게시글을 풍성한 html으로 볼 수 있으며 게시글 페이지가 아닌 경우 정규식을 통해 html태그들을 제거, text 형식으로 볼 수 있습니다.
+<br/>
 
-* 시퀄라이즈를 이용해 조회수,좋아요,댓글수가 가장 높은 게시글을 끌어와 메인페이지에 배치했습니다. 또한, 키워드검색 + 해시태그 검색기능을 구현했습니다.
+#### 📍 &nbsp;  유저 아이콘을 위한 이미지 업로드와 이미지 Crop 기능을 구현.
 
-* Passport.js를 활용한 회원가입,로그인,로그아웃이 가능하고 유저정보를 데이터베이스에 저장합니다. 또한 쿠키를 받아와 로그인유지도 가능하며 비밀번호 변경과 회원탈퇴도 가능합니다.
+```javascript
+📁profile/CropImageModal.tsx
 
-* 이미지 업로드시 fs와 multer를 이용해 서버에 이미지를 저장, 불러오는 기능을 구현했습니다.
+  const handleOk = useCallback(() => {
+    //5. blob 객체와 user id를 서버에 요청하기위해 form을 만듭니다.
+    const form = new FormData();
+    form.append("image", blob!);
+    form.append("id", String(user?.id));
+    dispatch({
+      type: ADD_ICON_REQUEST,
+      data: form,
+    });
+    setIsModalVisible(false);
+    setUrl("");
+    setUpImg(null);
+  }, []);
 
-* 에러 발생시 사용자가 무슨 이유인지 알수있도록 팝업을 띄우며, 많은 예외처리를 고려하며 디테일에 신경썼습니다.
+  ...
 
-### #활용 기술 - Information security
+  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //1-1. React-crop 공식문서를 참조했습니다. 이미지를 로드해줍니다.
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => setUpImg(reader.result));
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
 
-- Nodejs helmet을 통해 XSS등으로 부터 서버를 보안합니다.
-- 기본적으로 암호는 해시키변환 및 Salting까지 더해 레인보우 테이블 공격까지 최선으로 보안을 유지합니다.
-- 프론트서버에서는 암호 자체를 다루지 않으며 쿠키는 secret 과 expires, 해시값 전달 옵션을 추가해 보안성을 높였습니다.
-- 민간한 정보는 .env를 활용하고 .env는 절대 깃허브에 등록하지 않습니다.
-- 게시글 등록 수정 삭제는 프론트 백엔드 .env비밀번호등으로 일반 사용자는 접근하지 못하게 대비하였습니다.
+  const onLoad = useCallback((img) => {
+    imgRef.current = img;
+  }, []);
 
+  useEffect(() => {
+    //3. React-crop 공식문서를 참조했습니다. canvas에 자른 이미지를 표시하는 함수입니다.
+    if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
+      return;
+    }
+    const image: any = imgRef.current;
+    const canvas: any = previewCanvasRef.current;
+
+    ...
+    
+    );
+    new Promise(() => {
+      canvas.toBlob(
+        //4. 자른 이미지를 Blob 객체로 바꿔 state에 저장합니다.
+        (blob: Blob) => {
+          setBlob(blob);
+        },
+        "image/png",
+        1
+      );
+    });
+  }, [completedCrop]);
+
+  return (
+    {/* 0. Icon 수정 (+ Crop Image)는 Modal창에서 일어나며 Modal은 Antd를 사용했습니다. */}
+    <Modal title="Icon Upload 🖼️" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <h3>Set icon from Local storage</h3>
+      {/* 1. Url을 이용해 아이콘을 업로드할지, file을 이용할지 선택합니다. */}
+      <input
+        style={{ marginBottom: "1.5rem" }}
+        type="file"
+        accept="image/*"
+        disabled={url ? true : false}
+        onChange={onSelectFile}
+      />
+      <h3>Set icon by using URL</h3>
+      <Input
+        disabled={upImg ? true : false}
+        value={url}
+        onChange={onChangeUrl}
+        placeholder="https://"
+      />
+
+      {(url || upImg) && (
+        <>
+          {/* 2. 올린 이미지를 활용해 이미지를 자릅니다. */}
+          <h3>Crop the image for icon size.</h3>
+          <ReactCrop
+            crossorigin="anonymous"
+            
+            ...
+
+```
 ---
 
-## 프로젝트 피드백
+<br/>
 
-1. **스타일시트를 계획적이게 짜지 못했다.**
+#### 📍 &nbsp; multer를 사용해 이미지를 AWS-S3에 저장.
+  
+```javascript
+📁server/routes/user.js
 
-   Html style 과 scss, styled-components에 글로벌스타일&미디어쿼리, atnd 등등 여러 가지 스타일시트나 라이브러리가 복잡하게 얽혔습니다. 이번 프로젝트에서 가장 후회하고 절대로 반복해선 안될 실수라 생각합니다. 추후에는 체계적으로 변수이름을 짓고, styled-component을 필두로 미디어 쿼리까지 작성하며 공통적용
-   스타일은 scss로 사용하거나 협업시 합의된 스타일시트 작성이 꼭 필요하다고 생각했습니다.
+// 아이콘 이미지를 서버에서 업로드하는 과정.
 
-2. **계획과는 다른 프로젝트가 됐다.**
+const upload = multer({
+  storage: multerS3({
+    // AWS.S3에 이미지를 저장하는 과정입니다.
+    s3: new AWS.S3(),
+    bucket: "noahworld",
+    key(req, file, cb) {
+      cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
+    },
+  }),
+  limits: { fileSize: 20 * 1024 * 1024 },
+});
 
-   처음에는 간단한 포트폴리오를 만들 생각이었으나 블로그 개설에 욕심이 생겨 도중에 포트폴리오 페이지를 컴포넌트로 빼버리고 블로그를 메인으로 작업했습니다. Javascript -> React -> NEXT 순으로 계속 변화하며 변수명과 컴포넌트가 얽히고, 똑같은 작업을 여러번 반복한 감이 없지않아 있습니다. 이 계기로 요구사항을 정확하게 인식하고 초반부에 아키텍처를 체계적으로 정리하는 중요성을 절실히 깨달았습니다.
+router.post("/icon", upload.single("image"), async (req, res, next) => {
+  //유저가 file을 업로드하는 방식으로 아이콘을 업데이트한 경우
+  User.update(
+    { icon: req.file.location.replace(/\/original\//, "/thumb/") },
+    { where: { id: req.body.id } }
+  );
+  res.json(req.file.location.replace(/\/original\//, "/thumb/"));
+});
 
+router.post("/icon/url", async (req, res, next) => {
+  //유저가 url을 이용하는 방식으로 아이콘을 업데이트한 경우
+  User.update({ icon: req.body.url }, { where: { id: req.body.UserId } });
+  res.json(req.body.url);
+});
+
+router.delete("/icon/:UserId", async (req, res, next) => {
+  //유저가 아이콘을 삭제하는경우, 미리 저장되어있는 default 값으로 변경합니다.
+  User.update(
+    { icon: "/images/blog/default-user.png" },
+    { where: { id: parseInt(req.params.UserId, 10) } }
+  );
+  res.send({ success: true });
+});
+
+```
 ---
 
-## 마치며
+<br/>
 
-피드백이나 문의는 noah07160@naver.com 으로 연락주시면 감사하겠습니다.
+#### 📍 &nbsp; TOP 좋아요, 댓글, 조회수 게시물 그리고 해시태그를 메인페이지에 배치.
 
-긴 글 읽어주셔서 감사합니다. 좋은 하루되세요.
+```javascript
+📁server/routes/post.js
+
+    ...
+    
+    const getAttributesFromPosts = await Post.findAll({
+      order: [["createdAt", "DESC"]],
+      attributes: ["id", "hit"],
+      include: [
+        {
+          model: User,
+          as: "PostLikers",
+          attributes: ["id"],
+        },
+        {
+          model: Comment,
+          include: [
+            {
+              model: User,
+              attributes: ["id"],
+            },
+          ],
+        },
+      ],
+    }).then((result) =>
+      result.map((v) => {
+        //전체 포스트중 아이디,좋아요수,코멘트수,조회수 전체를 배열형태로 가져옵니다.
+        return [v.id, v.PostLikers.length, v.Comments.length, v.hit];
+      })
+    );
+    // 가져온 값을 원하는 값에 따라 미리 분류해둡니다.
+    const getLikes = await getAttributesFromPosts.map((v, i) => {
+      return v[1];
+    });
+    const getComments = await getAttributesFromPosts.map((v, i) => {
+      return v[2];
+    });
+    const getViews = await getAttributesFromPosts.map((v, i) => {
+      return v[3];
+    });
+
+    const mostCalculator = (arr, index) =>
+      getAttributesFromPosts.filter((v) => {
+        //배열중 최대값을 구하기 위해 아래의 값을 사용했습니다.
+        return v[index] === Math.max.apply(null, arr);
+      });
+    
+    //결과값이 이중배열으로 이루어진 id값으로 나오기때문에 [0][0]을 붙혔습니다.
+    const mostLikedId = await mostCalculator(getLikes, 1)[0][0];
+    const mostCommentsId = await mostCalculator(getComments, 2)[0][0];
+    const mostViewedId = await mostCalculator(getViews, 3)[0][0];
+
+    //원하는 값이 최대인 게시글에 아이디를 이용해서 DB안에 값을 찾아줍니다.
+    const mostLikedPost = await Post.findOne({
+      where: {
+        id: mostLikedId,
+      },
+      attributes: {
+        exclude: ["content"],
+      
+      ...
+      
+    });
+    const mostCommentedPost = await Post.findOne({
+      where: {
+        id: mostCommentsId,
+      },
+      attributes: {
+        exclude: ["content"],
+      
+      ...
+      
+    });
+    const mostViewedPost = await Post.findOne({
+      where: {
+        id: mostViewedId,
+      },
+      attributes: {
+        exclude: ["content"],
+      
+      ...
+      
+    });
+    //메인페이지에 따로 표시할 해시태그도 잊지않고 가져옵니다.
+    const hashtags = await Hashtag.findAll({
+      attributes: ["name"],
+    });
+    res.status(200).json({
+    
+    ...
+
+```
+---
+
+<br/>
+
+#### 📍 &nbsp;  WYSIWYG의 Markdown을 이용한 풍성한 포스팅 구현.
+
+<br/>
+
+#### 📍 &nbsp;  리모콘 또는 헤더를 사용한 간편한 게시물 인터페이스.
+
+<br/>
+
+#### 📍 &nbsp;  게시글안 텍스트로된 키워드들을 정규식으로 파악해 링크로 변환.
+
+```javascript
+📁post/[id].tsx
+  
+  ...
+  
+    useEffect(() => {
+    const tagContent = post?.content?.split(/(#[^\s#+^<]+)/g).map((v) => {
+      //정규식을 사용해 #name 으로 이루어진 text를 찾아냅니다.
+      if (v.match(/(#.*")/g)) {
+        //위지글에디터의 결과값이 이 함수에 잘 호환 되지않아 추가적으로 걸러주었습니다.
+        return v;
+      }
+      //유튜브 태그가 있다면 (위지글에디터가 제공하지 않아서 추가적으로 키워드를 만들었습니다) iframe으로 변환합니다.
+      if (v.match(/(#youtube:)/g)) {
+        return `<iframe class="youtube" title="YouTube video player" frameborder="0" allow="accelerometer; 
+        autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen 
+        src="https://www.youtube.com/embed/${v.slice(
+          9
+        )}"></iframe>`;
+      }
+      if (v.match(/(#[^\s#+^<]+)/g)) {
+        return `<a class="hashtag">${v}</a>`;
+      }
+      return v;
+    });
+    const fullContentRemoveComma = post && tagContent?.join("");
+    // 나중에 이 값은 html parser를 사용해 게시글에 로드됩니다.
+    fullContentRemoveComma && setFullcontent(fullContentRemoveComma);
+  }, [post]);
+  
+  ...
+  
+```
+---
+
+<br/>
+
+#### 📍 &nbsp;  댓글 및 좋아요 구현.
+
+<br/>
+
+#### 📍 &nbsp;  Infinite Scroll을 구현.
+
+```javascript
+📁pages/[category]/index.tsx
+
+  useEffect(() => {
+    function onScroll() {
+      if (
+        //Y축 스크롤 값과 화면에 보이는 페이지 길이
+        window.scrollY + document.documentElement.clientHeight >
+        //전체 페이지의 길이
+        document.documentElement.scrollHeight - 300
+      ) {
+        if (hasMorePosts && !loadMorePostsLoading && (techPosts || dailyPosts.length > 6)) {
+          //포스트가 더 있고 , 포스트를 로딩중이 아니고 , 포스트가 6개 초과이면 값을 가져옵니다.
+          //6개씩 값을 가져오는데 6개보다 안된다면 당연히 값을 전부 가져온것이기 때문입니다.
+          const LastId =
+            (techPosts || dailyPosts) &&
+            (techPosts || dailyPosts)[(techPosts || dailyPosts).length - 1].id;
+            // 이미 불러온 포스트들(배열)에 마지막값의 아이디를 가져옵니다.
+          dispatch({
+            type: LOAD_MORE_POSTS_REQUEST,
+            data: {
+              LastId,
+              category,
+            },
+          });
+        }
+      }
+    }
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      //메모리릭을 방지하기위해 unmount시 removeEventListner
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [hasMorePosts, loadCategoryPostsLoading, techPosts, dailyPosts]);
+
+```
+
+```javascript
+📁server/routes/post.js
+
+router.get("/morepost/:category", async (req, res) => {
+  try {
+    const category = req.params.category;
+    let where = {
+      //Last ID 보다 낮은 즉, 이전게시물들을 찾습니다.
+      [Op.and]: [{ id: { [Op.lt]: parseInt(req.query.lastId, 10) } }, { category }],
+    };
+    const morePosts = await Post.findAll({
+      //6개씩 불러오고 게시날짜를 내림차로 정렬
+      where,
+      limit: 6,
+      order: [["createdAt", "DESC"]],
+      include: [
+        //해시태그, 좋아요한 유저가 필요함으로 받아옵니다.
+        {
+          model: Hashtag,
+          attributes: ["name"],
+        },
+        {
+          model: User,
+          as: "PostLikers",
+          attributes: ["id"],
+        },
+      ],
+    });
+    res.status(200).json({ morePosts, category });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+```
+
+```javascript
+📁@reducers/post.ts
+
+      ...
+    
+      case LOAD_MORE_POSTS_SUCCESS:
+        draft.loadMorePostsLoading = false;
+        draft.loadMorePostsDone = true;
+        //카테고리에 맞는 포스트를 넣어줍니다.
+        const moreTechPosts =
+          action.data.category === "tech" && draft.techPosts.concat(action.data.morePosts);
+        const moreDailyPosts =
+          action.data.category === "daily" && draft.dailyPosts.concat(action.data.morePosts);
+        draft.techPosts = moreTechPosts;
+        draft.dailyPosts = moreDailyPosts;
+        //불러온 포스트가 limit값인 6개라는것은 불러온 포스트가 더 있다는 의미입니다.
+        //만약 갯수가 딱 맞아서 다음 값이 없다고 해도 그 요청은 0개임으로 false가 됩니다.
+        draft.hasMorePosts = action.data.morePosts.length === 6;
+        break;
+        
+      ...
+
+```
+---
+
+<br/>
+
+#### 📍 &nbsp; 일본인을 위한 한국어 강의 페이지 구현.
+
+<br/>
+
+#### 📍 &nbsp; 랜덤 퀴즈 구현.
+
+```javascript
+📁class/QuizForm.tsx
+  
+  const onClickNextQuiz = useCallback(() => {
+    //총 퀴즈 갯수중 하나를 랜덤으로 뽑아옵니다.
+    let myRandNum = Math.floor(Math.random() * quizzes.length);
+    //만약 랜덤으로 뽑은 값이 현재값이랑 일치한다면...
+    if (myRandNum === randomQuiz) {
+      //2. 랜덤으로 뽑은값이 마지막값인 상태에서 +1 을 하게 되면 오류가 나게 되기 때문에
+      //   첫번째 값으로 변경해서 리턴해줍니다.
+      if (myRandNum === quizzes.length - 1) {
+        setRandomQuiz(0);
+        setViewQuizAnswer(false);
+        setQuizAnswer("");
+        return;
+      }
+      //1. 랜덤으로 뽑은 값의 다음값을 리턴합니다.
+      setRandomQuiz(myRandNum + 1);
+      setViewQuizAnswer(false);
+      setQuizAnswer("");
+      return;
+    }
+    setRandomQuiz(myRandNum);
+    setViewQuizAnswer(false);
+    setQuizAnswer("");
+  }, [quizzes.length, randomQuiz, setQuizAnswer]);
+
+  const onClickQuizSubmit = useCallback(() => {
+    //퀴즈에 값을 넣지 않았다면 제출버튼이 작동하지 않게 합니다.
+    if (quizAnswer === "") {
+      message.error("答えを書いてくださいね！");
+      return;
+    }
+    setViewQuizAnswer(true);
+  }, [quizAnswer]);
+
+  ...
+ 
+```
+---
+<br/>
+
+#### 📍 &nbsp;  포트폴리오 페이지 구현.
+
+<br/>
+
+#### 📍 &nbsp; 그외...
+
+- Redux에 Redux Saga를 추가해 비동기를 구현하고 immer를 적용해 불변성 준수의 불편함을 해소.
+- cors 미들웨어를 사용해 기본적인 브라우저-프론트서버-백서버간 cors 문제를 해결.
+- Passport.js와 Google Login API를 활용한 로그인 및 유지기능 구현.
+- bcrypt, node-helmet, https, dot-env, 쿠키의 secret과 expires, Admin 전용 비밀번호, 민감한정보 클라이언트 취급 X, 예외처리등으로 웹보안을 준수하도록 노력했습니다. 
+
+<br/>
+
+## Retrospective
+
+<br/>
+
+1. 계획과는 다른 프로젝트가 되었고 차질이 많았습니다. 초반에 체계적인 계획이 능률을 높인다는것을 절실히 깨달았습니다.
+
+2. 스타일시트를 계획적이게 짜지 못했습니다. 또한 변수명에 신경을 잘 써야됨을 느꼈습니다.
+
+3. HTTP 지식이 많이 부족하다고 느꼈고 정보처리기사 시험 및 강의를 통해 보충했습니다.
+
+4. **글으로 적기엔 부족할만큼 넘었던 산이 많았던 무리한 프로젝트였지만 그렇기에 공부가 정말 잘된, 맨땅에 해딩해서 나름 성공한 프로젝트였다고 생각합니다.**
+
+<br/><br/>
+
+## Thank you for taking your time
+
+<br/>
+
+피드백은 항상 저를 성장시키게 합니다.
+
+궁금한게 있으시면 noah071610@naver.com 으로 언제든지 편하게 연락주세요.
+
+지금까지 신뢰를 주는 장현수였습니다. 긴글 읽어주셔서 감사합니다.
+
+
+<br/><br/><br/><br/>
