@@ -44,11 +44,11 @@
 <br/>
 
 <div align=center>
-  <a href="https://github.com/noah071610" target="_blank"><img src="https://image.flaticon.com/icons/png/24/25/25657.png"/></a>&nbsp
-  <a href="https://www.instagram.com/salmonchobab" target="_blank"><img src="https://image.flaticon.com/icons/png/24/1409/1409946.png"/></a>&nbsp
-  <a href="https://velog.io/@noah071610" target="_blank"><img width="24" src="https://api.faviconkit.com/velog.io/144"/></a>&nbsp
-  <a href="noah071610@naver.com"><img width="24" src="https://lh3.googleusercontent.com/proxy/jSPGDpNbX6xztXCy4axN0zvpdCa2wNWkv5TTHCKpfvEGVXeDOZUbpq9GTXFopXYO5z1KDvhPh__zEnUUSZTyy0xuONNtSHSDXIfyGE-T81k"/></a>&nbsp
-  <a href="https://velog.io/@noah071610" target="_blank"><img src="https://image.flaticon.com/icons/png/24/3135/3135715.png"/></a>&nbsp
+  <a href="https://github.com/noah071610" target="_blank"><img src="https://image.flaticon.com/icons/png/24/25/25657.png"/></a>&nbsp;
+  <a href="https://www.instagram.com/salmonchobab" target="_blank"><img src="https://image.flaticon.com/icons/png/24/1409/1409946.png"/></a>&nbsp;
+  <a href="https://velog.io/@noah071610" target="_blank"><img width="24" src="https://api.faviconkit.com/velog.io/144"/></a>&nbsp;
+  <a href="noah071610@naver.com"><img src="https://image.flaticon.com/icons/png/24/552/552486.png"/></a>&nbsp;
+  <a href="https://velog.io/@noah071610" target="_blank"><img src="https://image.flaticon.com/icons/png/24/3135/3135715.png"/></a>&nbsp;
 </div>
 
 <br/><br/><br/><br/>
