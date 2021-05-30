@@ -58,17 +58,20 @@
 #### 무리하지않는 깔끔한 디자인을 목표로 개설한 개인 블로그.
 
 <br/>
+
+![jeshoots-com-pUAM5hPaCRI-unsplash](https://user-images.githubusercontent.com/74864925/120084019-e96b7e80-c107-11eb-8e42-d2e4acbc90d2.png)
+
 <br/>
 
 - **페이지 전반**
 
-최신글 상단 배치, 해시태그와 검색기능, 부문별 탑게시글과 조회수 ,좋아요수 ,게시날짜를 공유합니다.
+최신 글 상단 배치, 해시태그와 검색기능, 부문별 탑 게시글과 조회수 ,좋아요수 ,게시날짜를 공유합니다.
 
 - **이용자**
 
-이용자는 글을 즐기고 좋아요와 댓글 그리고 대댓글을 작성,수정,삭제 할 수 있으며 회원가입을 통해 로그인,로그아웃이 가능합니다. 허나 게시글은 작성,수정,삭제가 불가능합니다.
+이용자는 게시글 작성은 불가능하나 좋아요 댓글 기능을 이용할 수 있습니다.
 
-이용자는 아이콘사진 변경과 비밀번호 변경, 회원탈퇴가 가능합니다.
+이용자는 아이콘 사진 변경과 비밀번호 변경, 회원탈퇴가 가능합니다.
 
 이용자는 개인 프로필 부분에서 실시간으로 업데이트된 최근 본 게시글과 댓글을 조회 할 수 있습니다.
 
@@ -80,8 +83,6 @@
 <br/>
 
 ## Summary.
-
-![jeshoots-com-pUAM5hPaCRI-unsplash](https://user-images.githubusercontent.com/74864925/120084019-e96b7e80-c107-11eb-8e42-d2e4acbc90d2.png)
 
 - 프로젝트 인원 : 장현수(Noah) 외 0명
 - 프로젝트 기간 : 2021/02 ~ 2021/04
@@ -107,7 +108,7 @@
 📁profile/CropImageModal.tsx
 
   const handleOk = useCallback(() => {
-    //5. blob 객체와 user id를 서버에 요청하기위해 form을 만듭니다.
+    //5. blob 객체와 user id를 활용해 서버에 요청하기위해 form을 만듭니다.
     const form = new FormData();
     form.append("image", blob!);
     form.append("id", String(user?.id));
@@ -136,7 +137,7 @@
   }, []);
 
   useEffect(() => {
-    //3. React-crop 공식문서를 참조했습니다. canvas에 자른 이미지를 표시하는 함수입니다.
+    //3. React-crop 공식문서를 참조했습니다. canvas에 자른 이미지를 표시하는 로직입니다.
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;
     }
@@ -286,6 +287,7 @@ router.delete("/icon/:UserId", async (req, res, next) => {
     const mostCalculator = (arr, index) =>
       getAttributesFromPosts.filter((v) => {
         //배열중 최대값을 구하기 위해 아래의 값을 사용했습니다.
+        // * find 메쏘드를 사용하면 배열이아닌 객체로 반환하는걸 알았습니다. 곧 수정하겠습니다. (2021/05/30)
         return v[index] === Math.max.apply(null, arr);
       });
     
@@ -355,12 +357,12 @@ router.delete("/icon/:UserId", async (req, res, next) => {
   
     useEffect(() => {
     const tagContent = post?.content?.split(/(#[^\s#+^<]+)/g).map((v) => {
-      //정규식을 사용해 #name 으로 이루어진 text를 찾아냅니다.
+      //정규식을 사용해 #name 형식으로 이루어진 키워드 찾아냅니다.
       if (v.match(/(#.*")/g)) {
         //위지글에디터의 결과값이 이 함수에 잘 호환 되지않아 추가적으로 걸러주었습니다.
         return v;
       }
-      //유튜브 태그가 있다면 (위지글에디터가 제공하지 않아서 추가적으로 키워드를 만들었습니다) iframe으로 변환합니다.
+      //유튜브 키워드가 있다면 (위지글에디터가 제공하지 않아서 추가적으로 키워드를 만들었습니다) iframe으로 변환합니다.
       if (v.match(/(#youtube:)/g)) {
         return `<iframe class="youtube" title="YouTube video player" frameborder="0" allow="accelerometer; 
         autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen 
@@ -547,8 +549,8 @@ router.get("/morepost/:category", async (req, res) => {
 
 - Redux에 Redux Saga를 추가해 비동기를 구현하고 immer를 적용해 불변성 준수의 불편함을 해소.
 - cors 미들웨어를 사용해 기본적인 브라우저-프론트서버-백서버간 cors 문제를 해결.
-- Passport.js와 Google Login API를 활용한 로그인 및 유지기능 구현.
-- bcrypt, node-helmet, https, dot-env, 쿠키의 secret과 expires, Admin 전용 비밀번호, 민감한정보 클라이언트 취급 X, 예외처리등으로 웹보안을 준수하도록 노력했습니다. 
+- Passport.js와 Google Login API를 활용한 로그인, 쿠키와 세션을 사용한 로그인 유지기능 구현.
+- bcrypt, node-helmet, https, dot-env, 쿠키의 secret과 expires, Admin 전용 비밀번호, 민감한 정보 클라이언트 취급 X, 예외처리 등으로 웹 보안을 준수하도록 노력했습니다. 
 
 <br/>
 
@@ -558,11 +560,11 @@ router.get("/morepost/:category", async (req, res) => {
 
 1. 계획과는 다른 프로젝트가 되었고 차질이 많았습니다. 초반에 체계적인 계획이 능률을 높인다는것을 절실히 깨달았습니다.
 
-2. 스타일시트를 계획적이게 짜지 못했습니다. 또한 변수명에 신경을 잘 써야됨을 느꼈습니다.
+2. 스타일시트를 계획적으로 짜지 못했습니다. 또한 변수명에 신경을 잘 써야됨을 느꼈습니다.
 
 3. HTTP 지식이 많이 부족하다고 느꼈고 정보처리기사 시험 및 강의를 통해 보충했습니다.
 
-4. **글으로 적기엔 부족할만큼 넘었던 산이 많았던 무리한 프로젝트였지만 그렇기에 공부가 정말 잘된, 맨땅에 해딩해서 나름 성공한 프로젝트였다고 생각합니다.**
+4. **글으로 적기엔 부족할 만큼 넘었야 할 산이 많았던 무리한 프로젝트였지만 그렇기에 공부가 정말 잘된 프로젝트였다고 생각합니다.**
 
 <br/><br/>
 
@@ -574,7 +576,7 @@ router.get("/morepost/:category", async (req, res) => {
 
 궁금한게 있으시면 noah071610@naver.com 으로 언제든지 편하게 연락주세요.
 
-지금까지 신뢰를 주는 장현수였습니다. 긴글 읽어주셔서 감사합니다.
+긴글 읽어주셔서 감사합니다.
 
 
 <br/><br/><br/><br/>
