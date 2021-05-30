@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ON_SIGN_UP_PAGE } from "../@reducers/blog";
 import { RootState } from "../@reducers";
@@ -11,7 +11,7 @@ import { LOAD_INFO_REQUEST } from "../@reducers/user";
 import { IStore } from "../types";
 import { END } from "@redux-saga/core";
 
-function BlogLoginPage() {
+const BlogLoginPage = memo(() => {
   const dispatch = useDispatch();
   const { onSignUpPage } = useSelector((state: RootState) => state.blog);
 
@@ -47,7 +47,7 @@ function BlogLoginPage() {
       </div>
     </>
   );
-}
+});
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
   const cookie = context.req ? context.req.headers.cookie : "";
@@ -62,4 +62,4 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   await (context.store as IStore).sagaTask.toPromise();
 });
 
-export default BlogLoginPage;
+export default memo(BlogLoginPage);

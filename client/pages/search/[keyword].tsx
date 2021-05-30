@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import CountUp from "react-countup";
 import { Divider } from "antd";
 import { useSelector } from "react-redux";
@@ -14,7 +14,7 @@ import { SEARCH_KEYWORD_REQUEST } from "../../@reducers/blog";
 import { marginCSS, noSearchPostCSS } from "../../styles/emotion";
 import SearchedPosts from "../../components/Blog/Articles/SearchedPosts";
 
-function BlogSearchPage() {
+const BlogSearchPage = memo(() => {
   const { searchedKeyword, searchPosts } = useSelector((state: RootState) => state.blog);
   const router = useRouter();
 
@@ -51,7 +51,7 @@ function BlogSearchPage() {
       <div style={{ height: "22rem" }} />
     </>
   );
-}
+});
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
   const cookie = context.req ? context.req.headers.cookie : "";
@@ -71,4 +71,4 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   await (context.store as IStore).sagaTask.toPromise();
 });
 
-export default BlogSearchPage;
+export default memo(BlogSearchPage);

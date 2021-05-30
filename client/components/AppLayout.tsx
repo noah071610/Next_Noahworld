@@ -48,4 +48,4 @@ const AppLayout: FC = memo(({ children }: { children: ReactNode }) => {
   );
 });
 
-export default AppLayout;
+export default memo(AppLayout);

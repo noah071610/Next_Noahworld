@@ -67,7 +67,7 @@ const MorePostWrapper = css`
   height: 280px;
   margin-top: 1rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-  div:first-child {
+  div:first-of-type {
     padding: 1rem 0.5rem;
     display: flex;
     justify-content: space-between;
@@ -104,22 +104,19 @@ function BlogPostPage() {
   const [Fullcontent, setFullcontent] = useState("");
   const liked = user && post?.PostLikers?.find((v) => v.id === user.id);
 
-  const onClickUnlike = () => {
+  const onClickUnlike = useCallback(() => {
     dispatch({
       type: UNLIKE_POST_REQUEST,
       data: { PostId: post?.id, UserId: user?.id },
     });
-  };
+  }, []);
+
   useEffect(() => {
     dispatch({
       type: LOAD_INFO_REQUEST,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
-  };
 
   useEffect(() => {
     const tagContent = post?.content?.split(/(#[^\s#+^<]+)/g).map((v) => {
@@ -186,6 +183,10 @@ function BlogPostPage() {
       data: { PostId: post?.id, UserId: user.id },
     });
   }, []);
+
+  const handleImgError = (e: React.SyntheticEvent) => {
+    (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
+  };
 
   return (
     <>

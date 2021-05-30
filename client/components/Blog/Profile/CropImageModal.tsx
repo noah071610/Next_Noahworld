@@ -24,6 +24,7 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
   const [crop, setCrop] = useState<Crop>({ unit: "px", width: 200, aspect: 1 / 1 });
 
   const handleOk = useCallback(() => {
+    //5. blob 객체와 user id를 서버에 요청하기위해 form을 만듭니다.
     const form = new FormData();
     form.append("image", blob!);
     form.append("id", String(user?.id));
@@ -36,13 +37,14 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
     setUpImg(null);
   }, []);
 
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     setIsModalVisible(false);
     setUrl("");
     setUpImg(null);
-  };
+  }, []);
 
   const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //1-1. React-crop 공식문서의 내용입니다. 이미지를 로드해줍니다.
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader();
       reader.addEventListener("load", () => setUpImg(reader.result));
@@ -55,10 +57,10 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
   }, []);
 
   useEffect(() => {
+    //3. React-crop 공식문서의 내용입니다. canvas에 자른 이미지를 표시하는 함수입니다.
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;
     }
-
     const image: any = imgRef.current;
     const canvas: any = previewCanvasRef.current;
     const crop: any = completedCrop;
@@ -87,6 +89,7 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
     );
     new Promise(() => {
       canvas.toBlob(
+        //4. 자른 이미지를 Blob 객체로 바꿔 state에 저장합니다.
         (blob: Blob) => {
           setBlob(blob);
         },
@@ -99,6 +102,7 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
   return (
     <Modal title="Icon Upload 🖼️" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
       <h3>Set icon from Local storage</h3>
+      {/* 1. Url을 이용해 아이콘을 업로드할지, file을 이용할지 선택합니다. */}
       <input
         style={{ marginBottom: "1.5rem" }}
         type="file"
@@ -116,6 +120,7 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
 
       {(url || upImg) && (
         <>
+          {/* 2. 올린 이미지를 활용해 이미지를 자릅니다. */}
           <h3>Crop the image for icon size.</h3>
           <ReactCrop
             crossorigin="anonymous"

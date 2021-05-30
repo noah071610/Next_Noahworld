@@ -103,12 +103,13 @@ interface Contents {
 
 interface ContentType {
   contents: Contents;
+  delay: number;
 }
 
-const CardContent: FC<ContentType> = ({ contents }) => {
+const CardContent: FC<ContentType> = ({ delay, contents }) => {
   return (
     <>
-      <ValueShape>
+      <ValueShape data-aos="flip-up" data-aos-duration="500" data-aos-delay={delay}>
         <Square>
           <Img>
             <img

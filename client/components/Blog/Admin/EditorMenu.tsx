@@ -1,8 +1,7 @@
-import React, { FC, memo, useState } from "react";
+import React, { FC, memo } from "react";
 import { Button, Radio } from "antd";
 import { POST_EDIT_ON } from "../../../@reducers/blog";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../@reducers";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/dist/client/router";
 import { css } from "@emotion/react";
 

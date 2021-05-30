@@ -15,25 +15,11 @@ import { END } from "@redux-saga/core";
 import { IStore } from "../types";
 import MainArticle from "../components/Blog/Articles/MainArticle";
 import MostArticle from "../components/Blog/Articles/MostArticle";
-import { css } from "@emotion/react";
-
-const pke = css`
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  padding: 0 1rem;
-`;
 
 const BlogMainPage = memo(() => {
   const { user } = useSelector((state: RootState) => state.user);
-  const {
-    techPosts,
-    dailyPosts,
-    hashtags,
-    mostLikedPost,
-    mostViewedPost,
-    mostCommentedPost,
-  } = useSelector((state: RootState) => state.post);
+  const { techPosts, dailyPosts, hashtags, mostLikedPost, mostViewedPost, mostCommentedPost } =
+    useSelector((state: RootState) => state.post);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({

@@ -1,5 +1,5 @@
 import produce from "immer";
-import { portfolio1, portfolio2, portfolio3 } from "../config";
+import { portfolio1, portfolio2, portfolio3, portfolio4 } from "../config";
 import { BlogState } from "./@reducerTypes";
 
 const initialState = {
@@ -72,10 +72,10 @@ const reducer = (state: BlogState = initialState, action: any) =>
         draft.theme = action.data;
         break;
       case LOAD_PORTFOLIOS:
-        draft.portfolios = [portfolio1, portfolio2, portfolio3];
+        draft.portfolios = [portfolio1, portfolio2, portfolio3, portfolio4];
         break;
       case LOAD_PORTFOLIO:
-        draft.portfolios = [portfolio1, portfolio2, portfolio3];
+        draft.portfolios = [portfolio1, portfolio2, portfolio3, portfolio4];
         draft.portfolio = draft.portfolios[action.id - 1];
         break;
       case CHAGE_HEADER:

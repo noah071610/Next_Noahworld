@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "antd/lib/form/Form";
 import { Button, Input, message, Radio } from "antd";
@@ -23,12 +23,26 @@ import styled from "@emotion/styled";
 
 const PostEditor = dynamic(() => import("../components/Blog/Admin/Editor"), { ssr: false });
 
+const QuizForm = styled.div`
+  display: flex;
+  div {
+    width: 100%;
+    h4 {
+      margin-top: 1rem;
+    }
+    button {
+      width: 50%;
+      margin-top: 1rem;
+    }
+  }
+`;
+
 const PostForm = styled(Form)`
   margin: 3rem 0;
   .form_title {
     marginbottom: 1rem;
   }
-  div {
+  .editor_title {
     display: flex;
     .form_image {
       margin-bottom: 1rem;
@@ -44,7 +58,7 @@ const PostForm = styled(Form)`
   }
 `;
 
-function Admin() {
+const Admin = memo(() => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.user);
@@ -214,7 +228,7 @@ function Admin() {
         <h4>Title</h4>
         <Input value={title} onChange={onChangeTitle} className="form_title" />
         <h4>Thumbnail</h4>
-        <div>
+        <div className="editor_title">
           <Input
             value={thumbnail}
             onChange={onChangeThumbnail}
@@ -233,12 +247,12 @@ function Admin() {
         <PostEditor post={post} editorRef={editorRef} />
         <EditorMenu postEditOn={postEditOn} postValue={postValue} setPostValue={setPostValue} />
       </PostForm>
-      <div style={{ display: "flex" }}>
-        <div style={{ width: "100%" }}>
+      <QuizForm>
+        <div>
           <h2>日本語講座作成</h2>
           <h4>設問　Question</h4>
           <Input value={question} onChange={onChangeQuestion} />
-          <h4 style={{ marginTop: "1rem" }}>答え　Answer</h4>
+          <h4>答え　Answer</h4>
           <Input.TextArea value={answer} onChange={onChangeAnswer} />
           <Radio.Group
             style={{ width: "50%" }}
@@ -253,12 +267,11 @@ function Admin() {
               showModal();
               setQuizForm(true);
             }}
-            style={{ width: "50%", marginTop: "1rem" }}
           >
             Submit
           </Button>
         </div>
-      </div>
+      </QuizForm>
       <AdminModal
         isModalVisible={isModalVisible}
         handleOk={handleOk}
@@ -268,6 +281,6 @@ function Admin() {
       />
     </>
   );
-}
+});
 
-export default Admin;
+export default memo(Admin);

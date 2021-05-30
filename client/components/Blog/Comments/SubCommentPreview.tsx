@@ -26,7 +26,7 @@ const SubCommentPreview: FC<SubCommentPreview> = memo(
   ({ onClickMoreSubComments, moreSubComments, comment }) => {
     return (
       <>
-        {comment.SubComments.length < 3 ? (
+        {comment?.SubComments?.length < 3 ? (
           comment.SubComments?.map((subComment, i) => {
             return <SubComments key={i} CommentId={comment.id} subComment={subComment} />;
           })

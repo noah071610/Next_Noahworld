@@ -97,16 +97,20 @@ const QuizForm = memo(() => {
   const [randomQuiz, setRandomQuiz] = useState(0);
 
   const onClickNextQuiz = useCallback(() => {
+    //총 퀴즈 갯수중 하나를 랜덤으로 뽑아옵니다.
     let myRandNum = Math.floor(Math.random() * quizzes.length);
+    //만약 랜덤으로 뽑은 값이 현재값이랑 일치한다면...
     if (myRandNum === randomQuiz) {
+      //2. 랜덤으로 뽑은값이 마지막값인 상태에서 +1 을 하게 되면 오류가 나게 되기 때문에
+      //   첫번째 값으로 변경해서 리턴해줍니다.
       if (myRandNum === quizzes.length - 1) {
         setRandomQuiz(0);
         setViewQuizAnswer(false);
         setQuizAnswer("");
         return;
       }
-      let myNewRandNum = myRandNum + 1;
-      setRandomQuiz(myNewRandNum);
+      //1. 랜덤으로 뽑은 값의 다음값을 리턴합니다.
+      setRandomQuiz(myRandNum + 1);
       setViewQuizAnswer(false);
       setQuizAnswer("");
       return;
@@ -117,6 +121,7 @@ const QuizForm = memo(() => {
   }, [quizzes.length, randomQuiz, setQuizAnswer]);
 
   const onClickQuizSubmit = useCallback(() => {
+    //퀴즈에 값을 넣지 않았다면 제출버튼이 작동하지 않게 합니다.
     if (quizAnswer === "") {
       message.error("答えを書いてくださいね！");
       return;

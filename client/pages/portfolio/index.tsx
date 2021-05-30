@@ -53,6 +53,8 @@ const IntroMe = styled.div`
   & p {
     width: 90%;
     margin-left: 0;
+    line-height: 1.5;
+    font-size: 0.85rem;
   }
   & ul {
     margin-top: 0.5rem;
@@ -130,11 +132,11 @@ const PortfolioMainPage = memo(() => {
                 <IntroImg>
                   <Img data-aos="fade-down" data-aos-duration="800" src="/images/profile.jpg" />
                 </IntroImg>
-                <IntroMe>
+                <IntroMe data-aos="fade-in" data-aos-duration="1000" data-aos-delay="400">
                   <h3>
                     신뢰를 주는 <span className="marker">장현수</span> 입니다.
                   </h3>
-                  <p style={{ lineHeight: "1.5", fontSize: "0.85rem" }}>
+                  <p>
                     성급하지 않지만 꾸준히, 누구보다 즐겁고 열정있게 신입 프론트엔드 개발자라는
                     목표를향해 나아가고 있습니다.
                   </p>
@@ -166,13 +168,13 @@ const PortfolioMainPage = memo(() => {
               </Divider>
               <Row>
                 <ValueCard xs={24} md={8}>
-                  <CardContent contents={CardContents[0]} />
+                  <CardContent delay={300} contents={CardContents[0]} />
                 </ValueCard>
                 <ValueCard xs={24} md={8}>
-                  <CardContent contents={CardContents[1]} />
+                  <CardContent delay={600} contents={CardContents[1]} />
                 </ValueCard>
                 <ValueCard xs={24} md={8}>
-                  <CardContent contents={CardContents[2]} />
+                  <CardContent delay={900} contents={CardContents[2]} />
                 </ValueCard>
               </Row>
             </Articles>
@@ -206,4 +208,4 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   await (context.store as IStore).sagaTask.toPromise();
 });
 
-export default PortfolioMainPage;
+export default memo(PortfolioMainPage);

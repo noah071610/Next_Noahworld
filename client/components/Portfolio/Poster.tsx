@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "@emotion/styled";
 import Slider from "react-slick";
 import { keyframes } from "@emotion/react";
@@ -68,7 +68,7 @@ const GearRight = styled.img`
   animation: ${rotatingLeft} 2.6s infinite linear;
 `;
 
-const Poster = () => {
+const Poster = memo(() => {
   const settings = {
     dots: false,
     infinite: true,
@@ -109,6 +109,6 @@ const Poster = () => {
       </Title>
     </PosterWrapper>
   );
-};
+});
 
-export default Poster;
+export default memo(Poster);

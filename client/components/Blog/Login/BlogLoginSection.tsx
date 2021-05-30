@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { Form, Input, Button, Divider, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
@@ -68,21 +68,26 @@ interface LoginProps {
   onClickSignUp: () => void;
 }
 
+interface LoginForm {
+  email: string;
+  password: string;
+}
+
 const BlogLoginSection: FC<LoginProps> = ({ onClickSignUp }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { logInError, logInDone } = useSelector((state: RootState) => state.user);
 
-  const onFinish = (values: any) => {
+  const onFinish = useCallback((values: LoginForm) => {
     dispatch({
       type: LOG_IN_REQUEST,
       data: { email: values.email, password: values.password },
     });
-  };
+  }, []);
 
-  const onFinishFailed = () => {
+  const onFinishFailed = useCallback(() => {
     message.error("Unexpected Erorr! please try again or feedback to us");
-  };
+  }, []);
 
   useEffect(() => {
     if (logInError) {
@@ -95,7 +100,6 @@ const BlogLoginSection: FC<LoginProps> = ({ onClickSignUp }) => {
       message.success("Log In Success! Have a nice day 😙");
       router.push("/");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logInDone]);
 
   return (

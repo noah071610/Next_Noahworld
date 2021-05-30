@@ -25,7 +25,7 @@ const SkillSection: FC<{ id: string }> = ({ id }) => {
       <div className="space" />
       <Articles>
         <Title title="Main Skills" sub="우선순위를 두고 집중적으로 공부한 스킬입니다." />
-        <Row style={{ paddingBottom: "1rem" }}>
+        <Row data-aos="fade-in" data-aos-duration="500" style={{ paddingBottom: "1rem" }}>
           {skills.map((skill, i) => {
             return (
               <SkillBox
@@ -43,7 +43,7 @@ const SkillSection: FC<{ id: string }> = ({ id }) => {
           <h4 style={{ textAlign: "start" }}>Language skills</h4>
           <SkillDescDivider>통역사국가자격증을 보유하고 있습니다.</SkillDescDivider>
         </Divider>
-        <Row>
+        <Row data-aos="fade-in" data-aos-duration="500">
           {languages.map((lan, i) => {
             return (
               <SkillImageBox
@@ -61,7 +61,7 @@ const SkillSection: FC<{ id: string }> = ({ id }) => {
           <h4 style={{ textAlign: "start" }}>Sub skills</h4>
           <SkillDescDivider>주스킬과 연계해 공부한 스킬입니다.</SkillDescDivider>
         </Divider>
-        <Row style={{ marginTop: "2rem" }}>
+        <Row data-aos="fade-in" data-aos-duration="500" style={{ marginTop: "2rem" }}>
           {sub_skills.map((skill, i) => {
             return (
               <SkillImageBox
@@ -77,7 +77,12 @@ const SkillSection: FC<{ id: string }> = ({ id }) => {
           <h4 style={{ textAlign: "start" }}>Certificate</h4>
           <SkillDescDivider>취득 자격증 입니다.</SkillDescDivider>
         </Divider>
-        <CertificateTable dataSource={dataSource} columns={columns} />
+        <CertificateTable
+          data-aos="fade-in"
+          data-aos-duration="500"
+          dataSource={dataSource}
+          columns={columns}
+        />
       </Articles>
     </section>
   );

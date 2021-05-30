@@ -3,9 +3,8 @@ export interface portfolioInter {
   name: string;
   date: string;
   tags: string[];
-  desc: string;
   src: string;
-  git: string;
+  git?: string;
 }
 
 export interface SearchPostInter {

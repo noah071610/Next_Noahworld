@@ -4,13 +4,13 @@ import styled from "@emotion/styled";
 import { BG_COLOR } from "../../../config";
 import { Portfolio_SkillBox } from "../../../types";
 
-const Img = styled.img`
-  transition: 0.3s;
-  border-radius: 50%;
-  padding: 0.5rem;
-  background-color: ${BG_COLOR};
-  &:hover {
-    transform: scale(1.1);
+const TdText = styled.td`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 0.5rem;
+  p {
+    line-height: 1.5;
   }
 `;
 
@@ -38,6 +38,24 @@ const TdImg = styled.td`
   width: 40%;
   margin: auto 0;
   position: relative;
+  .img_box {
+    margin: 0 auto;
+    width: 60%;
+    position: relative;
+    img {
+      transition: 0.3s;
+      border-radius: 50%;
+      padding: 0.5rem;
+      width: 100%;
+      background-color: ${BG_COLOR};
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  h4 {
+    margin-top: 0.5rem;
+  }
   @media only screen and (max-width: 768px) {
     width: 25%;
     padding-right: 0.2rem;
@@ -53,6 +71,10 @@ const TdImg = styled.td`
 const Table = styled.table`
   width: 100%;
   margin: 1.5rem auto;
+  tr {
+    display: flex;
+    align-items: center;
+  }
   p {
     width: 100%;
     font-size: 0.8rem;
@@ -74,24 +96,17 @@ const SkillBox: FC<Portfolio_SkillBox> = (props) => {
     <Col xs={24} md={12} style={{ display: "flex" }}>
       <Table>
         <tbody>
-          <tr style={{ display: "flex", alignItems: "center" }}>
+          <tr>
             <TdImg>
-              <div style={{ margin: "0 auto", width: "60%", position: "relative" }}>
-                <Img style={{ width: "100%" }} alt={props.name} src={props.src} />
+              <div className="img_box">
+                <img alt={props.name} src={props.src} />
                 {props.level ? <Signal /> : null}
               </div>
-              <h4 style={{ marginTop: "0.5rem" }}>{props.name}</h4>
+              <h4>{props.name}</h4>
             </TdImg>
-            <td
-              style={{
-                width: "100%",
-                display: "flex",
-                alignItems: "flex-start",
-                paddingLeft: "0.5rem",
-              }}
-            >
-              <p style={{ lineHeight: "1.5" }}>{props.desc}</p>
-            </td>
+            <TdText>
+              <p>{props.desc}</p>
+            </TdText>
           </tr>
         </tbody>
       </Table>

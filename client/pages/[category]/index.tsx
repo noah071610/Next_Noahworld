@@ -17,6 +17,7 @@ import { useRouter } from "next/dist/client/router";
 
 function BlogCategoryPage() {
   const router = useRouter();
+  const category = router.query.category;
   const dispatch = useDispatch();
   const {
     techPosts,
@@ -27,8 +28,6 @@ function BlogCategoryPage() {
     countPosts,
   } = useSelector((state: RootState) => state.post);
   const { user } = useSelector((state: RootState) => state.user);
-
-  let category = router.query.category;
 
   useEffect(() => {
     dispatch({
@@ -43,13 +42,17 @@ function BlogCategoryPage() {
   useEffect(() => {
     function onScroll() {
       if (
+        //Y축 스크롤 값과 화면에 보이는 페이지 길이
         window.scrollY + document.documentElement.clientHeight >
+        //전체 페이지의 길이
         document.documentElement.scrollHeight - 300
       ) {
         if (hasMorePosts && !loadMorePostsLoading && (techPosts || dailyPosts.length > 7)) {
+          //포스트가 더 있고 , 포스트를 로딩중이 아니고 , 포스트가 7개 초과이면 ( )
           const LastId =
             (techPosts || dailyPosts) &&
             (techPosts || dailyPosts)[(techPosts || dailyPosts).length - 1].id;
+          // 이미 불러온 포스트들(배열)에 마지막값의 아이디를 가져온다.
           dispatch({
             type: LOAD_MORE_POSTS_REQUEST,
             data: {
@@ -62,9 +65,9 @@ function BlogCategoryPage() {
     }
     window.addEventListener("scroll", onScroll);
     return () => {
+      //메모리릭을 방지하기위해 unmount시 removeEventListner
       window.removeEventListener("scroll", onScroll);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasMorePosts, loadCategoryPostsLoading, techPosts, dailyPosts]);
 
   return (

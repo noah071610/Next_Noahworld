@@ -285,12 +285,15 @@ const reducer = (state: PostState = initialState, action: any) =>
       case LOAD_MORE_POSTS_SUCCESS:
         draft.loadMorePostsLoading = false;
         draft.loadMorePostsDone = true;
+        //카테고리에 맞는 포스트를 넣어준다.
         const moreTechPosts =
           action.data.category === "tech" && draft.techPosts.concat(action.data.morePosts);
         const moreDailyPosts =
           action.data.category === "daily" && draft.dailyPosts.concat(action.data.morePosts);
         draft.techPosts = moreTechPosts;
         draft.dailyPosts = moreDailyPosts;
+        //불러온 포스트가 limit값인 6개라는것은 불러온 포스트가 더 있다는 의미이다.
+        //만약 갯수가 딱 맞아서 다음 값이 없다고 해도 그 요청은 0개임으로 false가 된다.
         draft.hasMorePosts = action.data.morePosts.length === 6;
         break;
       case LOAD_MORE_POSTS_FAILURE:
@@ -455,11 +458,13 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.likeCommentError = action.error;
         break;
       case UNLIKE_COMMENT_REQUEST:
+        //REQUEST , SUCCESS , FAILURE 로 Reducer를 쪼개서 오류관리를 보다 쉽게 했습니다.
         draft.unlikeCommentLoading = true;
         draft.unlikeCommentDone = false;
         draft.unlikeCommentError = false;
         break;
       case UNLIKE_COMMENT_SUCCESS: {
+        //immer 적용으로 불변성을 안지켜도 됨.
         let CommentsWithoutDeleted = draft.post?.Comments?.find(
           (v: CommentsInter) => v.id === action.data.CommentId
         ).CommentLikers.filter((v: any) => v.id !== action.data.UserId);

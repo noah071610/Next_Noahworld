@@ -56,7 +56,13 @@ const ContactSection: FC<{ id: string }> = ({ id }) => {
               방문해주셔서 감사합니다 😄.
             </P>
           </Col>
-          <ContactLinkBox xs={24} lg={12}>
+          <ContactLinkBox
+            data-aos="fade-left"
+            data-aos-delay="500"
+            data-aos-duration="800"
+            xs={24}
+            lg={12}
+          >
             <ContactLink href="mailto:noah071610@naver.com">
               <img
                 alt="contact_link"

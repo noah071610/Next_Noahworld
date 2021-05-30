@@ -1,9 +1,23 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, memo, useCallback, useEffect } from "react";
 import { Form, Input, Button, Divider, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../@reducers";
 import { SIGN_UP_REQUEST } from "../../../@reducers/user";
 import { ON_SIGN_UP_PAGE } from "../../../@reducers/blog";
+import styled from "@emotion/styled";
+
+const SignUpTitle = styled.div`
+  margin: 3rem 0;
+  h1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    img {
+      margin-left: 1rem;
+    }
+  }
+`;
+
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
   required: "${name} is required!",
@@ -19,16 +33,22 @@ interface SignUpProps {
   onClickLogin: () => void;
 }
 
-const BlogSignUpSection: FC<SignUpProps> = ({ onClickLogin }) => {
+interface SignUpForm {
+  Name: string;
+  Email: string;
+  Password: string;
+}
+
+const BlogSignUpSection: FC<SignUpProps> = memo(({ onClickLogin }) => {
   const dispatch = useDispatch();
   const { signUpError, signUpDone } = useSelector((state: RootState) => state.user);
 
-  const onFinish = (values: any) => {
+  const onFinish = useCallback((values: SignUpForm) => {
     dispatch({
       type: SIGN_UP_REQUEST,
       data: { email: values.Email, name: values.Name, password: values.Password },
     });
-  };
+  }, []);
 
   useEffect(() => {
     if (signUpError) {
@@ -47,17 +67,16 @@ const BlogSignUpSection: FC<SignUpProps> = ({ onClickLogin }) => {
   }, [dispatch, signUpDone]);
   return (
     <>
-      <div className="login_title" style={{ margin: "3rem 0" }}>
-        <h1 style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+      <SignUpTitle className="login_title">
+        <h1>
           Sign Up now!{" "}
           <img
-            style={{ marginLeft: "1rem" }}
             alt="signup_icon"
             src="https://img.icons8.com/bubbles/100/000000/add-user-male.png"
           />
         </h1>
         <h3>Enjoy various Contents for free!</h3>
-      </div>
+      </SignUpTitle>
       <Form
         validateMessages={validateMessages}
         name="nest-messages"
@@ -110,6 +129,6 @@ const BlogSignUpSection: FC<SignUpProps> = ({ onClickLogin }) => {
       </Form>
     </>
   );
-};
+});
 
-export default BlogSignUpSection;
+export default memo(BlogSignUpSection);

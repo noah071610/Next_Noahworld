@@ -16,6 +16,7 @@ import axios from "axios";
 import { IStore } from "../../types";
 import { END } from "@redux-saga/core";
 import { LOAD_INFO_REQUEST } from "../../@reducers/user";
+import Head from "next/head";
 
 const Home = styled.div`
   position: relative;
@@ -56,49 +57,54 @@ const PortfolioPostPage: FC = memo(() => {
   }, []);
 
   return (
-    <Home>
-      <PageWrapper>
-        <Articles>
-          <Title title="Project" />
-          <img
-            data-aos="fade-in"
-            data-aos-duration="1000"
-            style={{ width: "100%" }}
-            src={portfolio?.src}
-            alt={portfolio?.src}
-          />
-          <h2 data-aos="fade-down" data-aos-duration="500" style={{ marginTop: "2rem" }}>
-            {portfolio?.name}
-            <GitLink href={portfolio?.git} target="_blank" rel="noreferrer">
-              <Icon icon={faGithub} />
-            </GitLink>
-          </h2>
-          <p data-aos="fade-down" data-aos-duration="500" data-aos-delay="300">
-            {portfolio?.date}
-          </p>
-          {portfolio?.tags?.map((tag: string, i: number) => {
-            let delay = 300 + i * 150;
-            return (
-              <span
-                data-aos="fade-down"
-                data-aos-duration="500"
-                data-aos-delay={delay}
-                key={i}
-                className="tag"
-              >
-                {tag}
-              </span>
-            );
-          })}
-        </Articles>
-        <Articles>
-          <Title title="Summary" />
-          <div data-aos="fade-in" data-aos-duration="1000" className="portfolio_summary">
-            {portfolio?.desc && parse(portfolio.desc)}
-          </div>
-        </Articles>
-      </PageWrapper>
-    </Home>
+    <>
+      <Head>
+        <title>Jang Hyun Soo - Portfolio</title>
+      </Head>
+      <Home>
+        <PageWrapper>
+          <Articles>
+            <Title title="Project" />
+            <img
+              data-aos="fade-in"
+              data-aos-duration="1000"
+              style={{ width: "100%" }}
+              src={portfolio?.src}
+              alt={portfolio?.src}
+            />
+            <h2 data-aos="fade-down" data-aos-duration="500" style={{ marginTop: "2rem" }}>
+              {portfolio?.name}
+              <GitLink href={portfolio?.git} target="_blank" rel="noreferrer">
+                <Icon icon={faGithub} />
+              </GitLink>
+            </h2>
+            <p data-aos="fade-down" data-aos-duration="500" data-aos-delay="300">
+              {portfolio?.date}
+            </p>
+            {portfolio?.tags?.map((tag: string, i: number) => {
+              let delay = 300 + i * 150;
+              return (
+                <span
+                  data-aos="fade-down"
+                  data-aos-duration="500"
+                  data-aos-delay={delay}
+                  key={i}
+                  className="tag"
+                >
+                  {tag}
+                </span>
+              );
+            })}
+          </Articles>
+          <Articles>
+            <Title title="Summary" />
+            <div data-aos="fade-in" data-aos-duration="1000" className="portfolio_summary">
+              {portfolio?.desc && parse(portfolio.desc)}
+            </div>
+          </Articles>
+        </PageWrapper>
+      </Home>
+    </>
   );
 });
 
