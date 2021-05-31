@@ -5,6 +5,13 @@ import Link from "next/link";
 import { SEARCH_KEYWORD_REQUEST } from "../../../@reducers/blog";
 import useInput from "../../../util/useInput";
 import { useRouter } from "next/dist/client/router";
+import styled from "@emotion/styled";
+
+const SearchInput = styled(Input.Search)`
+  width: 30%;
+  z-index: auto;
+  overflow: hidden;
+`;
 
 const BlogHeader = memo(() => {
   const dispatch = useDispatch();
@@ -63,14 +70,9 @@ const BlogHeader = memo(() => {
           </Link>
         </li>
       </ul>
-      <Input.Search
-        value={keyword}
-        onChange={onChangeKeyword}
-        style={{ width: "30%", zIndex: "auto", overflow: "hidden" }}
-        onSearch={onSearchContent}
-      />
+      <SearchInput value={keyword} onChange={onChangeKeyword} onSearch={onSearchContent} />
     </>
   );
 });
 
-export default BlogHeader;
+export default memo(BlogHeader);

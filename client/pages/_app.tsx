@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import "aos/dist/aos.css";
@@ -15,7 +15,30 @@ import wrapper from "../@store/configureStore";
 import AppLayout from "../components/AppLayout";
 import Aos from "aos";
 import { Router } from "next/dist/client/router";
-import { css, Global } from "@emotion/react";
+import { css, Global, keyframes } from "@emotion/react";
+import Header from "../components/Header";
+import { DoubleLeftOutlined } from "@ant-design/icons";
+import styled from "@emotion/styled";
+import Footer from "../components/Footer";
+
+const scrollEffect = keyframes`
+to {
+  opacity: 0.2;
+}
+`;
+const Scroll = styled.div`
+  opacity: 0.5;
+  position: fixed;
+  bottom: 0.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  z-index: 2;
+  cursor: pointer;
+  animation: ${scrollEffect} 1s linear infinite alternate;
+  @media only screen and (max-width: 430px) {
+    display: none;
+  }
+`;
 
 const reset = css`
   .ant-row {
@@ -91,6 +114,14 @@ function App({ Component, pageProps }: AppProps) {
       Router.events.off("routeChangeError", end);
     };
   }, []);
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <>
       <Head>
@@ -106,10 +137,19 @@ function App({ Component, pageProps }: AppProps) {
           </div>
         </div>
       ) : (
-        <AppLayout>
+        <>
           <Global styles={reset} />
-          <Component {...pageProps} />
-        </AppLayout>
+          <div className="pageWrapper">
+            <div className="page">
+              <Header />
+              <Component {...pageProps} />
+            </div>
+            <Scroll className="scroll">
+              <DoubleLeftOutlined onClick={scrollToTop} rotate={90} />
+            </Scroll>
+          </div>
+          <Footer />
+        </>
       )}
     </>
   );
