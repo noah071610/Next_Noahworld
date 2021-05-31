@@ -1,12 +1,9 @@
 import produce from "immer";
-import { portfolio1, portfolio2, portfolio3, portfolio4 } from "../config";
 import { BlogState } from "./@reducerTypes";
 
 const initialState = {
   theme: "light",
   header: "blog",
-  portfolios: null,
-  portfolio: null,
   prePortfolio: [],
   postPortfolio: [],
   posts: [],
@@ -70,13 +67,6 @@ const reducer = (state: BlogState = initialState, action: any) =>
     switch (action.type) {
       case MODE_CHANGE:
         draft.theme = action.data;
-        break;
-      case LOAD_PORTFOLIOS:
-        draft.portfolios = [portfolio1, portfolio2, portfolio3, portfolio4];
-        break;
-      case LOAD_PORTFOLIO:
-        draft.portfolios = [portfolio1, portfolio2, portfolio3, portfolio4];
-        draft.portfolio = draft.portfolios[action.id - 1];
         break;
       case CHAGE_HEADER:
         draft.header = action.header;

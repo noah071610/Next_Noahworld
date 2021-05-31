@@ -12,7 +12,7 @@ import { ON_SLIDE_MENU, SEARCH_KEYWORD_REQUEST } from "../../../../@reducers/blo
 import { REMOVE_POST_REQUEST } from "../../../../@reducers/post";
 import useInput from "../../../../util/useInput";
 import useToggle from "../../../../util/useToggle";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import AdminModal from "../../Admin/AdminModal";
 import SlideMenu from "./SlideMenu";
 import {
@@ -22,7 +22,6 @@ import {
   SM_Header_Title,
 } from "../../../../styles/emotion";
 import { css } from "@emotion/react";
-import PortfolioNav from "./PortfolioNav";
 import SlideRemote from "./SlideRemote";
 
 const PostTitle = styled.h4`
@@ -68,7 +67,6 @@ const BlogSmallHeader = memo(() => {
   const [onSearchForm, onClickSearchForm] = useToggle(false);
   const [onSlideArrow, onClickonSlideArrow, setonSlideArrow] = useToggle(false);
   const [headerTitle, setHeaderTitle] = useState(false);
-  const [portfolioTitle, setPortfolioTitle] = useState(false);
 
   useEffect(() => {
     function scrollCallBack() {
@@ -79,12 +77,10 @@ const BlogSmallHeader = memo(() => {
       }
       if (window.scrollY > 200 && pathname[1] === "portfolio" && !isNaN(parseInt(pathname[2]))) {
         setHeaderTitle(true);
-        setPortfolioTitle(true);
         return;
       }
       setHeaderTitle(false);
       setonSlideArrow(false);
-      setPortfolioTitle(false);
     }
     window.addEventListener("scroll", scrollCallBack);
     return () => {
@@ -153,21 +149,17 @@ const BlogSmallHeader = memo(() => {
               <span className="logo_span">Noah World</span>
             </a>
           </Link>
-          {portfolioTitle ? (
-            <PortfolioNav />
-          ) : (
-            <a onClick={onClickonSlideArrow} css={TitleArrow}>
-              <PostTitle>{post?.title}</PostTitle>
-              <FontAwesomeIcon
-                style={{
-                  marginLeft: "1rem",
-                  transition: "all 0.3s",
-                  transform: `rotate(${onSlideArrow ? "180deg" : "0deg"})`,
-                }}
-                icon={faChevronDown}
-              />
-            </a>
-          )}
+          <a onClick={onClickonSlideArrow} css={TitleArrow}>
+            <PostTitle>{post?.title}</PostTitle>
+            <FontAwesomeIcon
+              style={{
+                marginLeft: "1rem",
+                transition: "all 0.3s",
+                transform: `rotate(${onSlideArrow ? "180deg" : "0deg"})`,
+              }}
+              icon={faChevronDown}
+            />
+          </a>
         </div>
         <a onClick={onClickSlide} style={{ display: "flex", alignItems: "center" }}>
           {onSlideMenu ? (
@@ -206,4 +198,4 @@ const BlogSmallHeader = memo(() => {
   );
 });
 
-export default BlogSmallHeader;
+export default memo(BlogSmallHeader);

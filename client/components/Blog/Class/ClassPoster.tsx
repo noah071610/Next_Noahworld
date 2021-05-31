@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { memo } from "react";
 const ClassMainPoster = styled.section`
   box-shadow: 4px 8px 10px 0px rgba(0, 0, 0, 0.15);
   background: linear-gradient(180deg, rgba(251, 255, 253, 1) 15%, rgba(226, 150, 153, 0.8) 100%);
@@ -28,7 +28,7 @@ const ClassMainPoster = styled.section`
   }
 `;
 
-export default function ClassPoster() {
+const ClassPoster = memo(() => {
   return (
     <ClassMainPoster className="blog_class_poster">
       <img
@@ -64,4 +64,6 @@ export default function ClassPoster() {
       </div>
     </ClassMainPoster>
   );
-}
+});
+
+export default memo(ClassPoster);

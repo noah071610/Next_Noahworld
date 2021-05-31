@@ -270,37 +270,36 @@ export const columns = [
 
 //Portfolio
 
-export const portfolio1 = {
-  id: 1,
-  name: "My Seoul Guide",
-  date: "2021/4~ 2021/5",
-  tags: ["#TypeScript", "#React", "#Emotion", "#GraphQL"],
-  src: "https://user-images.githubusercontent.com/74864925/120121315-b4316000-c1dd-11eb-9f9b-08c45229c7e8.png",
-  git: "https://github.com/noah071610/My-Seoul-Guide",
-};
-
-export const portfolio2 = {
-  id: 2,
-  name: "Noah world Blog",
-  date: "2021/2~ 2021/4",
-  tags: ["#TypeScript", "#React", "#Next.js", "#Mysql", "#AWS"],
-  src: "https://user-images.githubusercontent.com/74864925/120121316-b5628d00-c1dd-11eb-87f2-da099956c725.png",
-  git: "https://github.com/noah071610/Next_NoahWorld",
-};
-
-export const portfolio3 = {
-  id: 3,
-  name: "Movie App (Clone Coding)",
-  date: "2020/12~ 2021/1",
-  tags: ["#Javascript", "#React", "#Node.js", "#MongoDB"],
-  src: "/images/portfolio/portfolio_movie.jpg",
-  git: "https://github.com/noah071610/React_Movie-App",
-};
-
-export const portfolio4 = {
-  id: 4,
-  name: "Portfolio",
-  date: "2021/1~ 2021/2",
-  tags: ["#HTML", "#CSS", "#Javascript", "#React", "#Atnd"],
-  src: "https://user-images.githubusercontent.com/74864925/120121704-ea6fdf00-c1df-11eb-92f5-5f74e81e249d.png",
-};
+export const portfolios = [
+  {
+    id: 1,
+    name: "My Seoul Guide",
+    date: "2021/4~ 2021/5",
+    tags: ["#TypeScript", "#React", "#Emotion", "#GraphQL"],
+    src: "https://user-images.githubusercontent.com/74864925/120121315-b4316000-c1dd-11eb-9f9b-08c45229c7e8.png",
+    git: "https://github.com/noah071610/My-Seoul-Guide",
+  },
+  {
+    id: 2,
+    name: "Noah world Blog",
+    date: "2021/2~ 2021/4",
+    tags: ["#TypeScript", "#React", "#Next.js", "#Mysql", "#AWS"],
+    src: "https://user-images.githubusercontent.com/74864925/120121316-b5628d00-c1dd-11eb-87f2-da099956c725.png",
+    git: "https://github.com/noah071610/Next_NoahWorld",
+  },
+  {
+    id: 3,
+    name: "Movie App (Clone Coding)",
+    date: "2020/12~ 2021/1",
+    tags: ["#Javascript", "#React", "#Node.js", "#MongoDB"],
+    src: "/images/portfolio/portfolio_movie.jpg",
+    git: "https://github.com/noah071610/React_Movie-App",
+  },
+  {
+    id: 4,
+    name: "Portfolio",
+    date: "2021/1~ 2021/2",
+    tags: ["#HTML", "#CSS", "#Javascript", "#React", "#Atnd"],
+    src: "https://user-images.githubusercontent.com/74864925/120121704-ea6fdf00-c1df-11eb-92f5-5f74e81e249d.png",
+  },
+];

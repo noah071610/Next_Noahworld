@@ -9,20 +9,24 @@ import { Divider } from "antd";
 import { CHAGE_HEADER, LOAD_PORTFOLIOS, OFF_ABOUT } from "../../@reducers/blog";
 import Head from "next/head";
 import { CardContents, SUB_COLOR } from "../../config";
-import PageWrapper from "../../components/Portfolio/PageWrapper";
-import Articles from "../../components/Portfolio/Articles";
-import Title from "../../components/Portfolio/Decorator/Title";
-import CardContent from "../../components/Portfolio/Decorator/CardContent";
-import SkillSection from "../../components/Portfolio/Section/SkillSection";
-import ContactSection from "../../components/Portfolio/Section/ContactSection";
-import Poster from "../../components/Portfolio/Poster";
-import PortfolioSection from "../../components/Portfolio/Section/PortfolioSection";
 import axios from "axios";
 import wrapper from "../../@store/configureStore";
 import { LOAD_INFO_REQUEST } from "../../@reducers/user";
 import { END } from "@redux-saga/core";
 import { IStore } from "../../types";
 import styled from "@emotion/styled";
+import dynamic from "next/dynamic";
+
+const PageWrapper = dynamic(() => import("../../components/Portfolio/PageWrapper"));
+const Articles = dynamic(() => import("../../components/Portfolio/Articles"));
+const Title = dynamic(() => import("../../components/Portfolio/Decorator/Title"));
+const CardContent = dynamic(() => import("../../components/Portfolio/Decorator/CardContent"));
+const SkillSection = dynamic(() => import("../../components/Portfolio/Section/SkillSection"));
+const ContactSection = dynamic(() => import("../../components/Portfolio/Section/ContactSection"));
+const Poster = dynamic(() => import("../../components/Portfolio/Poster"));
+const PortfolioSection = dynamic(
+  () => import("../../components/Portfolio/Section/PortfolioSection")
+);
 
 const Img = styled.img`
   width: 170px;
@@ -102,18 +106,11 @@ const Home = styled.div`
 
 const PortfolioMainPage = memo(() => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch({
-      type: LOAD_PORTFOLIOS,
-    });
-    dispatch({
-      type: CHAGE_HEADER,
-      header: "portfolio",
-    });
     dispatch({
       type: OFF_ABOUT,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -196,9 +193,6 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   }
   context.store.dispatch({
     type: LOAD_INFO_REQUEST,
-  });
-  context.store.dispatch({
-    type: LOAD_PORTFOLIOS,
   });
   context.store.dispatch({
     type: CHAGE_HEADER,

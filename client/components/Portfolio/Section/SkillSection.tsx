@@ -2,10 +2,10 @@ import { Divider, Row, Table } from "antd";
 import { columns, dataSource, languages, skills, sub_skills } from "../../../config";
 import SkillBox from "../SkillBox/SkillBox";
 import SkillImageBox from "../SkillBox/SkillImageBox";
-import styled from "@emotion/styled";
-import React, { FC } from "react";
 import Articles from "../Articles";
 import Title from "../Decorator/Title";
+import styled from "@emotion/styled";
+import React, { FC, memo } from "react";
 
 const SkillDescDivider = styled.span`
   font-size: 0.8rem;
@@ -19,7 +19,7 @@ const CertificateTable = styled(Table)`
   }
 `;
 
-const SkillSection: FC<{ id: string }> = ({ id }) => {
+const SkillSection: FC<{ id: string }> = memo(({ id }) => {
   return (
     <section id={id}>
       <div className="space" />
@@ -86,6 +86,6 @@ const SkillSection: FC<{ id: string }> = ({ id }) => {
       </Articles>
     </section>
   );
-};
+});
 
-export default SkillSection;
+export default memo(SkillSection);

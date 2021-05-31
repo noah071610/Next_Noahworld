@@ -9,17 +9,15 @@ import "slick-carousel/slick/slick-theme.css";
 import "highlight.js/styles/github.css";
 import "codemirror/lib/codemirror.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
-import "tui-color-picker/dist/tui-color-picker.css";
 import "../styles/style.scss";
 import wrapper from "../@store/configureStore";
-import AppLayout from "../components/AppLayout";
 import Aos from "aos";
-import { Router } from "next/dist/client/router";
 import { css, Global, keyframes } from "@emotion/react";
 import Header from "../components/Header";
 import { DoubleLeftOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import Footer from "../components/Footer";
+import Router from "next/dist/next-server/lib/router/router";
 
 const scrollEffect = keyframes`
 to {

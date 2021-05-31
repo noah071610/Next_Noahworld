@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Col, Divider, Row } from "antd";
-import React, { memo, useEffect } from "react";
+
+import React, { memo } from "react";
 import Slider from "react-slick";
 import styled from "@emotion/styled";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { LOAD_CLASS_POSTS_REQUEST } from "../@reducers/post";
 import Link from "next/link";
 import { LOAD_INFO_REQUEST } from "../@reducers/user";
@@ -21,6 +21,7 @@ import axios from "axios";
 import { IStore } from "../types";
 import { END } from "@redux-saga/core";
 import { marginCSS, paddingCSS } from "../styles/emotion";
+import { Col, Divider, Row } from "antd";
 
 const ClassLists = styled.div`
   -ms-overflow-style: none;
@@ -58,18 +59,7 @@ const settings = {
 };
 
 const BlogClassPage = memo(() => {
-  const dispatch = useDispatch();
   const { culturePosts, classPosts } = useSelector((state: RootState) => state.post);
-
-  useEffect(() => {
-    dispatch({
-      type: LOAD_CLASS_POSTS_REQUEST,
-    });
-    dispatch({
-      type: LOAD_INFO_REQUEST,
-    });
-  }, []);
-
   return (
     <>
       <Head>

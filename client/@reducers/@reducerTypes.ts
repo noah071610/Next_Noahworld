@@ -142,8 +142,6 @@ export interface UserInter {
 export interface BlogState {
   theme: string;
   header: string;
-  portfolios: null | Array<portfolioInter>;
-  portfolio: portfolioInter | null;
   prePortfolio: string[];
   postPortfolio: string[];
   posts: string[];

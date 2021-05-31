@@ -13,7 +13,6 @@ import BlogSmallHeader from "./Blog/Headers/SmallHeaders/BlogSmallHeader";
 import { navContents } from "../config";
 import { useRouter } from "next/dist/client/router";
 import { PortfolioHeader } from "./Blog/Headers/PortfolioHeader";
-import PortfolioPostHeader from "./Blog/Headers/PortfolioPostHeader";
 const LogoMain = styled.img`
   &:hover {
     -webkit-animation: pulse 0.5s;
@@ -82,13 +81,7 @@ const Header = memo(() => {
         )}
       </div>
       <nav className={FixedNavbar ? "blog_header_nav fixed" : "blog_header_nav static"}>
-        {header === "blog" ? (
-          <BlogHeader />
-        ) : header === "portfolio" ? (
-          <PortfolioHeader navContents={navContents} />
-        ) : (
-          <PortfolioPostHeader />
-        )}
+        {header === "blog" ? <BlogHeader /> : <PortfolioHeader navContents={navContents} />}
       </nav>
       <BlogSmallHeader />
       {FixedNavbar ? <div style={{ height: "70px" }} /> : null}

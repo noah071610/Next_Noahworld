@@ -3,7 +3,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "antd/lib/form/Form";
-import { Button, Input, message, Radio } from "antd";
 import {
   ADD_POST_REQUEST,
   EDIT_POST_REQUEST,
@@ -15,11 +14,12 @@ import { RootState } from "../@reducers";
 import { HashtagsInter } from "../@reducers/@reducerTypes";
 import useInput from "../util/useInput";
 import UserProfile from "../components/Blog/Profile/UserProfile";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import AdminModal from "../components/Blog/Admin/AdminModal";
 import EditorMenu from "../components/Blog/Admin/EditorMenu";
 import styled from "@emotion/styled";
+import { Button, Input, message, Radio } from "antd";
 
 const PostEditor = dynamic(() => import("../components/Blog/Admin/Editor"), { ssr: false });
 

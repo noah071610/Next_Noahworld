@@ -1,19 +1,11 @@
-import React, { FC, useCallback, useEffect } from "react";
+import React, { FC, memo, useCallback } from "react";
 import styled from "@emotion/styled";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../@reducers";
-import { LOAD_PORTFOLIOS } from "../../../@reducers/blog";
 import Articles from "../Articles";
 import Title from "../Decorator/Title";
-import axios from "axios";
-import { LOAD_INFO_REQUEST } from "../../../@reducers/user";
-import { END } from "@redux-saga/core";
-import { IStore } from "../../../types";
-import wrapper from "../../../@store/configureStore";
-import { useRouter } from "next/dist/client/router";
-import dynamic from "next/dynamic";
 import { message } from "antd";
+import { portfolios } from "../../../config";
+import { portfolioInter } from "../../../@reducers/@reducerTypes";
+import dynamic from "next/dynamic";
 
 const PortfolioList = dynamic(() => import("./PortfolioList"), { ssr: false });
 
@@ -55,16 +47,7 @@ const PortfolioDesc = styled.div`
   }
 `;
 
-const PortfolioSection: FC<{ id: string }> = ({ id }) => {
-  const { portfolios } = useSelector((state: RootState) => state.blog);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({
-      type: LOAD_PORTFOLIOS,
-    });
-  }, []);
-
+const PortfolioSection: FC<{ id: string }> = memo(({ id }) => {
   const onClickPortfolio = useCallback((git: string) => {
     if (!git) {
       message.success("현재 보고계시는 페이지입니다.");
@@ -75,8 +58,8 @@ const PortfolioSection: FC<{ id: string }> = ({ id }) => {
       <div className="space" />
       <Articles>
         <Title title="Portfolio" sub="최고가 아니더라도 항상 최선을 다합니다." />
-        <PortfolioList portfolios={portfolios} />
-        {portfolios.map((v, i: number) => {
+        <PortfolioList />
+        {portfolios.map((v: portfolioInter, i: number) => {
           return (
             <PortfolioSmall
               onClick={() => onClickPortfolio(v.git)}
@@ -99,22 +82,6 @@ const PortfolioSection: FC<{ id: string }> = ({ id }) => {
       </Articles>
     </section>
   );
-};
-
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-  const cookie = context.req ? context.req.headers.cookie : "";
-  axios.defaults.headers.Cookie = "";
-  if (context.req && cookie) {
-    axios.defaults.headers.Cookie = cookie;
-  }
-  context.store.dispatch({
-    type: LOAD_INFO_REQUEST,
-  });
-  context.store.dispatch({
-    type: LOAD_PORTFOLIOS,
-  });
-  context.store.dispatch(END);
-  await (context.store as IStore).sagaTask.toPromise();
 });
 
-export default PortfolioSection;
+export default memo(PortfolioSection);

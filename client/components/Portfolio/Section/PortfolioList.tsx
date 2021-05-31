@@ -1,12 +1,11 @@
 import React, { FC, memo, useCallback, useEffect, useRef } from "react";
 import { Carousel } from "3d-react-carousal";
-import Link from "next/link";
 import VanillaTilt from "vanilla-tilt";
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { portfolioInter } from "../../../@reducers/@reducerTypes";
 import { message } from "antd";
+import { portfolios } from "../../../config";
 
 const options = {
   scale: 1.1,
@@ -89,11 +88,7 @@ const CardImg = styled.img`
   }
 `;
 
-interface PortfolioListProps {
-  portfolios: Array<portfolioInter>;
-}
-
-const PortfolioList: FC<PortfolioListProps> = memo(({ portfolios }) => {
+const PortfolioList: FC = memo(() => {
   let slides = [];
   const onClickPortfolio = useCallback((git: string) => {
     if (!git) {

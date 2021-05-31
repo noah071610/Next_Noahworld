@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { Divider, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import hljs from "highlight.js";
 import { LIKE_POST_REQUEST, LOAD_POST_REQUEST, UNLIKE_POST_REQUEST } from "../../../@reducers/post";
 import styled from "@emotion/styled";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
@@ -14,16 +13,18 @@ import dayjs from "dayjs";
 import { RootState } from "../../../@reducers";
 import Head from "next/head";
 import { RED_COLOR } from "../../../config";
-import CommentForm from "../../../components/Blog/Comments/CommentForm";
-import ArticlePost from "../../../components/Blog/Articles/ArticlePost";
-import RemoteControl from "../../../components/Blog/Comments/RemoteControl";
 import wrapper from "../../../@store/configureStore";
 import axios from "axios";
 import { IStore } from "../../../types";
 import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
 import { css } from "@emotion/react";
+import dynamic from "next/dynamic";
 dayjs.locale("kor");
+
+const CommentForm = dynamic(() => import("../../../components/Blog/Comments/CommentForm"));
+const ArticlePost = dynamic(() => import("../../../components/Blog/Articles/ArticlePost"));
+const RemoteControl = dynamic(() => import("../../../components/Blog/Comments/RemoteControl"));
 
 const Heart = styled.a`
   display: inline-block;
@@ -81,41 +82,36 @@ const PostWrapper = css`
   justify-content: space-between;
 `;
 
-function BlogPostPage() {
+const BlogPostPage = memo(() => {
   const router = useRouter();
   const dispatch = useDispatch();
-
+  const [liked, setLiked] = useState(false);
   const {
     post,
     unlikePostDone,
     likePostDone,
     addCommentDone,
-    editCommentDone,
     removeCommentDone,
-    likeCommentDone,
-    unlikeCommentDone,
-    addSubCommentDone,
     removeSubCommentDone,
-    editSubCommentDone,
     prevPost,
     nextPost,
   } = useSelector((state: RootState) => state.post);
   const { user } = useSelector((state: RootState) => state.user);
   const [Fullcontent, setFullcontent] = useState("");
-  const liked = user && post?.PostLikers?.find((v) => v.id === user.id);
+
+  useEffect(() => {
+    if (user && post?.PostLikers?.find((v) => v.id === user.id)) {
+      setLiked(true);
+    } else {
+      setLiked(false);
+    }
+  }, [router.pathname, post?.PostLikers]);
 
   const onClickUnlike = useCallback(() => {
     dispatch({
       type: UNLIKE_POST_REQUEST,
       data: { PostId: post?.id, UserId: user?.id },
     });
-  }, []);
-
-  useEffect(() => {
-    dispatch({
-      type: LOAD_INFO_REQUEST,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -140,32 +136,17 @@ function BlogPostPage() {
   useEffect(() => {
     const postId = router.pathname;
     if (!postId) {
-      router.push("");
+      router.push("/");
     }
+  }, [router.pathname]);
+
+  useEffect(() => {
     dispatch({
       type: LOAD_POST_REQUEST,
       data: { postId: router.query.id, UserId: user?.id, category: router.query.category },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    router.pathname,
-    likePostDone,
-    unlikePostDone,
-    addCommentDone,
-    editCommentDone,
-    removeCommentDone,
-    likeCommentDone,
-    unlikeCommentDone,
-    addSubCommentDone,
-    removeSubCommentDone,
-    editSubCommentDone,
-  ]);
-
-  useEffect(() => {
-    document.querySelectorAll("pre code").forEach((v: any) => {
-      hljs.highlightBlock(v);
-    });
-  }, [Fullcontent]);
+  }, [addCommentDone, unlikePostDone, likePostDone, removeCommentDone, removeSubCommentDone]);
 
   useEffect(() => {
     if (addCommentDone) {
@@ -184,9 +165,9 @@ function BlogPostPage() {
     });
   }, []);
 
-  const handleImgError = (e: React.SyntheticEvent) => {
+  const handleImgError = useCallback((e: React.SyntheticEvent) => {
     (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
-  };
+  }, []);
 
   return (
     <>
@@ -251,7 +232,7 @@ function BlogPostPage() {
       </div>
     </>
   );
-}
+});
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
   const cookie = context.req ? context.req.headers.cookie : "";
@@ -270,4 +251,4 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   await (context.store as IStore).sagaTask.toPromise();
 });
 
-export default BlogPostPage;
+export default memo(BlogPostPage);

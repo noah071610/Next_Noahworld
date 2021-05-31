@@ -11,5 +11,8 @@
     ],
     ["@emotion/babel-preset-css-prop"]
   ],
-  "plugins": [["@emotion/babel-plugin", { "srr": true, "displayName": true }]]
+  "plugins": [
+    ["@emotion/babel-plugin", { "srr": true, "displayName": true }],
+    ["@babel/plugin-syntax-dynamic-import"]
+  ]
 }
