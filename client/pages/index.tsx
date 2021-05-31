@@ -7,14 +7,16 @@ import { LOAD_POSTS_REQUEST } from "../@reducers/post";
 import { LOAD_INFO_REQUEST } from "../@reducers/user";
 import CountUp from "react-countup";
 import { RootState } from "../@reducers";
-import UserProfile from "../components/Blog/Profile/UserProfile";
-import ClassCard from "../components/Blog/Class/ClassCard";
 import wrapper from "../@store/configureStore";
 import axios from "axios";
 import { END } from "@redux-saga/core";
 import { IStore } from "../types";
-import MainArticle from "../components/Blog/Articles/MainArticle";
-import MostArticle from "../components/Blog/Articles/MostArticle";
+import dynamic from "next/dynamic";
+
+const MainArticle = dynamic(() => import("../components/Blog/Articles/MainArticle"));
+const MostArticle = dynamic(() => import("../components/Blog/Articles/MostArticle"));
+const UserProfile = dynamic(() => import("../components/Blog/Profile/UserProfile"));
+const ClassCard = dynamic(() => import("../components/Blog/Class/ClassCard"));
 
 const BlogMainPage = memo(() => {
   const { user } = useSelector((state: RootState) => state.user);

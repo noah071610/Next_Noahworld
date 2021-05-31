@@ -1,11 +1,13 @@
 import { Divider, Row, Table } from "antd";
 import { columns, dataSource, languages, skills, sub_skills } from "../../../config";
-import SkillBox from "../SkillBox/SkillBox";
-import SkillImageBox from "../SkillBox/SkillImageBox";
-import Articles from "../Articles";
-import Title from "../Decorator/Title";
 import styled from "@emotion/styled";
 import React, { FC, memo } from "react";
+import dynamic from "next/dynamic";
+
+const SkillBox = dynamic(() => import("../SkillBox/SkillBox"));
+const SkillImageBox = dynamic(() => import("../SkillBox/SkillImageBox"));
+const Articles = dynamic(() => import("../Articles"));
+const Title = dynamic(() => import("../Decorator/Title"));
 
 const SkillDescDivider = styled.span`
   font-size: 0.8rem;
