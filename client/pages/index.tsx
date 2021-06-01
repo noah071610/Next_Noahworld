@@ -22,19 +22,6 @@ const BlogMainPage = memo(() => {
   const { user } = useSelector((state: RootState) => state.user);
   const { techPosts, dailyPosts, hashtags, mostLikedPost, mostViewedPost, mostCommentedPost } =
     useSelector((state: RootState) => state.post);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch({
-      type: CHAGE_HEADER,
-      header: "blog",
-    });
-    dispatch({
-      type: LOAD_POSTS_REQUEST,
-    });
-    dispatch({
-      type: LOAD_INFO_REQUEST,
-    });
-  }, []);
 
   return (
     <>
@@ -143,6 +130,10 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   });
   context.store.dispatch({
     type: LOAD_INFO_REQUEST,
+  });
+  context.store.dispatch({
+    type: CHAGE_HEADER,
+    header: "blog",
   });
   context.store.dispatch(END);
   await (context.store as IStore).sagaTask.toPromise();

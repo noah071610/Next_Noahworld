@@ -60,7 +60,7 @@ app.use(
     secret: process.env.COOKIE,
     proxy: process.env.NODE_ENV === "production",
     cookie: {
-      // httpOnly: true,
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       domain: process.env.NODE_ENV === "production" && ".noahworld.site",
     },

@@ -1,185 +1,32 @@
 {
-  "..\\components\\Portfolio\\Section\\PortfolioSection.tsx -> ./PortfolioList": {
-    "id": "/oz7",
+  "..\\node_modules\\next\\dist\\client\\next-dev.js -> ./dev/noop": {
+    "id": "./node_modules/next/dist/client/dev/noop.js",
     "files": [
-      "static/chunks/53.afe862a1ac731ef7a7f4.js"
-    ]
-  },
-  "..\\components\\Portfolio\\Section\\SkillSection.tsx -> ../Articles": {
-    "id": "/j9D",
-    "files": [
-      "static/chunks/22.b76fe725f84a34868f11.js"
-    ]
-  },
-  "..\\components\\Portfolio\\Section\\SkillSection.tsx -> ../Decorator/Title": {
-    "id": "5Ce3",
-    "files": [
-      "static/chunks/23.7337ab05171eea6270cc.js"
-    ]
-  },
-  "..\\components\\Portfolio\\Section\\SkillSection.tsx -> ../SkillBox/SkillBox": {
-    "id": "iFkp",
-    "files": [
-      "static/chunks/61.7c7ee807a277122c3b8f.js"
-    ]
-  },
-  "..\\components\\Portfolio\\Section\\SkillSection.tsx -> ../SkillBox/SkillImageBox": {
-    "id": "2/lA",
-    "files": [
-      "static/chunks/4c31a6f94cd6042b66a59f2ac40aa63136954e39.976ced7ab9290500bab1.js",
-      "static/chunks/62.ea3dafaddfbda2b96d2d.js"
-    ]
-  },
-  "[category]\\index.tsx -> ../../components/Blog/Articles/ArticleColumn": {
-    "id": "QLkm",
-    "files": [
-      "static/chunks/50.a30cc37f1635ab6fdcef.js"
-    ]
-  },
-  "[category]\\index.tsx -> ../../components/Blog/Articles/ArticleRow": {
-    "id": "Blc5",
-    "files": [
-      "static/chunks/cb1608f2.7453697cf6ea60912a57.js",
-      "static/chunks/commons.c52190b83c3860a0af0f.js",
-      "static/chunks/51.647e4024460dbfdfccc6.js"
-    ]
-  },
-  "[category]\\index.tsx -> ../../components/Blog/Profile/UserProfile": {
-    "id": "KOAa",
-    "files": [
-      "static/chunks/cb1608f2.7453697cf6ea60912a57.js",
-      "static/chunks/commons.c52190b83c3860a0af0f.js",
-      "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
-      "static/chunks/48a9fba74e69a84f3a921d90b5f17845bd7465c1.3fd0e0cb1d424952d95d.js",
-      "static/css/38e87102bd37c6640f4d.css",
-      "static/chunks/44.223c3403b867404ed09b.js"
-    ]
-  },
-  "[category]\\post\\[id].tsx -> ../../../components/Blog/Articles/ArticlePost": {
-    "id": "Z1vI",
-    "files": [
-      "static/chunks/56.f8ae066d651c9f0ded8a.js"
-    ]
-  },
-  "[category]\\post\\[id].tsx -> ../../../components/Blog/Comments/CommentForm": {
-    "id": "pT/W",
-    "files": [
-      "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
-      "static/chunks/48a9fba74e69a84f3a921d90b5f17845bd7465c1.3fd0e0cb1d424952d95d.js",
-      "static/chunks/d45a0279118ce9ea6d9ab5d13a8742bf82ab5270.0828b8a78a5b25641575.js",
-      "static/chunks/e7d2c4f6d85e1f761de782e851bb71def126ed7b.7bc5bb5966067e618fb2.js",
-      "static/chunks/48.fe21eccaf35939fd751c.js"
-    ]
-  },
-  "[category]\\post\\[id].tsx -> ../../../components/Blog/Comments/RemoteControl": {
-    "id": "v+Lg",
-    "files": [
-      "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
-      "static/chunks/48a9fba74e69a84f3a921d90b5f17845bd7465c1.3fd0e0cb1d424952d95d.js",
-      "static/chunks/d45a0279118ce9ea6d9ab5d13a8742bf82ab5270.0828b8a78a5b25641575.js",
-      "static/chunks/e7d2c4f6d85e1f761de782e851bb71def126ed7b.7bc5bb5966067e618fb2.js",
-      "static/chunks/46.255e71bb8a43ea36764f.js"
-    ]
-  },
-  "admin.tsx -> ../components/Blog/Admin/Editor": {
-    "id": "sOL2",
-    "files": [
-      "static/chunks/de49cc29.ec1dd72842f9ae685983.js",
-      "static/chunks/0139f756.bd4bf09fd81b830fb3e2.js",
-      "static/chunks/f65a48b9.2003ec7a1ffa346a7d5f.js",
-      "static/chunks/55.d2391cfb07c30a03f945.js"
+      "static/chunks/0.js"
     ]
   },
   "index.tsx -> ../components/Blog/Articles/MainArticle": {
-    "id": "rEWd",
+    "id": "./components/Blog/Articles/MainArticle.tsx",
     "files": [
-      "static/chunks/cb1608f2.7453697cf6ea60912a57.js",
-      "static/chunks/commons.c52190b83c3860a0af0f.js",
-      "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
-      "static/chunks/76ba5fe0b73460fa79da7e46974056c33ddf1e0e.1f7287d80a315f9567ee.js",
-      "static/chunks/49.2b22b0884cf7364fc479.js"
+      "static/chunks/2.js"
     ]
   },
   "index.tsx -> ../components/Blog/Articles/MostArticle": {
-    "id": "n4j1",
+    "id": "./components/Blog/Articles/MostArticle.tsx",
     "files": [
-      "static/chunks/cb1608f2.7453697cf6ea60912a57.js",
-      "static/chunks/commons.c52190b83c3860a0af0f.js",
-      "static/chunks/52.9e33f019581e095f04e2.js"
+      "static/chunks/3.js"
     ]
   },
   "index.tsx -> ../components/Blog/Class/ClassCard": {
-    "id": "QpK9",
+    "id": "./components/Blog/Class/ClassCard.tsx",
     "files": [
-      "static/chunks/57.e05b179875e62f934e96.js"
+      "static/chunks/4.js"
     ]
   },
   "index.tsx -> ../components/Blog/Profile/UserProfile": {
-    "id": "KOAa",
+    "id": "./components/Blog/Profile/UserProfile.tsx",
     "files": [
-      "static/chunks/cb1608f2.7453697cf6ea60912a57.js",
-      "static/chunks/commons.c52190b83c3860a0af0f.js",
-      "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
-      "static/chunks/48a9fba74e69a84f3a921d90b5f17845bd7465c1.3fd0e0cb1d424952d95d.js",
-      "static/css/38e87102bd37c6640f4d.css",
-      "static/chunks/43.e92d39801873e0c0900a.js"
-    ]
-  },
-  "portfolio\\index.tsx -> ../../components/Portfolio/Articles": {
-    "id": "/j9D",
-    "files": [
-      "static/chunks/22.b76fe725f84a34868f11.js"
-    ]
-  },
-  "portfolio\\index.tsx -> ../../components/Portfolio/Decorator/CardContent": {
-    "id": "K747",
-    "files": [
-      "static/chunks/58.1db29da0e374c0823f4d.js"
-    ]
-  },
-  "portfolio\\index.tsx -> ../../components/Portfolio/Decorator/Title": {
-    "id": "5Ce3",
-    "files": [
-      "static/chunks/23.7337ab05171eea6270cc.js"
-    ]
-  },
-  "portfolio\\index.tsx -> ../../components/Portfolio/PageWrapper": {
-    "id": "CHxz",
-    "files": [
-      "static/chunks/59.eed106eaac7be0480d73.js"
-    ]
-  },
-  "portfolio\\index.tsx -> ../../components/Portfolio/Poster": {
-    "id": "qJCU",
-    "files": [
-      "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
-      "static/chunks/76ba5fe0b73460fa79da7e46974056c33ddf1e0e.1f7287d80a315f9567ee.js",
-      "static/chunks/4c31a6f94cd6042b66a59f2ac40aa63136954e39.976ced7ab9290500bab1.js",
-      "static/chunks/60.8eb1de3c657495f7309b.js"
-    ]
-  },
-  "portfolio\\index.tsx -> ../../components/Portfolio/Section/ContactSection": {
-    "id": "ikFE",
-    "files": [
-      "static/chunks/6e94a5cc5d80c4b286a0564b19a5cfd828c62950.657866d135f092b68059.js",
-      "static/chunks/47.63f2d396380df0b886b9.js"
-    ]
-  },
-  "portfolio\\index.tsx -> ../../components/Portfolio/Section/PortfolioSection": {
-    "id": "La+q",
-    "files": [
-      "static/chunks/6e94a5cc5d80c4b286a0564b19a5cfd828c62950.657866d135f092b68059.js",
-      "static/chunks/54.642d73eec1f0298c173b.js"
-    ]
-  },
-  "portfolio\\index.tsx -> ../../components/Portfolio/Section/SkillSection": {
-    "id": "D5ud",
-    "files": [
-      "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
-      "static/chunks/d45a0279118ce9ea6d9ab5d13a8742bf82ab5270.0828b8a78a5b25641575.js",
-      "static/chunks/e7d2c4f6d85e1f761de782e851bb71def126ed7b.7bc5bb5966067e618fb2.js",
-      "static/chunks/435551639dca847e7af0bbf84db815cb81246e24.dec867857cf67f0e2b76.js",
-      "static/chunks/45.c87c7c6bb7f54832e6c5.js"
+      "static/chunks/1.js"
     ]
   }
 }
