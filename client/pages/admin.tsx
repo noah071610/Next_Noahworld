@@ -132,6 +132,12 @@ const Admin = memo(() => {
       PostId,
       tags,
     };
+    if (post && !postEditOn) {
+      dispatch({
+        type: ADD_POST_REQUEST,
+        data,
+      });
+    }
     if (post && postEditOn) {
       dispatch({
         type: EDIT_POST_REQUEST,
@@ -139,11 +145,6 @@ const Admin = memo(() => {
       });
       dispatch({
         type: POST_EDIT_ON,
-      });
-    } else {
-      dispatch({
-        type: ADD_POST_REQUEST,
-        data,
       });
     }
     if (question && answer && quizForm) {

@@ -1795,7 +1795,7 @@ const BlogPostPage = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["mem
         UserId: user === null || user === void 0 ? void 0 : user.id
       }
     });
-  }, []);
+  }, [post === null || post === void 0 ? void 0 : post.id, user === null || user === void 0 ? void 0 : user.id]);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     var _post$content;
 
@@ -1852,7 +1852,7 @@ const BlogPostPage = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["mem
         UserId: user.id
       }
     });
-  }, []);
+  }, [post === null || post === void 0 ? void 0 : post.id, user === null || user === void 0 ? void 0 : user.id]);
   const handleImgError = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(e => {
     e.target.src = "/images/blog/noImage.gif";
   }, []);
@@ -1861,11 +1861,11 @@ const BlogPostPage = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["mem
       lineHeight: "1.5"
     },
     className: "post_main_title"
-  }, post.title), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_3__["Divider"], {
+  }, post === null || post === void 0 ? void 0 : post.title), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_3__["Divider"], {
     className: "blog_post_divier"
   }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("ul", {
     css: PostDesc
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("li", null, dayjs__WEBPACK_IMPORTED_MODULE_8___default()(post.createdAt).format("YYYY.MM.DD")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("li", null, "\xB7\xA0", post.hit, " views"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("li", null, "\xB7\xA0", (_post$PostLikers2 = post.PostLikers) === null || _post$PostLikers2 === void 0 ? void 0 : _post$PostLikers2.length, " likes")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("div", {
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("li", null, dayjs__WEBPACK_IMPORTED_MODULE_8___default()(post === null || post === void 0 ? void 0 : post.createdAt).format("YYYY.MM.DD")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("li", null, "\xB7\xA0", post === null || post === void 0 ? void 0 : post.hit, " views"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("li", null, "\xB7\xA0", post === null || post === void 0 ? void 0 : (_post$PostLikers2 = post.PostLikers) === null || _post$PostLikers2 === void 0 ? void 0 : _post$PostLikers2.length, " likes")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("div", {
     css: PostWrapper
   }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("div", {
     className: "blog_post_article"
@@ -1875,12 +1875,12 @@ const BlogPostPage = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["mem
       marginBottom: "3rem"
     }
   }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("img", {
-    alt: post.title,
+    alt: post === null || post === void 0 ? void 0 : post.title,
     style: {
       width: "100%",
       marginBottom: "6rem"
     },
-    src: post !== null && post !== void 0 && post.thumbnail ? post.thumbnail : post.imagePath ? post.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    src: post !== null && post !== void 0 && post.thumbnail ? post === null || post === void 0 ? void 0 : post.thumbnail : post !== null && post !== void 0 && post.imagePath ? post === null || post === void 0 ? void 0 : post.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
     onError: handleImgError
   }), Fullcontent && html_react_parser__WEBPACK_IMPORTED_MODULE_2___default()(Fullcontent)), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("h4", {
     css: PostSubTitle
@@ -1892,7 +1892,7 @@ const BlogPostPage = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["mem
     style: {
       fontSize: "1rem"
     }
-  }, (_post$PostLikers3 = post.PostLikers) === null || _post$PostLikers3 === void 0 ? void 0 : _post$PostLikers3.length)), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])(CommentForm, null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("h4", {
+  }, post === null || post === void 0 ? void 0 : (_post$PostLikers3 = post.PostLikers) === null || _post$PostLikers3 === void 0 ? void 0 : _post$PostLikers3.length)), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])(CommentForm, null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("h4", {
     css: PostSubTitle
   }, "More posts"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_15__["jsx"])("div", {
     css: MorePostWrapper

@@ -112,7 +112,7 @@ const BlogPostPage = memo(() => {
       type: UNLIKE_POST_REQUEST,
       data: { PostId: post?.id, UserId: user?.id },
     });
-  }, []);
+  }, [post?.id, user?.id]);
 
   useEffect(() => {
     const tagContent = post?.content?.split(/(#[^\s#+^<]+)/g).map((v) => {
@@ -163,7 +163,7 @@ const BlogPostPage = memo(() => {
       type: LIKE_POST_REQUEST,
       data: { PostId: post?.id, UserId: user.id },
     });
-  }, []);
+  }, [post?.id, user?.id]);
 
   const handleImgError = useCallback((e: React.SyntheticEvent) => {
     (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
@@ -175,25 +175,25 @@ const BlogPostPage = memo(() => {
         <title>Noah world | {post?.title.slice(0, 10)}...</title>
       </Head>
       <h1 style={{ lineHeight: "1.5" }} className="post_main_title">
-        {post.title}
+        {post?.title}
       </h1>
       <Divider className="blog_post_divier" />
       <ul css={PostDesc}>
-        <li>{dayjs(post.createdAt).format("YYYY.MM.DD")}</li>
-        <li>·&nbsp;{post.hit} views</li>
-        <li>·&nbsp;{post.PostLikers?.length} likes</li>
+        <li>{dayjs(post?.createdAt).format("YYYY.MM.DD")}</li>
+        <li>·&nbsp;{post?.hit} views</li>
+        <li>·&nbsp;{post?.PostLikers?.length} likes</li>
       </ul>
       <div css={PostWrapper}>
         <div className="blog_post_article">
           <div className="tui-editor-contents" style={{ marginBottom: "3rem" }}>
             <img
-              alt={post.title}
+              alt={post?.title}
               style={{ width: "100%", marginBottom: "6rem" }}
               src={
                 post?.thumbnail
-                  ? post.thumbnail
-                  : post.imagePath
-                  ? post.imagePath.replace(/\/thumb\//, "/original/")
+                  ? post?.thumbnail
+                  : post?.imagePath
+                  ? post?.imagePath.replace(/\/thumb\//, "/original/")
                   : "/images/blog/noImage.gif"
               }
               onError={handleImgError}
@@ -211,7 +211,7 @@ const BlogPostPage = memo(() => {
                 <HeartOutlined />
               </Heart>
             )}
-            <span style={{ fontSize: "1rem" }}>{post.PostLikers?.length}</span>
+            <span style={{ fontSize: "1rem" }}>{post?.PostLikers?.length}</span>
           </h4>
           <CommentForm />
           <h4 css={PostSubTitle}>More posts</h4>

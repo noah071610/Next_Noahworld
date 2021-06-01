@@ -2000,7 +2000,7 @@ const CropImageModal = /*#__PURE__*/Object(external_react_["memo"])(({
     setIsModalVisible(false);
     setUrl("");
     setUpImg(null);
-  }, []);
+  }, [blob, user === null || user === void 0 ? void 0 : user.id]);
   const handleCancel = Object(external_react_["useCallback"])(() => {
     setIsModalVisible(false);
     setUrl("");

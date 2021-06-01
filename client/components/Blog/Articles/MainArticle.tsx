@@ -38,7 +38,7 @@ const MainArticle: FC<MainArticleProps> = memo(({ category }) => {
       </div>
       <div className="blog_category_small">
         <Slider {...smallSizeSettings}>
-          {category.slice(0, 3).map((article, i) => {
+          {category?.slice(0, 3).map((article, i) => {
             return <ArticleColumn key={i} article={article} />;
           })}
         </Slider>
@@ -46,12 +46,12 @@ const MainArticle: FC<MainArticleProps> = memo(({ category }) => {
       <div className="blog_main_big">
         <Divider />
         <Slider {...settings}>
-          {category.slice(1, 8).map((v, i) => (
+          {category?.slice(1, 8).map((v, i) => (
             <ArticleColumn key={i} article={v} />
           ))}
         </Slider>
       </div>
-      {category.slice(3, 8).map((article, i) => {
+      {category?.slice(3, 8).map((article, i) => {
         return <ArticleSmall key={i} article={article} />;
       })}
     </>

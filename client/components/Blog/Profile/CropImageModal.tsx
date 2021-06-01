@@ -35,7 +35,7 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
     setIsModalVisible(false);
     setUrl("");
     setUpImg(null);
-  }, []);
+  }, [blob, user?.id]);
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);

@@ -35,11 +35,11 @@ router.post("/icon", upload.single("image"), async (req, res, next) => {
   res.json(req.file.location.replace(/\/original\//, "/thumb/"));
 });
 
-router.post("/icon/url", async (req, res, next) => {
-  //유저가 url을 이용하는 방식으로 아이콘을 업데이트한 경우
-  User.update({ icon: req.body.url }, { where: { id: req.body.UserId } });
-  res.json(req.body.url);
-});
+// router.post("/icon/url", async (req, res, next) => {
+//   //유저가 url을 이용하는 방식으로 아이콘을 업데이트한 경우
+//   User.update({ icon: req.body.url }, { where: { id: req.body.UserId } });
+//   res.json(req.body.url);
+// });
 
 router.delete("/icon/:UserId", async (req, res, next) => {
   //유저가 아이콘을 삭제하는경우, 미리 저장되어있는 default 값으로 변경합니다.

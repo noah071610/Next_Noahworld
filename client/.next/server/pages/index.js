@@ -352,17 +352,17 @@ const MainArticle = /*#__PURE__*/Object(external_react_["memo"])(({
     article: category[0]
   })), Object(react_["jsx"])("div", {
     className: "blog_category_small"
-  }, Object(react_["jsx"])(external_react_slick_default.a, smallSizeSettings, category.slice(0, 3).map((article, i) => {
+  }, Object(react_["jsx"])(external_react_slick_default.a, smallSizeSettings, category === null || category === void 0 ? void 0 : category.slice(0, 3).map((article, i) => {
     return Object(react_["jsx"])(ArticleColumn["default"], {
       key: i,
       article: article
     });
   }))), Object(react_["jsx"])("div", {
     className: "blog_main_big"
-  }, Object(react_["jsx"])(external_antd_["Divider"], null), Object(react_["jsx"])(external_react_slick_default.a, settings, category.slice(1, 8).map((v, i) => Object(react_["jsx"])(ArticleColumn["default"], {
+  }, Object(react_["jsx"])(external_antd_["Divider"], null), Object(react_["jsx"])(external_react_slick_default.a, settings, category === null || category === void 0 ? void 0 : category.slice(1, 8).map((v, i) => Object(react_["jsx"])(ArticleColumn["default"], {
     key: i,
     article: v
-  })))), category.slice(3, 8).map((article, i) => {
+  })))), category === null || category === void 0 ? void 0 : category.slice(3, 8).map((article, i) => {
     return Object(react_["jsx"])(Articles_ArticleSmall, {
       key: i,
       article: article
@@ -2775,7 +2775,7 @@ const CropImageModal = /*#__PURE__*/Object(external_react_["memo"])(({
     setIsModalVisible(false);
     setUrl("");
     setUpImg(null);
-  }, []);
+  }, [blob, user === null || user === void 0 ? void 0 : user.id]);
   const handleCancel = Object(external_react_["useCallback"])(() => {
     setIsModalVisible(false);
     setUrl("");

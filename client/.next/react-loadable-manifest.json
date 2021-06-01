@@ -51,7 +51,7 @@
       "static/chunks/5431507ee2ba0c7e2e48859661019fe23e64aaa1.3fd0e0cb1d424952d95d.js",
       "static/chunks/9212561fa1af9daf1c4890ceaa4c5496eca05390.1c34bcf2567cfa52e6bf.js",
       "static/css/38e87102bd37c6640f4d.css",
-      "static/chunks/44.6c7459af16afabd21d6e.js"
+      "static/chunks/44.c8cacb8abc5a930c30a0.js"
     ]
   },
   "[category]\\post\\[id].tsx -> ../../../components/Blog/Articles/ArticlePost": {
@@ -117,7 +117,7 @@
     "id": "qJCU",
     "files": [
       "static/chunks/f631a03f5ec90b8fac6bed56d85b782d60274bff.7279ce5c9dc7aa49e665.js",
-      "static/chunks/96cc3338fa4af3fdeb2b09a30b1a3192d7aee61f.8d771ee92f519ebaed10.js",
+      "static/chunks/96cc3338fa4af3fdeb2b09a30b1a3192d7aee61f.f9f0e363c2614a7a32c2.js",
       "static/chunks/4c31a6f94cd6042b66a59f2ac40aa63136954e39.404aa1360a47d5b61322.js",
       "static/chunks/57.9bad66b835849c1e97ec.js"
     ]
