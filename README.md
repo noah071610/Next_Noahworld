@@ -38,7 +38,7 @@
 <img src="https://img.shields.io/badge/Webpack-8DD6F9?style=flat-square&logo=Webpack&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/Amazon_AWS-232F3E?style=flat-square&logo=Amazon-AWS&logoColor=white"/>&nbsp;
 <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=Linux&logoColor=white"/>&nbsp;
-<img src="https://img.shields.io/badge/PM2-2B037A?style=flat-square&logo=PM2&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=NGINX&logoColor=white"/>&nbsp;
 </div>
 
 <br/>
