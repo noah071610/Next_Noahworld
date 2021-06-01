@@ -319,9 +319,12 @@ router.get("/", async (req, res) => {
       });
 
     //결과값이 이중배열으로 이루어진 id값으로 나오기때문에 [0][0]을 붙혔습니다.
-    const mostLikedId = await mostCalculator(getLikes, 1)[0][0];
-    const mostCommentsId = await mostCalculator(getComments, 2)[0][0];
-    const mostViewedId = await mostCalculator(getViews, 3)[0][0];
+    // const mostLikedId = await mostCalculator(getLikes, 1)[0][0];
+    // const mostCommentsId = await mostCalculator(getComments, 2)[0][0];
+    // const mostViewedId = await mostCalculator(getViews, 3)[0][0];
+    const mostLikedId = 1;
+    const mostCommentsId = 2;
+    const mostViewedId = 3;
 
     //원하는 값이 최대인 게시글에 아이디를 이용해서 DB안에 값을 찾아줍니다.
     const mostLikedPost = await Post.findOne({

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
+import Aos from "aos";
 import "aos/dist/aos.css";
 import "antd/dist/antd.css";
 import "animate.css/animate.css";
@@ -54,6 +55,14 @@ const reset = css`
 `;
 
 function App({ Component, pageProps }) {
+  useEffect(() => {
+    var aScript = document.createElement("script");
+    aScript.type = "text/javascript";
+    aScript.src = " https://js.stripe.com/v3/";
+    document.head.appendChild(aScript);
+    aScript.onload = () => {};
+    Aos.init();
+  }, []);
   return (
     <>
       <Head>
