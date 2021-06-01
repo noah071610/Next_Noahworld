@@ -25,11 +25,11 @@ db.sequelize
   .catch(console.error);
 passportConfig();
 
-app.set("trust proxy", 1);
 if (process.env.NODE_ENV === "production") {
+  app.enable("trust proxy");
   app.use(morgan("combined"));
   app.use(hpp());
-  app.use(helmet());
+  app.use(helmet({ contentSecurityPolicy: false }));
   app.use(
     cors({
       origin: "https://noahworld.site",
@@ -54,7 +54,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE));
 app.use(
   session({
-    name: process.env.COOKIE,
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE,

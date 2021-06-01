@@ -3,12 +3,6 @@ module.exports =
 /******/ 	// The module cache
 /******/ 	var installedModules = require('../ssr-module-cache.js');
 /******/
-/******/ 	// object to store loaded chunks
-/******/ 	// "0" means "already loaded"
-/******/ 	var installedChunks = {
-/******/ 		12: 0
-/******/ 	};
-/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/
@@ -39,26 +33,6 @@ module.exports =
 /******/ 		return module.exports;
 /******/ 	}
 /******/
-/******/ 	// This file contains only the entry chunk.
-/******/ 	// The chunk loading function for additional chunks
-/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
-/******/ 		var promises = [];
-/******/
-/******/
-/******/ 		// require() chunk loading for javascript
-/******/
-/******/ 		// "0" is the signal for "already loaded"
-/******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + ".js");
-/******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
-/******/ 			for(var moduleId in moreModules) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 			for(var i = 0; i < chunkIds.length; i++)
-/******/ 				installedChunks[chunkIds[i]] = 0;
-/******/ 		}
-/******/ 		return Promise.all(promises);
-/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -112,26 +86,12 @@ module.exports =
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/ 	// uncaught error handler for webpack runtime
-/******/ 	__webpack_require__.oe = function(err) {
-/******/ 		process.nextTick(function() {
-/******/ 			throw err; // catch this error by using import().catch()
-/******/ 		});
-/******/ 	};
-/******/
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "/T1H":
-/***/ (function(module, exports) {
-
-module.exports = require("next/dynamic");
-
-/***/ }),
 
 /***/ "/jkW":
 /***/ (function(module, exports, __webpack_require__) {
@@ -225,30 +185,137 @@ module.exports = require("redux-saga");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return getServerSideProps; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("h74D");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("YFqc");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _reducers_blog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("ZX5X");
-/* harmony import */ var _reducers_post__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("SDl8");
-/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("N61D");
-/* harmony import */ var react_countup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("NHP8");
-/* harmony import */ var react_countup__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_countup__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _store_configureStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("B9PA");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("zr5I");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _redux_saga_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("nUeB");
-/* harmony import */ var _redux_saga_core__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_redux_saga_core__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("/T1H");
-/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("Kps4");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_12__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return /* binding */ getServerSideProps; });
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__("h74D");
+
+// EXTERNAL MODULE: external "antd"
+var external_antd_ = __webpack_require__("Exp3");
+
+// EXTERNAL MODULE: ./node_modules/next/link.js
+var next_link = __webpack_require__("YFqc");
+var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
+
+// EXTERNAL MODULE: ./@reducers/blog.ts
+var blog = __webpack_require__("ZX5X");
+
+// EXTERNAL MODULE: ./@reducers/post.ts
+var post = __webpack_require__("SDl8");
+
+// EXTERNAL MODULE: ./@reducers/user.ts
+var _reducers_user = __webpack_require__("N61D");
+
+// EXTERNAL MODULE: external "react-countup"
+var external_react_countup_ = __webpack_require__("NHP8");
+var external_react_countup_default = /*#__PURE__*/__webpack_require__.n(external_react_countup_);
+
+// EXTERNAL MODULE: ./@store/configureStore.ts + 6 modules
+var configureStore = __webpack_require__("B9PA");
+
+// EXTERNAL MODULE: external "axios"
+var external_axios_ = __webpack_require__("zr5I");
+var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
+
+// EXTERNAL MODULE: external "@redux-saga/core"
+var core_ = __webpack_require__("nUeB");
+
+// EXTERNAL MODULE: external "react-slick"
+var external_react_slick_ = __webpack_require__("O/hg");
+var external_react_slick_default = /*#__PURE__*/__webpack_require__.n(external_react_slick_);
+
+// EXTERNAL MODULE: ./components/Blog/Articles/ArticleColumn.tsx
+var ArticleColumn = __webpack_require__("QLkm");
+
+// EXTERNAL MODULE: ./components/Blog/Articles/ArticleRow.tsx
+var ArticleRow = __webpack_require__("Blc5");
+
+// EXTERNAL MODULE: external "@emotion/styled/base"
+var base_ = __webpack_require__("w8No");
+var base_default = /*#__PURE__*/__webpack_require__.n(base_);
+
+// EXTERNAL MODULE: external "dayjs"
+var external_dayjs_ = __webpack_require__("boVf");
+var external_dayjs_default = /*#__PURE__*/__webpack_require__.n(external_dayjs_);
+
+// EXTERNAL MODULE: external "dayjs/plugin/relativeTime"
+var relativeTime_ = __webpack_require__("jYNn");
+var relativeTime_default = /*#__PURE__*/__webpack_require__.n(relativeTime_);
+
+// EXTERNAL MODULE: ./node_modules/next/dist/client/router.js
+var client_router = __webpack_require__("nOHt");
+
+// EXTERNAL MODULE: external "@emotion/react"
+var react_ = __webpack_require__("Kps4");
+
+// CONCATENATED MODULE: ./components/Blog/Articles/ArticleSmall.tsx
+
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+
+
+
+
+
+external_dayjs_default.a.extend(relativeTime_default.a);
+external_dayjs_default.a.locale("kor");
+
+const Article = base_default()("article", true ? {
+  target: "e9qef4u0"
+} : undefined)(true ? {
+  name: "khknaa",
+  styles: "width:100%;padding:1rem;border-top:1px solid rgba(0, 0, 0, 0.1);align-items:center;transition:all 0.3s;cursor:pointer;img{transition:all 0.3s;}p{color:black;}&:hover{background-color:rgba(0, 0, 0, 0.1);img{transform:scale(1.05);}p{color:black;text-decoration:underline;}}"
+} : undefined);
+
+const ArticleSmall = ({
+  article
+}) => {
+  const router = Object(client_router["useRouter"])();
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/noImage.gif";
+  };
+
+  return Object(react_["jsx"])(Article, {
+    onClick: () => {
+      router.push(`/${article.category}/post/${article.id}`);
+      window.scrollTo({
+        top: 0
+      });
+    },
+    className: "blog_main_small"
+  }, Object(react_["jsx"])("img", {
+    style: {
+      width: "110px",
+      height: "80px"
+    },
+    src: article !== null && article !== void 0 && article.thumbnail ? article.thumbnail : article.imagePath ? article.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    alt: "thumbnail",
+    onError: handleImgError
+  }), Object(react_["jsx"])("div", null, Object(react_["jsx"])("p", {
+    style: {
+      margin: "0 0 0.5rem 1rem",
+      height: "100%"
+    }
+  }, article.title, " "), Object(react_["jsx"])("ul", {
+    style: {
+      margin: "0 0 0 1rem"
+    },
+    className: "article_footer"
+  }, Object(react_["jsx"])("li", null, external_dayjs_default()().to(external_dayjs_default()(article.createdAt), true), "\xA0ago"), Object(react_["jsx"])("li", null, "\xB7\xA0", article.hit, " views"), Object(react_["jsx"])("li", null, "\xB7\xA0", article.PostLikers && article.PostLikers.length, " Likes"))));
+};
+
+/* harmony default export */ var Articles_ArticleSmall = (ArticleSmall);
+// CONCATENATED MODULE: ./components/Blog/Articles/MainArticle.tsx
 
 
 
@@ -256,40 +323,405 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-const MainArticle = next_dynamic__WEBPACK_IMPORTED_MODULE_11___default()(() => __webpack_require__.e(/* import() */ 22).then(__webpack_require__.bind(null, "rEWd")), {
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("rEWd")],
-    modules: ["index.tsx -> " + "../components/Blog/Articles/MainArticle"]
-  }
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 2,
+  slidesToScroll: 1
+};
+const smallSizeSettings = {
+  dots: false,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+const MainArticle = /*#__PURE__*/Object(external_react_["memo"])(({
+  category
+}) => {
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, Object(react_["jsx"])("div", {
+    className: "blog_category_big"
+  }, Object(react_["jsx"])(ArticleRow["default"], {
+    article: category[0]
+  })), Object(react_["jsx"])("div", {
+    className: "blog_category_medium"
+  }, Object(react_["jsx"])(ArticleColumn["default"], {
+    article: category[0]
+  })), Object(react_["jsx"])("div", {
+    className: "blog_category_small"
+  }, Object(react_["jsx"])(external_react_slick_default.a, smallSizeSettings, category.slice(0, 3).map((article, i) => {
+    return Object(react_["jsx"])(ArticleColumn["default"], {
+      key: i,
+      article: article
+    });
+  }))), Object(react_["jsx"])("div", {
+    className: "blog_main_big"
+  }, Object(react_["jsx"])(external_antd_["Divider"], null), Object(react_["jsx"])(external_react_slick_default.a, settings, category.slice(1, 8).map((v, i) => Object(react_["jsx"])(ArticleColumn["default"], {
+    key: i,
+    article: v
+  })))), category.slice(3, 8).map((article, i) => {
+    return Object(react_["jsx"])(Articles_ArticleSmall, {
+      key: i,
+      article: article
+    });
+  }));
 });
-const MostArticle = next_dynamic__WEBPACK_IMPORTED_MODULE_11___default()(() => __webpack_require__.e(/* import() */ 27).then(__webpack_require__.bind(null, "n4j1")), {
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("n4j1")],
-    modules: ["index.tsx -> " + "../components/Blog/Articles/MostArticle"]
-  }
+/* harmony default export */ var Articles_MainArticle = (/*#__PURE__*/Object(external_react_["memo"])(MainArticle));
+// EXTERNAL MODULE: ./config.js
+var config = __webpack_require__("obyI");
+
+// CONCATENATED MODULE: ./components/Blog/Articles/ArticleSmallAside.tsx
+
+
+function ArticleSmallAside_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+
+
+
+
+
+external_dayjs_default.a.extend(relativeTime_default.a);
+external_dayjs_default.a.locale("kor");
+
+const ArticleSmallAside_Article = base_default()("article", true ? {
+  target: "egtikk0"
+} : undefined)(true ? {
+  name: "1yjh3s",
+  styles: "transition:all 0.4s;&:hover{text-decoration:underline;background-color:rgba(0, 0, 0, 0.1);}"
+} : undefined);
+
+const ArticleSmallAside = ({
+  article,
+  type
+}) => {
+  var _article$Comments, _article$PostLikers;
+
+  const router = Object(client_router["useRouter"])();
+
+  const onClickArticle = e => {
+    if (e.target.className === "hashtag") {
+      return;
+    }
+
+    window.scrollTo({
+      top: 0
+    });
+    router.push(`/${article.category}/post/${article.id}`);
+  };
+
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, article && Object(react_["jsx"])(ArticleSmallAside_Article, {
+    onClick: onClickArticle,
+    style: {
+      marginLeft: "0.5rem"
+    },
+    className: "article article_aside"
+  }, Object(react_["jsx"])("div", {
+    className: "blog_small_aside_title"
+  }, Object(react_["jsx"])("span", {
+    style: {
+      color: config["c" /* BLUE_COLOR */],
+      fontWeight: "bold",
+      fontSize: "0.9rem"
+    }
+  }, "IN ", article.category.toUpperCase()), Object(react_["jsx"])("span", {
+    className: "article_md_footer"
+  }, "\xA0\xA0", type === "comments" ? ((_article$Comments = article.Comments) === null || _article$Comments === void 0 ? void 0 : _article$Comments.length) + " Comments" : type === "like" ? ((_article$PostLikers = article.PostLikers) === null || _article$PostLikers === void 0 ? void 0 : _article$PostLikers.length) + " Likes" : article.hit + " views"), Object(react_["jsx"])("h2", {
+    style: {
+      marginTop: "1rem"
+    },
+    className: "article_aside_header small_title"
+  }, article.title))));
+};
+
+/* harmony default export */ var Articles_ArticleSmallAside = (ArticleSmallAside);
+// CONCATENATED MODULE: ./components/Blog/Articles/ArticleAside.tsx
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+
+
+
+
+
+external_dayjs_default.a.extend(relativeTime_default.a);
+external_dayjs_default.a.locale("kor");
+
+const ArticleAside = ({
+  article,
+  type
+}) => {
+  var _article$Comments, _article$PostLikers, _article$Comments2, _article$PostLikers2;
+
+  const router = Object(client_router["useRouter"])();
+
+  const onClickArticle = e => {
+    if (e.target.className === "hashtag") {
+      return;
+    }
+
+    window.scrollTo({
+      top: 0
+    });
+    router.push(`/${article.category}/post/${article.id}`);
+  };
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/noImage.gif";
+  };
+
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, article && Object(react_["jsx"])("article", {
+    onClick: onClickArticle,
+    className: "article article_aside"
+  }, Object(react_["jsx"])("div", {
+    style: {
+      marginBottom: "0.5rem",
+      width: "100%",
+      overflow: "hidden"
+    }
+  }, Object(react_["jsx"])("img", {
+    className: "article_img",
+    style: {
+      width: "100%",
+      height: "150px",
+      border: "0.3px solid rgba(0,0,0,0.1)"
+    },
+    alt: article.title,
+    src: article !== null && article !== void 0 && article.thumbnail ? article.thumbnail : article.imagePath ? article.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    onError: handleImgError
+  })), Object(react_["jsx"])("div", null, Object(react_["jsx"])("span", {
+    style: {
+      color: config["c" /* BLUE_COLOR */],
+      fontWeight: "bold",
+      fontSize: "1rem"
+    }
+  }, "IN ", article.category.toUpperCase()), Object(react_["jsx"])("span", {
+    className: "article_md_footer"
+  }, type === "comments" ? (article === null || article === void 0 ? void 0 : (_article$Comments = article.Comments) === null || _article$Comments === void 0 ? void 0 : _article$Comments.length) + " Comments" : type === "like" ? (article === null || article === void 0 ? void 0 : (_article$PostLikers = article.PostLikers) === null || _article$PostLikers === void 0 ? void 0 : _article$PostLikers.length) + " Likes" : article.hit + " views"), Object(react_["jsx"])("h2", {
+    style: {
+      margin: "0.5rem 0 0.8rem 0",
+      height: "1.5rem",
+      lineHeight: "1.5"
+    },
+    className: "article_aside_header"
+  }, article.title), Object(react_["jsx"])("ul", {
+    className: "article_footer"
+  }, Object(react_["jsx"])("li", {
+    className: "date"
+  }, external_dayjs_default()().to(external_dayjs_default()(article.createdAt), true), "\xA0ago"), Object(react_["jsx"])("li", {
+    className: "view"
+  }, "\xB7", Object(react_["jsx"])("span", {
+    style: type === "view" ? {
+      color: config["c" /* BLUE_COLOR */],
+      fontWeight: "bold"
+    } : {}
+  }, "\xA0", article.hit, " views")), Object(react_["jsx"])("li", {
+    className: "comments"
+  }, "\xB7", Object(react_["jsx"])("span", {
+    style: type === "view" ? {} : {
+      color: config["c" /* BLUE_COLOR */],
+      fontWeight: "bold"
+    }
+  }, "\xA0", type === "comments" ? (article === null || article === void 0 ? void 0 : (_article$Comments2 = article.Comments) === null || _article$Comments2 === void 0 ? void 0 : _article$Comments2.length) + " Comments" : (article === null || article === void 0 ? void 0 : (_article$PostLikers2 = article.PostLikers) === null || _article$PostLikers2 === void 0 ? void 0 : _article$PostLikers2.length) + " Likes"))))));
+};
+
+/* harmony default export */ var Articles_ArticleAside = (ArticleAside);
+// CONCATENATED MODULE: ./components/Blog/Articles/MostArticle.tsx
+function MostArticle_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+
+
+
+
+
+
+const TitleStyle = true ? {
+  name: "7xjfxr",
+  styles: "display:flex;align-items:center;font-size:1.2rem;padding:0 1rem"
+} : undefined;
+
+const isBottomMargin = aside =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(react_["css"])(aside ? "margin-bottom: 1rem;" : null, ";" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+
+const MostArticle = /*#__PURE__*/Object(external_react_["memo"])(({
+  mostPost,
+  src,
+  desc,
+  hashtags,
+  aside,
+  type
+}) => {
+  return Object(react_["jsx"])("div", {
+    css: isBottomMargin(aside)
+  }, Object(react_["jsx"])("h3", {
+    css: TitleStyle
+  }, Object(react_["jsx"])("img", {
+    alt: "trophy",
+    className: "icon",
+    src: src
+  }), desc), hashtags ? Object(react_["jsx"])("ul", {
+    className: "blog_aside_tag"
+  }, hashtags && hashtags.map((v, i) => {
+    return Object(react_["jsx"])("li", {
+      onClick: () => window.scrollTo({
+        top: 0
+      }),
+      key: i
+    }, Object(react_["jsx"])(link_default.a, {
+      href: `/hashtag/${v.name}`
+    }, Object(react_["jsx"])("a", null, "#", v.name)));
+  })) : aside ? Object(react_["jsx"])(Articles_ArticleAside, {
+    type: type,
+    article: mostPost
+  }) : Object(react_["jsx"])(Articles_ArticleSmallAside, {
+    type: type,
+    article: mostPost
+  }));
 });
-const UserProfile = next_dynamic__WEBPACK_IMPORTED_MODULE_11___default()(() => __webpack_require__.e(/* import() */ 21).then(__webpack_require__.bind(null, "KOAa")), {
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("KOAa")],
-    modules: ["index.tsx -> " + "../components/Blog/Profile/UserProfile"]
-  }
+/* harmony default export */ var Articles_MostArticle = (/*#__PURE__*/Object(external_react_["memo"])(MostArticle));
+// CONCATENATED MODULE: ./components/Blog/Class/ClassCard.tsx
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+/* eslint-disable jsx-a11y/anchor-has-content */
+
+
+
+
+
+const ClassCard = /*#__PURE__*/Object(external_react_["memo"])(() => {
+  const router = Object(client_router["useRouter"])();
+  return Object(react_["jsx"])("section", {
+    style: {
+      width: "100%",
+      marginRight: "2rem"
+    }
+  }, Object(react_["jsx"])(external_antd_["Divider"], {
+    orientation: "left"
+  }, Object(react_["jsx"])(link_default.a, {
+    href: "/class"
+  }, Object(react_["jsx"])("a", {
+    style: {
+      display: "flex",
+      alignItems: "center"
+    }
+  }, "Korean Class for \xA0", Object(react_["jsx"])("img", {
+    alt: "japan_flag",
+    style: {
+      width: "1.5rem"
+    },
+    src: "https://img.icons8.com/color/48/000000/japan.png"
+  })))), Object(react_["jsx"])("div", {
+    className: "blog_bottom"
+  }, Object(react_["jsx"])("div", {
+    onClick: () => {
+      router.push("/class");
+      window.scrollTo({
+        top: 0
+      });
+    },
+    className: "blog_bottom_card",
+    style: {
+      gridArea: "hd"
+    }
+  }, Object(react_["jsx"])("a", {
+    className: "blog_bottom_cover"
+  }), Object(react_["jsx"])("h2", {
+    className: "blog_bottom_card_title"
+  }, "\u97D3\u56FD\u8A9E\u57FA\u790E"), Object(react_["jsx"])("img", {
+    className: "blog_bottom_img",
+    alt: "korean_class_basic",
+    src: "https://images.unsplash.com/photo-1474366521946-c3d4b507abf2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=556&q=80"
+  })), Object(react_["jsx"])("div", {
+    onClick: () => {
+      router.push("/class");
+      window.scrollTo({
+        top: 0
+      });
+    },
+    className: "blog_bottom_card",
+    style: {
+      gridArea: "sub1"
+    }
+  }, Object(react_["jsx"])("a", {
+    className: "blog_bottom_cover"
+  }), Object(react_["jsx"])("h2", {
+    className: "blog_bottom_card_title"
+  }, "\u6587\u5316"), Object(react_["jsx"])("img", {
+    className: "blog_bottom_img",
+    alt: "korean_class_culture",
+    src: "https://images.unsplash.com/photo-1485186667901-c039c19ecac3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=274&q=80"
+  })), Object(react_["jsx"])("div", {
+    onClick: () => {
+      router.push("/class");
+      window.scrollTo({
+        top: 0
+      });
+    },
+    className: "blog_bottom_card",
+    style: {
+      gridArea: "sub2"
+    }
+  }, Object(react_["jsx"])("a", {
+    className: "blog_bottom_cover"
+  }), Object(react_["jsx"])("h2", {
+    className: "blog_bottom_card_title"
+  }, "\u4ECA\u3069\u304D"), Object(react_["jsx"])("img", {
+    className: "blog_bottom_img",
+    alt: "korean_class_hotword",
+    src: "https://images.unsplash.com/photo-1550177205-89d100b75c34?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=274&q=80"
+  })), Object(react_["jsx"])("div", {
+    onClick: () => {
+      router.push("/class");
+      window.scrollTo({
+        top: 0
+      });
+    },
+    className: "blog_bottom_card",
+    style: {
+      gridArea: "sub3"
+    }
+  }, Object(react_["jsx"])("a", {
+    className: "blog_bottom_cover"
+  }), Object(react_["jsx"])("h2", {
+    className: "blog_bottom_card_title"
+  }, "\u4F1A\u8A71"), Object(react_["jsx"])("img", {
+    className: "blog_bottom_img",
+    alt: "korean_class_conversation",
+    src: "https://images.unsplash.com/photo-1531496244015-67bec2b9952b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=274&q=80"
+  }))));
 });
-const ClassCard = next_dynamic__WEBPACK_IMPORTED_MODULE_11___default()(() => __webpack_require__.e(/* import() */ 28).then(__webpack_require__.bind(null, "QpK9")), {
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("QpK9")],
-    modules: ["index.tsx -> " + "../components/Blog/Class/ClassCard"]
-  }
-});
-const BlogMainPage = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["memo"])(() => {
+/* harmony default export */ var Class_ClassCard = (/*#__PURE__*/Object(external_react_["memo"])(ClassCard));
+// EXTERNAL MODULE: ./components/Blog/Profile/UserProfile.tsx + 4 modules
+var UserProfile = __webpack_require__("KOAa");
+
+// CONCATENATED MODULE: ./pages/index.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const BlogMainPage = () => {
   const {
     user
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.user);
+  } = Object(external_react_redux_["useSelector"])(state => state.user);
   const {
     techPosts,
     dailyPosts,
@@ -297,106 +729,107 @@ const BlogMainPage = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["mem
     mostLikedPost,
     mostViewedPost,
     mostCommentedPost
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.post);
-  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, user && Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(UserProfile, null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("div", {
+  } = Object(external_react_redux_["useSelector"])(state => state.post);
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, user && Object(react_["jsx"])(UserProfile["default"], null), Object(react_["jsx"])("div", {
     className: "blog"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("h2", {
+  }, Object(react_["jsx"])("h2", {
     className: "blog_category_header header_small_on"
-  }, "HOME", techPosts && dailyPosts && Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("span", {
+  }, "HOME", techPosts && dailyPosts && Object(react_["jsx"])("span", {
     className: "blog_category_count"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("br", {
+  }, Object(react_["jsx"])("br", {
     className: "br_category"
-  }), "+\xA0", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(react_countup__WEBPACK_IMPORTED_MODULE_7___default.a, {
+  }), "+\xA0", Object(react_["jsx"])(external_react_countup_default.a, {
     duration: 4,
     start: 0,
     end: techPosts.concat(dailyPosts).length
-  }), "\xA0posts.\xA0+\xA0", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(react_countup__WEBPACK_IMPORTED_MODULE_7___default.a, {
+  }), "\xA0posts.\xA0+\xA0", Object(react_["jsx"])(external_react_countup_default.a, {
     duration: 4,
     start: 0,
     end: hashtags === null || hashtags === void 0 ? void 0 : hashtags.length
-  }), "\xA0hashtags.")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("section", {
+  }), "\xA0hashtags.")), Object(react_["jsx"])("section", {
     className: "blog_main"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
+  }, Object(react_["jsx"])(external_antd_["Divider"], {
     orientation: "left"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  }, Object(react_["jsx"])(link_default.a, {
     href: "/tech"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("a", null, "Information Technology"))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MainArticle, {
+  }, Object(react_["jsx"])("a", null, "Information Technology"))), Object(react_["jsx"])(Articles_MainArticle, {
     category: techPosts
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_2__["Divider"], {
+  }), Object(react_["jsx"])(external_antd_["Divider"], {
     orientation: "left"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  }, Object(react_["jsx"])(link_default.a, {
     href: "/daily"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("a", null, "Daily"))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MainArticle, {
+  }, Object(react_["jsx"])("a", null, "Daily"))), Object(react_["jsx"])(Articles_MainArticle, {
     category: dailyPosts
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("aside", {
+  })), Object(react_["jsx"])("aside", {
     className: "blog_aside"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MostArticle, {
+  }, Object(react_["jsx"])(Articles_MostArticle, {
     mostPost: mostLikedPost,
     src: "https://img.icons8.com/doodle/96/000000/trophy--v1.png",
     desc: "Most Liked",
     type: "like",
     aside: true
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MostArticle, {
+  }), Object(react_["jsx"])(Articles_MostArticle, {
     mostPost: mostViewedPost,
     src: "https://img.icons8.com/doodle/96/000000/goal.png",
     desc: "Most View",
     type: "view",
     aside: true
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MostArticle, {
+  }), Object(react_["jsx"])(Articles_MostArticle, {
     mostPost: mostCommentedPost,
     src: "https://img.icons8.com/doodle/96/000000/speech-bubble-with-dots.png",
     desc: "Most Commented",
     type: "comments",
     aside: true
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_2__["Divider"], null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MostArticle, {
+  }), Object(react_["jsx"])(external_antd_["Divider"], null), Object(react_["jsx"])(Articles_MostArticle, {
     hashtags: hashtags,
     src: "https://img.icons8.com/ios/100/000000/hashtag.png",
     desc: "Hashtags"
-  }))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("section", {
+  }))), Object(react_["jsx"])("section", {
     className: "blog_md_aside"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_2__["Divider"], null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MostArticle, {
+  }, Object(react_["jsx"])(external_antd_["Divider"], null), Object(react_["jsx"])(Articles_MostArticle, {
     mostPost: mostLikedPost,
     src: "https://img.icons8.com/doodle/96/000000/trophy--v1.png",
     desc: "Most Liked",
     type: "like"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MostArticle, {
+  }), Object(react_["jsx"])(Articles_MostArticle, {
     mostPost: mostViewedPost,
     src: "https://img.icons8.com/doodle/96/000000/goal.png",
     desc: "Most View",
     type: "view"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MostArticle, {
+  }), Object(react_["jsx"])(Articles_MostArticle, {
     mostPost: mostCommentedPost,
     src: "https://img.icons8.com/doodle/96/000000/speech-bubble-with-dots.png",
     desc: "Most Commented",
     type: "comments"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_2__["Divider"], null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(MostArticle, {
+  }), Object(react_["jsx"])(external_antd_["Divider"], null), Object(react_["jsx"])(Articles_MostArticle, {
     hashtags: hashtags,
     src: "https://img.icons8.com/ios/100/000000/hashtag.png",
     desc: "Hashtags"
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(ClassCard, null));
-});
-const getServerSideProps = _store_configureStore__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"].getServerSideProps(async context => {
+  })), Object(react_["jsx"])(Class_ClassCard, null));
+};
+
+const getServerSideProps = configureStore["a" /* default */].getServerSideProps(async context => {
   const cookie = context.req ? context.req.headers.cookie : "";
-  axios__WEBPACK_IMPORTED_MODULE_9___default.a.defaults.headers.Cookie = "";
+  external_axios_default.a.defaults.headers.Cookie = "";
 
   if (context.req && cookie) {
-    axios__WEBPACK_IMPORTED_MODULE_9___default.a.defaults.headers.Cookie = cookie;
+    external_axios_default.a.defaults.headers.Cookie = cookie;
   }
 
   context.store.dispatch({
-    type: _reducers_post__WEBPACK_IMPORTED_MODULE_5__[/* LOAD_POSTS_REQUEST */ "O"]
+    type: post["O" /* LOAD_POSTS_REQUEST */]
   });
   context.store.dispatch({
-    type: _reducers_user__WEBPACK_IMPORTED_MODULE_6__[/* LOAD_INFO_REQUEST */ "r"]
+    type: _reducers_user["r" /* LOAD_INFO_REQUEST */]
   });
   context.store.dispatch({
-    type: _reducers_blog__WEBPACK_IMPORTED_MODULE_4__[/* CHAGE_HEADER */ "e"],
+    type: blog["e" /* CHAGE_HEADER */],
     header: "blog"
   });
-  context.store.dispatch(_redux_saga_core__WEBPACK_IMPORTED_MODULE_10__["END"]);
+  context.store.dispatch(core_["END"]);
   await context.store.sagaTask.toPromise();
 });
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["memo"])(BlogMainPage));
+/* harmony default export */ var pages = __webpack_exports__["default"] = (BlogMainPage);
 
 /***/ }),
 
@@ -458,6 +891,83 @@ function _interopRequireWildcard(obj) {
 }
 
 module.exports = _interopRequireWildcard;
+
+/***/ }),
+
+/***/ "2lGT":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return marginCSS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return paddingCSS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return noSearchPostCSS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return SM_Header_Input; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return SM_Header_Menu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return SM_Header_SeachForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return SM_Header_Title; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return TitleProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NoPostProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ProfilePointTitle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeleteComment; });
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Kps4");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("obyI");
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+
+
+const marginCSS = (top, right, bottom, left) =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(_emotion_react__WEBPACK_IMPORTED_MODULE_0__["css"])("margin:", top, " ", right, " ", bottom, " ", left, ";" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+const paddingCSS = (top, right, bottom, left) =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(_emotion_react__WEBPACK_IMPORTED_MODULE_0__["css"])("padding:", top, " ", right, " ", bottom, " ", left, ";" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+const noSearchPostCSS = true ? {
+  name: "1q40upl",
+  styles: "width:100%;padding:1rem 0;border-bottom:1px solid rgba(0, 0, 0, 0.07);position:relative;display:flex;flex-direction:column;align-items:center;img{width:80px;opacity:0.3;}h3{text-align:center;}"
+} : undefined;
+const SM_Header_Input = onSearch =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(_emotion_react__WEBPACK_IMPORTED_MODULE_0__["css"])(onSearch ? "transform: translateY(0); transition: all 0.3s; margin-bottom: 1rem" : "transform: translateY(-200%); transition: all 0.3s; position: absolute; left: 0 ", ";" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+const SM_Header_Menu = onMenu =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(_emotion_react__WEBPACK_IMPORTED_MODULE_0__["css"])(onMenu ? "background-color: white; border: 1px solid rgba(0, 0, 0, 0.1); border-bottom: none; overflow: inherit;" : "border-bottom: 1px solid rgba(0, 0, 0, 0.1); border-top: 1px solid rgba(0, 0, 0, 0.1); overflow: hidden;", ";" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+const SM_Header_SeachForm = onSlide =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(_emotion_react__WEBPACK_IMPORTED_MODULE_0__["css"])(onSlide ? "display: block; overflow: hidden" : "display:none", ";" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+const SM_Header_Title = onTitle =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(_emotion_react__WEBPACK_IMPORTED_MODULE_0__["css"])(onTitle ? "transform: translateY(-100%); transition: all 0.5s; width: 70%;" : "transform: translateY(0); transition: all 0.5s;", ";" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+const TitleProfile = true ? {
+  name: "1dyrmug",
+  styles: "white-space:nowrap;display:inline-block;margin-left:0.5rem;width:100%;overflow:hidden;text-overflow:ellipsis"
+} : undefined;
+const NoPostProfile = true ? {
+  name: "bmscbf",
+  styles: "display:flex;align-items:center;flex-direction:column;opacity:0.3;img{width:100px;}"
+} : undefined;
+const ProfilePointTitle =
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(_emotion_react__WEBPACK_IMPORTED_MODULE_0__["css"])("color:", _config__WEBPACK_IMPORTED_MODULE_1__[/* BLUE_COLOR */ "c"], ";margin-left:0.3rem;" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+const DeleteComment = removeModal =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(_emotion_react__WEBPACK_IMPORTED_MODULE_0__["css"])("visibility:", removeModal ? "initial" : "hidden", ";animation:", removeModal ? "0.5s fadeIn" : "none", ";h2{text-align:center;color:white;}div{display:flex;justify-content:center;}" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
 
 /***/ }),
 
@@ -1806,6 +2316,129 @@ const wrapper = Object(external_next_redux_wrapper_["createWrapper"])(configureS
 
 /***/ }),
 
+/***/ "Blc5":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("boVf");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("jYNn");
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("obyI");
+/* harmony import */ var next_dist_client_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("nOHt");
+/* harmony import */ var next_dist_client_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_dist_client_router__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("Kps4");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_6__);
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+
+
+
+
+
+
+dayjs__WEBPACK_IMPORTED_MODULE_1___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_2___default.a);
+dayjs__WEBPACK_IMPORTED_MODULE_1___default.a.locale("kor");
+
+const ArticleRow = ({
+  article
+}) => {
+  var _article$content;
+
+  const router = Object(next_dist_client_router__WEBPACK_IMPORTED_MODULE_5__["useRouter"])();
+
+  const onClickArticle = e => {
+    if (e.target.className === "hashtag") {
+      return;
+    }
+
+    window.scrollTo({
+      top: 0
+    });
+    router.push(`/${article.category}/post/${article.id}`);
+  };
+
+  const contentWithoutHTML = article === null || article === void 0 ? void 0 : (_article$content = article.content) === null || _article$content === void 0 ? void 0 : _article$content.replace(/(<([^>]+)>)/gi, "").replace(/(#youtube:.*)/g, "(Youtube Video Link)").replace(/&.*;/gi, "");
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/noImage.gif";
+  };
+
+  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, article && Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("article", {
+    onClick: onClickArticle,
+    className: "article article_row"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("div", {
+    style: {
+      width: "60%",
+      marginRight: "3rem",
+      overflow: "hidden"
+    }
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("img", {
+    className: "article_img",
+    style: {
+      width: "100%",
+      height: "300px",
+      border: "0.3px solid rgba(0,0,0,0.1)"
+    },
+    alt: article.title,
+    src: article !== null && article !== void 0 && article.thumbnail ? article.thumbnail : article.imagePath ? article.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    onError: handleImgError
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("div", {
+    className: "article_contents"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("h2", {
+    style: {
+      height: "auto"
+    },
+    className: "article_header"
+  }, article.title), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("ul", {
+    style: {
+      marginBottom: "1rem"
+    },
+    className: "article_tag"
+  }, article.HashTags && article.HashTags.map((v, i) => {
+    return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", {
+      key: i
+    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      href: `/hashtag/${v.name}`
+    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("a", {
+      className: "hashtag",
+      onClick: () => window.scrollTo({
+        top: 0
+      })
+    }, "#", v.name)));
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("p", {
+    style: {
+      width: "100%",
+      height: "7.2rem",
+      overflow: "hidden",
+      lineHeight: "1.7",
+      fontSize: "0.9rem",
+      margin: 0,
+      WebkitLineClamp: 5
+    },
+    className: "article_desc"
+  }, contentWithoutHTML), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("ul", {
+    style: {
+      marginTop: "1rem"
+    },
+    className: "article_footer"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", {
+    style: {
+      color: _config__WEBPACK_IMPORTED_MODULE_4__[/* BLUE_COLOR */ "c"],
+      fontWeight: "bold"
+    }
+  }, dayjs__WEBPACK_IMPORTED_MODULE_1___default()().to(dayjs__WEBPACK_IMPORTED_MODULE_1___default()(article.createdAt), true), "\xA0ago"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", null, "\xB7\xA0", article.hit, " views"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", null, "\xB7\xA0", article.PostLikers && article.PostLikers.length, " Likes")))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleRow);
+
+/***/ }),
+
 /***/ "Exp3":
 /***/ (function(module, exports) {
 
@@ -1830,6 +2463,543 @@ function resolveRewrites() {}
 /***/ (function(module, exports) {
 
 module.exports = require("next-redux-wrapper");
+
+/***/ }),
+
+/***/ "KOAa":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: external "@emotion/styled/base"
+var base_ = __webpack_require__("w8No");
+var base_default = /*#__PURE__*/__webpack_require__.n(base_);
+
+// EXTERNAL MODULE: external "@ant-design/icons"
+var icons_ = __webpack_require__("nZwT");
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: ./node_modules/react-image-crop/dist/ReactCrop.css
+var ReactCrop = __webpack_require__("hzVQ");
+
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__("h74D");
+
+// EXTERNAL MODULE: external "antd"
+var external_antd_ = __webpack_require__("Exp3");
+
+// EXTERNAL MODULE: external "react-slick"
+var external_react_slick_ = __webpack_require__("O/hg");
+var external_react_slick_default = /*#__PURE__*/__webpack_require__.n(external_react_slick_);
+
+// EXTERNAL MODULE: ./config.js
+var config = __webpack_require__("obyI");
+
+// EXTERNAL MODULE: external "@fortawesome/free-solid-svg-icons"
+var free_solid_svg_icons_ = __webpack_require__("No/t");
+
+// EXTERNAL MODULE: external "@fortawesome/react-fontawesome"
+var react_fontawesome_ = __webpack_require__("uhWA");
+
+// EXTERNAL MODULE: ./@reducers/user.ts
+var _reducers_user = __webpack_require__("N61D");
+
+// EXTERNAL MODULE: ./@reducers/post.ts
+var post = __webpack_require__("SDl8");
+
+// EXTERNAL MODULE: ./node_modules/next/link.js
+var next_link = __webpack_require__("YFqc");
+var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
+
+// EXTERNAL MODULE: external "@emotion/react"
+var react_ = __webpack_require__("Kps4");
+
+// CONCATENATED MODULE: ./components/Blog/Profile/WelcomeTable.tsx
+
+
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+
+
+
+
+
+
+
+const WelcomeTableWrapper = /*#__PURE__*/base_default()(external_antd_["Col"], true ? {
+  target: "e1phk6fn0"
+} : undefined)(true ? {
+  name: "1aalwl1",
+  styles: "text-align:center;padding-right:1rem;position:relative"
+} : undefined);
+
+const WelcomeTable = ({
+  visible
+}) => {
+  const {
+    user
+  } = Object(external_react_redux_["useSelector"])(state => state.user);
+  return Object(react_["jsx"])(WelcomeTableWrapper, {
+    xs: visible ? 24 : 0,
+    sm: 8,
+    lg: 6
+  }, Object(react_["jsx"])("h2", {
+    style: {
+      margin: "1rem 0"
+    }
+  }, "Welcome\xA0", user && user.name, "\xA0\uD83D\uDE04"), Object(react_["jsx"])(external_antd_["Divider"], null), Object(react_["jsx"])(external_antd_["Row"], {
+    style: {
+      margin: "2rem 0"
+    }
+  }, Object(react_["jsx"])(external_antd_["Col"], {
+    style: {
+      borderRight: "1px solid rgba(0,0,0,0.1)"
+    },
+    span: 8
+  }, Object(react_["jsx"])("h4", {
+    style: {
+      fontSize: "0.85rem"
+    }
+  }, "Comments"), Object(react_["jsx"])("h4", {
+    style: {
+      margin: "0.5rem 0",
+      fontSize: "1rem",
+      color: config["c" /* BLUE_COLOR */]
+    }
+  }, user !== null && user !== void 0 && user.Comments ? user.Comments.length : 0)), Object(react_["jsx"])(external_antd_["Col"], {
+    style: {
+      borderRight: "1px solid rgba(0,0,0,0.1)"
+    },
+    span: 8
+  }, Object(react_["jsx"])("h4", {
+    style: {
+      fontSize: "0.85rem"
+    }
+  }, "Likes"), Object(react_["jsx"])("h4", {
+    style: {
+      margin: "0.5rem 0",
+      fontSize: "1rem",
+      color: config["c" /* BLUE_COLOR */]
+    }
+  }, user !== null && user !== void 0 && user.PostLiked ? user.PostLiked.length : 0)), Object(react_["jsx"])(external_antd_["Col"], {
+    span: 8
+  }, Object(react_["jsx"])("h4", {
+    style: {
+      fontSize: "0.85rem"
+    }
+  }, "Posts"), Object(react_["jsx"])("h4", {
+    style: {
+      margin: "0.5rem 0",
+      fontSize: "1rem",
+      color: config["c" /* BLUE_COLOR */]
+    }
+  }, user !== null && user !== void 0 && user.Posts ? user.Posts.length : 0))), (user === null || user === void 0 ? void 0 : user.id) === 1 && user.admin && Object(react_["jsx"])(link_default.a, {
+    href: "/admin"
+  }, Object(react_["jsx"])("a", {
+    style: {
+      padding: "1rem 0"
+    }
+  }, "Administor Here!")));
+};
+// EXTERNAL MODULE: ./node_modules/next/dist/client/router.js
+var client_router = __webpack_require__("nOHt");
+
+// EXTERNAL MODULE: ./styles/emotion.ts
+var emotion = __webpack_require__("2lGT");
+
+// CONCATENATED MODULE: ./components/Blog/Profile/ViewTable.tsx
+
+
+
+
+
+
+
+
+
+const RecentTable = /*#__PURE__*/base_default()(external_antd_["Col"], true ? {
+  target: "e1bjv22h0"
+} : undefined)("transition:all 0.3s;cursor:pointer;&:hover{h2{color:", config["c" /* BLUE_COLOR */], ";}}" + (true ? "" : undefined));
+
+const ViewTable = ({
+  visible
+}) => {
+  const router = Object(client_router["useRouter"])();
+  const {
+    recentViewPost
+  } = Object(external_react_redux_["useSelector"])(state => state.post);
+  return Object(react_["jsx"])(RecentTable, {
+    style: {
+      padding: "0 1rem"
+    },
+    xs: visible ? 24 : 0,
+    sm: 8,
+    lg: 6
+  }, Object(react_["jsx"])("h2", {
+    style: {
+      textAlign: "center",
+      margin: "1rem 0"
+    }
+  }, "Recent View \uD83D\uDC41\uFE0F\u200D\uD83D\uDDE8\uFE0F "), Object(react_["jsx"])(external_antd_["Divider"], null), recentViewPost ? Object(react_["jsx"])("div", {
+    onClick: () => router.push(`/${recentViewPost === null || recentViewPost === void 0 ? void 0 : recentViewPost.category}/post/${recentViewPost === null || recentViewPost === void 0 ? void 0 : recentViewPost.id}`)
+  }, Object(react_["jsx"])("h3", {
+    style: {
+      margin: "1rem 0"
+    }
+  }, "\xB7 Post Number: ", Object(react_["jsx"])("span", {
+    css: emotion["c" /* ProfilePointTitle */]
+  }, recentViewPost === null || recentViewPost === void 0 ? void 0 : recentViewPost.id)), Object(react_["jsx"])("h3", {
+    style: {
+      margin: "1rem 0"
+    }
+  }, "\xB7 Post Title: ", Object(react_["jsx"])("br", null)), Object(react_["jsx"])("span", {
+    css: emotion["h" /* TitleProfile */]
+  }, recentViewPost === null || recentViewPost === void 0 ? void 0 : recentViewPost.title), Object(react_["jsx"])("h3", {
+    style: {
+      margin: "1rem 0"
+    }
+  }, "\xB7 Total Post Views:", Object(react_["jsx"])("span", {
+    css: emotion["c" /* ProfilePointTitle */]
+  }, recentViewPost === null || recentViewPost === void 0 ? void 0 : recentViewPost.hit))) : Object(react_["jsx"])("div", {
+    css: emotion["b" /* NoPostProfile */]
+  }, Object(react_["jsx"])("img", {
+    alt: "noPost",
+    src: "https://icons.iconarchive.com/icons/iconsmind/outline/256/Inbox-Empty-icon.png"
+  }), Object(react_["jsx"])("h4", null, "No Post")));
+};
+// CONCATENATED MODULE: ./components/Blog/Profile/CommentTable.tsx
+
+
+
+
+
+
+
+
+
+const CommentTable_RecentTable = /*#__PURE__*/base_default()(external_antd_["Col"], true ? {
+  target: "e152zgd90"
+} : undefined)("transition:all 0.3s;cursor:pointer;padding-left:1rem;h2{text-align:center;margin:1rem 0;}&:hover{h2{color:", config["c" /* BLUE_COLOR */], ";}}h3{margin:1rem 0;}" + (true ? "" : undefined));
+
+const CommentTable = ({
+  visible
+}) => {
+  var _recentCommentPost$Co;
+
+  const router = Object(client_router["useRouter"])();
+  const {
+    recentCommentPost
+  } = Object(external_react_redux_["useSelector"])(state => state.post);
+  return Object(react_["jsx"])(CommentTable_RecentTable, {
+    xs: visible ? 24 : 0,
+    sm: 8,
+    lg: 6
+  }, Object(react_["jsx"])("h2", null, "Recent Comment \uD83D\uDCDD"), Object(react_["jsx"])(external_antd_["Divider"], null), recentCommentPost !== null && recentCommentPost !== void 0 && recentCommentPost.Comments ? Object(react_["jsx"])("div", {
+    onClick: () => router.push(`/${recentCommentPost === null || recentCommentPost === void 0 ? void 0 : recentCommentPost.category}/post/${recentCommentPost === null || recentCommentPost === void 0 ? void 0 : recentCommentPost.id}`)
+  }, Object(react_["jsx"])("h3", null, "\xB7 Post Number: ", Object(react_["jsx"])("span", {
+    css: emotion["c" /* ProfilePointTitle */]
+  }, recentCommentPost === null || recentCommentPost === void 0 ? void 0 : recentCommentPost.id), " "), Object(react_["jsx"])("h3", null, "\xB7 Post Title: ", Object(react_["jsx"])("br", null)), Object(react_["jsx"])("span", {
+    css: emotion["h" /* TitleProfile */]
+  }, recentCommentPost === null || recentCommentPost === void 0 ? void 0 : recentCommentPost.title), Object(react_["jsx"])("h3", null, "\xB7 Your comment:", Object(react_["jsx"])("br", null)), Object(react_["jsx"])("span", {
+    css: emotion["h" /* TitleProfile */]
+  }, recentCommentPost === null || recentCommentPost === void 0 ? void 0 : (_recentCommentPost$Co = recentCommentPost.Comments[0]) === null || _recentCommentPost$Co === void 0 ? void 0 : _recentCommentPost$Co.content)) : Object(react_["jsx"])("div", {
+    css: emotion["b" /* NoPostProfile */]
+  }, Object(react_["jsx"])("img", {
+    alt: "noPost",
+    src: "https://icons.iconarchive.com/icons/iconsmind/outline/256/Inbox-Empty-icon.png"
+  }), Object(react_["jsx"])("h4", null, "No Post")));
+};
+// EXTERNAL MODULE: external "antd/lib/modal/Modal"
+var Modal_ = __webpack_require__("mL3h");
+var Modal_default = /*#__PURE__*/__webpack_require__.n(Modal_);
+
+// EXTERNAL MODULE: external "react-image-crop"
+var external_react_image_crop_ = __webpack_require__("i1JB");
+var external_react_image_crop_default = /*#__PURE__*/__webpack_require__.n(external_react_image_crop_);
+
+// EXTERNAL MODULE: ./util/useInput.ts
+var useInput = __webpack_require__("zpkv");
+
+// CONCATENATED MODULE: ./components/Blog/Profile/CropImageModal.tsx
+
+
+
+
+
+
+
+
+const CropImageModal = /*#__PURE__*/Object(external_react_["memo"])(({
+  isModalVisible,
+  setIsModalVisible,
+  user
+}) => {
+  const dispatch = Object(external_react_redux_["useDispatch"])();
+  const [url, onChangeUrl, setUrl] = Object(useInput["a" /* default */])("");
+  const {
+    0: upImg,
+    1: setUpImg
+  } = Object(external_react_["useState"])(null);
+  const imgRef = Object(external_react_["useRef"])(null);
+  const previewCanvasRef = Object(external_react_["useRef"])(null);
+  const {
+    0: completedCrop,
+    1: setCompletedCrop
+  } = Object(external_react_["useState"])(null);
+  const {
+    0: blob,
+    1: setBlob
+  } = Object(external_react_["useState"])(null);
+  const {
+    0: crop,
+    1: setCrop
+  } = Object(external_react_["useState"])({
+    unit: "px",
+    width: 200,
+    aspect: 1 / 1
+  });
+  const handleOk = Object(external_react_["useCallback"])(() => {
+    //5. blob 객체와 user id를 서버에 요청하기위해 form을 만듭니다.
+    const form = new FormData();
+    form.append("image", blob);
+    form.append("id", String(user === null || user === void 0 ? void 0 : user.id));
+    dispatch({
+      type: _reducers_user["c" /* ADD_ICON_REQUEST */],
+      data: form
+    });
+    setIsModalVisible(false);
+    setUrl("");
+    setUpImg(null);
+  }, []);
+  const handleCancel = Object(external_react_["useCallback"])(() => {
+    setIsModalVisible(false);
+    setUrl("");
+    setUpImg(null);
+  }, []);
+
+  const onSelectFile = e => {
+    //1-1. React-crop 공식문서의 내용입니다. 이미지를 로드해줍니다.
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => setUpImg(reader.result));
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const onLoad = Object(external_react_["useCallback"])(img => {
+    imgRef.current = img;
+  }, []);
+  Object(external_react_["useEffect"])(() => {
+    //3. React-crop 공식문서의 내용입니다. canvas에 자른 이미지를 표시하는 함수입니다.
+    if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
+      return;
+    }
+
+    const image = imgRef.current;
+    const canvas = previewCanvasRef.current;
+    const crop = completedCrop;
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    const ctx = canvas.getContext("2d");
+    const pixelRatio = window.devicePixelRatio;
+    canvas.width = crop.width * pixelRatio;
+    canvas.height = crop.height * pixelRatio;
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(image, crop.x * scaleX, crop.y * scaleY, crop.width * scaleX, crop.height * scaleY, 0, 0, crop.width, crop.height);
+    new Promise(() => {
+      canvas.toBlob( //4. 자른 이미지를 Blob 객체로 바꿔 state에 저장합니다.
+      blob => {
+        setBlob(blob);
+      }, "image/png", 1);
+    });
+  }, [completedCrop]);
+  return Object(react_["jsx"])(Modal_default.a, {
+    title: "Icon Upload \uD83D\uDDBC\uFE0F",
+    visible: isModalVisible,
+    onOk: handleOk,
+    onCancel: handleCancel
+  }, Object(react_["jsx"])("h3", null, "Set icon from Local storage"), Object(react_["jsx"])("input", {
+    style: {
+      marginBottom: "1.5rem"
+    },
+    type: "file",
+    accept: "image/*",
+    disabled: url ? true : false,
+    onChange: onSelectFile
+  }), Object(react_["jsx"])("h3", null, "Set icon by using URL"), Object(react_["jsx"])(external_antd_["Input"], {
+    disabled: upImg ? true : false,
+    value: url,
+    onChange: onChangeUrl,
+    placeholder: "https://"
+  }), (url || upImg) && Object(react_["jsx"])(external_react_default.a.Fragment, null, Object(react_["jsx"])("h3", null, "Crop the image for icon size."), Object(react_["jsx"])(external_react_image_crop_default.a, {
+    crossorigin: "anonymous",
+    style: {
+      width: "100%"
+    },
+    imageStyle: {
+      width: "100%"
+    },
+    src: upImg || url,
+    onImageLoaded: onLoad,
+    crop: crop,
+    onChange: c => setCrop(c),
+    onComplete: c => setCompletedCrop(c)
+  }), Object(react_["jsx"])("div", {
+    style: {
+      display: "flex",
+      justifyContent: "center"
+    }
+  }, Object(react_["jsx"])("canvas", {
+    ref: previewCanvasRef,
+    style: {
+      width: "50%",
+      height: "50%",
+      borderRadius: "50%"
+    }
+  })), Object(react_["jsx"])("h2", {
+    style: {
+      textAlign: "center"
+    }
+  }, user === null || user === void 0 ? void 0 : user.name)));
+});
+/* harmony default export */ var Profile_CropImageModal = (/*#__PURE__*/Object(external_react_["memo"])(CropImageModal));
+// CONCATENATED MODULE: ./components/Blog/Profile/UserProfile.tsx
+
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+/* eslint-disable jsx-a11y/anchor-has-content */
+
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const Camera = /*#__PURE__*/base_default()(icons_["CameraFilled"], true ? {
+  target: "e19kxldl1"
+} : undefined)("position:absolute;bottom:0;right:0;font-size:2rem;float:right;cursor:pointer;transition:all 0.3s;&:hover{transform:scale(1.1);color:", config["c" /* BLUE_COLOR */], ";}" + (true ? "" : undefined));
+
+const Close = /*#__PURE__*/base_default()(react_fontawesome_["FontAwesomeIcon"], true ? {
+  target: "e19kxldl0"
+} : undefined)("position:absolute;bottom:0;right:0;font-size:2rem;float:right;cursor:pointer;transition:all 0.3s;&:hover{transform:scale(1.1);color:", config["c" /* BLUE_COLOR */], ";}" + (true ? "" : undefined));
+
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+const UserProfile = /*#__PURE__*/Object(external_react_["memo"])(() => {
+  const dispatch = Object(external_react_redux_["useDispatch"])();
+  const {
+    user,
+    addIconDone,
+    removeIconDone
+  } = Object(external_react_redux_["useSelector"])(state => state.user);
+  const {
+    0: isModalVisible,
+    1: setIsModalVisible
+  } = Object(external_react_["useState"])(false);
+  Object(external_react_["useEffect"])(() => {
+    if (addIconDone) {
+      external_antd_["message"].success("Successfully added your own icon 👍");
+    }
+
+    if (removeIconDone) {
+      external_antd_["message"].success("Successfully removed your icon.");
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
+
+  }, [addIconDone, removeIconDone]);
+  Object(external_react_["useEffect"])(() => {
+    if (!user) {
+      return;
+    }
+
+    dispatch({
+      type: post["U" /* LOAD_RECENT_POSTS_REQUEST */],
+      data: user
+    });
+  }, [dispatch, user]);
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/default-user.png";
+  };
+
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, user && Object(react_["jsx"])(external_react_default.a.Fragment, null, Object(react_["jsx"])(external_antd_["Row"], {
+    className: "blog_header_profile"
+  }, Object(react_["jsx"])(external_antd_["Col"], {
+    style: {
+      paddingRight: "1rem",
+      marginBottom: "1.5rem"
+    },
+    xs: 24,
+    lg: 6
+  }, Object(react_["jsx"])("div", {
+    style: {
+      position: "relative",
+      width: "200px",
+      height: "200px",
+      margin: "0 auto"
+    }
+  }, Object(react_["jsx"])("img", {
+    style: {
+      width: "200px",
+      height: "200px",
+      borderRadius: "50%",
+      boxShadow: "4px 8px 21px 1px rgba(0, 0, 0, 0.15)"
+    },
+    src: user === null || user === void 0 ? void 0 : user.icon.replace(/\/thumb\//, "/original/"),
+    onError: handleImgError,
+    alt: "profile_img"
+  }), (user === null || user === void 0 ? void 0 : user.icon) === "/images/blog/default-user.png" ? Object(react_["jsx"])(Camera, {
+    onClick: () => setIsModalVisible(true)
+  }) : Object(react_["jsx"])(Close, {
+    onClick: () => dispatch({
+      type: _reducers_user["H" /* REMOVE_ICON_REQUEST */],
+      data: user.id
+    }),
+    icon: free_solid_svg_icons_["faTrashAlt"]
+  }))), Object(react_["jsx"])(WelcomeTable, {
+    visible: false
+  }), Object(react_["jsx"])(ViewTable, {
+    visible: false
+  }), Object(react_["jsx"])(CommentTable, {
+    visible: false
+  })), Object(react_["jsx"])(external_react_slick_default.a, _extends({
+    className: "profile_table"
+  }, settings), Object(react_["jsx"])(WelcomeTable, {
+    visible: true
+  }), Object(react_["jsx"])(ViewTable, {
+    visible: true
+  }), Object(react_["jsx"])(CommentTable, {
+    visible: true
+  }))), Object(react_["jsx"])(Profile_CropImageModal, {
+    setIsModalVisible: setIsModalVisible,
+    isModalVisible: isModalVisible,
+    user: user
+  }));
+});
+/* harmony default export */ var Profile_UserProfile = __webpack_exports__["default"] = (/*#__PURE__*/Object(external_react_["memo"])(UserProfile));
 
 /***/ }),
 
@@ -2534,6 +3704,124 @@ module.exports = require("react-slick");
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/lib/router-context.js");
+
+/***/ }),
+
+/***/ "QLkm":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("boVf");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("jYNn");
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_dist_client_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("nOHt");
+/* harmony import */ var next_dist_client_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_dist_client_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("Kps4");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_5__);
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+
+
+
+
+
+dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
+dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.locale("kor");
+
+const ArticleColumn = ({
+  article,
+  nocontent
+}) => {
+  var _article$content;
+
+  const router = Object(next_dist_client_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
+
+  const onClickArticle = e => {
+    if (e.target.className === "hashtag") {
+      return;
+    }
+
+    window.scrollTo({
+      top: 0
+    });
+    router.push(`/${article.category}/post/${article.id}`);
+  };
+
+  const contentWithoutHTML = article === null || article === void 0 ? void 0 : (_article$content = article.content) === null || _article$content === void 0 ? void 0 : _article$content.replace(/(<([^>]+)>)/gi, "").replace(/(#youtube:.*)/g, "(Youtube Video Link)").replace(/&.*;/gi, "");
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/noImage.gif";
+  };
+
+  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(react__WEBPACK_IMPORTED_MODULE_4___default.a.Fragment, null, article && Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("article", {
+    onClick: onClickArticle,
+    className: "article article_column"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("div", {
+    style: {
+      marginBottom: "1rem",
+      width: "100%",
+      overflow: "hidden"
+    }
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("img", {
+    style: nocontent ? {
+      height: "140px"
+    } : {},
+    className: "article_img",
+    alt: article.title,
+    src: article !== null && article !== void 0 && article.thumbnail ? article.thumbnail : article.imagePath ? article.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    onError: handleImgError
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("h2", {
+    style: {
+      height: "auto"
+    },
+    className: "article_header"
+  }, article.title), nocontent ? null : Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(react__WEBPACK_IMPORTED_MODULE_4___default.a.Fragment, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("ul", {
+    style: {
+      marginBottom: "1rem"
+    }
+  }, article.HashTags && article.HashTags.map((v, i) => {
+    return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", {
+      key: i
+    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      href: `/hashtag/${v.name}`
+    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("a", {
+      className: "hashtag",
+      onClick: () => window.scrollTo({
+        top: 0
+      })
+    }, "#", v.name)));
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("p", {
+    style: article !== null && article !== void 0 && article.HashTags ? {
+      margin: 0,
+      WebkitLineClamp: 4,
+      height: "5.1rem",
+      lineHeight: "1.7",
+      fontSize: "0.8rem"
+    } : {
+      height: "6.5rem",
+      WebkitLineClamp: 5,
+      marginBottom: "1.5rem",
+      lineHeight: "1.7",
+      fontSize: "0.8rem"
+    },
+    className: "article_desc"
+  }, contentWithoutHTML))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("ul", {
+    style: article !== null && article !== void 0 && article.HashTags ? {
+      marginTop: "1rem"
+    } : {
+      marginTop: "1.7rem"
+    },
+    className: "article_footer"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", null, dayjs__WEBPACK_IMPORTED_MODULE_0___default()().to(dayjs__WEBPACK_IMPORTED_MODULE_0___default()(article.createdAt), true), "\xA0ago"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", null, "\xB7\xA0", article.hit, " views"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", null, "\xB7\xA0", article.PostLikers && article.PostLikers.length, " Likes"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleColumn);
 
 /***/ }),
 
@@ -5247,6 +6535,13 @@ function parseRelativeUrl(url, base) {
 
 /***/ }),
 
+/***/ "hzVQ":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "i1JB":
 /***/ (function(module, exports) {
 
@@ -5827,6 +7122,27 @@ module.exports = require("@emotion/styled/base");
 "use strict";
 exports.__esModule=true;exports.normalizePathSep=normalizePathSep;exports.denormalizePagePath=denormalizePagePath;function normalizePathSep(path){return path.replace(/\\/g,'/');}function denormalizePagePath(page){page=normalizePathSep(page);if(page.startsWith('/index/')){page=page.slice(6);}else if(page==='/index'){page='/';}return page;}
 //# sourceMappingURL=denormalize-page-path.js.map
+
+/***/ }),
+
+/***/ "zpkv":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useInput; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function useInput(initialValue) {
+  const {
+    0: Value,
+    1: setValue
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(initialValue);
+  const handler = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(e => {
+    setValue(e.target.value);
+  }, []);
+  return [Value, handler, setValue];
+}
 
 /***/ }),
 

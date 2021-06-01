@@ -1,4 +1,4 @@
-exports.ids = [16,21];
+exports.ids = [16];
 exports.modules = {
 
 /***/ "/jkW":

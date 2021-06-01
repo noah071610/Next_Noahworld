@@ -1,5 +1,5 @@
-import React, { memo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Divider } from "antd";
 import Link from "next/link";
 import { CHAGE_HEADER } from "../@reducers/blog";
@@ -11,14 +11,12 @@ import wrapper from "../@store/configureStore";
 import axios from "axios";
 import { END } from "@redux-saga/core";
 import { IStore } from "../types";
-import dynamic from "next/dynamic";
+import MainArticle from "../components/Blog/Articles/MainArticle";
+import MostArticle from "../components/Blog/Articles/MostArticle";
+import ClassCard from "../components/Blog/Class/ClassCard";
+import UserProfile from "../components/Blog/Profile/UserProfile";
 
-const MainArticle = dynamic(() => import("../components/Blog/Articles/MainArticle"));
-const MostArticle = dynamic(() => import("../components/Blog/Articles/MostArticle"));
-const UserProfile = dynamic(() => import("../components/Blog/Profile/UserProfile"));
-const ClassCard = dynamic(() => import("../components/Blog/Class/ClassCard"));
-
-const BlogMainPage = memo(() => {
+const BlogMainPage = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const { techPosts, dailyPosts, hashtags, mostLikedPost, mostViewedPost, mostCommentedPost } =
     useSelector((state: RootState) => state.post);
@@ -117,7 +115,7 @@ const BlogMainPage = memo(() => {
       <ClassCard />
     </>
   );
-});
+};
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
   const cookie = context.req ? context.req.headers.cookie : "";
@@ -139,4 +137,4 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   await (context.store as IStore).sagaTask.toPromise();
 });
 
-export default memo(BlogMainPage);
+export default BlogMainPage;

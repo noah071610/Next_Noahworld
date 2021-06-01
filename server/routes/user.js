@@ -50,26 +50,6 @@ router.delete("/icon/:UserId", async (req, res, next) => {
   res.send({ success: true });
 });
 
-// const upload = multer({
-//   storage: multer.diskStorage({
-//     destination(req, file, done) {
-//       done(null, "./server/uploads");
-//     },
-//     filename(req, file, done) {
-//       const ext = path.extname(file.originalname);
-//       const basename = path.basename(file.originalname, ext);
-//       done(null, basename + "_icon_" + new Date().getTime() + ext);
-//     },
-//   }),
-//   limits: { fileSize: 20 * 1024 * 1024 },
-// });
-
-// router.post("/icon", upload.single("image"), async (req, res, next) => {
-//   const path = "http://localhost:5000/" + req.file.filename;
-//   User.update({ icon: path }, { where: { id: req.body.id } });
-//   res.json(path);
-// });
-
 router.get("/", async (req, res, next) => {
   try {
     if (req.user) {

@@ -1,22 +1,23 @@
 exports.ids = [31];
 exports.modules = {
 
-/***/ "qJCU":
+/***/ "2/lA":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("w8No");
 /* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("O/hg");
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("Kps4");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("Exp3");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_lib_col__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("vsU0");
+/* harmony import */ var antd_lib_col__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_lib_col__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("obyI");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("Kps4");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_5__);
 
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
@@ -24,92 +25,72 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 
-const rotatingRight = _emotion_react__WEBPACK_IMPORTED_MODULE_3__["keyframes"]`
- to {
-   transform: rotateZ(360deg);
- }
-`;
-const rotatingLeft = _emotion_react__WEBPACK_IMPORTED_MODULE_3__["keyframes"]`
- to {
-   transform: rotateZ(-360deg);
- }
-`;
 
-const PosterWrapper = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
-  target: "e19ub9p4"
+
+const Img = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("img", true ? {
+  target: "e1ut9ob04"
+} : undefined)("transition:0.3s;border-radius:50%;padding:0.5rem;background-color:", _config__WEBPACK_IMPORTED_MODULE_4__[/* BG_COLOR */ "b"], ";&:hover{transform:scale(1.1);}" + (true ? "" : undefined));
+
+const TdImg = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
+  target: "e1ut9ob03"
 } : undefined)(true ? {
-  name: "lyr6u2",
-  styles: "position:relative;width:100%;display:flex;align-items:center;justify-content:center;@media only screen and (min-width: 992px){h2{font-size:1.1rem;}}@media only screen and (max-width: 768px){flex-direction:column;margin-bottom:2rem;}"
+  name: "178oi4r",
+  styles: "width:100%;margin:auto 0;position:relative"
 } : undefined);
 
-const PosterImg = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
-  target: "e19ub9p3"
+const Signal = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
+  target: "e1ut9ob02"
 } : undefined)(true ? {
-  name: "2371ou",
-  styles: "display:flex;justify-content:center;max-width:450px;position:relative;.poster_img{width:80%;@media only screen and (max-width: 400px){height:250px;}}"
+  name: "1hwocbf",
+  styles: "position:absolute;width:0.8rem;height:0.8rem;border-radius:50%;border:1px solid rgba(0, 0, 0, 0.1);bottom:0rem;right:0rem;background-color:green;&:before{content:\"\";position:absolute;height:0.3rem;top:0;right:1.5px;border-right:3px solid rgba(255, 255, 255, 0.5);border-top-right-radius:10px;}"
 } : undefined);
 
-const Title = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
-  target: "e19ub9p2"
+const Title = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("h4", true ? {
+  target: "e1ut9ob01"
 } : undefined)(true ? {
-  name: "1i5vdyg",
-  styles: "width:100%;display:flex;justify-content:center;cursor:default;display:inline-block"
+  name: "19ew3rv",
+  styles: "margin-top:0.5rem;font-size:0.8rem;@media only screen and (max-width: 532px){font-size:0.6rem;}"
 } : undefined);
 
-const Gear = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("img", true ? {
-  target: "e19ub9p1"
-} : undefined)("position:absolute;width:8%;top:20%;left:20%;animation:", rotatingRight, " 3s infinite linear;" + (true ? "" : undefined));
+const ImageBoxWrapper = /*#__PURE__*/_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()(antd_lib_col__WEBPACK_IMPORTED_MODULE_2___default.a, true ? {
+  target: "e1ut9ob00"
+} : undefined)(true ? {
+  name: "ivehcd",
+  styles: "display:flex;padding:1rem;@media only screen and (max-width: 532px){padding:0.3rem;}"
+} : undefined);
 
-const GearRight = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("img", true ? {
-  target: "e19ub9p0"
-} : undefined)("position:absolute;width:5%;top:25%;left:25.8%;animation:", rotatingLeft, " 2.6s infinite linear;" + (true ? "" : undefined));
+const SkillImageBox = props => {
+  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(ImageBoxWrapper, {
+    xs: 6,
+    md: 4,
+    lg: 3
+  }, props.popup ? Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_1__["Popover"], {
+    placement: "topLeft",
+    content: props.content,
+    title: `${props.licenseKor} 통역안내사자격증 보유🔖`,
+    className: "focus"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(TdImg, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(Img, {
+    style: {
+      width: "100%"
+    },
+    alt: props.name,
+    src: props.src
+  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(Title, null, props.name), props.level ? Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(Signal, null) : null)) : Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(TdImg, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("div", {
+    style: {
+      margin: "0 auto",
+      width: "100%",
+      position: "relative"
+    }
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(Img, {
+    style: {
+      width: "100%"
+    },
+    alt: props.name,
+    src: props.src
+  }), props.level ? Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(Signal, null) : null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(Title, null, props.name)));
+};
 
-const Poster = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["memo"])(() => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 1,
-    vertical: true,
-    verticalSwiping: false,
-    autoplay: true,
-    autoplaySpeed: 2000
-  };
-  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(PosterWrapper, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(PosterImg, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("img", {
-    className: "poster_img",
-    src: "/images/poster/Skills.png",
-    alt: "poster"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(Gear, {
-    src: "/images/poster/skills_decoration.png"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(GearRight, {
-    src: "/images/poster/skills_decoration.png"
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(Title, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", {
-    className: "portfolio_poster_name"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h2", {
-    style: {
-      fontSize: "2rem"
-    }
-  }, "Jang Hyun Soo")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({
-    className: "poster_slider"
-  }, settings), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h4", {
-    style: {
-      padding: "1rem 0",
-      textAlign: "center"
-    }
-  }, "Hi! I'm a Web-developer \uD83D\uDCBB")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h4", {
-    style: {
-      padding: "1rem 0",
-      textAlign: "center"
-    }
-  }, "Step up every second \uD83D\uDC68\u200D\uD83D\uDCBB")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h4", {
-    style: {
-      padding: "1rem 0",
-      textAlign: "center"
-    }
-  }, "Ability , Passion and \"Faith\" \uD83E\uDD1D"))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("p", {
-    className: "portfolio_intro"
-  }, "\uB178\uB825\uC740 \uC131\uACF5\uACFC \uBE44\uB840\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. ", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("br", null), " \uD558\uC9C0\uB9CC \uC131\uACF5\uD55C \uC0AC\uB78C\uC911\uC5D0 \uB178\uB825\uD558\uC9C0\uC54A\uB294 \uC0AC\uB78C\uC740 \uC5C6\uB2E4\uACE0 \uC0DD\uAC01\uD569\uB2C8\uB2E4. ", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("br", null), " \uC800\uB610\uD55C \uCD5C\uACE0\uAC00 \uC544\uB2C8\uB354\uB77C\uB3C4 \uCD5C\uC120\uC744 \uB2E4\uD558\uBA70 \uC990\uAC81\uAC8C \uCF54\uB529\uC911\uC785\uB2C8\uB2E4. \uD83D\uDE38")));
-});
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["memo"])(Poster));
+/* harmony default export */ __webpack_exports__["default"] = (SkillImageBox);
 
 /***/ })
 
