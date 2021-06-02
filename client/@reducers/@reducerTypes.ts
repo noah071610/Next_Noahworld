@@ -49,7 +49,7 @@ export interface PostLikeInter {
 
 export interface HashtagsInter {
   name: string;
-  PostHashtag: PostHashtagInter;
+  PostHashtag?: PostHashtagInter;
 }
 
 export interface UserInfoInter {
@@ -75,7 +75,7 @@ export interface PostInter {
   updatedAt: string;
   UserId: number;
   User?: UserInfoInter;
-  HashTags?: Array<HashtagsInter>;
+  Hashtags?: Array<HashtagsInter>;
   PostLikers?: Array<PostLikersInter>;
   Comments?: Array<CommentsInter>;
 }

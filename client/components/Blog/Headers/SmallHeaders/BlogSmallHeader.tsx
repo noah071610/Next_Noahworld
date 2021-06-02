@@ -117,9 +117,9 @@ const BlogSmallHeader = memo(() => {
     setIsModalVisible(false);
     dispatch({
       type: REMOVE_POST_REQUEST,
-      data: { PostId: post?.id, password, tags: post?.HashTags },
+      data: { PostId: post?.id, password, tags: post?.Hashtags },
     });
-  }, [dispatch, password, post?.HashTags, post?.id]);
+  }, [dispatch, password, post?.Hashtags, post?.id]);
 
   const handleCancel = useCallback(() => {
     setIsModalVisible(false);

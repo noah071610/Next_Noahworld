@@ -3049,7 +3049,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 
-const PageWrapper = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 26).then(__webpack_require__.bind(null, "CHxz")), {
+const PageWrapper = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 30).then(__webpack_require__.bind(null, "CHxz")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("CHxz")],
     modules: ["portfolio\\index.tsx -> " + "../../components/Portfolio/PageWrapper"]
@@ -3067,31 +3067,31 @@ const Title = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpa
     modules: ["portfolio\\index.tsx -> " + "../../components/Portfolio/Decorator/Title"]
   }
 });
-const CardContent = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 25).then(__webpack_require__.bind(null, "K747")), {
+const CardContent = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 29).then(__webpack_require__.bind(null, "K747")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("K747")],
     modules: ["portfolio\\index.tsx -> " + "../../components/Portfolio/Decorator/CardContent"]
   }
 });
-const SkillSection = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 29).then(__webpack_require__.bind(null, "D5ud")), {
+const SkillSection = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 33).then(__webpack_require__.bind(null, "D5ud")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("D5ud")],
     modules: ["portfolio\\index.tsx -> " + "../../components/Portfolio/Section/SkillSection"]
   }
 });
-const ContactSection = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 21).then(__webpack_require__.bind(null, "ikFE")), {
+const ContactSection = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 23).then(__webpack_require__.bind(null, "ikFE")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("ikFE")],
     modules: ["portfolio\\index.tsx -> " + "../../components/Portfolio/Section/ContactSection"]
   }
 });
-const Poster = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 27).then(__webpack_require__.bind(null, "qJCU")), {
+const Poster = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 31).then(__webpack_require__.bind(null, "qJCU")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("qJCU")],
     modules: ["portfolio\\index.tsx -> " + "../../components/Portfolio/Poster"]
   }
 });
-const PortfolioSection = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 22).then(__webpack_require__.bind(null, "La+q")), {
+const PortfolioSection = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 24).then(__webpack_require__.bind(null, "La+q")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("La+q")],
     modules: ["portfolio\\index.tsx -> " + "../../components/Portfolio/Section/PortfolioSection"]

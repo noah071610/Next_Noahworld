@@ -168,6 +168,7 @@ const Admin = memo(() => {
     PostId,
     tags,
     postValue,
+    quizForm,
   ]);
 
   const handleCancel = useCallback(() => {
@@ -195,7 +196,7 @@ const Admin = memo(() => {
       setthumbnail(post.thumbnail);
       setPostValue(post.category);
       setPostId(post.id);
-      setTags(post?.HashTags);
+      setTags(post?.Hashtags);
     } else {
       dispatch({
         type: POST_EDIT_OFF,

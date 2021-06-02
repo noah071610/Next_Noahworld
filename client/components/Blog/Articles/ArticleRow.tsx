@@ -49,8 +49,8 @@ const ArticleRow: FC<ArticleInter> = ({ article }) => {
               {article.title}
             </h2>
             <ul style={{ marginBottom: "1rem" }} className="article_tag">
-              {article.HashTags &&
-                article.HashTags.map((v, i) => {
+              {article.Hashtags &&
+                article.Hashtags.map((v, i) => {
                   return (
                     <li key={i}>
                       <Link href={`/hashtag/${v.name}`}>

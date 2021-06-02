@@ -2956,7 +2956,7 @@ const ArticleColumn = ({
   article,
   nocontent
 }) => {
-  var _article$content;
+  var _article$content, _article$Hashtags;
 
   const router = Object(next_dist_client_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
 
@@ -3003,7 +3003,7 @@ const ArticleColumn = ({
     style: {
       marginBottom: "1rem"
     }
-  }, article.HashTags && article.HashTags.map((v, i) => {
+  }, article === null || article === void 0 ? void 0 : (_article$Hashtags = article.Hashtags) === null || _article$Hashtags === void 0 ? void 0 : _article$Hashtags.map((v, i) => {
     return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", {
       key: i
     }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -3015,7 +3015,7 @@ const ArticleColumn = ({
       })
     }, "#", v.name)));
   })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("p", {
-    style: article !== null && article !== void 0 && article.HashTags ? {
+    style: article !== null && article !== void 0 && article.Hashtags ? {
       margin: 0,
       WebkitLineClamp: 4,
       height: "5.1rem",
@@ -3030,7 +3030,7 @@ const ArticleColumn = ({
     },
     className: "article_desc"
   }, contentWithoutHTML))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("ul", {
-    style: article !== null && article !== void 0 && article.HashTags ? {
+    style: article !== null && article !== void 0 && article.Hashtags ? {
       marginTop: "1rem"
     } : {
       marginTop: "1.7rem"

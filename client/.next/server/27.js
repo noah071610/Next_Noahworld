@@ -1,115 +1,254 @@
 exports.ids = [27];
 exports.modules = {
 
-/***/ "qJCU":
+/***/ "n4j1":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("w8No");
-/* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("O/hg");
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("Kps4");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_3__);
 
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+// EXTERNAL MODULE: ./node_modules/next/link.js
+var next_link = __webpack_require__("YFqc");
+var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
+
+// EXTERNAL MODULE: external "@emotion/react"
+var react_ = __webpack_require__("Kps4");
+
+// EXTERNAL MODULE: external "@emotion/styled/base"
+var base_ = __webpack_require__("w8No");
+var base_default = /*#__PURE__*/__webpack_require__.n(base_);
+
+// EXTERNAL MODULE: external "dayjs"
+var external_dayjs_ = __webpack_require__("boVf");
+var external_dayjs_default = /*#__PURE__*/__webpack_require__.n(external_dayjs_);
+
+// EXTERNAL MODULE: external "dayjs/plugin/relativeTime"
+var relativeTime_ = __webpack_require__("jYNn");
+var relativeTime_default = /*#__PURE__*/__webpack_require__.n(relativeTime_);
+
+// EXTERNAL MODULE: ./config.js
+var config = __webpack_require__("obyI");
+
+// EXTERNAL MODULE: ./node_modules/next/dist/client/router.js
+var client_router = __webpack_require__("nOHt");
+
+// CONCATENATED MODULE: ./components/Blog/Articles/ArticleSmallAside.tsx
+
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
 
 
 
-const rotatingRight = _emotion_react__WEBPACK_IMPORTED_MODULE_3__["keyframes"]`
- to {
-   transform: rotateZ(360deg);
- }
-`;
-const rotatingLeft = _emotion_react__WEBPACK_IMPORTED_MODULE_3__["keyframes"]`
- to {
-   transform: rotateZ(-360deg);
- }
-`;
 
-const PosterWrapper = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
-  target: "e19ub9p4"
+
+external_dayjs_default.a.extend(relativeTime_default.a);
+external_dayjs_default.a.locale("kor");
+
+const Article = base_default()("article", true ? {
+  target: "egtikk0"
 } : undefined)(true ? {
-  name: "lyr6u2",
-  styles: "position:relative;width:100%;display:flex;align-items:center;justify-content:center;@media only screen and (min-width: 992px){h2{font-size:1.1rem;}}@media only screen and (max-width: 768px){flex-direction:column;margin-bottom:2rem;}"
+  name: "1yjh3s",
+  styles: "transition:all 0.4s;&:hover{text-decoration:underline;background-color:rgba(0, 0, 0, 0.1);}"
 } : undefined);
 
-const PosterImg = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
-  target: "e19ub9p3"
-} : undefined)(true ? {
-  name: "2371ou",
-  styles: "display:flex;justify-content:center;max-width:450px;position:relative;.poster_img{width:80%;@media only screen and (max-width: 400px){height:250px;}}"
-} : undefined);
+const ArticleSmallAside = ({
+  article,
+  type
+}) => {
+  var _article$Comments, _article$PostLikers;
 
-const Title = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
-  target: "e19ub9p2"
-} : undefined)(true ? {
-  name: "1i5vdyg",
-  styles: "width:100%;display:flex;justify-content:center;cursor:default;display:inline-block"
-} : undefined);
+  const router = Object(client_router["useRouter"])();
 
-const Gear = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("img", true ? {
-  target: "e19ub9p1"
-} : undefined)("position:absolute;width:8%;top:20%;left:20%;animation:", rotatingRight, " 3s infinite linear;" + (true ? "" : undefined));
+  const onClickArticle = e => {
+    if (e.target.className === "hashtag") {
+      return;
+    }
 
-const GearRight = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("img", true ? {
-  target: "e19ub9p0"
-} : undefined)("position:absolute;width:5%;top:25%;left:25.8%;animation:", rotatingLeft, " 2.6s infinite linear;" + (true ? "" : undefined));
-
-const Poster = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["memo"])(() => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 1,
-    vertical: true,
-    verticalSwiping: false,
-    autoplay: true,
-    autoplaySpeed: 2000
+    window.scrollTo({
+      top: 0
+    });
+    router.push(`/${article.category}/post/${article.id}`);
   };
-  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(PosterWrapper, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(PosterImg, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("img", {
-    className: "poster_img",
-    src: "/images/poster/Skills.png",
-    alt: "poster"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(Gear, {
-    src: "/images/poster/skills_decoration.png"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(GearRight, {
-    src: "/images/poster/skills_decoration.png"
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(Title, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", {
-    className: "portfolio_poster_name"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h2", {
+
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, article && Object(react_["jsx"])(Article, {
+    onClick: onClickArticle,
     style: {
-      fontSize: "2rem"
-    }
-  }, "Jang Hyun Soo")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({
-    className: "poster_slider"
-  }, settings), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h4", {
+      marginLeft: "0.5rem"
+    },
+    className: "article article_aside"
+  }, Object(react_["jsx"])("div", {
+    className: "blog_small_aside_title"
+  }, Object(react_["jsx"])("span", {
     style: {
-      padding: "1rem 0",
-      textAlign: "center"
+      color: config["c" /* BLUE_COLOR */],
+      fontWeight: "bold",
+      fontSize: "0.9rem"
     }
-  }, "Hi! I'm a Web-developer \uD83D\uDCBB")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h4", {
+  }, "IN ", article.category.toUpperCase()), Object(react_["jsx"])("span", {
+    className: "article_md_footer"
+  }, "\xA0\xA0", type === "comments" ? ((_article$Comments = article.Comments) === null || _article$Comments === void 0 ? void 0 : _article$Comments.length) + " Comments" : type === "like" ? ((_article$PostLikers = article.PostLikers) === null || _article$PostLikers === void 0 ? void 0 : _article$PostLikers.length) + " Likes" : article.hit + " views"), Object(react_["jsx"])("h2", {
     style: {
-      padding: "1rem 0",
-      textAlign: "center"
+      marginTop: "1rem"
+    },
+    className: "article_aside_header small_title"
+  }, article.title))));
+};
+
+/* harmony default export */ var Articles_ArticleSmallAside = (ArticleSmallAside);
+// CONCATENATED MODULE: ./components/Blog/Articles/ArticleAside.tsx
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+
+
+
+
+
+external_dayjs_default.a.extend(relativeTime_default.a);
+external_dayjs_default.a.locale("kor");
+
+const ArticleAside = ({
+  article,
+  type
+}) => {
+  var _article$Comments, _article$PostLikers, _article$Comments2, _article$PostLikers2;
+
+  const router = Object(client_router["useRouter"])();
+
+  const onClickArticle = e => {
+    if (e.target.className === "hashtag") {
+      return;
     }
-  }, "Step up every second \uD83D\uDC68\u200D\uD83D\uDCBB")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h4", {
+
+    window.scrollTo({
+      top: 0
+    });
+    router.push(`/${article.category}/post/${article.id}`);
+  };
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/noImage.gif";
+  };
+
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, article && Object(react_["jsx"])("article", {
+    onClick: onClickArticle,
+    className: "article article_aside"
+  }, Object(react_["jsx"])("div", {
     style: {
-      padding: "1rem 0",
-      textAlign: "center"
+      marginBottom: "0.5rem",
+      width: "100%",
+      overflow: "hidden"
     }
-  }, "Ability , Passion and \"Faith\" \uD83E\uDD1D"))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("p", {
-    className: "portfolio_intro"
-  }, "\uB178\uB825\uC740 \uC131\uACF5\uACFC \uBE44\uB840\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4. ", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("br", null), " \uD558\uC9C0\uB9CC \uC131\uACF5\uD55C \uC0AC\uB78C\uC911\uC5D0 \uB178\uB825\uD558\uC9C0\uC54A\uB294 \uC0AC\uB78C\uC740 \uC5C6\uB2E4\uACE0 \uC0DD\uAC01\uD569\uB2C8\uB2E4. ", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("br", null), " \uC800\uB610\uD55C \uCD5C\uACE0\uAC00 \uC544\uB2C8\uB354\uB77C\uB3C4 \uCD5C\uC120\uC744 \uB2E4\uD558\uBA70 \uC990\uAC81\uAC8C \uCF54\uB529\uC911\uC785\uB2C8\uB2E4. \uD83D\uDE38")));
+  }, Object(react_["jsx"])("img", {
+    className: "article_img",
+    style: {
+      width: "100%",
+      height: "150px",
+      border: "0.3px solid rgba(0,0,0,0.1)"
+    },
+    alt: article.title,
+    src: article !== null && article !== void 0 && article.thumbnail ? article.thumbnail : article.imagePath ? article.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    onError: handleImgError
+  })), Object(react_["jsx"])("div", null, Object(react_["jsx"])("span", {
+    style: {
+      color: config["c" /* BLUE_COLOR */],
+      fontWeight: "bold",
+      fontSize: "1rem"
+    }
+  }, "IN ", article.category.toUpperCase()), Object(react_["jsx"])("span", {
+    className: "article_md_footer"
+  }, type === "comments" ? (article === null || article === void 0 ? void 0 : (_article$Comments = article.Comments) === null || _article$Comments === void 0 ? void 0 : _article$Comments.length) + " Comments" : type === "like" ? (article === null || article === void 0 ? void 0 : (_article$PostLikers = article.PostLikers) === null || _article$PostLikers === void 0 ? void 0 : _article$PostLikers.length) + " Likes" : article.hit + " views"), Object(react_["jsx"])("h2", {
+    style: {
+      margin: "0.5rem 0 0.8rem 0",
+      height: "1.5rem",
+      lineHeight: "1.5"
+    },
+    className: "article_aside_header"
+  }, article.title), Object(react_["jsx"])("ul", {
+    className: "article_footer"
+  }, Object(react_["jsx"])("li", {
+    className: "date"
+  }, external_dayjs_default()().to(external_dayjs_default()(article.createdAt), true), "\xA0ago"), Object(react_["jsx"])("li", {
+    className: "view"
+  }, "\xB7", Object(react_["jsx"])("span", {
+    style: type === "view" ? {
+      color: config["c" /* BLUE_COLOR */],
+      fontWeight: "bold"
+    } : {}
+  }, "\xA0", article.hit, " views")), Object(react_["jsx"])("li", {
+    className: "comments"
+  }, "\xB7", Object(react_["jsx"])("span", {
+    style: type === "view" ? {} : {
+      color: config["c" /* BLUE_COLOR */],
+      fontWeight: "bold"
+    }
+  }, "\xA0", type === "comments" ? (article === null || article === void 0 ? void 0 : (_article$Comments2 = article.Comments) === null || _article$Comments2 === void 0 ? void 0 : _article$Comments2.length) + " Comments" : (article === null || article === void 0 ? void 0 : (_article$PostLikers2 = article.PostLikers) === null || _article$PostLikers2 === void 0 ? void 0 : _article$PostLikers2.length) + " Likes"))))));
+};
+
+/* harmony default export */ var Articles_ArticleAside = (ArticleAside);
+// CONCATENATED MODULE: ./components/Blog/Articles/MostArticle.tsx
+function MostArticle_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+
+
+
+
+
+
+const TitleStyle = true ? {
+  name: "7xjfxr",
+  styles: "display:flex;align-items:center;font-size:1.2rem;padding:0 1rem"
+} : undefined;
+
+const isBottomMargin = aside =>
+/*#__PURE__*/
+
+/*#__PURE__*/
+Object(react_["css"])(aside ? "margin-bottom: 1rem;" : null, ";" + (true ? "" : undefined), true ? "" : undefined, true ? "" : undefined);
+
+const MostArticle = /*#__PURE__*/Object(external_react_["memo"])(({
+  mostPost,
+  src,
+  desc,
+  hashtags,
+  aside,
+  type
+}) => {
+  return Object(react_["jsx"])("div", {
+    css: isBottomMargin(aside)
+  }, Object(react_["jsx"])("h3", {
+    css: TitleStyle
+  }, Object(react_["jsx"])("img", {
+    alt: "trophy",
+    className: "icon",
+    src: src
+  }), desc), hashtags ? Object(react_["jsx"])("ul", {
+    className: "blog_aside_tag"
+  }, hashtags && hashtags.map((v, i) => {
+    return Object(react_["jsx"])("li", {
+      onClick: () => window.scrollTo({
+        top: 0
+      }),
+      key: i
+    }, Object(react_["jsx"])(link_default.a, {
+      href: `/hashtag/${v.name}`
+    }, Object(react_["jsx"])("a", null, "#", v.name)));
+  })) : aside ? Object(react_["jsx"])(Articles_ArticleAside, {
+    type: type,
+    article: mostPost
+  }) : Object(react_["jsx"])(Articles_ArticleSmallAside, {
+    type: type,
+    article: mostPost
+  }));
 });
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["memo"])(Poster));
+/* harmony default export */ var Articles_MostArticle = __webpack_exports__["default"] = (/*#__PURE__*/Object(external_react_["memo"])(MostArticle));
 
 /***/ })
 

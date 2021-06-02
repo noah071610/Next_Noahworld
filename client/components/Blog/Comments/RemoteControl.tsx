@@ -95,7 +95,7 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
     setIsModalVisible(false);
     dispatch({
       type: REMOVE_POST_REQUEST,
-      data: { PostId: post?.id, password, tags: post?.HashTags },
+      data: { PostId: post?.id, password, tags: post?.Hashtags },
     });
   };
 
@@ -111,7 +111,7 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   }, [dispatch, router, removePostDone]);
 
   const onClickList = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   }, []);
 
   return (

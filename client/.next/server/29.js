@@ -1,22 +1,18 @@
 exports.ids = [29];
 exports.modules = {
 
-/***/ "D5ud":
+/***/ "K747":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("w8No");
 /* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("obyI");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("/T1H");
-/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("Kps4");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("Kps4");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
@@ -25,126 +21,66 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 
-
-const SkillBox = next_dynamic__WEBPACK_IMPORTED_MODULE_4___default()(() => __webpack_require__.e(/* import() */ 30).then(__webpack_require__.bind(null, "iFkp")), {
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("iFkp")],
-    modules: ["..\\components\\Portfolio\\Section\\SkillSection.tsx -> " + "../SkillBox/SkillBox"]
-  }
-});
-const SkillImageBox = next_dynamic__WEBPACK_IMPORTED_MODULE_4___default()(() => __webpack_require__.e(/* import() */ 31).then(__webpack_require__.bind(null, "2/lA")), {
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("2/lA")],
-    modules: ["..\\components\\Portfolio\\Section\\SkillSection.tsx -> " + "../SkillBox/SkillImageBox"]
-  }
-});
-const Articles = next_dynamic__WEBPACK_IMPORTED_MODULE_4___default()(() => __webpack_require__.e(/* import() */ 0).then(__webpack_require__.bind(null, "/j9D")), {
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("/j9D")],
-    modules: ["..\\components\\Portfolio\\Section\\SkillSection.tsx -> " + "../Articles"]
-  }
-});
-const Title = next_dynamic__WEBPACK_IMPORTED_MODULE_4___default()(() => __webpack_require__.e(/* import() */ 1).then(__webpack_require__.bind(null, "5Ce3")), {
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("5Ce3")],
-    modules: ["..\\components\\Portfolio\\Section\\SkillSection.tsx -> " + "../Decorator/Title"]
-  }
-});
-
-const SkillDescDivider = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("span", true ? {
-  target: "e1hpdx491"
+const Square = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
+  target: "e10zwa954"
 } : undefined)(true ? {
-  name: "16ht9uo",
-  styles: "font-size:0.8rem"
+  name: "t3jzj2",
+  styles: "width:120px;position:relative;transition:0.5s;margin:1.5rem auto;&:hover{transform:translateY(-10px);}"
 } : undefined);
 
-const CertificateTable = /*#__PURE__*/_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()(antd__WEBPACK_IMPORTED_MODULE_1__["Table"], true ? {
-  target: "e1hpdx490"
+const ValueShape = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
+  target: "e10zwa953"
 } : undefined)(true ? {
-  name: "1k51uiq",
-  styles: "@media only screen and (max-width: 515px){td{font-size:0.7rem;}}"
+  name: "dwskes",
+  styles: "@media only screen and (max-width: 768px){width:40%;}"
 } : undefined);
 
-const SkillSection = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_3__["memo"])(({
-  id
+const Img = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
+  target: "e10zwa952"
+} : undefined)("width:100%;position:relative;transition:0.5s;background-color:", _config__WEBPACK_IMPORTED_MODULE_2__[/* MAIN_COLOR */ "f"], ";transform:skewY(-10deg);&:before{content:\"\";position:absolute;top:-10px;left:0;width:100%;height:10px;background-color:#c3ffe1;transform-origin:bottom;transform:skewX(45deg);transition:0.5s;}&:after{content:\"\";position:absolute;top:-10px;left:-10px;width:10px;height:100%;background-color:#c3ffe1;transform-origin:left;transform:skewY(45deg);transition:0.5s;border-bottom:20px solid #d9d9d9;}" + (true ? "" : undefined));
+
+const SqureTitle = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("h4", true ? {
+  target: "e10zwa951"
+} : undefined)("background-color:white;user-select:none;color:black;&:before{content:\"\";position:absolute;left:0;bottom:0;width:100%;height:130px;background:linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.1));transform-origin:bottom;transform:skewX(45deg);transition:0.5s;z-index:-1;}", Square, ":hover &:before{transform:skewX(45deg) translateY(10px);filter:blur(5px);}" + (true ? "" : undefined));
+
+const ValueContent = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
+  target: "e10zwa950"
+} : undefined)(true ? {
+  name: "1icle3i",
+  styles: "width:100%;@media only screen and (max-width: 768px){width:60%;padding:1rem 0 0 1rem;text-align:start;p{margin:0;}}@media only screen and (max-width: 600px){width:100%;text-align:center;padding:0;p{margin:0 auto;}}"
+} : undefined);
+
+const CardContent = ({
+  delay,
+  contents
 }) => {
-  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("section", {
-    id: id
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("div", {
-    className: "space"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(Articles, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(Title, {
-    title: "Main Skills",
-    sub: "\uC6B0\uC120\uC21C\uC704\uB97C \uB450\uACE0 \uC9D1\uC911\uC801\uC73C\uB85C \uACF5\uBD80\uD55C \uC2A4\uD0AC\uC785\uB2C8\uB2E4."
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_1__["Row"], {
-    "data-aos": "fade-in",
+  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(ValueShape, {
+    "data-aos": "flip-up",
     "data-aos-duration": "500",
+    "data-aos-delay": delay
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(Square, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(Img, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("img", {
+    alt: contents.squareTitle,
+    src: contents.src,
     style: {
-      paddingBottom: "1rem"
+      margin: "1rem 0",
+      width: "60px"
     }
-  }, _config__WEBPACK_IMPORTED_MODULE_2__[/* skills */ "n"].map((skill, i) => {
-    return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(SkillBox, {
-      key: "skill" + i,
-      name: skill.name,
-      src: skill.src,
-      desc: skill.desc,
-      level: skill.level
-    });
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("div", {
-    className: "space"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_1__["Divider"], {
-    orientation: "left"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("h4", {
+  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(SqureTitle, null, contents.squareTitle)))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])(ValueContent, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("h4", {
     style: {
-      textAlign: "start"
+      marginTop: "1rem",
+      fontWeight: "bold"
     }
-  }, "Language skills"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(SkillDescDivider, null, "\uD1B5\uC5ED\uC0AC\uAD6D\uAC00\uC790\uACA9\uC99D\uC744 \uBCF4\uC720\uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4.")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_1__["Row"], {
-    "data-aos": "fade-in",
-    "data-aos-duration": "500"
-  }, _config__WEBPACK_IMPORTED_MODULE_2__[/* languages */ "k"].map((lan, i) => {
-    return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(SkillImageBox, {
-      key: "lan" + i,
-      name: lan.name,
-      src: lan.src,
-      licenseKor: lan.licenseKor,
-      popup: lan.popup,
-      content: lan.content
-    });
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_1__["Divider"], {
-    orientation: "left"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("h4", {
+  }, contents.title), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_3__["jsx"])("p", {
     style: {
-      textAlign: "start"
+      width: "100%",
+      lineHeight: "1.5",
+      fontSize: "0.8rem",
+      margin: "1rem auto"
     }
-  }, "Sub skills"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(SkillDescDivider, null, "\uC8FC\uC2A4\uD0AC\uACFC \uC5F0\uACC4\uD574 \uACF5\uBD80\uD55C \uC2A4\uD0AC\uC785\uB2C8\uB2E4.")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_1__["Row"], {
-    "data-aos": "fade-in",
-    "data-aos-duration": "500",
-    style: {
-      marginTop: "2rem"
-    }
-  }, _config__WEBPACK_IMPORTED_MODULE_2__[/* sub_skills */ "o"].map((skill, i) => {
-    return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(SkillImageBox, {
-      key: "skill" + i,
-      name: skill.name,
-      src: skill.src,
-      level: skill.level
-    });
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_1__["Divider"], {
-    style: {
-      margin: "3rem 0"
-    },
-    orientation: "left"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("h4", {
-    style: {
-      textAlign: "start"
-    }
-  }, "Certificate"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(SkillDescDivider, null, "\uCDE8\uB4DD \uC790\uACA9\uC99D \uC785\uB2C8\uB2E4.")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(CertificateTable, {
-    "data-aos": "fade-in",
-    "data-aos-duration": "500",
-    dataSource: _config__WEBPACK_IMPORTED_MODULE_2__[/* dataSource */ "j"],
-    columns: _config__WEBPACK_IMPORTED_MODULE_2__[/* columns */ "i"]
-  })));
-});
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_3__["memo"])(SkillSection));
+  }, contents.desc)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CardContent);
 
 /***/ })
 

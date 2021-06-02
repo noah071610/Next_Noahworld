@@ -445,7 +445,7 @@ const ArticleRow = ({
       marginBottom: "1rem"
     },
     className: "article_tag"
-  }, article.HashTags && article.HashTags.map((v, i) => {
+  }, article.Hashtags && article.Hashtags.map((v, i) => {
     return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", {
       key: i
     }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {

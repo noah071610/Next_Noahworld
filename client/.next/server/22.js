@@ -1,82 +1,290 @@
-exports.ids = [22,0,1];
+exports.ids = [22];
 exports.modules = {
 
-/***/ "/j9D":
+/***/ "Blc5":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("w8No");
-/* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("Kps4");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("boVf");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("jYNn");
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("obyI");
+/* harmony import */ var next_dist_client_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("nOHt");
+/* harmony import */ var next_dist_client_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_dist_client_router__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("Kps4");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_6__);
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
 
-function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
 
 
 
-const Div = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
-  target: "euzpx0s0"
-} : undefined)(true ? {
-  name: "c39870",
-  styles: "padding:1rem 1rem 2rem 1rem;.articles_div{width:90%;margin:0 auto;@media only screen and (max-width: 660px){width:100%;}}"
-} : undefined);
 
-const Articles = ({
-  children
+dayjs__WEBPACK_IMPORTED_MODULE_1___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_2___default.a);
+dayjs__WEBPACK_IMPORTED_MODULE_1___default.a.locale("kor");
+
+const ArticleRow = ({
+  article
 }) => {
-  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_2__["jsx"])(Div, {
-    className: "articles"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_2__["jsx"])("div", {
-    className: "articles_div"
-  }, children));
+  var _article$content;
+
+  const router = Object(next_dist_client_router__WEBPACK_IMPORTED_MODULE_5__["useRouter"])();
+
+  const onClickArticle = e => {
+    if (e.target.className === "hashtag") {
+      return;
+    }
+
+    window.scrollTo({
+      top: 0
+    });
+    router.push(`/${article.category}/post/${article.id}`);
+  };
+
+  const contentWithoutHTML = article === null || article === void 0 ? void 0 : (_article$content = article.content) === null || _article$content === void 0 ? void 0 : _article$content.replace(/(<([^>]+)>)/gi, "").replace(/(#youtube:.*)/g, "(Youtube Video Link)").replace(/&.*;/gi, "");
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/noImage.gif";
+  };
+
+  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, article && Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("article", {
+    onClick: onClickArticle,
+    className: "article article_row"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("div", {
+    style: {
+      width: "60%",
+      marginRight: "3rem",
+      overflow: "hidden"
+    }
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("img", {
+    className: "article_img",
+    style: {
+      width: "100%",
+      height: "300px",
+      border: "0.3px solid rgba(0,0,0,0.1)"
+    },
+    alt: article.title,
+    src: article !== null && article !== void 0 && article.thumbnail ? article.thumbnail : article.imagePath ? article.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    onError: handleImgError
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("div", {
+    className: "article_contents"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("h2", {
+    style: {
+      height: "auto"
+    },
+    className: "article_header"
+  }, article.title), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("ul", {
+    style: {
+      marginBottom: "1rem"
+    },
+    className: "article_tag"
+  }, article.Hashtags && article.Hashtags.map((v, i) => {
+    return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", {
+      key: i
+    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      href: `/hashtag/${v.name}`
+    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("a", {
+      className: "hashtag",
+      onClick: () => window.scrollTo({
+        top: 0
+      })
+    }, "#", v.name)));
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("p", {
+    style: {
+      width: "100%",
+      height: "7.2rem",
+      overflow: "hidden",
+      lineHeight: "1.7",
+      fontSize: "0.9rem",
+      margin: 0,
+      WebkitLineClamp: 5
+    },
+    className: "article_desc"
+  }, contentWithoutHTML), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("ul", {
+    style: {
+      marginTop: "1rem"
+    },
+    className: "article_footer"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", {
+    style: {
+      color: _config__WEBPACK_IMPORTED_MODULE_4__[/* BLUE_COLOR */ "c"],
+      fontWeight: "bold"
+    }
+  }, dayjs__WEBPACK_IMPORTED_MODULE_1___default()().to(dayjs__WEBPACK_IMPORTED_MODULE_1___default()(article.createdAt), true), "\xA0ago"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", null, "\xB7\xA0", article.hit, " views"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_6__["jsx"])("li", null, "\xB7\xA0", article.PostLikers && article.PostLikers.length, " Likes")))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Articles);
+/* harmony default export */ __webpack_exports__["default"] = (ArticleRow);
 
 /***/ }),
 
-/***/ "5Ce3":
+/***/ "QLkm":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("boVf");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("jYNn");
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_dist_client_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("nOHt");
+/* harmony import */ var next_dist_client_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_dist_client_router__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("Kps4");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_5__);
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
+
+
+
+
+
+dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
+dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.locale("kor");
+
+const ArticleColumn = ({
+  article,
+  nocontent
+}) => {
+  var _article$content, _article$Hashtags;
+
+  const router = Object(next_dist_client_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
+
+  const onClickArticle = e => {
+    if (e.target.className === "hashtag") {
+      return;
+    }
+
+    window.scrollTo({
+      top: 0
+    });
+    router.push(`/${article.category}/post/${article.id}`);
+  };
+
+  const contentWithoutHTML = article === null || article === void 0 ? void 0 : (_article$content = article.content) === null || _article$content === void 0 ? void 0 : _article$content.replace(/(<([^>]+)>)/gi, "").replace(/(#youtube:.*)/g, "(Youtube Video Link)").replace(/&.*;/gi, "");
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/noImage.gif";
+  };
+
+  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(react__WEBPACK_IMPORTED_MODULE_4___default.a.Fragment, null, article && Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("article", {
+    onClick: onClickArticle,
+    className: "article article_column"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("div", {
+    style: {
+      marginBottom: "1rem",
+      width: "100%",
+      overflow: "hidden"
+    }
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("img", {
+    style: nocontent ? {
+      height: "140px"
+    } : {},
+    className: "article_img",
+    alt: article.title,
+    src: article !== null && article !== void 0 && article.thumbnail ? article.thumbnail : article.imagePath ? article.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    onError: handleImgError
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("h2", {
+    style: {
+      height: "auto"
+    },
+    className: "article_header"
+  }, article.title), nocontent ? null : Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(react__WEBPACK_IMPORTED_MODULE_4___default.a.Fragment, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("ul", {
+    style: {
+      marginBottom: "1rem"
+    }
+  }, article === null || article === void 0 ? void 0 : (_article$Hashtags = article.Hashtags) === null || _article$Hashtags === void 0 ? void 0 : _article$Hashtags.map((v, i) => {
+    return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", {
+      key: i
+    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      href: `/hashtag/${v.name}`
+    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("a", {
+      className: "hashtag",
+      onClick: () => window.scrollTo({
+        top: 0
+      })
+    }, "#", v.name)));
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("p", {
+    style: article !== null && article !== void 0 && article.Hashtags ? {
+      margin: 0,
+      WebkitLineClamp: 4,
+      height: "5.1rem",
+      lineHeight: "1.7",
+      fontSize: "0.8rem"
+    } : {
+      height: "6.5rem",
+      WebkitLineClamp: 5,
+      marginBottom: "1.5rem",
+      lineHeight: "1.7",
+      fontSize: "0.8rem"
+    },
+    className: "article_desc"
+  }, contentWithoutHTML))), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("ul", {
+    style: article !== null && article !== void 0 && article.Hashtags ? {
+      marginTop: "1rem"
+    } : {
+      marginTop: "1.7rem"
+    },
+    className: "article_footer"
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", null, dayjs__WEBPACK_IMPORTED_MODULE_0___default()().to(dayjs__WEBPACK_IMPORTED_MODULE_0___default()(article.createdAt), true), "\xA0ago"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", null, "\xB7\xA0", article.hit, " views"), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_5__["jsx"])("li", null, "\xB7\xA0", article.PostLikers && article.PostLikers.length, " Likes"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleColumn);
+
+/***/ }),
+
+/***/ "rEWd":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: external "@emotion/styled/base"
-var base_ = __webpack_require__("w8No");
-var base_default = /*#__PURE__*/__webpack_require__.n(base_);
+// EXTERNAL MODULE: external "antd"
+var external_antd_ = __webpack_require__("Exp3");
+
+// EXTERNAL MODULE: external "react-slick"
+var external_react_slick_ = __webpack_require__("O/hg");
+var external_react_slick_default = /*#__PURE__*/__webpack_require__.n(external_react_slick_);
 
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
-// EXTERNAL MODULE: ./config.js
-var config = __webpack_require__("obyI");
+// EXTERNAL MODULE: ./components/Blog/Articles/ArticleColumn.tsx
+var ArticleColumn = __webpack_require__("QLkm");
+
+// EXTERNAL MODULE: ./components/Blog/Articles/ArticleRow.tsx
+var ArticleRow = __webpack_require__("Blc5");
+
+// EXTERNAL MODULE: external "@emotion/styled/base"
+var base_ = __webpack_require__("w8No");
+var base_default = /*#__PURE__*/__webpack_require__.n(base_);
+
+// EXTERNAL MODULE: external "dayjs"
+var external_dayjs_ = __webpack_require__("boVf");
+var external_dayjs_default = /*#__PURE__*/__webpack_require__.n(external_dayjs_);
+
+// EXTERNAL MODULE: external "dayjs/plugin/relativeTime"
+var relativeTime_ = __webpack_require__("jYNn");
+var relativeTime_default = /*#__PURE__*/__webpack_require__.n(relativeTime_);
+
+// EXTERNAL MODULE: ./node_modules/next/dist/client/router.js
+var client_router = __webpack_require__("nOHt");
 
 // EXTERNAL MODULE: external "@emotion/react"
 var react_ = __webpack_require__("Kps4");
 
-// CONCATENATED MODULE: ./components/Portfolio/Decorator/DividerLeftPoint.tsx
-
-
-
-
-
-const Divder = base_default()("div", true ? {
-  target: "eigt8fb0"
-} : undefined)("position:relative;width:100%;margin:0.5rem auto;height:1px;background-color:", config["e" /* GRAY_COLOR */], ";&:before{position:absolute;content:\"\";width:0.5rem;height:0.5rem;left:0;top:-0.2rem;background-color:", config["f" /* MAIN_COLOR */], ";border-radius:50%;}" + (true ? "" : undefined));
-
-function DividerLeftPoint() {
-  return Object(react_["jsx"])(Divder, null);
-}
-
-/* harmony default export */ var Decorator_DividerLeftPoint = (DividerLeftPoint);
-// CONCATENATED MODULE: ./components/Portfolio/Decorator/Title.tsx
+// CONCATENATED MODULE: ./components/Blog/Articles/ArticleSmall.tsx
 
 
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
@@ -85,47 +293,57 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 
-const TitleSub = base_default()("h2", true ? {
-  target: "ee9sn850"
+
+external_dayjs_default.a.extend(relativeTime_default.a);
+external_dayjs_default.a.locale("kor");
+
+const Article = base_default()("article", true ? {
+  target: "e9qef4u0"
 } : undefined)(true ? {
-  name: "s4kn8p",
-  styles: "margin:0.5rem 0 3rem 0;@media only screen and (max-width: 576px){font-size:0.8rem;}"
+  name: "khknaa",
+  styles: "width:100%;padding:1rem;border-top:1px solid rgba(0, 0, 0, 0.1);align-items:center;transition:all 0.3s;cursor:pointer;img{transition:all 0.3s;}p{color:black;}&:hover{background-color:rgba(0, 0, 0, 0.1);img{transform:scale(1.05);}p{color:black;text-decoration:underline;}}"
 } : undefined);
 
-const Title = props => {
-  return Object(react_["jsx"])(external_react_default.a.Fragment, null, Object(react_["jsx"])("h2", {
+const ArticleSmall = ({
+  article
+}) => {
+  const router = Object(client_router["useRouter"])();
+
+  const handleImgError = e => {
+    e.target.src = "/images/blog/noImage.gif";
+  };
+
+  return Object(react_["jsx"])(Article, {
+    onClick: () => {
+      router.push(`/${article.category}/post/${article.id}`);
+      window.scrollTo({
+        top: 0
+      });
+    },
+    className: "blog_main_small"
+  }, Object(react_["jsx"])("img", {
     style: {
-      margin: 0,
-      padding: "1.5rem 0 0.5rem 0"
+      width: "110px",
+      height: "80px"
+    },
+    src: article !== null && article !== void 0 && article.thumbnail ? article.thumbnail : article.imagePath ? article.imagePath.replace(/\/thumb\//, "/original/") : "/images/blog/noImage.gif",
+    alt: "thumbnail",
+    onError: handleImgError
+  }), Object(react_["jsx"])("div", null, Object(react_["jsx"])("p", {
+    style: {
+      margin: "0 0 0.5rem 1rem",
+      height: "100%"
     }
-  }, props.title), Object(react_["jsx"])(Decorator_DividerLeftPoint, null), Object(react_["jsx"])(TitleSub, null, props.sub));
+  }, article.title, " "), Object(react_["jsx"])("ul", {
+    style: {
+      margin: "0 0 0 1rem"
+    },
+    className: "article_footer"
+  }, Object(react_["jsx"])("li", null, external_dayjs_default()().to(external_dayjs_default()(article.createdAt), true), "\xA0ago"), Object(react_["jsx"])("li", null, "\xB7\xA0", article.hit, " views"), Object(react_["jsx"])("li", null, "\xB7\xA0", article.PostLikers && article.PostLikers.length, " Likes"))));
 };
 
-/* harmony default export */ var Decorator_Title = __webpack_exports__["default"] = (Title);
-
-/***/ }),
-
-/***/ "La+q":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("w8No");
-/* harmony import */ var _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Articles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("/j9D");
-/* harmony import */ var _Decorator_Title__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("5Ce3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("obyI");
-/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("/T1H");
-/* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("Kps4");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_7__);
-
-
-function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+/* harmony default export */ var Articles_ArticleSmall = (ArticleSmall);
+// CONCATENATED MODULE: ./components/Blog/Articles/MainArticle.tsx
 
 
 
@@ -133,63 +351,53 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 
-
-const PortfolioList = next_dynamic__WEBPACK_IMPORTED_MODULE_6___default()(() => __webpack_require__.e(/* import() */ 28).then(__webpack_require__.bind(null, "/oz7")), {
-  ssr: false,
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("/oz7")],
-    modules: ["..\\components\\Portfolio\\Section\\PortfolioSection.tsx -> " + "./PortfolioList"]
-  }
-});
-
-const PortfolioSmall = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("a", true ? {
-  target: "e1mxqjao1"
-} : undefined)(true ? {
-  name: "oigydy",
-  styles: "display:none;.poster{width:100%;height:200px;border:1px solid rgba(0, 0, 0, 0.1);}@media only screen and (max-width: 606px){display:block;width:100%;height:200px;position:relative;margin-bottom:5rem;cursor:pointer;}"
-} : undefined);
-
-const PortfolioDesc = _emotion_styled_base__WEBPACK_IMPORTED_MODULE_0___default()("div", true ? {
-  target: "e1mxqjao0"
-} : undefined)(true ? {
-  name: "mh6dsn",
-  styles: "display:block;text-align:end;position:absolute;background-color:white;bottom:-2rem;right:-0.5rem;padding:1.5rem;box-shadow:4px 8px 21px 1px rgba(0, 0, 0, 0.15);h2{margin:0;font-size:1rem;margin-bottom:0.5rem;}@media only screen and (max-width: 606px){.tag{font-size:0.5rem;}}"
-} : undefined);
-
-const PortfolioSection = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["memo"])(({
-  id
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 2,
+  slidesToScroll: 1
+};
+const smallSizeSettings = {
+  dots: false,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+const MainArticle = /*#__PURE__*/Object(external_react_["memo"])(({
+  category
 }) => {
-  const onClickPortfolio = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(git => {
-    if (!git) {
-      antd__WEBPACK_IMPORTED_MODULE_4__["message"].success("현재 보고계시는 페이지입니다.");
-    }
-  }, []);
-  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])("section", {
-    id: id
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])("div", {
-    className: "space"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(_Articles__WEBPACK_IMPORTED_MODULE_2__["default"], null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(_Decorator_Title__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    title: "Portfolio",
-    sub: "\uCD5C\uACE0\uAC00 \uC544\uB2C8\uB354\uB77C\uB3C4 \uD56D\uC0C1 \uCD5C\uC120\uC744 \uB2E4\uD569\uB2C8\uB2E4."
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(PortfolioList, null), _config__WEBPACK_IMPORTED_MODULE_5__[/* portfolios */ "m"].map((v, i) => {
-    return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(PortfolioSmall, {
-      onClick: () => onClickPortfolio(v.git),
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, Object(react_["jsx"])("div", {
+    className: "blog_category_big"
+  }, Object(react_["jsx"])(ArticleRow["default"], {
+    article: category[0]
+  })), Object(react_["jsx"])("div", {
+    className: "blog_category_medium"
+  }, Object(react_["jsx"])(ArticleColumn["default"], {
+    article: category[0]
+  })), Object(react_["jsx"])("div", {
+    className: "blog_category_small"
+  }, Object(react_["jsx"])(external_react_slick_default.a, smallSizeSettings, category === null || category === void 0 ? void 0 : category.slice(0, 3).map((article, i) => {
+    return Object(react_["jsx"])(ArticleColumn["default"], {
       key: i,
-      href: v.git,
-      target: "_blank"
-    }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])("img", {
-      className: "poster",
-      src: v.src,
-      alt: "portfolio_image"
-    }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(PortfolioDesc, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])("h2", {
-      className: "mobile_port_title"
-    }, v.name), v.tags.map((tag, i) => Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])("span", {
+      article: article
+    });
+  }))), Object(react_["jsx"])("div", {
+    className: "blog_main_big"
+  }, Object(react_["jsx"])(external_antd_["Divider"], null), Object(react_["jsx"])(external_react_slick_default.a, settings, category === null || category === void 0 ? void 0 : category.slice(1, 8).map((v, i) => Object(react_["jsx"])(ArticleColumn["default"], {
+    key: i,
+    article: v
+  })))), category === null || category === void 0 ? void 0 : category.slice(3, 8).map((article, i) => {
+    return Object(react_["jsx"])(Articles_ArticleSmall, {
       key: i,
-      className: "tag"
-    }, tag))));
-  })));
+      article: article
+    });
+  }));
 });
-/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["memo"])(PortfolioSection));
+/* harmony default export */ var Articles_MainArticle = __webpack_exports__["default"] = (/*#__PURE__*/Object(external_react_["memo"])(MainArticle));
 
 /***/ })
 

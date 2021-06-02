@@ -33,7 +33,7 @@ const SlideRemote: FC<SlideRemoteProps> = memo(({ showModal, post, prevPost, nex
   const dispatch = useDispatch();
   const router = useRouter();
   const onClickLink = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   }, []);
 
   return (

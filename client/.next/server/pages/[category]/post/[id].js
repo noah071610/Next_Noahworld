@@ -1715,7 +1715,7 @@ const CommentForm = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => _
     modules: ["[category]\\post\\[id].tsx -> " + "../../../components/Blog/Comments/CommentForm"]
   }
 });
-const ArticlePost = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 24).then(__webpack_require__.bind(null, "Z1vI")), {
+const ArticlePost = next_dynamic__WEBPACK_IMPORTED_MODULE_16___default()(() => __webpack_require__.e(/* import() */ 26).then(__webpack_require__.bind(null, "Z1vI")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("Z1vI")],
     modules: ["[category]\\post\\[id].tsx -> " + "../../../components/Blog/Articles/ArticlePost"]

@@ -24,6 +24,7 @@ const ArticleColumn: FC<ArticleInter> = ({ article, nocontent }) => {
   const handleImgError = (e: React.SyntheticEvent) => {
     (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
   };
+
   return (
     <>
       {article && (
@@ -50,22 +51,21 @@ const ArticleColumn: FC<ArticleInter> = ({ article, nocontent }) => {
             {nocontent ? null : (
               <>
                 <ul style={{ marginBottom: "1rem" }}>
-                  {article.HashTags &&
-                    article.HashTags.map((v, i) => {
-                      return (
-                        <li key={i}>
-                          <Link href={`/hashtag/${v.name}`}>
-                            <a className="hashtag" onClick={() => window.scrollTo({ top: 0 })}>
-                              #{v.name}
-                            </a>
-                          </Link>
-                        </li>
-                      );
-                    })}
+                  {article?.Hashtags?.map((v, i) => {
+                    return (
+                      <li key={i}>
+                        <Link href={`/hashtag/${v.name}`}>
+                          <a className="hashtag" onClick={() => window.scrollTo({ top: 0 })}>
+                            #{v.name}
+                          </a>
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
                 <p
                   style={
-                    article?.HashTags
+                    article?.Hashtags
                       ? {
                           margin: 0,
                           WebkitLineClamp: 4,
@@ -89,7 +89,7 @@ const ArticleColumn: FC<ArticleInter> = ({ article, nocontent }) => {
             )}
           </div>
           <ul
-            style={article?.HashTags ? { marginTop: "1rem" } : { marginTop: "1.7rem" }}
+            style={article?.Hashtags ? { marginTop: "1rem" } : { marginTop: "1.7rem" }}
             className="article_footer"
           >
             <li>

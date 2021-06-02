@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -13,6 +13,7 @@ import "../styles/style.scss";
 import wrapper from "../@store/configureStore";
 import { css, Global } from "@emotion/react";
 import AppLayout from "../components/AppLayout";
+import { Router } from "next/dist/client/router";
 
 const reset = css`
   .ant-row {
@@ -54,7 +55,16 @@ const reset = css`
   }
 `;
 
+const loadingScreen = css`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 function App({ Component, pageProps }) {
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     var aScript = document.createElement("script");
     aScript.type = "text/javascript";
@@ -63,15 +73,44 @@ function App({ Component, pageProps }) {
     aScript.onload = () => {};
     Aos.init();
   }, []);
+  useEffect(() => {
+    const start = () => {
+      setLoading(true);
+    };
+    const end = () => {
+      setLoading(false);
+    };
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
   return (
     <>
       <Head>
         <title>Noah world</title>
       </Head>
-      <Global styles={reset} />
-      <AppLayout>
-        <Component {...pageProps} />
-      </AppLayout>
+      {loading ? (
+        <div css={loadingScreen}>
+          <div className="bouncer">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      ) : (
+        <>
+          <Global styles={reset} />
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </>
+      )}
     </>
   );
 }

@@ -4460,8 +4460,7 @@ const SlideRemote = /*#__PURE__*/Object(external_react_["memo"])(({
   const router = Object(client_router["useRouter"])();
   const onClickLink = Object(external_react_["useCallback"])(() => {
     window.scrollTo({
-      top: 0,
-      behavior: "smooth"
+      top: 0
     });
   }, []);
   return Object(react_["jsx"])("ul", {
@@ -4648,10 +4647,10 @@ const BlogSmallHeader = /*#__PURE__*/Object(external_react_["memo"])(() => {
       data: {
         PostId: post === null || post === void 0 ? void 0 : post.id,
         password,
-        tags: post === null || post === void 0 ? void 0 : post.HashTags
+        tags: post === null || post === void 0 ? void 0 : post.Hashtags
       }
     });
-  }, [dispatch, password, post === null || post === void 0 ? void 0 : post.HashTags, post === null || post === void 0 ? void 0 : post.id]);
+  }, [dispatch, password, post === null || post === void 0 ? void 0 : post.Hashtags, post === null || post === void 0 ? void 0 : post.id]);
   const handleCancel = Object(external_react_["useCallback"])(() => {
     setIsModalVisible(false);
   }, []);
@@ -4960,15 +4959,24 @@ function _app_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to strin
 
 
 
+
 const _app_reset = true ? {
   name: "1c11g04",
   styles: ".ant-row{margin-right:0!important;margin-left:0!important;}.ant-table-pagination{display:none!important;}p{margin:0.5rem auto;}h1,h2,h3{margin-top:0.5rem;margin-bottom:0.5rem;font-weight:600;}h2{font-size:1.1rem;}a{color:black;text-decoration:none;}blockquote{border-color:#1187cf!important;}.ant-divider{background-color:rgba(0, 0, 0, 0.1);}.ant-divider-with-text{background-color:rgba(0, 0, 0, 0);&::before,&::after{border-top:1px solid rgba(0, 0, 0, 0.1)!important;}}"
+} : undefined;
+const loadingScreen = true ? {
+  name: "1jn10y0",
+  styles: "width:100%;height:100vh;display:flex;justify-content:center;align-items:center"
 } : undefined;
 
 function App({
   Component,
   pageProps
 }) {
+  const {
+    0: loading,
+    1: setLoading
+  } = Object(external_react_["useState"])(false);
   Object(external_react_["useEffect"])(() => {
     var aScript = document.createElement("script");
     aScript.type = "text/javascript";
@@ -4979,9 +4987,31 @@ function App({
 
     external_aos_default.a.init();
   }, []);
-  return Object(react_["jsx"])(external_react_default.a.Fragment, null, Object(react_["jsx"])(head_default.a, null, Object(react_["jsx"])("title", null, "Noah world")), Object(react_["jsx"])(react_["Global"], {
+  Object(external_react_["useEffect"])(() => {
+    const start = () => {
+      setLoading(true);
+    };
+
+    const end = () => {
+      setLoading(false);
+    };
+
+    client_router["Router"].events.on("routeChangeStart", start);
+    client_router["Router"].events.on("routeChangeComplete", end);
+    client_router["Router"].events.on("routeChangeError", end);
+    return () => {
+      client_router["Router"].events.off("routeChangeStart", start);
+      client_router["Router"].events.off("routeChangeComplete", end);
+      client_router["Router"].events.off("routeChangeError", end);
+    };
+  }, []);
+  return Object(react_["jsx"])(external_react_default.a.Fragment, null, Object(react_["jsx"])(head_default.a, null, Object(react_["jsx"])("title", null, "Noah world")), loading ? Object(react_["jsx"])("div", {
+    css: loadingScreen
+  }, Object(react_["jsx"])("div", {
+    className: "bouncer"
+  }, Object(react_["jsx"])("div", null), Object(react_["jsx"])("div", null), Object(react_["jsx"])("div", null), Object(react_["jsx"])("div", null))) : Object(react_["jsx"])(external_react_default.a.Fragment, null, Object(react_["jsx"])(react_["Global"], {
     styles: _app_reset
-  }), Object(react_["jsx"])(components_AppLayout, null, Object(react_["jsx"])(Component, pageProps)));
+  }), Object(react_["jsx"])(components_AppLayout, null, Object(react_["jsx"])(Component, pageProps))));
 }
 
 /* harmony default export */ var _app = __webpack_exports__["default"] = (configureStore["a" /* default */].withRedux(App));

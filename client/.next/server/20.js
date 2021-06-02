@@ -343,7 +343,7 @@ const RemoteControl = ({
       data: {
         PostId: post === null || post === void 0 ? void 0 : post.id,
         password,
-        tags: post === null || post === void 0 ? void 0 : post.HashTags
+        tags: post === null || post === void 0 ? void 0 : post.Hashtags
       }
     });
   };
@@ -360,8 +360,7 @@ const RemoteControl = ({
   }, [dispatch, router, removePostDone]);
   const onClickList = Object(react__WEBPACK_IMPORTED_MODULE_4__["useCallback"])(() => {
     window.scrollTo({
-      top: 0,
-      behavior: "smooth"
+      top: 0
     });
   }, []);
   return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_13__["jsx"])("div", {
