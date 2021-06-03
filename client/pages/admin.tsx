@@ -72,7 +72,7 @@ const Admin = memo(() => {
     addPostDone,
     editPostDone,
   } = useSelector((state: RootState) => state.post);
-  const [content, onChangeContent, setContent] = useInput("");
+  const [content, onChangeContent, setContent] = useInput(null);
   const [thumbnail, onChangeThumbnail, setthumbnail] = useInput("");
   const [title, onChangeTitle, setTitle] = useInput("");
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -96,9 +96,14 @@ const Admin = memo(() => {
     });
   }, []);
 
-  const showModal = useCallback(() => {
+  const showEditorModal = useCallback(() => {
     setIsModalVisible(true);
     setContent(editorRef.current.getInstance().getHtml());
+  }, []);
+
+  const showQuizModal = useCallback(() => {
+    setIsModalVisible(true);
+    setQuizForm(true);
   }, []);
 
   const handleOk = useCallback(() => {
@@ -132,13 +137,13 @@ const Admin = memo(() => {
       PostId,
       tags,
     };
-    if (!quizForm && !postEditOn) {
+    if (content && !postEditOn && !quizForm) {
       dispatch({
         type: ADD_POST_REQUEST,
         data,
       });
     }
-    if (!quizForm && postEditOn) {
+    if (content && postEditOn && !quizForm) {
       dispatch({
         type: EDIT_POST_REQUEST,
         data,
@@ -147,7 +152,7 @@ const Admin = memo(() => {
         type: POST_EDIT_ON,
       });
     }
-    if (question && answer && quizForm) {
+    if (!content && !postEditOn && quizForm) {
       dispatch({
         type: ADD_QUIZ_REQUEST,
         data: { type: classValue, question, answer, password, UserId: user?.id },
@@ -157,6 +162,7 @@ const Admin = memo(() => {
     setQuizForm(false);
   }, [
     classValue,
+    postEditOn,
     question,
     answer,
     password,
@@ -225,7 +231,7 @@ const Admin = memo(() => {
   return (
     <>
       <UserProfile />
-      <PostForm onFinish={showModal}>
+      <PostForm onFinish={showEditorModal}>
         <h2>ADD POST</h2>
         <h4>Title</h4>
         <Input value={title} onChange={onChangeTitle} className="form_title" />
@@ -264,14 +270,7 @@ const Admin = memo(() => {
             <Radio value="word">Word</Radio>
             <Radio value="quiz">Quiz</Radio>
           </Radio.Group>
-          <Button
-            onClick={() => {
-              showModal();
-              setQuizForm(true);
-            }}
-          >
-            Submit
-          </Button>
+          <Button onClick={showQuizModal}>Submit</Button>
         </div>
       </QuizForm>
       <AdminModal
