@@ -698,6 +698,6 @@ SPA의 검색엔진 이슈가 블로그 특성상 치명적이라고 생각되�
 
 긴글 읽어주셔서 감사합니다.
 
-<a href="https://myseoulguide.site">마이서울가이드 바로가기 ❣</a>
+<a href="https://noahworld.site">노아월드 블로그 바로가기 😻</a>
 
 <br/><br/><br/><br/>
