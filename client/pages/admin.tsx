@@ -72,7 +72,7 @@ const Admin = memo(() => {
     addPostDone,
     editPostDone,
   } = useSelector((state: RootState) => state.post);
-  const [content, , setContent] = useInput("");
+  const [content, onChangeContent, setContent] = useInput("");
   const [thumbnail, onChangeThumbnail, setthumbnail] = useInput("");
   const [title, onChangeTitle, setTitle] = useInput("");
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -132,13 +132,13 @@ const Admin = memo(() => {
       PostId,
       tags,
     };
-    if (post && !postEditOn) {
+    if (!quizForm && !postEditOn) {
       dispatch({
         type: ADD_POST_REQUEST,
         data,
       });
     }
-    if (post && postEditOn) {
+    if (!quizForm && postEditOn) {
       dispatch({
         type: EDIT_POST_REQUEST,
         data,
