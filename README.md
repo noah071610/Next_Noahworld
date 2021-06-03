@@ -1,6 +1,6 @@
 <br/>
 
-<div align=center><a href="https://github.com/noah071610/Next_NoahWorld"><img src="https://user-images.githubusercontent.com/74864925/120079497-12334a00-c0ef-11eb-9b73-28eaab517f1c.png"/></a></div>
+<div align=center><a href="https://noahworld.site"><img src="https://user-images.githubusercontent.com/74864925/120079497-12334a00-c0ef-11eb-9b73-28eaab517f1c.png"/></a></div>
 
 # <div align=center>Noah world Blog</div>
 
@@ -49,6 +49,12 @@
   <a href="https://velog.io/@noah071610" target="_blank"><img width="24" src="https://api.faviconkit.com/velog.io/144"/></a>&nbsp;
   <a href="noah071610@naver.com"><img src="https://image.flaticon.com/icons/png/24/552/552486.png"/></a>&nbsp;
   <a href="https://velog.io/@noah071610" target="_blank"><img src="https://image.flaticon.com/icons/png/24/3135/3135715.png"/></a>&nbsp;
+</div>
+
+<br/>
+
+<div align=center>
+  <a href="https://noahworld.site"><img src="https://img.shields.io/badge/go_to_website-C3B1E3?style=for-the-badge"/>&nbsp;</a>
 </div>
 
 <br/><br/><br/><br/>
@@ -102,9 +108,53 @@
 
 #### 📍 &nbsp; 회원가입및 로그인아웃, 비밀번호 변경, 탈퇴 외 로그인유지 기능 구현.
 
+![녹화_2021_06_03_23_30_16_462](https://user-images.githubusercontent.com/74864925/120664610-0a482100-c4c6-11eb-9294-4d8c3f868daa.gif)
+
+<br/>
+
+#### 📍 &nbsp; 구글 로그인 구현.
+
+![녹화_2021_06_03_23_34_49_742](https://user-images.githubusercontent.com/74864925/120664616-0b794e00-c4c6-11eb-8fb1-37c0a1e97fd8.gif)
+
+```javascript
+📁Login/BlogLoginSection.tsx
+
+  ...
+  
+  <GoogleBtn>
+        <a href="https://api.noahworld.site/auth/google">
+          <div>
+            <img alt="google" src="https://img.icons8.com/color/144/000000/google-logo.png" />
+            <h3 css={GoogleLogin}>Sign in with Google</h3>
+          </div>
+        </a>
+  </GoogleBtn>
+  
+```
+
+```javascript
+📁server/index.js
+
+//passport.js 를 이용하여 사용자 쿠키를 저장하고 회원정보를 만들어 DB에 저장합니다. 구글 비밀번호는 절대! 서버에서 취급 안합니다.
+app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+      
+app.get(
+  "/auth/google/callback",
+  //구글 인증이 완료되거나 실패했을때 경로를 설정해줍니다.
+  passport.authenticate("google", { failureRedirect: "https://noahworld.site" }),
+  function (req, res) {
+    res.redirect("https://noahworld.site");
+  }
+);
+
+```
+
+
 <br/>
 
 #### 📍 &nbsp; 유저 아이콘을 위한 이미지 업로드와 이미지 Crop 기능을 구현.
+
+![](https://user-images.githubusercontent.com/74864925/120664262-c1906800-c4c5-11eb-910e-58e5ae3f59ae.gif)
 
 ```javascript
 📁profile/CropImageModal.tsx
@@ -247,6 +297,8 @@ router.delete("/icon/:UserId", async (req, res, next) => {
 
 #### 📍 &nbsp; TOP 좋아요, 댓글, 조회수 게시물 그리고 해시태그를 메인페이지에 배치.
 
+![2](https://user-images.githubusercontent.com/74864925/120672071-f0f6a300-c4cc-11eb-8629-906ab6789419.gif)
+
 ```javascript
 📁server/routes/post.js
 
@@ -289,16 +341,17 @@ router.delete("/icon/:UserId", async (req, res, next) => {
     });
 
     const mostCalculator = (arr, index) =>
-      getAttributesFromPosts.filter((v) => {
+      getAttributesFromPosts.find((v) => {
         //배열중 최대값을 구하기 위해 아래의 값을 사용했습니다.
         // * find 메쏘드를 사용하면 배열이아닌 객체로 반환하는걸 알았습니다. 곧 수정하겠습니다. (2021/05/30)
+        // find 메쏘드를 사용하여 객체를 반환하도록 변경했습니다 (2021/06/02)
         return v[index] === Math.max.apply(null, arr);
       });
 
-    //결과값이 이중배열으로 이루어진 id값으로 나오기때문에 [0][0]을 붙혔습니다.
-    const mostLikedId = await mostCalculator(getLikes, 1)[0][0];
-    const mostCommentsId = await mostCalculator(getComments, 2)[0][0];
-    const mostViewedId = await mostCalculator(getViews, 3)[0][0];
+    //결과값은 각타입별 최상위 게시물의 아이디로 이루어져있고 이를 db 쿼리에 사용합니다.
+    const mostLikedId = await mostCalculator(getLikes, 1)[0];
+    const mostCommentsId = await mostCalculator(getComments, 2)[0];
+    const mostViewedId = await mostCalculator(getViews, 3)[0];
 
     //원하는 값이 최대인 게시글에 아이디를 이용해서 DB안에 값을 찾아줍니다.
     const mostLikedPost = await Post.findOne({
@@ -347,9 +400,13 @@ router.delete("/icon/:UserId", async (req, res, next) => {
 
 #### 📍 &nbsp; WYSIWYG의 Markdown을 이용한 풍성한 포스팅 구현.
 
+![1](https://user-images.githubusercontent.com/74864925/120672060-ef2cdf80-c4cc-11eb-803f-d3cc81f03a95.gif)
+
 <br/>
 
 #### 📍 &nbsp; 리모콘 또는 헤더를 사용한 간편한 게시물 인터페이스.
+
+![3](https://user-images.githubusercontent.com/74864925/120672074-f18f3980-c4cc-11eb-9810-5d3103ed7534.gif)
 
 <br/>
 
@@ -393,11 +450,21 @@ router.delete("/icon/:UserId", async (req, res, next) => {
 
 <br/>
 
-#### 📍 &nbsp; 댓글 및 좋아요 구현.
+#### 📍 &nbsp; 댓글, 답글 및 좋아요 구현.
+
+![4](https://user-images.githubusercontent.com/74864925/120672080-f227d000-c4cc-11eb-8fb8-ab601d7d840c.gif)
 
 <br/>
 
+#### 📍 &nbsp; 해시태그 & 키워드 검색.
+
+<br/>
+
+![녹화_2021_06_04_02_04_40_674](https://user-images.githubusercontent.com/74864925/120684139-518bdd00-c4d9-11eb-8dc7-939cc1b6c35b.gif)
+
 #### 📍 &nbsp; Infinite Scroll을 구현.
+
+![5](https://user-images.githubusercontent.com/74864925/120672081-f2c06680-c4cc-11eb-8277-4de43501cf60.gif)
 
 ```javascript
 📁pages/[category]/index.tsx
@@ -502,9 +569,13 @@ router.get("/morepost/:category", async (req, res) => {
 
 #### 📍 &nbsp; 일본인을 위한 한국어 강의 페이지 구현.
 
+![6](https://user-images.githubusercontent.com/74864925/120672083-f358fd00-c4cc-11eb-9ba7-639d6b8f91f4.gif)
+
 <br/>
 
 #### 📍 &nbsp; 랜덤 퀴즈 구현.
+
+![7](https://user-images.githubusercontent.com/74864925/120672085-f358fd00-c4cc-11eb-971b-efd25922f20e.gif)
 
 ```javascript
 📁class/QuizForm.tsx
@@ -552,6 +623,8 @@ router.get("/morepost/:category", async (req, res) => {
 
 #### 📍 &nbsp; 포트폴리오 페이지 구현.
 
+![8](https://user-images.githubusercontent.com/74864925/120672088-f3f19380-c4cc-11eb-9fcd-924dcb1fe86b.gif)
+
 <br/>
 
 #### 📍 &nbsp; 그외...
@@ -590,10 +663,6 @@ SPA의 검색엔진 이슈가 블로그 특성상 치명적이라고 생각되�
 저는 개인적으로 Styled-components보다 Emotion이 좋던데 사람마다 다른것같습니다. 하여튼 SCSS는 클래스명때문에 많이 힘들었어서 저는 Styled-components 가 좋습니다.
 
 
-
-
-
-
 <br/>
 
 ## Retrospective.
@@ -602,9 +671,9 @@ SPA의 검색엔진 이슈가 블로그 특성상 치명적이라고 생각되�
 
 1. 계획과는 다른 프로젝트가 되었고 차질이 많았습니다. 초반에 체계적인 계획이 능률을 높인다는것을 절실히 깨달았습니다.
 
-2. 스타일시트를 계획적으로 짜지 못했습니다. 또한 변수명에 신경을 잘 써야됨을 느꼈습니다.
+2. 스타일시트를 계획적으로 짜지 못했습니다. 또한 변수명에 신경을 잘 써야됨을 느꼈습니다. 협업시 착실히 코딩컨벤션을 따르기로 다짐했습니다.
 
-3. HTTP 지식과 웹보안쪽이 많이 부족하다고 느꼈고 정보처리기사 시험 및 강의를 통해 보충했습니다.
+3. HTTP 지식과 웹보안쪽이 많이 부족하다고 느꼈고 CORS가 정말 힘들었습니다. 개인적인 공부 및 강의로 보충했습니다.
 
 4. **글으로 적기엔 부족할 만큼 넘었야 할 산이 많았던 무리한 프로젝트였지만 그렇기에 공부가 정말 잘된 프로젝트였다고 생각합니다.**
 
@@ -614,10 +683,19 @@ SPA의 검색엔진 이슈가 블로그 특성상 치명적이라고 생각되�
 
 <br/>
 
+| Date | Version | Update |
+| ------ | ------ | ------ |
+| 2020/05/29 | v1.0 | Final Update for first deployment through AWS |
+| 2020/06/04 | v1.1 | Solve NGINX proxy problem |
+
+<br/>
+
 피드백은 항상 저를 성장시키게 합니다.
 
 궁금한게 있으시면 noah071610@naver.com 으로 언제든지 편하게 연락주세요.
 
 긴글 읽어주셔서 감사합니다.
+
+<a href="https://myseoulguide.site">마이서울가이드 바로가기 ❣</a>
 
 <br/><br/><br/><br/>
