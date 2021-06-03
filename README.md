@@ -408,6 +408,8 @@ router.delete("/icon/:UserId", async (req, res, next) => {
 
 ![3](https://user-images.githubusercontent.com/74864925/120672074-f18f3980-c4cc-11eb-9810-5d3103ed7534.gif)
 
+![녹화_2021_06_04_02_39_20_101](https://user-images.githubusercontent.com/74864925/120688644-3e2f4080-c4de-11eb-953c-aabde63a0496.gif)
+
 <br/>
 
 #### 📍 &nbsp; 게시글안 텍스트로된 키워드들을 정규식으로 파악해 링크로 변환.
