@@ -26,7 +26,7 @@
   "..\\components\\Portfolio\\Section\\SkillSection.tsx -> ../SkillBox/SkillImageBox": {
     "id": "2/lA",
     "files": [
-      "static/chunks/8764aea244c622a0157f9491e5f453c9d6ed3716.c7376f536143845aa081.js",
+      "static/chunks/8764aea244c622a0157f9491e5f453c9d6ed3716.07533fe2120163c61207.js",
       "static/chunks/60.427725dba1d9f895716b.js"
     ]
   },
@@ -77,8 +77,8 @@
       "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
       "static/chunks/d9a78cdf1df2018aa5aeb7d48cbf3525f19aca66.fdd8a3cf714fe90a61f0.js",
       "static/chunks/e7d2c4f6d85e1f761de782e851bb71def126ed7b.d123d6176426e1c6c577.js",
-      "static/chunks/8764aea244c622a0157f9491e5f453c9d6ed3716.c7376f536143845aa081.js",
-      "static/chunks/55.1efd1f06c6d21cc09f77.js"
+      "static/chunks/8764aea244c622a0157f9491e5f453c9d6ed3716.07533fe2120163c61207.js",
+      "static/chunks/55.360c3eb7df7883238664.js"
     ]
   },
   "admin.tsx -> ../components/Blog/Admin/Editor": {
@@ -154,7 +154,7 @@
     "files": [
       "static/chunks/c08446115803d38f88045f9606940e3cbc489ec7.032052318f6dd55a04b8.js",
       "static/chunks/76ba5fe0b73460fa79da7e46974056c33ddf1e0e.d35d7ab5966c7aedcb70.js",
-      "static/chunks/8764aea244c622a0157f9491e5f453c9d6ed3716.c7376f536143845aa081.js",
+      "static/chunks/8764aea244c622a0157f9491e5f453c9d6ed3716.07533fe2120163c61207.js",
       "static/chunks/58.72a5e22f8da838c93fe2.js"
     ]
   },

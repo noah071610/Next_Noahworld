@@ -9,11 +9,6 @@ import { Divider } from "antd";
 import { CHAGE_HEADER, OFF_ABOUT } from "../../@reducers/blog";
 import Head from "next/head";
 import { CardContents, SUB_COLOR } from "../../config";
-import axios from "axios";
-import wrapper from "../../@store/configureStore";
-import { LOAD_INFO_REQUEST } from "../../@reducers/user";
-import { END } from "@redux-saga/core";
-import { IStore } from "../../types";
 import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
 import Aos from "aos";
@@ -111,6 +106,10 @@ const PortfolioMainPage = memo(() => {
     dispatch({
       type: OFF_ABOUT,
     });
+    dispatch({
+      type: CHAGE_HEADER,
+      header: "portfolio",
+    });
   }, []);
   useEffect(() => {
     Aos.init();
@@ -185,23 +184,6 @@ const PortfolioMainPage = memo(() => {
       </Home>
     </>
   );
-});
-
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-  const cookie = context.req ? context.req.headers.cookie : "";
-  axios.defaults.headers.Cookie = "";
-  if (context.req && cookie) {
-    axios.defaults.headers.Cookie = cookie;
-  }
-  context.store.dispatch({
-    type: LOAD_INFO_REQUEST,
-  });
-  context.store.dispatch({
-    type: CHAGE_HEADER,
-    header: "portfolio",
-  });
-  context.store.dispatch(END);
-  await (context.store as IStore).sagaTask.toPromise();
 });
 
 export default memo(PortfolioMainPage);
