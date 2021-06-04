@@ -68,16 +68,25 @@ const Header = memo(() => {
           </a>
         </Link>
         {user ? (
-          <a className="blog_header_loginout" onClick={onClickLogOut}>
+          <a className="blog_header_logout" onClick={onClickLogOut}>
             Log out <FontAwesomeIcon style={{ marginLeft: "0.3rem" }} icon={faSignOutAlt} />
           </a>
         ) : (
-          <Link href={"/login"}>
-            <a className="blog_header_loginout">
-              Log In & Sign Up{" "}
-              <FontAwesomeIcon style={{ marginLeft: "0.3rem" }} icon={faSignInAlt} />
+          <div className="blog_header_login">
+            <Link href={"/login"}>
+              <a className="btn_login">
+                Login & Sign Up{" "}
+                <FontAwesomeIcon style={{ marginLeft: "0.3rem" }} icon={faSignInAlt} />
+              </a>
+            </Link>
+            <a href="https://api.noahworld.site/auth/google" className="btn_google">
+              Google Login{" "}
+              <img
+                alt="google_icon"
+                src="https://img.icons8.com/fluent/48/000000/google-logo.png"
+              />
             </a>
-          </Link>
+          </div>
         )}
       </div>
       <nav className={FixedNavbar ? "blog_header_nav fixed" : "blog_header_nav static"}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import Aos from "aos";
+import AOS from "aos";
 import "aos/dist/aos.css";
 import "antd/dist/antd.css";
 import "animate.css/animate.css";
@@ -66,12 +66,7 @@ const loadingScreen = css`
 function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    var aScript = document.createElement("script");
-    aScript.type = "text/javascript";
-    aScript.src = " https://js.stripe.com/v3/";
-    document.head.appendChild(aScript);
-    aScript.onload = () => {};
-    Aos.init();
+    AOS.init();
   }, []);
   useEffect(() => {
     const start = () => {

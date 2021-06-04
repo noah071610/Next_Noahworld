@@ -43,11 +43,6 @@ const BlogHeader = memo(() => {
           </Link>
         </li>
         <li className="blog_header_li">
-          <Link href="/aboutme">
-            <a>About me</a>
-          </Link>
-        </li>
-        <li className="blog_header_li">
           <Link href="/tech">
             <a>Info Tech</a>
           </Link>
@@ -59,14 +54,19 @@ const BlogHeader = memo(() => {
         </li>
         <li className="blog_header_li">
           <Link href="/class">
-            <a style={{ display: "flex", alignItems: "center" }}>
+            <a>
               Korean Class for &nbsp;
               <img
-                style={{ width: "1.5rem" }}
+                style={{ width: "1.2rem" }}
                 alt="japan_flag"
                 src="https://img.icons8.com/color/48/000000/japan.png"
               />
             </a>
+          </Link>
+        </li>
+        <li className="blog_header_li">
+          <Link href="/portfolio">
+            <a>Portfolio ⭐</a>
           </Link>
         </li>
       </ul>

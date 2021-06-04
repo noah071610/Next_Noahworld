@@ -98,14 +98,14 @@ const SlideMenu: FC<SlideMenuProps> = memo(({ onClickSearchForm, user }) => {
       </ul>
       <ul>
         <h2 css={marginCSS(0, 0, "1rem", 0)}>Direct Link</h2>
-        <li onClick={onClickMenu}>
-          <Link href={"/aboutme"}>
-            <a>- About me</a>
-          </Link>
+        <li>
+          <a href="https://github.com/noah071610" target="_blank" rel="noreferrer">
+            - Git
+          </a>
         </li>
         <li onClick={onClickMenu}>
           <Link href={"/portfolio"}>
-            <a>- Portfolio</a>
+            <a>- Portfolio ⭐</a>
           </Link>
         </li>
         <li>
@@ -113,9 +113,17 @@ const SlideMenu: FC<SlideMenuProps> = memo(({ onClickSearchForm, user }) => {
             - Instagram
           </a>
         </li>
-        <li>
-          <a href="https://github.com/noah071610" target="_blank" rel="noreferrer">
-            - Git
+        <li onClick={onClickMenu}>
+          <a
+            style={{ display: "flex", alignItems: "center" }}
+            href="https://api.noahworld.site/auth/google"
+          >
+            - Google Login{" "}
+            <img
+              style={{ width: "0.9rem", marginLeft: "0.4rem" }}
+              alt="google_icon"
+              src="https://img.icons8.com/fluent/48/000000/google-logo.png"
+            />
           </a>
         </li>
         {user ? (

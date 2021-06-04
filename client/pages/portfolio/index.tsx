@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { Divider } from "antd";
-import { CHAGE_HEADER, LOAD_PORTFOLIOS, OFF_ABOUT } from "../../@reducers/blog";
+import { CHAGE_HEADER, OFF_ABOUT } from "../../@reducers/blog";
 import Head from "next/head";
 import { CardContents, SUB_COLOR } from "../../config";
 import axios from "axios";
@@ -16,6 +16,7 @@ import { END } from "@redux-saga/core";
 import { IStore } from "../../types";
 import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
+import Aos from "aos";
 
 const PageWrapper = dynamic(() => import("../../components/Portfolio/PageWrapper"));
 const Articles = dynamic(() => import("../../components/Portfolio/Articles"));
@@ -106,13 +107,14 @@ const Home = styled.div`
 
 const PortfolioMainPage = memo(() => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch({
       type: OFF_ABOUT,
     });
   }, []);
-
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
     <>
       <Head>

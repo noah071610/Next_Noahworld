@@ -165,6 +165,18 @@ a {
   font-size: 0.9rem;
 }
 
+@-webkit-keyframes underLining {
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes underLining {
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
 .poster_slider {
   width: 50%;
   margin: 0 auto;
@@ -687,12 +699,38 @@ h1 {
   margin-right: 1rem;
 }
 
-.blog_header_loginout {
+.blog_header_logout {
   position: absolute;
   bottom: -2rem;
   right: 0;
   margin-right: 1.4rem;
-  font-size: 0.9rem;
+}
+
+.blog_header_login {
+  position: absolute;
+  bottom: -2rem;
+  right: 1.15rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.blog_header_login .btn_login {
+  margin-right: 1.5rem;
+}
+
+.blog_header_login .btn_google {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.blog_header_login .btn_google img {
+  margin-left: 0.3rem;
+  width: 0.9rem;
 }
 
 .blog_header_ul {
@@ -710,11 +748,28 @@ h1 {
 }
 
 .blog_header_li {
-  margin-right: 2.5rem;
+  margin-right: 3rem;
 }
 
 .blog_header_li:last-child {
   margin-right: 0;
+}
+
+.blog_header_li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-image: linear-gradient(transparent calc(100% - 1.5px), #1187cf 5px);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+}
+
+.blog_header_li a:hover {
+  -webkit-animation: underLining 0.2s forwards;
+          animation: underLining 0.2s forwards;
 }
 
 .blog_header_about {
@@ -868,6 +923,9 @@ h1 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 1120px;
   color: white;
   height: 100%;
@@ -1909,6 +1967,9 @@ h1 {
     margin-top: 2rem;
     display: block;
   }
+  .blog_footer_list li a {
+    font-size: 0.65rem;
+  }
 }
 
 @media only screen and (max-width: 400px) {
@@ -1943,9 +2004,6 @@ h1 {
   }
   .blog_main_small li {
     font-size: 0.9rem;
-  }
-  .blog_footer_list li {
-    font-size: 0.6rem;
   }
   .blog_category_count {
     margin: 0;

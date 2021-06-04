@@ -84,13 +84,13 @@ export const skills = [
   {
     name: "React",
     src: "https://img.icons8.com/color/144/000000/react-native.png",
-    desc: "Hooks 문법, Router적용, Redux와 비동기를 위한 saga, thunk 외 여러 라이브러리를 응용하며 렌더링최소화 및 생명주기같은 React의 SPA 특성을 이해합니다.",
+    desc: "Hooks 문법, Router적용, Redux와 비동기를 위한 saga, thunk 또는 MobX 등등 여러 라이브러리를 응용하며 렌더링최소화 및 생명주기같은 React의 SPA 특성을 이해합니다.",
     level: true,
   },
   {
     name: "Next.js",
     src: "https://docs.microsoft.com/ko-kr/windows/images/nextjs-logo.png",
-    desc: "사용자 만족도와 검색엔진 효율성을 높아는 서버사이드렌더링의 특성을 이해하며 Next.js를 React에 적용합니다.",
+    desc: "SEO의 효율성을 높아는 Next.js의 SSR 특성을 이해하며 React에 적용하며, SPA 와 SSR 를 장단점을 파악하기 위해 노력합니다.",
     level: true,
   },
   {
@@ -109,6 +109,11 @@ export const skills = [
 
 export const sub_skills = [
   {
+    name: "SCSS",
+    src: "https://img.icons8.com/color/144/000000/sass-avatar.png",
+    level: true,
+  },
+  {
     name: "Axios",
     src: "https://media-exp1.licdn.com/dms/image/C4E0BAQGlN3RJvKmwEg/company-logo_200_200/0/1571253448818?e=2159024400&v=beta&t=VYfrSozq3kSw5_404tR4xYFMH0uFQNmQNrweQcJkbGw",
     level: true,
@@ -116,6 +121,11 @@ export const sub_skills = [
   {
     name: "Express",
     src: "https://www.mementotech.in/assets/images/icons/express.png",
+    level: true,
+  },
+  {
+    name: "GraphQL",
+    src: "https://img.icons8.com/color/144/000000/graphql.png",
     level: true,
   },
   {
@@ -141,6 +151,10 @@ export const sub_skills = [
   {
     name: "Passport.js",
     src: "https://leolanchas.com/wp-content/uploads/2013/07/0d184ee3-fd8d-4b94-acf4-b4e686e57375.png",
+  },
+  {
+    name: "Nginx",
+    src: "https://img.icons8.com/color/144/000000/nginx.png",
   },
   {
     name: "Babel",

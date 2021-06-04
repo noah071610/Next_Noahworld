@@ -53,6 +53,17 @@ const CommentFormWrapper = styled.div`
   display: flex;
   position: relative;
   transition: all 0.3s;
+  .comment_icon_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    h3 {
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 0.8rem;
+    }
+  }
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
@@ -119,7 +130,7 @@ const CommentForm = memo(() => {
   return (
     <>
       <CommentFormWrapper onClick={onClickModal} className="blog_post_comment" id="comment">
-        <div>
+        <div className="comment_icon_wrapper">
           <img
             className="comment_img"
             src={
@@ -130,7 +141,7 @@ const CommentForm = memo(() => {
             alt="profile"
             onError={handleImgError}
           />
-          <h3 style={{ textAlign: "center" }}>{user ? user.name : "Guest"}</h3>
+          <h3>{user ? user.name : "Guest"}</h3>
         </div>
         <div style={{ marginLeft: "2rem", width: "100%" }}>
           <TextArea value={content} onChange={onChangeContent} className="comment_textArea" />
