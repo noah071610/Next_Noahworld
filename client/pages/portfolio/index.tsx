@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { useEffect } from "react";
 import Col from "antd/lib/col";
 import Row from "antd/lib/row";
 import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
@@ -100,7 +100,7 @@ const Home = styled.div`
   overflow: hidden;
 `;
 
-const PortfolioMainPage = memo(() => {
+const PortfolioMainPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
@@ -111,9 +111,7 @@ const PortfolioMainPage = memo(() => {
       header: "portfolio",
     });
   }, []);
-  useEffect(() => {
-    Aos.init();
-  }, []);
+
   return (
     <>
       <Head>
@@ -184,6 +182,6 @@ const PortfolioMainPage = memo(() => {
       </Home>
     </>
   );
-});
+};
 
-export default memo(PortfolioMainPage);
+export default PortfolioMainPage;

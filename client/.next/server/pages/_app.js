@@ -4992,7 +4992,9 @@ function App({
     1: setLoading
   } = Object(external_react_["useState"])(false);
   Object(external_react_["useEffect"])(() => {
-    external_aos_default.a.init();
+    external_aos_default.a.init({
+      startEvent: "load"
+    });
   }, []);
   Object(external_react_["useEffect"])(() => {
     const start = () => {

@@ -66,7 +66,7 @@ const loadingScreen = css`
 function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    AOS.init();
+    AOS.init({ startEvent: "load" });
   }, []);
   useEffect(() => {
     const start = () => {
