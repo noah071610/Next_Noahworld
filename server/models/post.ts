@@ -52,7 +52,7 @@ Post.init(
   {
     sequelize,
     modelName: "Post",
-    tableName: "posts",
+    tableName: "Posts",
     charset: "utf8mb4",
     collate: "utf8mb4_general_ci",
   }

@@ -40,7 +40,7 @@ User.init({
         allowNull: true,
         unique: true,
     },
-}, { sequelize: sequelize_2.sequelize, modelName: "User", tableName: "users", charset: "utf8", collate: "utf8_general_ci" });
+}, { sequelize: sequelize_2.sequelize, modelName: "User", tableName: "Users", charset: "utf8", collate: "utf8_general_ci" });
 const associate = (db) => {
     db.User.hasMany(db.Post);
     db.User.hasMany(db.Comment);

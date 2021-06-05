@@ -13,7 +13,7 @@ Image.init({
 }, {
     sequelize: sequelize_2.sequelize,
     modelName: "Image",
-    tableName: "images",
+    tableName: "Images",
     charset: "utf8",
     collate: "utf8_general_ci",
 });

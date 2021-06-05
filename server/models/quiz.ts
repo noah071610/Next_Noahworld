@@ -29,7 +29,7 @@ Quiz.init(
   {
     sequelize,
     modelName: "Quiz",
-    tableName: "quizzes",
+    tableName: "Quizzes",
     charset: "utf8mb4",
     collate: "utf8mb4_general_ci",
   }

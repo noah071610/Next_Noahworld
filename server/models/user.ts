@@ -53,7 +53,7 @@ User.init(
       unique: true,
     },
   },
-  { sequelize, modelName: "User", tableName: "users", charset: "utf8", collate: "utf8_general_ci" }
+  { sequelize, modelName: "User", tableName: "Users", charset: "utf8", collate: "utf8_general_ci" }
 );
 
 export const associate = (db: dbType) => {

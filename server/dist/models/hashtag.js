@@ -13,7 +13,7 @@ Hashtag.init({
 }, {
     sequelize: sequelize_2.sequelize,
     modelName: "Hashtag",
-    tableName: "hashtags",
+    tableName: "Hashtags",
     charset: "utf8mb4",
     collate: "utf8mb4_general_ci",
 });
