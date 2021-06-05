@@ -14,23 +14,31 @@ exports.default = () => {
         passwordField: "password",
     }, async (email, password, done) => {
         try {
-            const user = await user_1.default.findOne({
-                where: { email },
-            });
-            if (!user) {
-                return done(null, false, { message: "Login Error : Uncorrect password" });
-            }
-            if (user?.googleId) {
-                return done(null, false, {
-                    message: "Login Error : You're google user!! Please use Google login.",
+            if (email) {
+                const user = await user_1.default.findOne({
+                    where: { email },
                 });
+                if (!user) {
+                    return done(null, false, { message: "Login Error : Email doesn't exist." });
+                }
+                if (user.googleId) {
+                    return done(null, false, {
+                        message: "Login Error : You're google user. Please use Google login.",
+                    });
+                }
+                if (!user.password) {
+                    return done(null, false, { message: "Login Error : No password inputed." });
+                }
+                const result = await bcrypt_1.default.compare(password, user.password);
+                if (result) {
+                    return done(null, user);
+                }
+                else {
+                    return done(null, false, { message: "Login Error : Uncorrect Password." });
+                }
             }
-            if (!user?.password) {
-                return done(null, false, { message: "Login Error : No password inputed" });
-            }
-            const result = await bcrypt_1.default.compare(password, user.password);
-            if (result) {
-                return done(null, user);
+            else {
+                return done(null, false, { message: "Login Error : Email doesn't exist." });
             }
         }
         catch (error) {
@@ -43,21 +51,28 @@ exports.default = () => {
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "https://api.noahworld.site/auth/google/callback",
     }, async (accessToken, refreshToken, profile, cb) => {
-        if (!profile?.emails || !profile.photos) {
-            return;
+        try {
+            if (profile.emails && profile.photos) {
+                const user = await user_1.default.findOne({ where: { email: profile.emails[0].value } });
+                if (user) {
+                    return cb(null, user);
+                }
+                else {
+                    if (profile.id && profile.displayName) {
+                        const newUser = await user_1.default.create({
+                            googleId: profile.id,
+                            email: profile.emails[0].value,
+                            name: profile.displayName,
+                            icon: profile.photos[0].value,
+                        });
+                        return cb(null, newUser);
+                    }
+                }
+            }
         }
-        const user = await user_1.default.findOne({ where: { email: profile.emails[0].value } });
-        if (user) {
-            return cb(null, user);
-        }
-        else {
-            const newUser = await user_1.default.create({
-                googleId: profile.id,
-                email: profile.emails[0].value,
-                name: profile.displayName,
-                icon: profile.photos[0].value,
-            });
-            return cb(null, newUser);
+        catch (error) {
+            console.log(error);
+            return cb(error);
         }
     }));
 };

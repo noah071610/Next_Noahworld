@@ -8,14 +8,16 @@ const local_1 = __importDefault(require("./local"));
 const user_1 = __importDefault(require("../models/user"));
 exports.default = () => {
     passport_1.default.serializeUser((user, done) => {
-        done(null, user.id);
+        return done(null, user.id);
     });
     passport_1.default.deserializeUser(async (id, done) => {
         try {
-            const user = await user_1.default.findOne({
-                where: { id },
-            });
-            done(null, user);
+            if (id) {
+                const user = await user_1.default.findOne({
+                    where: { id },
+                });
+                return done(null, user);
+            }
         }
         catch (error) {
             console.log(error);

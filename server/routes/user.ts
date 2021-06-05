@@ -106,7 +106,7 @@ router.post("/logIn", (req: Request, res: Response, next: NextFunction) => {
         if (loginErr) {
           return next(loginErr);
         }
-        if (user) {
+        if (user.id) {
           const fullUserWithoutPassword = await User.findOne({
             where: { id: user.id },
             attributes: {
@@ -136,7 +136,7 @@ router.post("/logIn", (req: Request, res: Response, next: NextFunction) => {
   })(req, res, next);
 });
 
-router.post("/confirm", async (req: Request<any, any, any>, res: Response, next: NextFunction) => {
+router.post("/confirm", async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.body.user.id) {
       const myuser = await User.findOne({
@@ -218,7 +218,7 @@ router.post("/logOut", async (req: Request, res: Response, next: NextFunction) =
   }
 });
 
-router.post("/signUp", async (req: Request<any, any, any>, res: Response, next: NextFunction) => {
+router.post("/signUp", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const salt = await bcrypt.genSalt(saltRounds);
     if (req.body.email) {

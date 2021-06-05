@@ -74,11 +74,11 @@ router.patch("/like/:UserId/:CommentId", async (req, res, next) => {
                 return res.status(403).send("no comment exist");
             }
             await comment.addCommentLikers([parseInt(req.params.UserId)]);
+            res.status(200).json({
+                CommentId: parseInt(req.params.CommentId, 10),
+                UserId: parseInt(req.params.UserId, 10),
+            });
         }
-        res.status(200).json({
-            CommentId: req.params.CommentId,
-            UserId: req.params.UserId,
-        });
     }
     catch (error) {
         console.error(error);
@@ -93,11 +93,11 @@ router.delete("/unlike/:UserId/:CommentId", async (req, res, next) => {
                 return res.status(403).send("no comment exist");
             }
             await comment.removeCommentLikers([parseInt(req.params.UserId)]);
+            res.status(200).json({
+                CommentId: parseInt(req.params.CommentId, 10),
+                UserId: parseInt(req.params.UserId, 10),
+            });
         }
-        res.status(200).json({
-            CommentId: parseInt(req.params.CommentId, 10),
-            UserId: req.params.UserId,
-        });
     }
     catch (error) {
         console.error(error);
@@ -140,13 +140,15 @@ router.post("/sub/:CommentId", async (req, res, next) => {
 });
 router.delete("/sub/:CommentId/:SubCommentId", async (req, res, next) => {
     try {
-        await models_1.SubComment.destroy({
-            where: { id: req.params.SubCommentId },
-        });
-        res.status(200).json({
-            CommentId: parseInt(req.params.CommentId, 10),
-            SubCommentId: parseInt(req.params.SubCommentId, 10),
-        });
+        if (req.params.SubCommentId) {
+            await models_1.SubComment.destroy({
+                where: { id: req.params.SubCommentId },
+            });
+            res.status(200).json({
+                CommentId: parseInt(req.params.CommentId, 10),
+                SubCommentId: parseInt(req.params.SubCommentId, 10),
+            });
+        }
     }
     catch (error) {
         console.error(error);

@@ -85,11 +85,11 @@ router.patch(
           return res.status(403).send("no comment exist");
         }
         await comment.addCommentLikers([parseInt(req.params.UserId)]);
+        res.status(200).json({
+          CommentId: parseInt(req.params.CommentId, 10),
+          UserId: parseInt(req.params.UserId, 10),
+        });
       }
-      res.status(200).json({
-        CommentId: req.params.CommentId,
-        UserId: req.params.UserId,
-      });
     } catch (error) {
       console.error(error);
       return next(error);
@@ -111,11 +111,11 @@ router.delete(
           return res.status(403).send("no comment exist");
         }
         await comment.removeCommentLikers([parseInt(req.params.UserId)]);
+        res.status(200).json({
+          CommentId: parseInt(req.params.CommentId, 10),
+          UserId: parseInt(req.params.UserId, 10),
+        });
       }
-      res.status(200).json({
-        CommentId: parseInt(req.params.CommentId, 10),
-        UserId: req.params.UserId,
-      });
     } catch (error) {
       console.error(error);
       return next(error);
@@ -162,15 +162,21 @@ router.post(
 
 router.delete(
   "/sub/:CommentId/:SubCommentId",
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (
+    req: Request<{ CommentId: string; SubCommentId: string }>,
+    res: Response,
+    next: NextFunction
+  ) => {
     try {
-      await SubComment.destroy({
-        where: { id: req.params.SubCommentId },
-      });
-      res.status(200).json({
-        CommentId: parseInt(req.params.CommentId, 10),
-        SubCommentId: parseInt(req.params.SubCommentId, 10),
-      });
+      if (req.params.SubCommentId) {
+        await SubComment.destroy({
+          where: { id: req.params.SubCommentId },
+        });
+        res.status(200).json({
+          CommentId: parseInt(req.params.CommentId, 10),
+          SubCommentId: parseInt(req.params.SubCommentId, 10),
+        });
+      }
     } catch (error) {
       console.error(error);
       return next(error);

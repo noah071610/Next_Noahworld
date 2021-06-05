@@ -98,7 +98,7 @@ router.post("/logIn", (req, res, next) => {
                 if (loginErr) {
                     return next(loginErr);
                 }
-                if (user) {
+                if (user.id) {
                     const fullUserWithoutPassword = await models_1.User.findOne({
                         where: { id: user.id },
                         attributes: {
