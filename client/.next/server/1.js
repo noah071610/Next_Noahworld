@@ -16,8 +16,8 @@ var base_default = /*#__PURE__*/__webpack_require__.n(base_);
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
-// EXTERNAL MODULE: ./config.js
-var config = __webpack_require__("obyI");
+// EXTERNAL MODULE: ./config.ts
+var config = __webpack_require__("UIRo");
 
 // EXTERNAL MODULE: external "@emotion/react"
 var react_ = __webpack_require__("Kps4");

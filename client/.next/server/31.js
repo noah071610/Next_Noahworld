@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("Exp3");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("obyI");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("UIRo");
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("Kps4");
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_8__);
 
@@ -91,7 +91,7 @@ const PortfolioList = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__["me
     }
   }, []);
   {
-    _config__WEBPACK_IMPORTED_MODULE_7__[/* portfolios */ "m"] === null || _config__WEBPACK_IMPORTED_MODULE_7__[/* portfolios */ "m"] === void 0 ? void 0 : _config__WEBPACK_IMPORTED_MODULE_7__[/* portfolios */ "m"].map((v, i) => slides.push(Object(_emotion_react__WEBPACK_IMPORTED_MODULE_8__["jsx"])(PortfolioCard, {
+    _config__WEBPACK_IMPORTED_MODULE_7__[/* portfolios */ "l"] === null || _config__WEBPACK_IMPORTED_MODULE_7__[/* portfolios */ "l"] === void 0 ? void 0 : _config__WEBPACK_IMPORTED_MODULE_7__[/* portfolios */ "l"].map((v, i) => slides.push(Object(_emotion_react__WEBPACK_IMPORTED_MODULE_8__["jsx"])(PortfolioCard, {
       key: i,
       options: options
     }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_8__["jsx"])("a", {

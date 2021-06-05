@@ -160,7 +160,7 @@ module.exports = _interopRequireWildcard;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeleteComment; });
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Kps4");
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("obyI");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("UIRo");
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
 
@@ -482,8 +482,8 @@ var external_antd_ = __webpack_require__("Exp3");
 var external_react_slick_ = __webpack_require__("O/hg");
 var external_react_slick_default = /*#__PURE__*/__webpack_require__.n(external_react_slick_);
 
-// EXTERNAL MODULE: ./config.js
-var config = __webpack_require__("obyI");
+// EXTERNAL MODULE: ./config.ts
+var config = __webpack_require__("UIRo");
 
 // EXTERNAL MODULE: external "@fortawesome/free-solid-svg-icons"
 var free_solid_svg_icons_ = __webpack_require__("No/t");

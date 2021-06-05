@@ -31,8 +31,8 @@ var external_dayjs_default = /*#__PURE__*/__webpack_require__.n(external_dayjs_)
 var relativeTime_ = __webpack_require__("jYNn");
 var relativeTime_default = /*#__PURE__*/__webpack_require__.n(relativeTime_);
 
-// EXTERNAL MODULE: ./config.js
-var config = __webpack_require__("obyI");
+// EXTERNAL MODULE: ./config.ts
+var config = __webpack_require__("UIRo");
 
 // EXTERNAL MODULE: ./node_modules/next/dist/client/router.js
 var client_router = __webpack_require__("nOHt");

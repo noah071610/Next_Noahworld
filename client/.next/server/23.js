@@ -55,8 +55,8 @@ var base_default = /*#__PURE__*/__webpack_require__.n(base_);
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
-// EXTERNAL MODULE: ./config.js
-var config = __webpack_require__("obyI");
+// EXTERNAL MODULE: ./config.ts
+var config = __webpack_require__("UIRo");
 
 // EXTERNAL MODULE: external "@emotion/react"
 var react_ = __webpack_require__("Kps4");
@@ -118,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Decorator_Title__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("5Ce3");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Exp3");
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("obyI");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("UIRo");
 /* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("/T1H");
 /* harmony import */ var next_dynamic__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_dynamic__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("Kps4");
@@ -171,7 +171,7 @@ const PortfolioSection = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__[
   }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(_Articles__WEBPACK_IMPORTED_MODULE_2__["default"], null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(_Decorator_Title__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: "Portfolio",
     sub: "\uCD5C\uACE0\uAC00 \uC544\uB2C8\uB354\uB77C\uB3C4 \uD56D\uC0C1 \uCD5C\uC120\uC744 \uB2E4\uD569\uB2C8\uB2E4."
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(PortfolioList, null), _config__WEBPACK_IMPORTED_MODULE_5__[/* portfolios */ "m"].map((v, i) => {
+  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(PortfolioList, null), _config__WEBPACK_IMPORTED_MODULE_5__[/* portfolios */ "l"].map((v, i) => {
     return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_7__["jsx"])(PortfolioSmall, {
       onClick: () => onClickPortfolio(v.git),
       key: i,

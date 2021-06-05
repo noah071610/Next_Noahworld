@@ -78,7 +78,10 @@ const BlogCategoryPage = memo(() => {
         </div>
         <div className="blog_category_medium">
           <ArticleColumn article={dailyPosts[0] || techPosts[0]} />
-          <Divider className="blog_category_small" />
+        </div>
+        <div className="blog_category_small">
+          <Divider />
+          <ArticleColumn article={dailyPosts[0] || techPosts[0]} />
         </div>
         <Row>
           {(techPosts || dailyPosts).slice(1).map((v, i) => (

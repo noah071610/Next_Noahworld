@@ -1,5 +1,5 @@
 import { Divider, Row, Table } from "antd";
-import { columns, dataSource, languages, skills, sub_skills } from "../../../config";
+import { columns, dataSource, skills, sub_skills } from "../../../config";
 import styled from "@emotion/styled";
 import React, { FC, memo } from "react";
 import dynamic from "next/dynamic";
@@ -20,6 +20,37 @@ const CertificateTable = styled(Table)`
     }
   }
 `;
+
+const eng_desc = (
+  <div>
+    <p>· 개요: 문화체육관광부에서 실시하는 통역분야의 유일한 국가공인자격증(출처:Q-Net)</p>
+    <p>· 취득당시 어학점수: TOEIC 925점(2018년 취득)</p>
+  </div>
+);
+
+const jap_desc = (
+  <div>
+    <p>· 개요: 문화체육관광부에서 실시하는 통역분야의 유일한 국가공인자격증(출처:Q-Net)</p>
+    <p>· 취득당시 어학점수: JLPT1급(2019년 취득)</p>
+  </div>
+);
+
+const languages = [
+  {
+    name: "English",
+    src: "https://img.icons8.com/color/96/000000/usa-circular.png",
+    popup: true,
+    licenseKor: "2020년 영어",
+    content: eng_desc,
+  },
+  {
+    name: "Japanese",
+    src: "https://img.icons8.com/color/96/000000/japan-circular.png",
+    popup: true,
+    licenseKor: "2019년 일본어",
+    content: jap_desc,
+  },
+];
 
 const SkillSection: FC<{ id: string }> = memo(({ id }) => {
   return (

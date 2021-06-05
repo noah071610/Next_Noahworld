@@ -18,7 +18,7 @@ exports.modules = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeleteComment; });
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("Kps4");
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("obyI");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("UIRo");
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
 
@@ -309,8 +309,8 @@ var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 // EXTERNAL MODULE: ./@reducers/post.ts
 var _reducers_post = __webpack_require__("SDl8");
 
-// EXTERNAL MODULE: ./config.js
-var config = __webpack_require__("obyI");
+// EXTERNAL MODULE: ./config.ts
+var config = __webpack_require__("UIRo");
 
 // EXTERNAL MODULE: ./util/useInput.ts
 var useInput = __webpack_require__("zpkv");
