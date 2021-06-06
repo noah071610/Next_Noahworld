@@ -8,7 +8,7 @@
   "/hashtag/[tag]": "pages/hashtag/[tag].js",
   "/": "pages/index.js",
   "/login": "pages/login.js",
-  "/portfolio": "pages/portfolio.html",
+  "/portfolio": "pages/portfolio.js",
   "/search/[keyword]": "pages/search/[keyword].js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js"

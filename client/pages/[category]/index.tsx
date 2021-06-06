@@ -11,6 +11,7 @@ import axios from "axios";
 import { IStore } from "../../types";
 import { END } from "@redux-saga/core";
 import { useRouter } from "next/router";
+import { LOAD_INFO_REQUEST } from "../../@reducers/user";
 
 const UserProfile = dynamic(() => import("../../components/Blog/Profile/UserProfile"));
 const ArticleRow = dynamic(() => import("../../components/Blog/Articles/ArticleRow"));
@@ -54,7 +55,7 @@ const BlogCategoryPage = memo(() => {
       //메모리릭을 방지하기위해 unmount시 removeEventListner
       window.removeEventListener("scroll", onScroll);
     };
-  }, [hasMorePosts]);
+  }, [hasMorePosts, techPosts, dailyPosts, loadMorePostsLoading]);
 
   return (
     <>
@@ -114,6 +115,9 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
       },
     };
   }
+  context.store.dispatch({
+    type: LOAD_INFO_REQUEST,
+  });
   context.store.dispatch(END);
   await (context.store as IStore).sagaTask.toPromise();
 });

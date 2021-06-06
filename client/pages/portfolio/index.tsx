@@ -12,6 +12,11 @@ import { CardContents, SUB_COLOR } from "../../config";
 import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
 import Aos from "aos";
+import axios from "axios";
+import { LOAD_INFO_REQUEST } from "../../@reducers/user";
+import { END } from "@redux-saga/core";
+import { IStore } from "../../types";
+import wrapper from "../../@store/configureStore";
 
 const PageWrapper = dynamic(() => import("../../components/Portfolio/PageWrapper"));
 const Articles = dynamic(() => import("../../components/Portfolio/Articles"));
@@ -101,17 +106,6 @@ const Home = styled.div`
 `;
 
 const PortfolioMainPage = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch({
-      type: OFF_ABOUT,
-    });
-    dispatch({
-      type: CHAGE_HEADER,
-      header: "portfolio",
-    });
-  }, []);
-
   return (
     <>
       <Head>
@@ -183,5 +177,25 @@ const PortfolioMainPage = () => {
     </>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+  const cookie = context.req ? context.req.headers.cookie : "";
+  axios.defaults.headers.Cookie = "";
+  if (context.req && cookie) {
+    axios.defaults.headers.Cookie = cookie;
+  }
+  context.store.dispatch({
+    type: OFF_ABOUT,
+  });
+  context.store.dispatch({
+    type: CHAGE_HEADER,
+    header: "portfolio",
+  });
+  context.store.dispatch({
+    type: LOAD_INFO_REQUEST,
+  });
+  context.store.dispatch(END);
+  await (context.store as IStore).sagaTask.toPromise();
+});
 
 export default PortfolioMainPage;

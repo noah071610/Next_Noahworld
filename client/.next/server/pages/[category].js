@@ -2947,8 +2947,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _redux_saga_core__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_redux_saga_core__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("4Q3z");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("Kps4");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("N61D");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("Kps4");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_12__);
+
 
 
 
@@ -3018,35 +3020,35 @@ const BlogCategoryPage = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_1__[
       //메모리릭을 방지하기위해 unmount시 removeEventListner
       window.removeEventListener("scroll", onScroll);
     };
-  }, [hasMorePosts]);
-  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(next_head__WEBPACK_IMPORTED_MODULE_5___default.a, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])("title", null, "Noah world | ", category)), user && Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(UserProfile, null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])("h2", {
+  }, [hasMorePosts, techPosts, dailyPosts, loadMorePostsLoading]);
+  return Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(next_head__WEBPACK_IMPORTED_MODULE_5___default.a, null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("title", null, "Noah world | ", category)), user && Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(UserProfile, null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("div", null, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("h2", {
     className: "blog_category_header"
-  }, category.toUpperCase() + " POSTS", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])("br", {
+  }, category.toUpperCase() + " POSTS", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("br", {
     className: "br_category"
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])("span", {
+  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("span", {
     className: "blog_category_count"
-  }, "+\xA0", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(react_countup__WEBPACK_IMPORTED_MODULE_4___default.a, {
+  }, "+\xA0", Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(react_countup__WEBPACK_IMPORTED_MODULE_4___default.a, {
     duration: 4,
     start: 0,
     end: countPosts === null || countPosts === void 0 ? void 0 : countPosts.length
-  }), "\xA0posts.")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])("div", {
+  }), "\xA0posts.")), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("div", {
     className: "blog_category_big"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(ArticleRow, {
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(ArticleRow, {
     article: dailyPosts[0] || techPosts[0]
-  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_0__["Divider"], null)), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])("div", {
+  }), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_0__["Divider"], null)), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("div", {
     className: "blog_category_medium"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(ArticleColumn, {
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(ArticleColumn, {
     article: dailyPosts[0] || techPosts[0]
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])("div", {
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])("div", {
     className: "blog_category_small"
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_0__["Divider"], null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(ArticleColumn, {
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_0__["Divider"], null), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(ArticleColumn, {
     article: dailyPosts[0] || techPosts[0]
-  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_0__["Row"], null, (techPosts || dailyPosts).slice(1).map((v, i) => Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_0__["Col"], {
+  })), Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_0__["Row"], null, (techPosts || dailyPosts).slice(1).map((v, i) => Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_0__["Col"], {
     key: i,
     xs: 24,
     sm: 12,
     lg: 8
-  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_11__["jsx"])(ArticleColumn, {
+  }, Object(_emotion_react__WEBPACK_IMPORTED_MODULE_12__["jsx"])(ArticleColumn, {
     article: v
   }))))));
 });
@@ -3075,6 +3077,9 @@ const getServerSideProps = _store_configureStore__WEBPACK_IMPORTED_MODULE_7__[/*
     };
   }
 
+  context.store.dispatch({
+    type: _reducers_user__WEBPACK_IMPORTED_MODULE_11__[/* LOAD_INFO_REQUEST */ "r"]
+  });
   context.store.dispatch(_redux_saga_core__WEBPACK_IMPORTED_MODULE_9__["END"]);
   await context.store.sagaTask.toPromise();
 });
