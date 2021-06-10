@@ -93,7 +93,7 @@
 ## Summary.
 
 - 프로젝트 인원 : 장현수(Noah) 외 0명
-- 프로젝트 기간 : 2021/02 ~ 2021/04
+- 프로젝트 기간 : 2021/02 ~ 2021/05
 - 프로젝트 언어:
 
   - 영어 (전반적인 블로그)
@@ -110,6 +110,49 @@
 
 ![녹화_2021_06_03_23_30_16_462](https://user-images.githubusercontent.com/74864925/120664610-0a482100-c4c6-11eb-9294-4d8c3f868daa.gif)
 
+```javascript
+📁routes/user.ts
+
+    router.post("/signUp", async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const salt = await bcrypt.genSalt(saltRounds); // salt를 생성해 레인보우테이블 공격을 대비합니다.
+        if (req.body.email) {
+          const exUser = await User.findOne({
+            where: {
+              email: req.body.email,
+            },
+          });
+          if (exUser) {
+            //유저가 있다면 회원가입이 불가능합니다.
+            return res.status(403).send({
+              success: false,
+              message: "Your E-mail is already used, please Check one`s again",
+            });
+          }
+        }
+        if (req.body.password.length > 9) {
+        //비밀번호 길이는 클라이언트단에서 먼저 걸러주나 더블체크 해줍니다.
+          return res
+            .status(403)
+            .send({ success: false, message: "Password have to be longer then 9 letters" });
+        }
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        //bcrypt로 해시함수 + 솔팅을 사용해서 소중한 유저의 비밀번호를 안전하게 보안합니다.
+        await User.create({
+          email: req.body.email,
+          name: req.body.name,
+          password: hashedPassword,
+          icon: req.body.icon ? req.body.icon : "/images/blog/default-user.png",
+        });
+        res.status(200).send({ success: true, message: "Save your ID well! Let`s Login :)" });
+      } catch (error) {
+        console.error(error);
+        return next(error);
+      }
+    });
+
+```
+
 <br/>
 
 #### 📍 &nbsp; 구글 로그인 구현.
@@ -120,7 +163,7 @@
 📁Login/BlogLoginSection.tsx
 
   ...
-  
+
   <GoogleBtn>
         <a href="https://api.noahworld.site/auth/google">
           <div>
@@ -129,26 +172,25 @@
           </div>
         </a>
   </GoogleBtn>
-  
+
 ```
 
 ```javascript
-📁server/index.js
+📁server/index.ts
 
 //passport.js 를 이용하여 사용자 쿠키를 저장하고 회원정보를 만들어 DB에 저장합니다. 구글 비밀번호는 절대! 서버에서 취급 안합니다.
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-      
+
 app.get(
   "/auth/google/callback",
   //구글 인증이 완료되거나 실패했을때 경로를 설정해줍니다.
   passport.authenticate("google", { failureRedirect: "https://noahworld.site" }),
-  function (req, res) {
+  function (req: Request, res: Response) {
     res.redirect("https://noahworld.site");
   }
 );
 
 ```
-
 
 <br/>
 
@@ -249,7 +291,7 @@ app.get(
 #### 📍 &nbsp; multer를 사용해 이미지를 AWS-S3에 저장.
 
 ```javascript
-📁server/routes/user.js
+📁server/routes/user.ts
 
 // 아이콘 이미지를 서버에서 업로드하는 과정.
 
@@ -258,35 +300,43 @@ const upload = multer({
     // AWS.S3에 이미지를 저장하는 과정입니다.
     s3: new AWS.S3(),
     bucket: "noahworld",
-    key(req, file, cb) {
+    key(req: Request, file: Express.Multer.File, cb) {
       cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
     },
   }),
   limits: { fileSize: 20 * 1024 * 1024 },
 });
 
-router.post("/icon", upload.single("image"), async (req, res, next) => {
-  //유저가 file을 업로드하는 방식으로 아이콘을 업데이트한 경우
-  User.update(
-    { icon: req.file.location.replace(/\/original\//, "/thumb/") },
-    { where: { id: req.body.id } }
-  );
-  res.json(req.file.location.replace(/\/original\//, "/thumb/"));
-});
+router.post(
+  "/icon",
+  upload.single("image"),
+  async (req: Request, res: Response, next: NextFunction) => {
+    //유저가 file을 업로드하는 방식으로 아이콘을 업데이트한 경우
+    try {
+      User.update(
+        { icon: (req.file as Express.MulterS3.File).location.replace(/\/original\//, "/thumb/") },
+        { where: { id: req.body.id } }
+      );
+      res.json((req.file as Express.MulterS3.File).location.replace(/\/original\//, "/thumb/"));
+    } catch (error) {
+      console.error(error);
+      return next(error);
+    }
+  }
+);
 
-router.post("/icon/url", async (req, res, next) => {
-  //유저가 url을 이용하는 방식으로 아이콘을 업데이트한 경우
-  User.update({ icon: req.body.url }, { where: { id: req.body.UserId } });
-  res.json(req.body.url);
-});
-
-router.delete("/icon/:UserId", async (req, res, next) => {
+router.delete("/icon/:UserId", async (req: Request, res: Response, next: NextFunction) => {
   //유저가 아이콘을 삭제하는경우, 미리 저장되어있는 default 값으로 변경합니다.
-  User.update(
-    { icon: "/images/blog/default-user.png" },
-    { where: { id: parseInt(req.params.UserId, 10) } }
-  );
-  res.send({ success: true });
+  try {
+    User.update(
+      { icon: "/images/blog/default-user.png" },
+      { where: { id: parseInt(req.params.UserId, 10) } }
+    );
+    res.send({ success: true });
+  } catch (error) {
+    console.error(error);
+    return next(error);
+  }
 });
 
 ```
@@ -300,11 +350,9 @@ router.delete("/icon/:UserId", async (req, res, next) => {
 ![2](https://user-images.githubusercontent.com/74864925/120672071-f0f6a300-c4cc-11eb-8629-906ab6789419.gif)
 
 ```javascript
-📁server/routes/post.js
+📁server/routes/post.ts
 
-    ...
-
-    const getAttributesFromPosts = await Post.findAll({
+      const getAttributesFromPosts = await Post.findAll({
       order: [["createdAt", "DESC"]],
       attributes: ["id", "hit"],
       include: [
@@ -324,39 +372,25 @@ router.delete("/icon/:UserId", async (req, res, next) => {
         },
       ],
     }).then((result) =>
-      result.map((v) => {
-        //전체 포스트중 아이디,좋아요수,코멘트수,조회수 전체를 배열형태로 가져옵니다.
-        return [v.id, v.PostLikers.length, v.Comments.length, v.hit];
+      result.map((post) => {
+        //전체 포스트중 아이디,좋아요수,코멘트수,조회수를 배열형태로 가져옵니다.
+        //배열사용이유 : sort 메쏘드를 이용하기 위해.
+        return [post.id, post.PostLikers.length, post.Comments.length, post.hit];
       })
     );
-    // 가져온 값을 원하는 값에 따라 미리 분류해둡니다.
-    const getLikes = await getAttributesFromPosts.map((v, i) => {
-      return v[1];
-    });
-    const getComments = await getAttributesFromPosts.map((v, i) => {
-      return v[2];
-    });
-    const getViews = await getAttributesFromPosts.map((v, i) => {
-      return v[3];
-    });
 
-    const mostCalculator = (arr, index) =>
-      getAttributesFromPosts.find((v) => {
-        //배열중 최대값을 구하기 위해 아래의 값을 사용했습니다.
-        // * find 메쏘드를 사용하면 배열이아닌 객체로 반환하는걸 알았습니다. 곧 수정하겠습니다. (2021/05/30)
-        // find 메쏘드를 사용하여 객체를 반환하도록 변경했습니다 (2021/06/02)
-        return v[index] === Math.max.apply(null, arr);
-      });
-
-    //결과값은 각타입별 최상위 게시물의 아이디로 이루어져있고 이를 db 쿼리에 사용합니다.
-    const mostLikedId = await mostCalculator(getLikes, 1)[0];
-    const mostCommentsId = await mostCalculator(getComments, 2)[0];
-    const mostViewedId = await mostCalculator(getViews, 3)[0];
-
-    //원하는 값이 최대인 게시글에 아이디를 이용해서 DB안에 값을 찾아줍니다.
-    const mostLikedPost = await Post.findOne({
+    const mostCalculator = (i: number) => {
+      if (getAttributesFromPosts.length > 0) {
+        //느낌표를 사용한 이유 : 배열값이 하나라도 있으면 값 충족
+        //예를들어 포스트가 달랑 하나더라도 top포스트 3부분에 전부 같은게시물이 올라감으로 충족합니다.
+        return getAttributesFromPosts.sort((a, b) => b[i]! - a[i]!)[0][0];
+      }
+    };
+    //시퀄라이즈가 5버전 이상부터 findOne메쏘드에 undefined 값을 허용하지 않기때문에 if문을 넣어주었습니다.
+    if (mostCalculator(1) && mostCalculator(2) && mostCalculator(3)) {
+      const mostLikedPost = await Post.findOne({
       where: {
-        id: mostLikedId,
+        id: mostLikedId(1),
       },
       attributes: {
         exclude: ["content"],
@@ -366,7 +400,7 @@ router.delete("/icon/:UserId", async (req, res, next) => {
     });
     const mostCommentedPost = await Post.findOne({
       where: {
-        id: mostCommentsId,
+        id: mostCommentsId(2),
       },
       attributes: {
         exclude: ["content"],
@@ -376,21 +410,13 @@ router.delete("/icon/:UserId", async (req, res, next) => {
     });
     const mostViewedPost = await Post.findOne({
       where: {
-        id: mostViewedId,
+        id: mostViewedId(3),
       },
       attributes: {
         exclude: ["content"],
 
       ...
 
-    });
-    //메인페이지에 따로 표시할 해시태그도 잊지않고 가져옵니다.
-    const hashtags = await Hashtag.findAll({
-      attributes: ["name"],
-    });
-    res.status(200).json({
-
-    ...
 
 ```
 
@@ -506,22 +532,22 @@ router.delete("/icon/:UserId", async (req, res, next) => {
 ```
 
 ```javascript
-📁server/routes/post.js
+📁server/routes/post.ts
 
-router.get("/morepost/:category", async (req, res) => {
+router.get("/morepost/:category", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = req.params.category;
     let where = {
       //Last ID 보다 낮은 즉, 이전게시물들을 찾습니다.
-      [Op.and]: [{ id: { [Op.lt]: parseInt(req.query.lastId, 10) } }, { category }],
+      [Op.and]: [{ id: { [Op.lt]: req.query.lastId } }, { category }],
     };
     const morePosts = await Post.findAll({
-      //6개씩 불러오고 게시날짜를 내림차로 정렬
+      //6개씩 불러오고 게시날짜를 내림차로 정렬합니다.
       where,
       limit: 6,
       order: [["createdAt", "DESC"]],
       include: [
-        //해시태그, 좋아요한 유저가 필요함으로 받아옵니다.
+        //해시태그, 좋아요한 유저를 받아옵니다.
         {
           model: Hashtag,
           attributes: ["name"],
@@ -536,6 +562,7 @@ router.get("/morepost/:category", async (req, res) => {
     res.status(200).json({ morePosts, category });
   } catch (error) {
     console.error(error);
+    return next(error);
   }
 });
 
@@ -644,26 +671,26 @@ router.get("/morepost/:category", async (req, res) => {
 
 > Next.js 사용이유?
 
-SPA의 검색엔진 이슈가 블로그 특성상 치명적이라고 생각되어 SSR의 Next.js를 사용하게 됬습니다. 
+SPA의 SEO 이슈가 블로그 특성상 치명적이라고 생각되어 SSR의 Next.js를 사용하게 됬습니다.
 
 <br/>
 
 > Typescript 쓸만한가요?
 
-처음에는 솔직히 귀찮았었는데 정말 잘못된 생각이였다고 생각합니다. 지금은 타입스크립트없인 못사는몸이 되어버렸습니다.
+처음에는 구지써야 되나 싶었는데 정말 잘못된 생각이였습니다. 유지보수와 코드에러를 줄이고 신뢰성을 높이는 아주 좋은 슈퍼셋이라고 생각합니다.
 
 <br/>
 
 > AWS 이용할 만 하나요?
 
-지금같이 꽤나 몸집이 나가는 프로젝트는 AWS+MySQL(or Oracle) 쓸만하다고 생각하는데 간단한 토이프로젝트는 firebase가 더 좋다고 생각합니다. 별개로 몽고DB보단 MySQL을 선호합니다.
+지금같이 꽤나 몸집이 나가는 프로젝트는 AWS+MySQL(or Oracle) 쓸만하다고 생각하는데 간단한 토이프로젝트는 firebase가 더 좋다고 생각합니다.
 
 <br/>
 
 > Styled-components VS others
 
-저는 개인적으로 Styled-components보다 Emotion이 좋던데 사람마다 다른것같습니다. 하여튼 SCSS는 클래스명때문에 많이 힘들었어서 저는 Styled-components 가 좋습니다.
-
+저는 개인적으로 Styled-components보다 Emotion이 좋던데 사람마다 다른것같습니다. SCSS는 클래스명때문에 많이 힘들었어서 저는 Styled-components 가 좋습니다.
+그래서 차기작인 마이서울가이드는 Emotion을 적극적으로 도입했습니다.
 
 <br/>
 
@@ -685,10 +712,10 @@ SPA의 검색엔진 이슈가 블로그 특성상 치명적이라고 생각되�
 
 <br/>
 
-| Date | Version | Update |
-| ------ | ------ | ------ |
-| 2020/05/29 | v1.0 | Final Update for first deployment through AWS |
-| 2020/06/04 | v1.1 | Solve NGINX proxy problem |
+| Date       | Version | Update                                        |
+| ---------- | ------- | --------------------------------------------- |
+| 2020/05/29 | v1.0    | Final Update for first deployment through AWS |
+| 2020/06/04 | v1.1    | Solve NGINX proxy problem                     |
 
 <br/>
 
