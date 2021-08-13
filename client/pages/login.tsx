@@ -62,4 +62,4 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   await (context.store as IStore).sagaTask.toPromise();
 });
 
-export default memo(BlogLoginPage);
+export default BlogLoginPage;

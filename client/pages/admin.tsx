@@ -290,4 +290,4 @@ const Admin = memo(() => {
   );
 });
 
-export default memo(Admin);
+export default Admin;

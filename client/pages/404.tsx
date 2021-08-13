@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/dist/client/router";
 import { css } from "@emotion/react";
+import wrapper from "../@store/configureStore";
 
 const NoMatchWrapper = css`
   width: 100%;
@@ -35,5 +36,11 @@ function NoMatch() {
     </div>
   );
 }
+
+export const getStaticProps = wrapper.getStaticProps(() => async () => {
+  return {
+    props: {},
+  };
+});
 
 export default NoMatch;
