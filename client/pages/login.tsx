@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { ON_SIGN_UP_PAGE } from "../@reducers/blog";
 import { RootState } from "../@reducers";
 import Head from "next/head";
-import BlogSignUpSection from "../components/Blog/Login/BlogSingUpSection";
-import BlogLoginSection from "../components/Blog/Login/BlogLoginSection";
+import BlogSignUpSection from "../components/Login/BlogSingUpSection";
+import BlogLoginSection from "../components/Login/BlogLoginSection";
 import wrapper from "../@store/configureStore";
 import axios from "axios";
 import { LOAD_INFO_REQUEST } from "../@reducers/user";
 import { IStore } from "../types";
 import { END } from "@redux-saga/core";
 
-const BlogLoginPage = memo(() => {
+const BlogLoginPage = () => {
   const dispatch = useDispatch();
   const { onSignUpPage } = useSelector((state: RootState) => state.blog);
 
@@ -47,7 +47,7 @@ const BlogLoginPage = memo(() => {
       </div>
     </>
   );
-});
+};
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
   const cookie = context.req ? context.req.headers.cookie : "";

@@ -7,15 +7,15 @@ import { RootState } from "../../@reducers";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import wrapper from "../../@store/configureStore";
-import axios from "axios";
 import { IStore } from "../../types";
 import { END } from "@redux-saga/core";
 import { useRouter } from "next/router";
 import { LOAD_INFO_REQUEST } from "../../@reducers/user";
+import axios from "axios";
 
-const UserProfile = dynamic(() => import("../../components/Blog/Profile/UserProfile"));
-const ArticleRow = dynamic(() => import("../../components/Blog/Articles/ArticleRow"));
-const ArticleColumn = dynamic(() => import("../../components/Blog/Articles/ArticleColumn"));
+const UserProfile = dynamic(() => import("../../components/Profile/UserProfile"));
+const ArticleRow = dynamic(() => import("../../components/Articles/ArticleRow"));
+const ArticleColumn = dynamic(() => import("../../components/Articles/ArticleColumn"));
 
 const BlogCategoryPage = memo(() => {
   const router = useRouter();

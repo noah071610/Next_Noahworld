@@ -59,7 +59,7 @@ app.use(express_session_1.default({
     proxy: prod,
     cookie: {
         httpOnly: true,
-        secure: true,
+        secure: false,
         domain: prod ? ".noahworld.site" : undefined,
     },
 }));

@@ -2,10 +2,6 @@ import produce from "immer";
 import { BlogState } from "./@reducerTypes";
 
 const initialState = {
-  theme: "light",
-  header: "blog",
-  prePortfolio: [],
-  postPortfolio: [],
   posts: [],
   onAbout: false,
   onSignUpPage: false,
@@ -31,11 +27,6 @@ const initialState = {
 };
 
 export const MODE_CHANGE = "MODE_CHANGE" as const;
-export const LOAD_PORTFOLIOS = "LOAD_PORTFOLIOS" as const;
-export const LOAD_PORTFOLIO = "LOAD_PORTFOLIO" as const;
-export const LOAD_PREPORTFOLIO = "LOAD_PREPORTFOLIO" as const;
-export const LOAD_POSTPORTFOLIO = "LOAD_PSTPORTFOLIO" as const;
-export const CHAGE_HEADER = "CHAGE_HEADER" as const;
 export const SWITCH_ABOUT = "SWITCH_ABOUT" as const;
 export const ON_ABOUT = "ON_ABOUT" as const;
 export const OFF_ABOUT = "OFF_ABOUT" as const;
@@ -65,12 +56,6 @@ export const ADD_QUIZ_CLEAR = "ADD_QUIZ_CLEAR" as const;
 const reducer = (state: BlogState = initialState, action: any) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case MODE_CHANGE:
-        draft.theme = action.data;
-        break;
-      case CHAGE_HEADER:
-        draft.header = action.header;
-        break;
       case SWITCH_ABOUT:
         draft.onAbout = !draft.onAbout;
         break;

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=production pm2 start ./dist/index.js",
-    "build": "tsc && nodemon ./dist/indext.js"
+    "build": "tsc && nodemon ./dist/index.js",
+    "kill": "cross-env pm2 kill"
   },
   "keywords": [],
   "author": "",

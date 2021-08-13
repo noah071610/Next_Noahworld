@@ -65,7 +65,7 @@ app.use(
     proxy: prod,
     cookie: {
       httpOnly: true,
-      secure: true,
+      secure: false, //Have to change
       domain: prod ? ".noahworld.site" : undefined,
     },
   })

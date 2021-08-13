@@ -12,7 +12,7 @@ import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
 import { SEARCH_KEYWORD_REQUEST } from "../../@reducers/blog";
 import { marginCSS, noSearchPostCSS } from "../../styles/emotion";
-import SearchedPosts from "../../components/Blog/Articles/SearchedPosts";
+import SearchedPosts from "../../components/Articles/SearchedPosts";
 
 const BlogSearchPage = memo(() => {
   const { searchedKeyword, searchPosts } = useSelector((state: RootState) => state.blog);

@@ -2,7 +2,6 @@ import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { Divider } from "antd";
 import Link from "next/link";
-import { CHAGE_HEADER } from "../@reducers/blog";
 import { LOAD_POSTS_REQUEST } from "../@reducers/post";
 import { LOAD_INFO_REQUEST } from "../@reducers/user";
 import CountUp from "react-countup";
@@ -13,10 +12,10 @@ import { END } from "@redux-saga/core";
 import { IStore } from "../types";
 import dynamic from "next/dynamic";
 
-const MainArticle = dynamic(() => import("../components/Blog/Articles/MainArticle"));
-const MostArticle = dynamic(() => import("../components/Blog/Articles/MostArticle"));
-const UserProfile = dynamic(() => import("../components/Blog/Profile/UserProfile"));
-const ClassCard = dynamic(() => import("../components/Blog/Class/ClassCard"));
+const MainArticle = dynamic(() => import("../components/Articles/MainArticle"));
+const MostArticle = dynamic(() => import("../components/Articles/MostArticle"));
+const UserProfile = dynamic(() => import("../components/Profile/UserProfile"));
+const ClassCard = dynamic(() => import("../components/Class/ClassCard"));
 
 const BlogMainPage = memo(() => {
   const { user } = useSelector((state: RootState) => state.user);
@@ -131,12 +130,8 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
   context.store.dispatch({
     type: LOAD_INFO_REQUEST,
   });
-  context.store.dispatch({
-    type: CHAGE_HEADER,
-    header: "blog",
-  });
   context.store.dispatch(END);
   await (context.store as IStore).sagaTask.toPromise();
 });
 
-export default memo(BlogMainPage);
+export default BlogMainPage;

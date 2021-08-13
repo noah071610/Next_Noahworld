@@ -540,16 +540,16 @@ router.get("/morepost/:category", async (req, res, next) => {
     try {
         const category = req.params.category;
         let where = {
-            //Last ID 보다 낮은 즉, 이전게시물들을 찾는다.
+            //Last ID 보다 낮은 즉, 이전게시물들을 찾습니다.
             [sequelize_1.Op.and]: [{ id: { [sequelize_1.Op.lt]: req.query.lastId } }, { category }],
         };
         const morePosts = await models_1.Post.findAll({
-            //6개씩 불러오고 게시날짜를 내림차로 정렬
+            //6개씩 불러오고 게시날짜를 내림차로 정렬합니다.
             where,
             limit: 6,
             order: [["createdAt", "DESC"]],
             include: [
-                //해시태그, 좋아요한 유저를 받아온다.
+                //해시태그, 좋아요한 유저를 받아옵니다.
                 {
                     model: models_1.Hashtag,
                     attributes: ["name"],

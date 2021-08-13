@@ -1,12 +1,3 @@
-export interface portfolioInter {
-  id: number;
-  name: string;
-  date: string;
-  tags: string[];
-  src: string;
-  git?: string;
-}
-
 export interface SearchPostInter {
   id: number;
   hit: number;
@@ -140,10 +131,6 @@ export interface UserInter {
 }
 
 export interface BlogState {
-  theme: string;
-  header: string;
-  prePortfolio: string[];
-  postPortfolio: string[];
   posts: string[];
   onAbout: boolean;
   onSignUpPage: boolean;

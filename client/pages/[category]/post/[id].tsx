@@ -22,9 +22,9 @@ import { css } from "@emotion/react";
 import dynamic from "next/dynamic";
 dayjs.locale("kor");
 
-const CommentForm = dynamic(() => import("../../../components/Blog/Comments/CommentForm"));
-const ArticlePost = dynamic(() => import("../../../components/Blog/Articles/ArticlePost"));
-const RemoteControl = dynamic(() => import("../../../components/Blog/Comments/RemoteControl"));
+const CommentForm = dynamic(() => import("../../../components/Comments/CommentForm"));
+const ArticlePost = dynamic(() => import("../../../components/Articles/ArticlePost"));
+const RemoteControl = dynamic(() => import("../../../components/Comments/RemoteControl"));
 
 const Heart = styled.a`
   display: inline-block;

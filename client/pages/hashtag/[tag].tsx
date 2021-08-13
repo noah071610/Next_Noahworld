@@ -11,7 +11,7 @@ import { LOAD_INFO_REQUEST } from "../../@reducers/user";
 import { IStore } from "../../types";
 import { END } from "@redux-saga/core";
 import { marginCSS, noSearchPostCSS } from "../../styles/emotion";
-import SearchedPosts from "../../components/Blog/Articles/SearchedPosts";
+import SearchedPosts from "../../components/Articles/SearchedPosts";
 
 function BlogHashtagPage() {
   const dispatch = useDispatch();

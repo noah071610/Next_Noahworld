@@ -22,16 +22,6 @@ export interface SubCommentProps {
   CommentId: number;
 }
 
-export interface Portfolio_SkillBox {
-  name: string;
-  src: string;
-  level?: boolean;
-  desc?: string;
-  popup?: boolean;
-  licenseKor?: string;
-  content?: React.ReactNode;
-}
-
 export interface NavInter {
   navContents: Array<NavProps>;
 }

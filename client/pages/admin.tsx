@@ -13,15 +13,15 @@ import { POST_EDIT_OFF, POST_EDIT_ON, ADD_QUIZ_REQUEST } from "../@reducers/blog
 import { RootState } from "../@reducers";
 import { HashtagsInter } from "../@reducers/@reducerTypes";
 import useInput from "../util/useInput";
-import UserProfile from "../components/Blog/Profile/UserProfile";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import AdminModal from "../components/Blog/Admin/AdminModal";
-import EditorMenu from "../components/Blog/Admin/EditorMenu";
+import AdminModal from "../components/Admin/AdminModal";
+import EditorMenu from "../components/Admin/EditorMenu";
 import styled from "@emotion/styled";
 import { Button, Input, message, Radio } from "antd";
+import UserProfile from "../components/Profile/UserProfile";
 
-const PostEditor = dynamic(() => import("../components/Blog/Admin/Editor"), { ssr: false });
+const PostEditor = dynamic(() => import("../components/Admin/Editor"), { ssr: false });
 
 const QuizForm = styled.div`
   display: flex;
@@ -29,6 +29,8 @@ const QuizForm = styled.div`
     width: 100%;
     h4 {
       margin-top: 1rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
     }
     button {
       width: 50%;
@@ -40,7 +42,11 @@ const QuizForm = styled.div`
 const PostForm = styled(Form)`
   margin: 3rem 0;
   .form_title {
-    marginbottom: 1rem;
+    margin-bottom: 1rem;
+  }
+  h4 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
   }
   .editor_title {
     display: flex;

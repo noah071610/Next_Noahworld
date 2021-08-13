@@ -3,9 +3,9 @@ import { Divider, Popover, message } from "antd";
 import React, { FC, memo, useCallback, useState } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
-import InfoModal from "./Blog/Profile/InfoModal";
 import { useSelector } from "react-redux";
 import { RootState } from "../@reducers";
+import InfoModal from "./Profile/InfoModal";
 
 const FooterDivider = styled(Divider)`
   background-color: white;
@@ -111,9 +111,9 @@ const Footer: FC = memo(() => {
         <div>ⓒ 2021, Jang Hyun Soo. All Rights Resrved.</div>
         <ul className="blog_footer_list">
           <li onClick={onClickList}>
-            <Link href={"/portfolio"}>
-              <a>Portfolio</a>
-            </Link>
+            <a href="http://JShyunsoo.com" target="_blank" rel="noreferrer">
+              Portfolio
+            </a>
           </li>
           <FooterDivider type="vertical" />
           <Popover content={quickview_content}>

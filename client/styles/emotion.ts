@@ -26,28 +26,6 @@ export const noSearchPostCSS = css`
   }
 `;
 
-export const SM_Header_Input = (onSearch: Boolean) => css`
-  ${onSearch
-    ? "transform: translateY(0); transition: all 0.3s; margin-bottom: 1rem"
-    : "transform: translateY(-200%); transition: all 0.3s; position: absolute; left: 0 "}
-`;
-
-export const SM_Header_Menu = (onMenu: Boolean) => css`
-  ${onMenu
-    ? "background-color: white; border: 1px solid rgba(0, 0, 0, 0.1); border-bottom: none; overflow: inherit;"
-    : "border-bottom: 1px solid rgba(0, 0, 0, 0.1); border-top: 1px solid rgba(0, 0, 0, 0.1); overflow: hidden;"}
-`;
-
-export const SM_Header_SeachForm = (onSlide: Boolean) => css`
-  ${onSlide ? "display: block; overflow: hidden" : "display:none"}
-`;
-
-export const SM_Header_Title = (onTitle: Boolean) => css`
-  ${onTitle
-    ? "transform: translateY(-100%); transition: all 0.5s; width: 70%;"
-    : "transform: translateY(0); transition: all 0.5s;"}
-`;
-
 export const TitleProfile = css`
   white-space: nowrap;
   display: inline-block;
