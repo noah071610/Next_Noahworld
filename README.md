@@ -1,6 +1,6 @@
 <br/>
 
-<div align=center><a href="https://noahworld.site"><img src="https://user-images.githubusercontent.com/74864925/120079497-12334a00-c0ef-11eb-9b73-28eaab517f1c.png"/></a></div>
+<div align=center><a href="https://noahworld.site"><img src="https://user-images.githubusercontent.com/74864925/129386391-a19ce0af-6610-41bc-b91e-9e75a18746fd.png"/></a></div>
 
 # <div align=center>Noah world Blog</div>
 
@@ -62,10 +62,6 @@
 ## About Noah World.
 
 #### 무리하지않는 깔끔한 디자인을 목표로 개설한 개인 블로그.
-
-<br/>
-
-![jeshoots-com-pUAM5hPaCRI-unsplash](https://user-images.githubusercontent.com/74864925/120084019-e96b7e80-c107-11eb-8e42-d2e4acbc90d2.png)
 
 <br/>
 
@@ -650,12 +646,6 @@ router.get("/morepost/:category", async (req: Request, res: Response, next: Next
 
 <br/>
 
-#### 📍 &nbsp; 포트폴리오 페이지 구현.
-
-![8](https://user-images.githubusercontent.com/74864925/120672088-f3f19380-c4cc-11eb-9fcd-924dcb1fe86b.gif)
-
-<br/>
-
 #### 📍 &nbsp; 그외...
 
 - Redux에 Redux Saga를 추가해 비동기를 구현하고 immer를 적용해 불변성 준수의 불편함을 해소.
@@ -677,7 +667,7 @@ SPA의 SEO 이슈가 블로그 특성상 치명적이라고 생각되어 SSR의 
 
 > Typescript 쓸만한가요?
 
-처음에는 구지써야 되나 싶었는데 정말 잘못된 생각이였습니다. 유지보수와 코드에러를 줄이고 신뢰성을 높이는 아주 좋은 슈퍼셋이라고 생각합니다.
+처음에는 구지써야 되나 싶었는데 정말 잘못된 생각이였습니다. 유지보수성과 코드에러를 줄이고 신뢰성을 높이는 아주 좋은 슈퍼셋이라고 생각합니다. 하지만 any와 unknown을 남발하다면 타입스크립트의 의미가 많이 퇴색된다고 생각되어 이것을 염두하고 타이핑했습니다.
 
 <br/>
 
@@ -689,8 +679,7 @@ SPA의 SEO 이슈가 블로그 특성상 치명적이라고 생각되어 SSR의 
 
 > Styled-components VS others
 
-저는 개인적으로 Styled-components보다 Emotion이 좋던데 사람마다 다른것같습니다. SCSS는 클래스명때문에 많이 힘들었어서 저는 Styled-components 가 좋습니다.
-그래서 차기작인 마이서울가이드는 Emotion을 적극적으로 도입했습니다.
+저는 개인적으로 클래스명 작명이 굉장히 힘들었기 때문에 CSS-in-JS를 선호합니다 그리고 Styled-components보다 Emotion 를 더 선호합니다. 그래서 차기작은 Emotion과 TailwindCSS등을 적극적으로 도입했습니다.
 
 <br/>
 
@@ -698,13 +687,15 @@ SPA의 SEO 이슈가 블로그 특성상 치명적이라고 생각되어 SSR의 
 
 <br/>
 
-1. 계획과는 다른 프로젝트가 되었고 차질이 많았습니다. 초반에 체계적인 계획이 능률을 높인다는것을 절실히 깨달았습니다.
+1. 프로젝트가 정적 포트폴리오 사이트 => 블로그 사이트 => React App => Next App 순으로 급변하며 많은 시간적인 손해를 입었습니다. 초반에 체계적인 계획이 능률을 높인다는 것을 절실히 깨달았고 차기 프로젝트 `Fall IN Asia` 에선 요구분석과 시장조사, 와이어 프레임 작성 등 체계적으로 프로젝트를 기획했습니다.
 
-2. 스타일시트를 계획적으로 짜지 못했습니다. 또한 변수명에 신경을 잘 써야됨을 느꼈습니다. 협업시 착실히 코딩컨벤션을 따르기로 다짐했습니다.
+2. SCSS와 CSS-in-JS는 중구난방으로 퍼져있고 글로벌스타일을 2개나 사용했습니다. 현재 유지보수중이며 차기 프로젝트 'Fall IN Asia' 에선 SCSS를 제거하고 Emotion에 TailWindCSS를 넣어 CSS-in-JS만 사용하고, 분리하고, 정리하여 체계화 했습니다.
 
-3. HTTP 지식과 웹보안쪽이 많이 부족하다고 느꼈고 CORS가 정말 힘들었습니다. 개인적인 공부 및 강의로 보충했습니다.
+3. FormData로 Image를 서버에 저장하는 과정에서 여러 가지 시행착오가 많았습니다. base64의 성능저하 이슈, blob URL 바인딩법, multer 라이브러리의 작동방식 등을 숙지했습니다.
 
-4. **글으로 적기엔 부족할 만큼 넘었야 할 산이 많았던 무리한 프로젝트였지만 그렇기에 공부가 정말 잘된 프로젝트였다고 생각합니다.**
+4. WS의 Route53 DNS 설정에서 ISP가 도메인을 재등록하는데 며칠이 걸리는데도 불구, 이 사실을 전혀 몰라 (단순 연결안됨으로 표시되었음) 내부에서 문제를 찾느냐 이틀을 지새운 적이 있습니다. TCP/IP 4계층, 라우터 연결방식 , TCP와 UDP의 차이, HTTP 등을 공부하며 웹을 이해했습니다.
+
+5. HTTP 지식과 웹보안쪽이 많이 부족하다고 느꼈고 CORS가 정말 힘들었습니다. 차기 프로젝트부터는 HTTP를 공부해 네트워크탭의 Req & Res 의 HTTP header를 읽으며 보다쉽게 오류를 해결했고 SQL-injection XSS등의 보안법을 얕게나마 숙지하고 사이트에 적용했습니다.
 
 <br/><br/>
 
@@ -716,6 +707,7 @@ SPA의 SEO 이슈가 블로그 특성상 치명적이라고 생각되어 SSR의 
 | ---------- | ------- | --------------------------------------------- |
 | 2020/05/29 | v1.0    | Final Update for first deployment through AWS |
 | 2020/06/04 | v1.1    | Solve NGINX proxy problem                     |
+| 2020/08/10 | v1.1    | Remove Portfolio page and optimization        |
 
 <br/>
 
