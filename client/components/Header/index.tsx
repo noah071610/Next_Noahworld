@@ -8,9 +8,7 @@ import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { message } from "antd";
 import { LOG_OUT_REQUEST } from "../../@reducers/user";
 import { RootState } from "../../@reducers";
-import { navContents } from "../../config";
 import { useRouter } from "next/dist/client/router";
-import BlogHeader from "./HeaderNav";
 import HeaderNav from "./HeaderNav";
 import SmallHeaderNav from "./SmallHeaderNav";
 const LogoMain = styled.img`
@@ -24,7 +22,6 @@ const Header = memo(() => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [FixedNavbar, setFixedNavbar] = useState(false);
-  const { header } = useSelector((state: RootState) => state.blog);
   const { user, logOutDone, logOutError } = useSelector((state: RootState) => state.user);
 
   const onClickLogOut = useCallback(() => {

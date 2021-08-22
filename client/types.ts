@@ -22,10 +22,6 @@ export interface SubCommentProps {
   CommentId: number;
 }
 
-export interface NavInter {
-  navContents: Array<NavProps>;
-}
-
 export interface NavProps {
   icon: IconDefinition;
   explain: string;
