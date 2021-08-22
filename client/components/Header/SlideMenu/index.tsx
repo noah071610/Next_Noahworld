@@ -104,7 +104,7 @@ const SlideMenu: FC<SlideMenuProps> = memo(({ onClickSearchForm, user }) => {
           </a>
         </li>
         <li onClick={onClickMenu}>
-          <a href="http://JShyunsoo.com" target="_blank" rel="noreferrer">
+          <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
             - Portfolio
           </a>
         </li>

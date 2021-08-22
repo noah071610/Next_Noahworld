@@ -32,8 +32,8 @@ router.post(
     try {
       res.json({
         success: true,
-        url: res.req.file.path,
-        fileName: (res.req.file as Express.MulterS3.File).location.replace(
+        url: res?.req?.file,
+        fileName: (res?.req?.file as Express.MulterS3.File).location.replace(
           /\/original\//,
           "/thumb/"
         ),

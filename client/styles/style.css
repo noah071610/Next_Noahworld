@@ -309,98 +309,8 @@ a {
   color: #1187cf;
 }
 
-.portfolio_search {
-  font-size: 1.7rem;
-  -webkit-transition: all 0.3;
-  transition: all 0.3;
-  color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  right: 0.5rem;
-  bottom: 0.5rem;
-}
-
-@media only screen and (max-width: 420px) {
-  .portfolio_search {
-    display: none;
-  }
-}
-
 .mobile_port_title:hover {
   text-decoration: underline;
-}
-
-.portfolio_summary {
-  text-align: start;
-  font-size: 0.9rem;
-  padding: 0 0 7rem 0;
-  line-height: 2.5;
-}
-
-.portfolio_summary h1 {
-  font-size: 1.7rem;
-}
-
-.portfolio_summary h4 {
-  font-weight: bold;
-}
-
-.portfolio_summary .table {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.portfolio_summary .table div:first-of-type {
-  margin-right: 2rem;
-}
-
-@media only screen and (max-width: 420px) {
-  .portfolio_summary {
-    font-size: 0.7rem;
-  }
-}
-
-@media only screen and (max-width: 765px) {
-  .portfolio_summary .table {
-    display: block;
-  }
-  .portfolio_summary .table div:first-of-type {
-    margin-right: 0;
-  }
-}
-
-.portfolio_intro {
-  display: block;
-  text-align: center;
-  line-height: 2;
-  font-size: 0.8rem;
-}
-
-@media only screen and (max-width: 420px) {
-  .portfolio_intro {
-    font-size: 0.64rem;
-  }
-}
-
-.portfolio_poster_name {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.portfolio_poster_name:hover h2 {
-  -webkit-animation: bounce 1s;
-  animation: bounce 1s;
-}
-
-.profile_table {
-  display: none;
 }
 
 .br_category {
@@ -1451,11 +1361,6 @@ h1 {
   font-size: 3rem;
 }
 
-.portfolio_nav_btn {
-  font-size: 0.8rem;
-  margin: 0 0.5rem;
-}
-
 .small_poster_cha {
   height: 130px;
   width: 50%;
@@ -1985,9 +1890,6 @@ h1 {
   }
   .slide_menu li {
     font-size: 0.8rem;
-  }
-  .portfolio_nav_btn {
-    font-size: 0.6rem;
   }
   .post_main_title {
     margin-top: 1rem;

@@ -1,9 +1,9 @@
 import { Divider } from "antd";
-import { useRouter } from "next/dist/client/router";
-import React, { FC, memo, useCallback } from "react";
+import React, { FC, memo } from "react";
 import styled from "@emotion/styled";
 import { SearchPostInter } from "../../@reducers/@reducerTypes";
 import { BLUE_COLOR } from "../../config";
+import Link from "next/link";
 
 const SearchList = styled.li`
   transition: all 0.3s;
@@ -21,19 +21,20 @@ interface SearchedPostProps {
 }
 
 const SearchedPosts: FC<SearchedPostProps> = memo(({ posts }) => {
-  const router = useRouter();
-  const onClickList = useCallback(() => {
-    () => router.push(`/${posts.category}/post/${posts.id}`);
-  }, []);
   return (
-    <SearchList onClick={onClickList}>
-      <span style={{ fontWeight: "bold" }}>Post Number</span> :{" "}
-      <span style={{ color: BLUE_COLOR }}>{posts.id}</span> <Divider type="vertical" />
-      <span style={{ fontWeight: "bold" }}>Title</span> : {posts.title} <Divider type="vertical" />
-      <span style={{ fontWeight: "bold" }}>Category</span> : {posts.category}{" "}
-      <Divider type="vertical" />
-      <span style={{ fontWeight: "bold" }}>Contents</span> :
-      {posts.content.replace(/(<([^>]+)>)/gi, "").slice(0, 50)}
+    <SearchList>
+      <Link href={`/${posts.category}/post/${posts.id}`}>
+        <a>
+          <span style={{ fontWeight: "bold" }}>Post Number</span> :{" "}
+          <span style={{ color: BLUE_COLOR }}>{posts.id}</span> <Divider type="vertical" />
+          <span style={{ fontWeight: "bold" }}>Title</span> : {posts.title}{" "}
+          <Divider type="vertical" />
+          <span style={{ fontWeight: "bold" }}>Category</span> : {posts.category}{" "}
+          <Divider type="vertical" />
+          <span style={{ fontWeight: "bold" }}>Contents</span> :
+          {posts.content.replace(/(<([^>]+)>)/gi, "").slice(0, 50)}
+        </a>
+      </Link>
     </SearchList>
   );
 });

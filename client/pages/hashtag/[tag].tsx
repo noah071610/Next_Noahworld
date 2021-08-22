@@ -58,22 +58,25 @@ function BlogHashtagPage() {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-  const cookie = context.req ? context.req.headers.cookie : "";
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, params }) => {
+  const cookie = req ? req.headers.cookie : "";
   axios.defaults.headers.Cookie = "";
-  let tag = context.query.tag;
-  if (context.req && cookie) {
+  let tag = params.tag;
+  if (req && cookie) {
     axios.defaults.headers.Cookie = cookie;
   }
-  context.store.dispatch({
+  store.dispatch({
     type: SEARCH_HASH_TAG_REQUEST,
     data: { tag },
   });
-  context.store.dispatch({
+  store.dispatch({
     type: LOAD_INFO_REQUEST,
   });
-  context.store.dispatch(END);
-  await (context.store as IStore).sagaTask.toPromise();
+  store.dispatch(END);
+  await (store as IStore).sagaTask.toPromise();
+  return {
+    props: {},
+  };
 });
 
 export default BlogHashtagPage;

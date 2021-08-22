@@ -53,22 +53,25 @@ const BlogSearchPage = memo(() => {
   );
 });
 
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-  const cookie = context.req ? context.req.headers.cookie : "";
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, params }) => {
+  const cookie = req ? req.headers.cookie : "";
   axios.defaults.headers.Cookie = "";
-  let keyword = context.query.keyword;
-  if (context.req && cookie) {
+  let keyword = params.keyword;
+  if (req && cookie) {
     axios.defaults.headers.Cookie = cookie;
   }
-  context.store.dispatch({
+  store.dispatch({
     type: LOAD_INFO_REQUEST,
   });
-  context.store.dispatch({
+  store.dispatch({
     type: SEARCH_KEYWORD_REQUEST,
     data: { keyword },
   });
-  context.store.dispatch(END);
-  await (context.store as IStore).sagaTask.toPromise();
+  store.dispatch(END);
+  await (store as IStore).sagaTask.toPromise();
+  return {
+    props: {},
+  };
 });
 
 export default memo(BlogSearchPage);

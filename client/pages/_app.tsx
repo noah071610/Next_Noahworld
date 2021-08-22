@@ -6,8 +6,6 @@ import "animate.css/animate.css";
 import "antd/dist/antd.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "highlight.js/styles/github.css";
-import "codemirror/lib/codemirror.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "../styles/style.scss";
 import wrapper from "../@store/configureStore";

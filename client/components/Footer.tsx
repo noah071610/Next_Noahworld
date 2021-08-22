@@ -111,7 +111,7 @@ const Footer: FC = memo(() => {
         <div>ⓒ 2021, Jang Hyun Soo. All Rights Resrved.</div>
         <ul className="blog_footer_list">
           <li onClick={onClickList}>
-            <a href="http://JShyunsoo.com" target="_blank" rel="noreferrer">
+            <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
               Portfolio
             </a>
           </li>

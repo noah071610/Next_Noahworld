@@ -118,20 +118,23 @@ const BlogMainPage = memo(() => {
   );
 });
 
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-  const cookie = context.req ? context.req.headers.cookie : "";
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
+  const cookie = req ? req.headers.cookie : "";
   axios.defaults.headers.Cookie = "";
-  if (context.req && cookie) {
+  if (req && cookie) {
     axios.defaults.headers.Cookie = cookie;
   }
-  context.store.dispatch({
+  store.dispatch({
     type: LOAD_POSTS_REQUEST,
   });
-  context.store.dispatch({
+  store.dispatch({
     type: LOAD_INFO_REQUEST,
   });
-  context.store.dispatch(END);
-  await (context.store as IStore).sagaTask.toPromise();
+  store.dispatch(END);
+  await (store as IStore).sagaTask.toPromise();
+  return {
+    props: {},
+  };
 });
 
 export default BlogMainPage;

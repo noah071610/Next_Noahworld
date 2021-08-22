@@ -65,7 +65,7 @@ const HeaderNav = memo(() => {
           </Link>
         </li>
         <li className="blog_header_li">
-          <a href="http://JShyunsoo.com" target="_blank" rel="noreferrer">
+          <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
             Portfolio ⭐
           </a>
         </li>
