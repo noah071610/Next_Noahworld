@@ -1382,6 +1382,14 @@ h1 {
   font-size: 1rem;
 }
 
+.tui-editor-contents pre {
+  margin: 2px 0 8px;
+  padding: 18px;
+  font-size: 0.8rem;
+  line-height: 2;
+  background-color: #f4f7f8;
+}
+
 .comment_main_content {
   width: 100%;
   display: -webkit-box;

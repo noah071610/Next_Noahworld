@@ -51,7 +51,6 @@
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@next/bundle-analyzer": "^11.1.0",
     "@types/aos": "^3.0.4",
-    "@types/highlight.js": "^10.1.0",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.1",
     "@types/react": "^17.0.19",

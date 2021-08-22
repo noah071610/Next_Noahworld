@@ -143,8 +143,6 @@ const Admin = memo(() => {
       PostId,
       tags,
     };
-    console.log(data);
-
     if (content && !postEditOn && !quizForm) {
       dispatch({
         type: ADD_POST_REQUEST,
