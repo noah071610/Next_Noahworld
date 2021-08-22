@@ -21,7 +21,14 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
   const previewCanvasRef = useRef(null);
   const [completedCrop, setCompletedCrop] = useState<any>(null);
   const [blob, setBlob] = useState<Blob | null>(null);
-  const [crop, setCrop] = useState<Crop>({ unit: "px", width: 200, aspect: 1 / 1 });
+  const [crop, setCrop] = useState<Crop>({
+    unit: "px",
+    width: 200,
+    height: 200,
+    x: 0,
+    y: 0,
+    aspect: 1 / 1,
+  });
 
   const handleOk = useCallback(() => {
     //5. blob 객체와 user id를 서버에 요청하기위해 form을 만듭니다.
