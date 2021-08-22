@@ -62,10 +62,10 @@ app.use(
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE!,
-    proxy: prod,
+    proxy: prod ? true : false,
     cookie: {
       httpOnly: true,
-      secure: false, //Have to change
+      secure: prod ? true : false,
       domain: prod ? ".noahworld.site" : undefined,
     },
   })

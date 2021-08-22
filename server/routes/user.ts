@@ -20,7 +20,7 @@ const upload = multer({
   storage: multerS3({
     // AWS.S3에 이미지를 저장하는 과정입니다.
     s3: new AWS.S3(),
-    bucket: "noahworld",
+    bucket: "noah-world",
     key(req: Request, file: Express.Multer.File, cb) {
       cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
     },
