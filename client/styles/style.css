@@ -309,8 +309,8 @@ a {
   color: #1187cf;
 }
 
-.mobile_port_title:hover {
-  text-decoration: underline;
+.profile_table {
+  display: none;
 }
 
 .br_category {
