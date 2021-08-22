@@ -11,7 +11,7 @@ function PostEditor({ post, editorRef }): JSX.Element {
     <Editor
       placeholder="Welcome Noah!"
       height="600px"
-      initialValue={postEditOn && postEditOn ? post?.content : null}
+      initialValue={postEditOn && postEditOn ? post?.content : ""}
       initialEditType="markdown"
       useCommandShortcut={true}
       usageStatistics={false}

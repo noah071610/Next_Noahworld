@@ -104,8 +104,8 @@ const Admin = memo(() => {
 
   const showEditorModal = useCallback(() => {
     setIsModalVisible(true);
-    setContent(editorRef.current.getInstance().getHtml());
-  }, []);
+    setContent(editorRef.current.getInstance().getHTML());
+  }, [editorRef]);
 
   const showQuizModal = useCallback(() => {
     setIsModalVisible(true);
@@ -143,6 +143,8 @@ const Admin = memo(() => {
       PostId,
       tags,
     };
+    console.log(data);
+
     if (content && !postEditOn && !quizForm) {
       dispatch({
         type: ADD_POST_REQUEST,
@@ -214,14 +216,14 @@ const Admin = memo(() => {
         type: POST_EDIT_OFF,
       });
     }
-  }, []);
+  }, [user, post]);
 
   useEffect(() => {
     if (uploadPostImageDone) {
       editorRef.current
         .getInstance()
-        .setHtml(
-          editorRef.current.getInstance().getHtml() +
+        .setHTML(
+          editorRef.current.getInstance().getHTML() +
             `<img src="${postImagePath}" alt="post_image" />`
         );
     }
@@ -231,7 +233,7 @@ const Admin = memo(() => {
     if (addPostDone || editPostDone) {
       message.success("Post added or Edited");
       router.push("/");
-      editorRef?.current?.getInstance().setHtml("");
+      editorRef?.current?.getInstance().setHTML("");
     }
   }, [addPostDone, editPostDone]);
   return (
