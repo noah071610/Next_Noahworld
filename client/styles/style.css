@@ -1370,24 +1370,61 @@ h1 {
   display: none;
 }
 
+.tui-editor-contents h1 {
+  font-size: 1.6rem;
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+
+.tui-editor-contents h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+
+.tui-editor-contents h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+
+.tui-editor-contents h4 {
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+
 .tui-editor-contents img {
   width: 65%;
 }
 
 .tui-editor-contents p {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin: 0;
 }
 
 .tui-editor-contents span {
   font-size: 1rem;
 }
 
+.tui-editor-contents [data-backticks] {
+  background-color: #1187cf;
+  color: white;
+  padding: 0.1rem 0.2rem;
+  border-radius: 3px;
+  margin-right: 0.2rem;
+}
+
 .tui-editor-contents pre {
-  margin: 2px 0 8px;
-  padding: 18px;
-  font-size: 0.8rem;
-  line-height: 2;
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
   background-color: #f4f7f8;
+}
+
+.tui-editor-contents pre span {
+  font-size: 0.85rem;
 }
 
 .comment_main_content {

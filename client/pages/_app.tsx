@@ -7,6 +7,8 @@ import "antd/dist/antd.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
+import "prismjs/themes/prism.css";
+import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
 import "../styles/style.scss";
 import wrapper from "../@store/configureStore";
 import { css, Global } from "@emotion/react";
