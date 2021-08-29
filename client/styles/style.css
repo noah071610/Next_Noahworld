@@ -1372,25 +1372,21 @@ h1 {
 
 .tui-editor-contents h1 {
   font-size: 1.6rem;
-  margin: 0;
-  margin-bottom: 1.5rem;
+  margin: 0 1.5rem;
 }
 
 .tui-editor-contents h2 {
   font-size: 1.4rem;
-  margin: 0;
-  margin-bottom: 1.5rem;
+  margin: 0 1.5rem;
 }
 
 .tui-editor-contents h3 {
   font-size: 1.2rem;
-  margin: 0;
-  margin-bottom: 1.5rem;
+  margin: 0 1.5rem;
 }
 
 .tui-editor-contents h4 {
-  margin: 0;
-  margin-bottom: 1.5rem;
+  margin: 0 1.5rem;
 }
 
 .tui-editor-contents img {
@@ -1450,15 +1446,15 @@ h1 {
 }
 
 .tui-editor-contents pre {
-  margin: 0;
-  padding-left: 1rem;
-  font-size: 0.85rem;
+  margin: 2px 0 8px;
+  padding: 1rem;
+  font-size: 0.83rem;
   line-height: 1.7;
   background-color: #f4f7f8;
 }
 
 .tui-editor-contents pre span {
-  font-size: 0.85rem;
+  font-size: 0.83rem;
 }
 
 .comment_main_content {
