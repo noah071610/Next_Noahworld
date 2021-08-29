@@ -1401,6 +1401,40 @@ h1 {
   font-size: 0.9rem;
   line-height: 1.8;
   margin: 0;
+  padding-bottom: 1rem;
+}
+
+.tui-editor-contents blockquote {
+  border-left: 5px solid #1187cf;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+
+.tui-editor-contents blockquote p {
+  padding: 0;
+}
+
+.tui-editor-contents ul {
+  list-style-type: disc;
+  list-style: inherit;
+  list-style-position: inside;
+}
+
+.tui-editor-contents ol {
+  list-style-type: decimal;
+  list-style: decimal;
+  list-style-position: inside;
+}
+
+.tui-editor-contents li {
+  display: list-item;
+  list-style: inherit;
+  list-style-position: inside;
+}
+
+.tui-editor-contents li p {
+  padding: 0;
+  display: initial;
 }
 
 .tui-editor-contents span {

@@ -1140,6 +1140,34 @@ h1 {
     font-size: 0.9rem;
     line-height: 1.8;
     margin: 0;
+    padding-bottom: 1rem;
+  }
+  blockquote {
+    border-left: 5px solid $BLUE_COLOR;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0 0.5rem 1rem;
+    p {
+      padding: 0;
+    }
+  }
+  ul {
+    list-style-type: disc;
+    list-style: inherit;
+    list-style-position: inside;
+  }
+  ol {
+    list-style-type: decimal;
+    list-style: decimal;
+    list-style-position: inside;
+  }
+  li {
+    display: list-item;
+    list-style: inherit;
+    list-style-position: inside;
+    p {
+      padding: 0;
+      display: initial;
+    }
   }
   span {
     font-size: 1rem;
