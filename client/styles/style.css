@@ -1372,21 +1372,21 @@ h1 {
 
 .tui-editor-contents h1 {
   font-size: 1.6rem;
-  margin: 0 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .tui-editor-contents h2 {
   font-size: 1.4rem;
-  margin: 0 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .tui-editor-contents h3 {
   font-size: 1.2rem;
-  margin: 0 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .tui-editor-contents h4 {
-  margin: 0 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .tui-editor-contents img {
