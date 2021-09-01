@@ -1,7 +1,8 @@
 import { Input } from "antd";
 import dayjs from "dayjs";
 import React, { FC, memo } from "react";
-import { CommentsInter } from "../../@reducers/@reducerTypes";
+import { CommentsInter } from "../../../@reducers/@reducerTypes";
+import { CommentContentWrapper } from "./styles";
 
 interface CommentContent {
   comment: CommentsInter;
@@ -17,8 +18,8 @@ const CommentContent: FC<CommentContent> = memo(
     };
 
     return (
-      <div className="comment_main_content">
-        <div>
+      <CommentContentWrapper>
+        <div className="icon-wrapper">
           <img
             src={
               comment.User?.icon
@@ -29,9 +30,9 @@ const CommentContent: FC<CommentContent> = memo(
             alt="profile"
           />
         </div>
-        <div>
-          <a>{comment.User.name}</a>
-          <span>{dayjs().to(dayjs(comment.createdAt), true)}&nbsp;ago</span>
+        <div className="comment-content">
+          <span>{comment.User.name}</span>
+          <span className="date">{dayjs().to(dayjs(comment.createdAt), true)}&nbsp;ago</span>
           {editForm ? (
             <Input.TextArea
               style={{ width: "100%" }}
@@ -40,12 +41,12 @@ const CommentContent: FC<CommentContent> = memo(
               onChange={onChangeEditText}
             />
           ) : (
-            <p style={{ width: "100%", margin: 0 }}>{comment.content}</p>
+            <p>{comment.content}</p>
           )}
         </div>
-      </div>
+      </CommentContentWrapper>
     );
   }
 );
 
-export default memo(CommentContent);
+export default CommentContent;

@@ -17,6 +17,7 @@ export interface ArticleInter {
 
 export interface CommentProps {
   comment: CommentsInter;
+  isSubComment?: boolean;
 }
 
 export interface SubCommentProps {

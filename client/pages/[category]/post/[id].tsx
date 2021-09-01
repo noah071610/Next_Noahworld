@@ -23,10 +23,11 @@ import dynamic from "next/dynamic";
 import Slider from "react-slick";
 import ArticleCardColumn from "../../../components/Articles/ArticleCardColumn";
 import ArticleCardRow from "../../../components/Articles/ArticleCardRow";
+import CommentForm from "../../../components/Comments/CommentForm";
+import Comment from "../../../components/Comments/Comment";
 dayjs.locale("kor");
 
-const CommentForm = dynamic(() => import("../../../components/Comments/CommentForm"));
-const RemoteControl = dynamic(() => import("../../../components/Comments/RemoteControl"));
+const PostRemoteControl = dynamic(() => import("../../../components/PostRemoteControl"));
 
 const Heart = styled.a`
   display: inline-block;
@@ -37,6 +38,16 @@ const Heart = styled.a`
     -webkit-animation: heartBeat 1s;
     animation: heartBeat 1s;
   }
+`;
+
+const NoComment = styled.div`
+  width: 100%;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const HeartLiked = styled.a`
@@ -236,8 +247,20 @@ const BlogPostPage = memo(() => {
               <span style={{ fontSize: "1rem" }}>{post?.PostLikers?.length}</span>
             </h4>
             <CommentForm />
+            {post?.Comments.length > 0 ? (
+              post.Comments.map((v, i) => <Comment key={i} comment={v} />)
+            ) : (
+              <NoComment>
+                <img
+                  style={{ width: "80px", opacity: "0.3" }}
+                  alt="noComment"
+                  src="https://icons.iconarchive.com/icons/iconsmind/outline/256/Inbox-Empty-icon.png"
+                />
+                <h3>No Comments...</h3>
+              </NoComment>
+            )}
           </div>
-          <RemoteControl Fullcontent={Fullcontent} />
+          <PostRemoteControl Fullcontent={Fullcontent} />
         </div>
       </main>
     </>

@@ -2,7 +2,7 @@ import React, { FC, memo } from "react";
 import { BLUE_COLOR } from "../../config";
 import styled from "@emotion/styled";
 import { DownCircleOutlined } from "@ant-design/icons";
-import SubComments from "./SubComments";
+import SubComment from "./SubComment";
 import { CommentsInter } from "../../@reducers/@reducerTypes";
 
 const MoreComments = styled.div`
@@ -28,7 +28,7 @@ const SubCommentPreview: FC<SubCommentPreview> = memo(
       <>
         {comment?.SubComments?.length < 3 ? (
           comment.SubComments?.map((subComment, i) => {
-            return <SubComments key={i} CommentId={comment.id} subComment={subComment} />;
+            return <SubComment key={i} CommentId={comment.id} subComment={subComment} />;
           })
         ) : (
           <>
@@ -42,7 +42,7 @@ const SubCommentPreview: FC<SubCommentPreview> = memo(
             </MoreComments>
             {moreSubComments &&
               comment?.SubComments?.map((subComment, i) => {
-                return <SubComments key={i} CommentId={comment.id} subComment={subComment} />;
+                return <SubComment key={i} CommentId={comment.id} subComment={subComment} />;
               })}
           </>
         )}

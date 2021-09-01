@@ -23,7 +23,7 @@ interface CommentMenu {
   editText: String;
   editForm: boolean;
   setEditForm: (e: boolean) => void;
-  setRemoveModal: (e: boolean) => void;
+  setDeletePopup: (e: boolean) => void;
 }
 
 const LikeComment = styled.a`
@@ -40,7 +40,7 @@ const CommentMenuList = styled.ul`
 `;
 
 const CommentMenu: FC<CommentMenu> = memo(
-  ({ user, CommentId, comment, editText, setEditForm, setRemoveModal, editForm, SubCommentId }) => {
+  ({ user, CommentId, comment, editText, setEditForm, setDeletePopup, editForm, SubCommentId }) => {
     const dispatch = useDispatch();
     const { post } = useSelector((state: RootState) => state.post);
 
@@ -109,7 +109,7 @@ const CommentMenu: FC<CommentMenu> = memo(
                 </li>
                 <li>
                   <a>
-                    <FontAwesomeIcon onClick={() => setRemoveModal(true)} icon={faTrashAlt} />
+                    <FontAwesomeIcon onClick={() => setDeletePopup(true)} icon={faTrashAlt} />
                   </a>
                 </li>
               </>
@@ -136,4 +136,4 @@ const CommentMenu: FC<CommentMenu> = memo(
   }
 );
 
-export default memo(CommentMenu);
+export default CommentMenu;

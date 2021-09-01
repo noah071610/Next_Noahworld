@@ -14,23 +14,18 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Scrollspy from "react-scrollspy";
-import { RootState } from "../../@reducers";
-import { POST_EDIT_ON } from "../../@reducers/blog";
-import { REMOVE_POST_REQUEST } from "../../@reducers/post";
+import { RootState } from "../@reducers";
+import { POST_EDIT_ON } from "../@reducers/blog";
+import { REMOVE_POST_REQUEST } from "../@reducers/post";
 import { useRouter } from "next/dist/client/router";
 import { css } from "@emotion/react";
+import tw from "twin.macro";
 
-const RemoteControlWrapper = (FixedRemote: boolean) => css`
-  width: 270px;
-  padding-left: 2rem;
-  flexd-direction: column;
-  height: 100%;
+const PostRemoteControlWrapper = (FixedRemote: boolean) => css`
+  ${tw`w-72 pl-8 top-20 h-full top-20`}
   position: ${FixedRemote ? "sticky" : "static"};
-  top: 5.375rem;
   h2 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    line-height: 1.5;
+    ${tw`mb-4 leading-5`}
   }
   ul:first-of-type {
     overflow: hidden;
@@ -38,9 +33,12 @@ const RemoteControlWrapper = (FixedRemote: boolean) => css`
       margin: 0;
     }
   }
+  @media (max-width: 830px) {
+    display: none;
+  }
 `;
 
-const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
+const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { post, prevPost, nextPost, removePostDone } = useSelector(
@@ -102,7 +100,7 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   }, []);
 
   return (
-    <div className="remocontrol" css={RemoteControlWrapper(FixedRemote)}>
+    <div className="remocontrol" css={PostRemoteControlWrapper(FixedRemote)}>
       <h2>{post?.title}</h2>
       <ul>
         <li>
@@ -195,4 +193,4 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   );
 };
 
-export default RemoteControl;
+export default PostRemoteControl;
