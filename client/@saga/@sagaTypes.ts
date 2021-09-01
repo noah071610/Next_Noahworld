@@ -26,8 +26,6 @@ import {
   ADD_COMMENT_REQUEST,
   ADD_POST_REQUEST,
   ADD_SUB_COMMENT_REQUEST,
-  EDIT_COMMENT_REQUEST,
-  EDIT_SUB_COMMENT_REQUEST,
   LIKE_COMMENT_REQUEST,
   REMOVE_COMMENT_REQUEST,
   REMOVE_SUB_COMMENT_REQUEST,
@@ -133,11 +131,6 @@ export interface EditCommentData {
   CommentId: number;
 }
 
-export interface EditCommentInter {
-  type: typeof EDIT_COMMENT_REQUEST;
-  data: EditCommentData;
-}
-
 export interface LikeCommentData {
   UserId: number;
   CommentId: number;
@@ -173,11 +166,6 @@ export interface SubCommentData {
 
 export interface RemoveSubCommentInter {
   type: typeof REMOVE_SUB_COMMENT_REQUEST;
-  data: SubCommentData;
-}
-
-export interface EditSubCommentInter {
-  type: typeof EDIT_SUB_COMMENT_REQUEST;
   data: SubCommentData;
 }
 

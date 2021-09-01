@@ -5,18 +5,13 @@ import {
   UNLIKE_COMMENT_REQUEST,
   ADD_SUB_COMMENT_REQUEST,
   REMOVE_SUB_COMMENT_REQUEST,
-  EDIT_SUB_COMMENT_REQUEST,
   REMOVE_COMMENT_REQUEST,
-  EDIT_COMMENT_REQUEST,
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_CLEAR,
   ADD_COMMENT_FAILURE,
   REMOVE_COMMENT_SUCCESS,
   REMOVE_COMMENT_FAILURE,
-  EDIT_COMMENT_SUCCESS,
-  EDIT_COMMENT_CLEAR,
-  EDIT_COMMENT_FAILURE,
   LIKE_COMMENT_SUCCESS,
   LIKE_COMMENT_FAILURE,
   UNLIKE_COMMENT_SUCCESS,
@@ -26,9 +21,6 @@ import {
   ADD_SUB_COMMENT_FAILURE,
   REMOVE_SUB_COMMENT_SUCCESS,
   REMOVE_SUB_COMMENT_FAILURE,
-  EDIT_SUB_COMMENT_SUCCESS,
-  EDIT_SUB_COMMENT_CLEAR,
-  EDIT_SUB_COMMENT_FAILURE,
 } from "../@reducers/post";
 import {
   AddCommentData,
@@ -36,8 +28,6 @@ import {
   AddSubCommentData,
   AddSubCommentInter,
   EditCommentData,
-  EditCommentInter,
-  EditSubCommentInter,
   LikeCommentData,
   LikeCommentInter,
   RemoveCommentInter,
@@ -90,28 +80,6 @@ function* removeComment(action: RemoveCommentInter) {
   }
 }
 
-function editCommentAPI(data: EditCommentData) {
-  return axios.post(`api/comment/edit/${data.CommentId}/`, data);
-}
-
-function* editComment(action: EditCommentInter) {
-  try {
-    const { data } = yield call(editCommentAPI, action.data);
-    yield put({
-      type: EDIT_COMMENT_SUCCESS,
-      data,
-    });
-    yield delay(3000);
-    yield put({
-      type: EDIT_COMMENT_CLEAR,
-    });
-  } catch (err) {
-    yield put({
-      type: EDIT_COMMENT_FAILURE,
-      error: err.response.data,
-    });
-  }
-}
 function likeCommentAPI(data: LikeCommentData) {
   return axios.patch(`/api/comment/like/${data.UserId}/${data.CommentId}`);
 }
@@ -196,38 +164,11 @@ function* removeSubComment(action: RemoveSubCommentInter) {
   }
 }
 
-function editSubCommentAPI(data: SubCommentData) {
-  return axios.post(`api/comment/sub/edit/${data.CommentId}/${data.SubCommentId}`, data);
-}
-
-function* editSubComment(action: EditSubCommentInter) {
-  try {
-    const { data } = yield call(editSubCommentAPI, action.data);
-    console.log(data);
-    yield put({
-      type: EDIT_SUB_COMMENT_SUCCESS,
-      data,
-    });
-    yield delay(3000);
-    yield put({
-      type: EDIT_SUB_COMMENT_CLEAR,
-    });
-  } catch (err) {
-    yield put({
-      type: EDIT_SUB_COMMENT_FAILURE,
-      error: err.response.data,
-    });
-  }
-}
-
 function* watchAddComment() {
   yield takeLatest(ADD_COMMENT_REQUEST, addComment);
 }
 function* watchRemoveComment() {
   yield takeLatest(REMOVE_COMMENT_REQUEST, removeComment);
-}
-function* watchEditComment() {
-  yield takeLatest(EDIT_COMMENT_REQUEST, editComment);
 }
 function* watchLikeComment() {
   yield takeLatest(LIKE_COMMENT_REQUEST, likeComment);
@@ -241,19 +182,14 @@ function* watchAddSubComment() {
 function* watchRemoveSubComment() {
   yield takeLatest(REMOVE_SUB_COMMENT_REQUEST, removeSubComment);
 }
-function* watchEditSubComment() {
-  yield takeLatest(EDIT_SUB_COMMENT_REQUEST, editSubComment);
-}
 
 export default function* commentSaga() {
   yield all([
     fork(watchAddComment),
     fork(watchRemoveComment),
-    fork(watchEditComment),
     fork(watchLikeComment),
     fork(watchUnlikeComment),
     fork(watchAddSubComment),
     fork(watchRemoveSubComment),
-    fork(watchEditSubComment),
   ]);
 }

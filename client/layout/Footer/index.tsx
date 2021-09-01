@@ -4,15 +4,16 @@ import React, { FC, memo, useCallback, useState } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
-import { RootState } from "../@reducers";
-import InfoModal from "./Profile/InfoModal";
+import { RootState } from "../../@reducers";
+import InfoModal from "../../components/Profile/InfoModal";
+import { FooterWrapper } from "./styles";
 
 const FooterDivider = styled(Divider)`
   background-color: white;
   margin: 0 1rem;
 `;
 
-const Footer: FC = memo(() => {
+const Footer: FC = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [changePassword, setChangePassword] = useState<boolean>(false);
@@ -36,17 +37,17 @@ const Footer: FC = memo(() => {
   }, []);
 
   const social_content = (
-    <ul className="blog_footer_content">
+    <ul className="footer-list">
       <a href="https://github.com/noah071610" target="_blank" rel="noreferrer">
-        <li>- Git</li>
+        <li>Git</li>
       </a>
       <a href="https://www.instagram.com/salmonchobab/" target="_blank" rel="noreferrer">
-        <li>- Instagram</li>
+        <li>Instagram</li>
       </a>
     </ul>
   );
   const info_content = (
-    <ul className="blog_footer_content">
+    <ul className="footer-list">
       <a
         onClick={() => {
           if (!user) {
@@ -57,7 +58,7 @@ const Footer: FC = memo(() => {
           setChangePassword(false);
         }}
       >
-        <li>- Withdrawal</li>
+        <li>Withdrawal</li>
       </a>
       <a
         onClick={() => {
@@ -73,38 +74,38 @@ const Footer: FC = memo(() => {
           setChangePassword(true);
         }}
       >
-        <li>- Change Password</li>
+        <li>Change Password</li>
       </a>
       <a onClick={onClickNicknameBtn}>
-        <li>- Change Nickname</li>
+        <li>Change Nickname</li>
       </a>
     </ul>
   );
   const quickview_content = (
-    <ul className="blog_footer_content">
+    <ul className="footer-list">
       <Link href={"/"}>
         <a>
-          <li onClick={onClickList}>- Home</li>
+          <li onClick={onClickList}>Home</li>
         </a>
       </Link>
       <Link href={"/tech"}>
         <a>
-          <li onClick={onClickList}>- Info Tech</li>
+          <li onClick={onClickList}>Info Tech</li>
         </a>
       </Link>
       <Link href={"/daily"}>
         <a>
-          <li onClick={onClickList}>- Daily</li>
+          <li onClick={onClickList}>Daily</li>
         </a>
       </Link>
     </ul>
   );
 
   return (
-    <footer className="blog_footer">
-      <div className="blog_footer_wrapper">
+    <FooterWrapper>
+      <div className="footer-inner">
         <div>ⓒ 2021, Jang Hyun Soo. All Rights Resrved.</div>
-        <ul className="blog_footer_list">
+        <ul className="footer-menu">
           <li onClick={onClickList}>
             <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
               Portfolio
@@ -138,8 +139,8 @@ const Footer: FC = memo(() => {
         changePassword={changePassword}
         changeNickname={changeNickname}
       />
-    </footer>
+    </FooterWrapper>
   );
-});
+};
 
-export default memo(Footer);
+export default Footer;

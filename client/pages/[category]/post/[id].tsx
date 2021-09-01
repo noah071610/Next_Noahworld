@@ -142,7 +142,7 @@ const BlogPostPage = memo(() => {
         )}"></iframe>`;
       }
       if (v.match(/(#[^\s#+^<]+)/g)) {
-        return `<a href="/${post.category}?hashtag=${v.replace("#", "")}" class="hashtag">${v}</a>`;
+        return `<a href="/${post.category}?hashtag=${v.replace("#", "")}">${v}</a>`;
       }
       return v;
     });
@@ -183,7 +183,8 @@ const BlogPostPage = memo(() => {
   }, [post?.id, user?.id]);
 
   const handleImgError = useCallback((e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
+    (e.target as HTMLImageElement).src =
+      "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png";
   }, []);
 
   return (
@@ -212,7 +213,7 @@ const BlogPostPage = memo(() => {
                     ? post?.thumbnail
                     : post?.imagePath
                     ? post?.imagePath.replace(/\/thumb\//, "/original/")
-                    : "/images/blog/noImage.gif"
+                    : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
                 }
                 onError={handleImgError}
               />

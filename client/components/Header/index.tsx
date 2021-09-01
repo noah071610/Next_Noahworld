@@ -61,7 +61,7 @@ const Header = memo(() => {
       <div className="header_logo">
         <Link href={"/"}>
           <a>
-            <LogoMain className="logo" src="/images/blog/logo_main.png" />
+            <LogoMain className="logo" src="/images/blog/logo_main.jpg" />
           </a>
         </Link>
         {user ? (

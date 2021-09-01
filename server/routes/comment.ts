@@ -54,23 +54,6 @@ router.delete("/:CommentId", async (req: Request, res: Response, next: NextFunct
   }
 });
 
-router.post("/edit/:CommentId", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    await Comment.update(
-      {
-        content: req.body.content,
-      },
-      { where: { id: req.params.CommentId } }
-    );
-    res
-      .status(201)
-      .json({ CommentId: parseInt(req.params.CommentId, 10), newComment: req.body.content });
-  } catch (error) {
-    console.error(error);
-    return next(error);
-  }
-});
-
 router.patch(
   "/like/:UserId/:CommentId",
   async (
@@ -177,28 +160,6 @@ router.delete(
           SubCommentId: parseInt(req.params.SubCommentId, 10),
         });
       }
-    } catch (error) {
-      console.error(error);
-      return next(error);
-    }
-  }
-);
-
-router.post(
-  "/sub/edit/:CommentId/:SubCommentId",
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await SubComment.update(
-        {
-          content: req.body.content,
-        },
-        { where: { id: req.params.SubCommentId } }
-      );
-      res.status(201).json({
-        CommentId: parseInt(req.params.CommentId, 10),
-        content: req.body.content,
-        SubCommentId: parseInt(req.params.SubCommentId, 10),
-      });
     } catch (error) {
       console.error(error);
       return next(error);

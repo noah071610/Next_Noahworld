@@ -4,19 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../@reducers";
 import { SIGN_UP_REQUEST } from "../../@reducers/user";
 import { ON_SIGN_UP_PAGE } from "../../@reducers/blog";
-import styled from "@emotion/styled";
-
-const SignUpTitle = styled.div`
-  margin: 3rem 0;
-  h1 {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    img {
-      margin-left: 1rem;
-    }
-  }
-`;
 
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
@@ -39,7 +26,7 @@ interface SignUpForm {
   Password: string;
 }
 
-const BlogSignUpSection: FC<SignUpProps> = memo(({ onClickLogin }) => {
+const BlogSignUpForm: FC<SignUpProps> = memo(({ onClickLogin }) => {
   const dispatch = useDispatch();
   const { signUpError, signUpDone } = useSelector((state: RootState) => state.user);
 
@@ -67,7 +54,7 @@ const BlogSignUpSection: FC<SignUpProps> = memo(({ onClickLogin }) => {
   }, [dispatch, signUpDone]);
   return (
     <>
-      <SignUpTitle className="login_title">
+      <div className="login-title">
         <h1>
           Sign Up now!{" "}
           <img
@@ -76,7 +63,7 @@ const BlogSignUpSection: FC<SignUpProps> = memo(({ onClickLogin }) => {
           />
         </h1>
         <h3>Enjoy various Contents for free!</h3>
-      </SignUpTitle>
+      </div>
       <Form
         validateMessages={validateMessages}
         name="nest-messages"
@@ -131,4 +118,4 @@ const BlogSignUpSection: FC<SignUpProps> = memo(({ onClickLogin }) => {
   );
 });
 
-export default memo(BlogSignUpSection);
+export default BlogSignUpForm;

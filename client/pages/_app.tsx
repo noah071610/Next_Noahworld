@@ -10,8 +10,9 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import "../styles/style.scss";
 import wrapper from "../@store/configureStore";
 import { css, Global } from "@emotion/react";
-import AppLayout from "../components/AppLayout";
+import AppLayout from "../layout/AppLayout";
 import { Router } from "next/dist/client/router";
+import Footer from "../layout/Footer";
 
 const reset = css`
   .ant-row {
@@ -99,6 +100,7 @@ function App({ Component, pageProps }) {
           <AppLayout>
             <Component {...pageProps} />
           </AppLayout>
+          <Footer />
         </>
       )}
     </>

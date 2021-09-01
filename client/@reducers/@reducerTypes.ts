@@ -123,13 +123,10 @@ export interface UserInter {
 
 export interface BlogState {
   posts: string[];
-  onAbout: boolean;
   onSignUpPage: boolean;
   postEditOn: boolean;
   searchPosts: Array<SearchPostInter>;
   onSlideMenu: boolean;
-  onHeaderTitle: boolean;
-
   searchedKeyword: object | null;
 
   searchKeywordLoading: boolean;

@@ -11,8 +11,22 @@ import { IStore } from "../../types";
 import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
 import { SEARCH_KEYWORD_REQUEST } from "../../@reducers/blog";
-import { marginCSS, noSearchPostCSS } from "../../styles/emotion";
+import { FLEX_STYLE } from "../../styles/emotion";
 import SearchCard from "../../components/Articles/SearchCard";
+import styled from "@emotion/styled";
+import tw from "twin.macro";
+
+const NoSearchPost = styled.li`
+  ${tw`w-full py-16 relative`}
+  ${FLEX_STYLE("flex-start", "center", "column")};
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  img {
+    ${tw`opacity-30 w-32`}
+  }
+  h3 {
+    text-align: center;
+  }
+`;
 
 const BlogSearchPage = () => {
   const { searchedKeyword, searchPosts } = useSelector((state: RootState) => state.blog);
@@ -33,22 +47,22 @@ const BlogSearchPage = () => {
         </span>
       </h2>
       <Divider style={{ marginBottom: 0 }} />
-      <ul css={marginCSS(0, 0, 0, 0)}>
+      <ul>
         {searchPosts.length > 0 ? (
           searchPosts.map((searchPost, i) => {
             return <SearchCard key={i} posts={searchPost} />;
           })
         ) : (
-          <li css={noSearchPostCSS}>
+          <NoSearchPost>
             <img
               alt="noComment"
               src="https://icons.iconarchive.com/icons/iconsmind/outline/256/Inbox-Empty-icon.png"
             />
             <h3>Couldn't find posts with your keyword.</h3>
-          </li>
+          </NoSearchPost>
         )}
       </ul>
-      <div style={{ height: "22rem" }} />
+      <div style={{ height: "10rem" }} />
     </>
   );
 };

@@ -247,7 +247,7 @@ h1 {
   height: 2rem;
   transition: all 0.3s;
   &:before {
-    color: rgba(0, 0, 0, 0.2);
+    color: white;
     font-size: 2rem;
   }
 }
@@ -256,9 +256,6 @@ h1 {
   &:hover {
     right: 0;
     transition: all 0.3s;
-    &::before {
-      color: rgba(0, 0, 0, 0.5);
-    }
   }
 }
 .slick-prev {
@@ -267,9 +264,6 @@ h1 {
   &:hover {
     left: 0;
     transition: all 0.3s;
-    &::before {
-      color: rgba(0, 0, 0, 0.5);
-    }
   }
 }
 
@@ -472,44 +466,6 @@ h1 {
     }
   }
 
-  &_footer {
-    display: flex;
-    justify-content: center;
-    margin-top: 5rem;
-    width: 100%;
-    height: 120px;
-    background-color: #121212;
-    &_wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 1120px;
-      color: white;
-      height: 100%;
-      padding: 3rem 2rem;
-      ul {
-        display: flex;
-        align-items: center;
-        margin: 0;
-      }
-      li {
-        a {
-          color: white;
-        }
-      }
-      @media only screen and (max-width: 1120px) {
-        width: 100%;
-      }
-    }
-    &_content {
-      display: flex;
-      flex-direction: column;
-      li {
-        padding: 0.7rem 1.5rem;
-      }
-    }
-  }
-
   &_post {
     &_article {
       width: 850px;
@@ -525,15 +481,14 @@ h1 {
   }
 }
 
-.pageWrapper {
-  margin-top: 3rem;
-  padding: 0 2rem;
-  position: relative;
-  .page {
-    max-width: 1120px;
-    margin: 0 auto;
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  li {
+    padding: 0.7rem 1.5rem;
   }
 }
+
 .logo {
   width: 560px;
 }
@@ -563,36 +518,6 @@ h1 {
   height: 500px;
 }
 
-.login {
-  display: flex;
-  justify-content: space-between;
-  &_form {
-    width: 45%;
-  }
-  &_image {
-    width: 45%;
-  }
-  &_title {
-    margin: 3rem 0;
-    h1 {
-      font-size: 3.3rem;
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    img {
-      width: 100px;
-      height: 100px;
-    }
-  }
-  &_image {
-    display: flex !important;
-    align-items: center !important;
-  }
-  &_space {
-    height: 5em;
-  }
-}
 .br_search {
   display: none;
 }
@@ -631,6 +556,9 @@ h1 {
   }
   h4 {
     margin: 1.5rem 0;
+  }
+  a {
+    color: $BLUE_COLOR;
   }
   img {
     width: 65%;
@@ -732,9 +660,6 @@ h1 {
     margin-top: 3rem;
     font-size: 2rem;
   }
-  .pageWrapper {
-    padding: 0 1rem;
-  }
   .space_small_on {
     height: 3rem;
     display: block;
@@ -744,16 +669,6 @@ h1 {
   }
   .header_small_on {
     display: block;
-  }
-  .login {
-    flex-direction: column-reverse;
-    align-items: center;
-    &_form {
-      width: 80%;
-    }
-    &_image {
-      width: 80%;
-    }
   }
   .blog {
     &_category_header {
@@ -841,26 +756,9 @@ h1 {
       font-size: 13px;
     }
   }
-  .blog {
-    &_footer {
-      &_wrapper {
-        div {
-          text-align: center;
-        }
-        display: block;
-        padding: 1.5rem 1rem;
-        ul {
-          margin-top: 1.5rem;
-          justify-content: center;
-        }
-      }
-      &_content {
-        display: flex;
-        flex-direction: column;
-        li {
-          padding: 0.7rem 1.5rem;
-        }
-      }
+  .footer-list {
+    li {
+      padding: 0.7rem 1.5rem;
     }
   }
 }
@@ -881,23 +779,6 @@ h1 {
   .search_title {
     margin: 3rem 1rem;
     font-size: 1.4rem;
-  }
-  .login {
-    &_title {
-      h1 {
-        font-size: 2rem;
-      }
-      h3 {
-        font-size: 0.8rem;
-      }
-      img {
-        width: 50px;
-        height: 50px;
-      }
-    }
-  }
-  .pageWrapper {
-    position: relative;
   }
   .logo {
     width: 80%;

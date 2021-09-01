@@ -1,10 +1,5 @@
-import { EditFilled, HeartFilled, HeartOutlined } from "@ant-design/icons";
-import {
-  EDIT_COMMENT_REQUEST,
-  EDIT_SUB_COMMENT_REQUEST,
-  LIKE_COMMENT_REQUEST,
-  UNLIKE_COMMENT_REQUEST,
-} from "../../@reducers/post";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { LIKE_COMMENT_REQUEST, UNLIKE_COMMENT_REQUEST } from "../../@reducers/post";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, message } from "antd";
@@ -40,26 +35,9 @@ const CommentMenuList = styled.ul`
 `;
 
 const CommentMenu: FC<CommentMenu> = memo(
-  ({ user, CommentId, comment, editText, setEditForm, setDeletePopup, editForm, SubCommentId }) => {
+  ({ user, CommentId, comment, setDeletePopup, SubCommentId }) => {
     const dispatch = useDispatch();
     const { post } = useSelector((state: RootState) => state.post);
-
-    const onClickEditComment = useCallback(() => {
-      if (SubCommentId) {
-        dispatch({
-          type: EDIT_SUB_COMMENT_REQUEST,
-          data: { CommentId, SubCommentId, content: editText },
-        });
-        message.success("Successfully edited your reply 👍");
-      } else {
-        dispatch({
-          type: EDIT_COMMENT_REQUEST,
-          data: { CommentId, content: editText },
-        });
-        message.success("Successfully edited your comment 👍");
-      }
-      setEditForm(false);
-    }, [dispatch, CommentId, SubCommentId, editText]);
 
     const onClickCommentLike = useCallback(() => {
       if (!user) {
@@ -88,50 +66,28 @@ const CommentMenu: FC<CommentMenu> = memo(
       post?.Comments?.find((v) => v.id === CommentId)?.CommentLikers?.find((v) => v.id === user.id);
 
     return (
-      <>
-        {editForm ? (
-          <div className="edit_form">
-            <Button onClick={onClickEditComment} type="primary" style={{ marginTop: "0.8rem" }}>
-              EDIT
-            </Button>
-            <Button onClick={() => setEditForm(false)} style={{ marginTop: "0.8rem" }}>
-              CANCEL
-            </Button>
-          </div>
-        ) : (
-          <CommentMenuList>
-            {user?.id === comment.UserId && (
-              <>
-                <li>
-                  <a>
-                    <EditFilled onClick={() => setEditForm(true)} />
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <FontAwesomeIcon onClick={() => setDeletePopup(true)} icon={faTrashAlt} />
-                  </a>
-                </li>
-              </>
-            )}
-            {!SubCommentId && (
-              <li>
-                {commentLiked ? (
-                  <HeartFilled
-                    style={{ color: RED_COLOR, marginRight: "0.3rem" }}
-                    onClick={onClickCommentUnlike}
-                  />
-                ) : (
-                  <LikeComment onClick={onClickCommentLike}>
-                    <HeartOutlined />
-                  </LikeComment>
-                )}
-                {comment.CommentLikers ? comment.CommentLikers.length : 0}
-              </li>
-            )}
-          </CommentMenuList>
+      <CommentMenuList>
+        {user?.id === comment.UserId && (
+          <a>
+            <FontAwesomeIcon onClick={() => setDeletePopup(true)} icon={faTrashAlt} />
+          </a>
         )}
-      </>
+        {!SubCommentId && (
+          <li>
+            {commentLiked ? (
+              <HeartFilled
+                style={{ color: RED_COLOR, marginRight: "0.3rem" }}
+                onClick={onClickCommentUnlike}
+              />
+            ) : (
+              <LikeComment onClick={onClickCommentLike}>
+                <HeartOutlined />
+              </LikeComment>
+            )}
+            {comment.CommentLikers ? comment.CommentLikers.length : 0}
+          </li>
+        )}
+      </CommentMenuList>
     );
   }
 );

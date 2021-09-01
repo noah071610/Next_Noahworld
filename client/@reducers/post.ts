@@ -170,11 +170,6 @@ export const REMOVE_COMMENT_REQUEST = "REMOVE_COMMENT_REQUEST" as const;
 export const REMOVE_COMMENT_SUCCESS = "REMOVE_COMMENT_SUCCESS" as const;
 export const REMOVE_COMMENT_FAILURE = "REMOVE_COMMENT_FAILURE" as const;
 
-export const EDIT_COMMENT_REQUEST = "EDIT_COMMENT_REQUEST" as const;
-export const EDIT_COMMENT_SUCCESS = "EDIT_COMMENT_SUCCESS" as const;
-export const EDIT_COMMENT_FAILURE = "EDIT_COMMENT_FAILURE" as const;
-export const EDIT_COMMENT_CLEAR = "EDIT_COMMENT_CLEAR" as const;
-
 export const ADD_SUB_COMMENT_REQUEST = "ADD_SUB_COMMENT_REQUEST" as const;
 export const ADD_SUB_COMMENT_SUCCESS = "ADD_SUB_COMMENT_SUCCESS" as const;
 export const ADD_SUB_COMMENT_FAILURE = "ADD_SUB_COMMENT_FAILURE" as const;
@@ -183,11 +178,6 @@ export const ADD_SUB_COMMENT_CLEAR = "ADD_SUB_COMMENT_CLEAR" as const;
 export const REMOVE_SUB_COMMENT_REQUEST = "REMOVE_SUB_COMMENT_REQUEST" as const;
 export const REMOVE_SUB_COMMENT_SUCCESS = "REMOVE_SUB_COMMENT_SUCCESS" as const;
 export const REMOVE_SUB_COMMENT_FAILURE = "REMOVE_SUB_COMMENT_FAILURE" as const;
-
-export const EDIT_SUB_COMMENT_REQUEST = "EDIT_SUB_COMMENT_REQUEST" as const;
-export const EDIT_SUB_COMMENT_SUCCESS = "EDIT_SUB_COMMENT_SUCCESS" as const;
-export const EDIT_SUB_COMMENT_FAILURE = "EDIT_SUB_COMMENT_FAILURE" as const;
-export const EDIT_SUB_COMMENT_CLEAR = "EDIT_SUB_COMMENT_CLEAR" as const;
 
 const reducer = (state: PostState = initialState, action: any) =>
   produce(state, (draft: any) => {
@@ -373,28 +363,6 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.removePostLoading = false;
         draft.removePostError = action.error;
         break;
-      case EDIT_COMMENT_REQUEST:
-        draft.editCommentLoading = true;
-        draft.editCommentDone = false;
-        draft.editCommentError = false;
-        break;
-      case EDIT_COMMENT_SUCCESS: {
-        draft.post.Comments.find((v: CommentsInter) => {
-          return v.id === action.data.CommentId;
-        }).content = action.data.newComment;
-        draft.editCommentLoading = false;
-        draft.editCommentDone = true;
-        break;
-      }
-      case EDIT_COMMENT_FAILURE:
-        draft.editCommentLoading = false;
-        draft.editCommentError = action.error;
-        break;
-      case EDIT_COMMENT_CLEAR:
-        draft.editCommentLoading = false;
-        draft.editCommentDone = false;
-        draft.editCommentError = false;
-        break;
       case REMOVE_COMMENT_REQUEST:
         draft.removeCommentLoading = true;
         draft.removeCommentDone = false;
@@ -466,30 +434,6 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.addCommentError = false;
         break;
 
-      case EDIT_SUB_COMMENT_REQUEST:
-        draft.editSubCommentLoading = true;
-        draft.editSubCommentDone = false;
-        draft.editSubCommentError = false;
-        break;
-      case EDIT_SUB_COMMENT_SUCCESS: {
-        draft.post.Comments.find((v: CommentsInter) => {
-          return v.id === action.data.CommentId;
-        }).SubComments.find((v: any) => {
-          return v.id === action.data.SubCommentId;
-        }).content = action.data.content;
-        draft.editSubCommentLoading = false;
-        draft.editSubCommentDone = true;
-        break;
-      }
-      case EDIT_SUB_COMMENT_FAILURE:
-        draft.editSubCommentLoading = false;
-        draft.editSubCommentError = action.error;
-        break;
-      case EDIT_SUB_COMMENT_CLEAR:
-        draft.editSubCommentLoading = false;
-        draft.editSubCommentDone = false;
-        draft.editSubCommentError = false;
-        break;
       case REMOVE_SUB_COMMENT_REQUEST:
         draft.removeSubCommentLoading = true;
         draft.removeSubCommentDone = false;

@@ -4,14 +4,12 @@ import styled from "@emotion/styled";
 import { SearchPostInter } from "../../@reducers/@reducerTypes";
 import { BLUE_COLOR } from "../../config";
 import Link from "next/link";
+import tw from "twin.macro";
 
 const SearchCardWrapper = styled.li`
+  ${tw`text-base cursor-pointer py-10 px-4 w-full m-0`}
   transition: all 0.3s;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 2rem 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  width: 100%;
   &:hover {
     background-color: rgba(0, 0, 0, 0.06);
   }

@@ -18,9 +18,6 @@ const TopArticleCard: FC<ArticleInter> = ({ article, type, image_src }) => {
     window.scrollTo({ top: 0 });
     router.push(`/${article.category}/post/${article.id}`);
   };
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
-  };
   return (
     <>
       {article && (

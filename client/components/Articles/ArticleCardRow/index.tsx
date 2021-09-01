@@ -23,7 +23,8 @@ const ArticleCardRow: FC<ArticleInter> = ({ article, smallSize }) => {
     .replace(/(#youtube:.*)/g, "(Youtube Video Link)")
     .replace(/&.*;/gi, "");
   const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = "/images/blog/noImage.gif";
+    (e.target as HTMLImageElement).src =
+      "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png";
   };
   return (
     <>
@@ -40,7 +41,7 @@ const ArticleCardRow: FC<ArticleInter> = ({ article, smallSize }) => {
                   ? article.thumbnail
                   : article.imagePath
                   ? article.imagePath.replace(/\/thumb\//, "/original/")
-                  : "/images/blog/noImage.gif"
+                  : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
               }
               onError={handleImgError}
             />

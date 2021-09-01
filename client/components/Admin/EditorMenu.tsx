@@ -3,11 +3,11 @@ import { Button, Radio } from "antd";
 import { POST_EDIT_ON } from "../../@reducers/blog";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/dist/client/router";
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { FLEX_STYLE } from "../../styles/emotion";
 
-const EditorMenuWrapper = css`
-  display: flex;
-  align-items: center;
+const EditorMenuWrapper = styled.div`
+  ${FLEX_STYLE("flex-start", "center")};
   margin: 1rem 0;
 `;
 
@@ -21,7 +21,7 @@ const EditorMenu: FC<EditorMenu> = memo(({ postEditOn, postValue, setPostValue }
   const dispatch = useDispatch();
   const router = useRouter();
   return (
-    <div css={EditorMenuWrapper}>
+    <EditorMenuWrapper>
       <Radio.Group
         style={{ width: "50%" }}
         onChange={(e) => setPostValue(e.target.value)}
@@ -50,7 +50,7 @@ const EditorMenu: FC<EditorMenu> = memo(({ postEditOn, postValue, setPostValue }
           UPLOAD
         </Button>
       )}
-    </div>
+    </EditorMenuWrapper>
   );
 });
 
