@@ -33,11 +33,20 @@ const CategoryPageHeader = styled.section`
       }
     }
   }
+  @media (max-width: 830px) {
+    ${tw`mt-0`}
+  }
+  @media (max-width: 576px) {
+    ${tw`px-0`}
+    .hashtag-list {
+      ${tw`px-0`}
+    }
+  }
 `;
 
 const BlogCategoryPage = () => {
   const router = useRouter();
-  const category = router.query.category;
+  const { category, hashtag } = router.query;
   const dispatch = useDispatch();
   const { techPosts, dailyPosts, hasMorePosts, loadMorePostsLoading, countPosts } = useSelector(
     (state: RootState) => state.post
@@ -95,14 +104,18 @@ const BlogCategoryPage = () => {
   );
 
   const onClickAllHashtag = useCallback(() => {
-    dispatch({
-      type: LOAD_CATEGORY_POSTS_REQUEST,
-      data: {
-        category,
-      },
-    });
+    if (hashtag) {
+      router.push(`/${category}`);
+    } else {
+      dispatch({
+        type: LOAD_CATEGORY_POSTS_REQUEST,
+        data: {
+          category,
+        },
+      });
+    }
     setOnHashtagFilter(false);
-  }, [category]);
+  }, [category, hashtag, category]);
 
   return (
     <>
@@ -130,7 +143,7 @@ const BlogCategoryPage = () => {
                   <li>#{v}</li>
                 </button>
               ))}
-            {onHashtagFilter && (
+            {(onHashtagFilter || hashtag) && (
               <button onClick={onClickAllHashtag} key={`hashtag_viewAll`}>
                 <li># View All Posts</li>
               </button>

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import CountUp from "react-countup";
 import { Divider } from "antd";
 import { useSelector } from "react-redux";
@@ -12,9 +12,9 @@ import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
 import { SEARCH_KEYWORD_REQUEST } from "../../@reducers/blog";
 import { marginCSS, noSearchPostCSS } from "../../styles/emotion";
-import SearchedPosts from "../../components/Articles/SearchedPosts";
+import SearchCard from "../../components/Articles/SearchCard";
 
-const BlogSearchPage = memo(() => {
+const BlogSearchPage = () => {
   const { searchedKeyword, searchPosts } = useSelector((state: RootState) => state.blog);
   const router = useRouter();
 
@@ -36,7 +36,7 @@ const BlogSearchPage = memo(() => {
       <ul css={marginCSS(0, 0, 0, 0)}>
         {searchPosts.length > 0 ? (
           searchPosts.map((searchPost, i) => {
-            return <SearchedPosts key={i} posts={searchPost} />;
+            return <SearchCard key={i} posts={searchPost} />;
           })
         ) : (
           <li css={noSearchPostCSS}>
@@ -51,7 +51,7 @@ const BlogSearchPage = memo(() => {
       <div style={{ height: "22rem" }} />
     </>
   );
-});
+};
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, params }) => {
   const cookie = req ? req.headers.cookie : "";
@@ -74,4 +74,4 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   };
 });
 
-export default memo(BlogSearchPage);
+export default BlogSearchPage;

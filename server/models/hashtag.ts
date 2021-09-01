@@ -5,6 +5,7 @@ import { sequelize } from "./sequelize";
 class Hashtag extends Model {
   public id!: number;
   public name!: string;
+  public category!: "tech" | "daily";
   public createdAt!: Date;
   public updatedAt!: Date;
 }
@@ -12,6 +13,10 @@ class Hashtag extends Model {
 Hashtag.init(
   {
     name: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
+    },
+    category: {
       type: DataTypes.STRING(20),
       allowNull: false,
     },

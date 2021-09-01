@@ -7,7 +7,6 @@ const initialState = {
   onSignUpPage: false,
   postEditOn: false,
   searchPosts: [],
-  hashtagPosts: [],
   onSlideMenu: false,
   onHeaderTitle: false,
 
@@ -38,16 +37,6 @@ export const SEARCH_KEYWORD_REQUEST = "SEARCH_KEYWORD_REQUEST" as const;
 export const SEARCH_KEYWORD_SUCCESS = "SEARCH_KEYWORD_SUCCESS" as const;
 export const SEARCH_KEYWORD_FAILURE = "SEARCH_KEYWORD_FAILURE" as const;
 export const SEARCH_KEYWORD_CLEAR = "SEARCH_KEYWORD_CLEAR" as const;
-
-export const SEARCH_HASH_TAG_REQUEST = "SEARCH_HASH_TAG_REQUEST" as const;
-export const SEARCH_HASH_TAG_SUCCESS = "SEARCH_HASH_TAG_SUCCESS" as const;
-export const SEARCH_HASH_TAG_FAILURE = "SEARCH_HASH_TAG_FAILURE" as const;
-export const SEARCH_HASH_TAG_CLEAR = "SEARCH_HASH_TAG_CLEAR" as const;
-
-export const ADD_QUIZ_REQUEST = "ADD_QUIZ_REQUEST" as const;
-export const ADD_QUIZ_SUCCESS = "ADD_QUIZ_SUCCESS" as const;
-export const ADD_QUIZ_FAILURE = "ADD_QUIZ_FAILURE" as const;
-export const ADD_QUIZ_CLEAR = "ADD_QUIZ_CLEAR" as const;
 
 const reducer = (state: BlogState = initialState, action: any) =>
   produce(state, (draft) => {
@@ -97,26 +86,7 @@ const reducer = (state: BlogState = initialState, action: any) =>
         draft.searchKeywordDone = false;
         draft.searchKeywordError = false;
         break;
-      case SEARCH_HASH_TAG_REQUEST:
-        draft.searchHashTagLoading = true;
-        draft.searchHashTagDone = false;
-        draft.searchHashTagError = false;
-        break;
-      case SEARCH_HASH_TAG_SUCCESS: {
-        draft.searchHashTagLoading = false;
-        draft.searchHashTagDone = true;
-        draft.hashtagPosts = action.data.hashtagPosts;
-        break;
-      }
-      case SEARCH_HASH_TAG_FAILURE:
-        draft.searchHashTagLoading = false;
-        draft.searchHashTagError = action.error;
-        break;
-      case SEARCH_HASH_TAG_CLEAR:
-        draft.searchHashTagLoading = false;
-        draft.searchHashTagDone = false;
-        draft.searchHashTagError = false;
-        break;
+
       default:
         break;
     }

@@ -20,11 +20,7 @@ import {
   SIGN_UP_REQUEST,
   WITHDRWAL_REQUEST,
 } from "../@reducers/user";
-import {
-  ADD_QUIZ_REQUEST,
-  SEARCH_HASH_TAG_REQUEST,
-  SEARCH_KEYWORD_REQUEST,
-} from "../@reducers/blog";
+import { SEARCH_KEYWORD_REQUEST } from "../@reducers/blog";
 import { UserInter, HashtagsInter } from "../@reducers/@reducerTypes";
 import {
   ADD_COMMENT_REQUEST,
@@ -38,19 +34,6 @@ import {
   UNLIKE_COMMENT_REQUEST,
 } from "../@reducers/post";
 
-export interface AddQuizInter {
-  type: typeof ADD_QUIZ_REQUEST;
-  data: AddQuizData;
-}
-
-export interface AddQuizData {
-  type: "word" | "quiz";
-  question: string;
-  answer: string;
-  password: string;
-  UserId: number;
-}
-
 export interface SearchKeywordInter {
   type: typeof SEARCH_KEYWORD_REQUEST;
   data: SearchKeywordData;
@@ -58,11 +41,6 @@ export interface SearchKeywordInter {
 
 export interface SearchKeywordData {
   keyword: string;
-}
-
-export interface SearchHashtagInter {
-  type: typeof SEARCH_HASH_TAG_REQUEST;
-  data: SearchHashtagData;
 }
 
 export interface SearchHashtagData {

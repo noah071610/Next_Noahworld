@@ -15,8 +15,9 @@ import styled from "@emotion/styled";
 import tw from "twin.macro";
 import { FLEX_STYLE } from "../styles/emotion";
 import { BLUE_COLOR } from "../config";
+import TopArticleCard from "../components/Articles/TopArticleCard";
+import CountUp from "react-countup";
 
-const MostArticle = dynamic(() => import("../components/Articles/MostArticle"));
 const UserProfile = dynamic(() => import("../components/Profile/UserProfile"));
 
 const MoreBtn = styled.a`
@@ -37,21 +38,20 @@ const BlogMainPage = memo(() => {
     <>
       {user && <UserProfile />}
       <main className="blog">
-        {/* <h2 className="blog_category_header header_small_on">
-          HOME
-          {techPosts && dailyPosts && (
-            <span className="blog_category_count">
-              <br className="br_category" />
-              +&nbsp;
-              <CountUp duration={4} start={0} end={techPosts.concat(dailyPosts).length} />
-              &nbsp;posts.&nbsp;+&nbsp;
-              <CountUp duration={4} start={0} end={hashtags?.length} />
-              &nbsp;hashtags.
-            </span>
-          )}
-        </h2> */}
         {/*Main Manu*/}
         <section className="blog_main">
+          <h2 className="blog_main_count">
+            HOME
+            {techPosts && dailyPosts && (
+              <span className="count-number">
+                +
+                <CountUp duration={2} start={0} end={techPosts.concat(dailyPosts).length} />
+                &nbsp;posts.&nbsp;+
+                <CountUp duration={2} start={0} end={hashtags?.length} />
+                &nbsp;hashtags.
+              </span>
+            )}
+          </h2>
           <Divider orientation="left">
             <Link href="/tech">
               <a>Information Technology</a>
@@ -85,62 +85,67 @@ const BlogMainPage = memo(() => {
         </section>
         {/*Aside Manu*/}
         <aside className="blog_aside">
-          <MostArticle
-            mostPost={mostLikedPost}
-            src="https://img.icons8.com/doodle/96/000000/trophy--v1.png"
-            desc="Most Liked"
+          <TopArticleCard
+            image_src="https://img.icons8.com/doodle/48/000000/trophy--v1.png"
             type="like"
-            aside={true}
+            article={mostLikedPost}
           />
-          <MostArticle
-            mostPost={mostViewedPost}
-            src="https://img.icons8.com/doodle/96/000000/goal.png"
-            desc="Most View"
+          <TopArticleCard
+            image_src="https://img.icons8.com/doodle/96/000000/goal.png"
             type="view"
-            aside={true}
+            article={mostViewedPost}
           />
-          <MostArticle
-            mostPost={mostCommentedPost}
-            src="https://img.icons8.com/doodle/96/000000/speech-bubble-with-dots.png"
-            desc="Most Commented"
+          <TopArticleCard
+            image_src="https://img.icons8.com/doodle/96/000000/speech-bubble-with-dots.png"
             type="comments"
-            aside={true}
+            article={mostCommentedPost}
           />
           <Divider />
-          <MostArticle
-            hashtags={hashtags}
-            src="https://img.icons8.com/ios/100/000000/hashtag.png"
-            desc="Hashtags"
-          />
+          <ul className="blog_aside_tag">
+            {hashtags &&
+              hashtags.map((v, i) => {
+                return (
+                  <li onClick={() => window.scrollTo({ top: 0 })} key={i}>
+                    <Link href={`/${v.category}?hashtag=${v.name}`}>
+                      <a>#{v.name}</a>
+                    </Link>
+                  </li>
+                );
+              })}
+          </ul>
         </aside>
       </main>
       {/*Aside Manu When SM*/}
       <section className="blog_md_aside">
         <Divider />
-        <MostArticle
-          mostPost={mostLikedPost}
-          src="https://img.icons8.com/doodle/96/000000/trophy--v1.png"
-          desc="Most Liked"
+        <TopArticleCard
+          image_src="https://img.icons8.com/doodle/48/000000/trophy--v1.png"
           type="like"
+          article={mostLikedPost}
         />
-        <MostArticle
-          mostPost={mostViewedPost}
-          src="https://img.icons8.com/doodle/96/000000/goal.png"
-          desc="Most View"
+        <TopArticleCard
+          image_src="https://img.icons8.com/doodle/96/000000/goal.png"
           type="view"
+          article={mostViewedPost}
         />
-        <MostArticle
-          mostPost={mostCommentedPost}
-          src="https://img.icons8.com/doodle/96/000000/speech-bubble-with-dots.png"
-          desc="Most Commented"
+        <TopArticleCard
+          image_src="https://img.icons8.com/doodle/96/000000/speech-bubble-with-dots.png"
           type="comments"
+          article={mostCommentedPost}
         />
         <Divider />
-        <MostArticle
-          hashtags={hashtags}
-          src="https://img.icons8.com/ios/100/000000/hashtag.png"
-          desc="Hashtags"
-        />
+        <ul className="blog_aside_tag">
+          {hashtags &&
+            hashtags.map((v, i) => {
+              return (
+                <li onClick={() => window.scrollTo({ top: 0 })} key={i}>
+                  <Link href={`/${v.category}?hashtag=${v.name}`}>
+                    <a>#{v.name}</a>
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
       </section>
     </>
   );

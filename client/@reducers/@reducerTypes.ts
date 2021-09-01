@@ -12,16 +12,7 @@ export interface SearchPostInter {
 
 export interface AsideHashtags {
   name: string;
-}
-
-export interface QuizzesInter {
-  id: number;
-  type: string;
-  question: string;
-  answer: string;
-  createdAt: string;
-  updatedAt: string;
-  UserId: number;
+  category: string;
 }
 
 export interface PostHashtagInter {
@@ -136,7 +127,6 @@ export interface BlogState {
   onSignUpPage: boolean;
   postEditOn: boolean;
   searchPosts: Array<SearchPostInter>;
-  hashtagPosts: Array<SearchPostInter>;
   onSlideMenu: boolean;
   onHeaderTitle: boolean;
 
@@ -154,10 +144,6 @@ export interface BlogState {
 export interface PostState {
   techPosts: Array<PostInter>;
   dailyPosts: Array<PostInter>;
-  classPosts: Array<PostInter>;
-  culturePosts: Array<PostInter>;
-  quizzes: Array<QuizzesInter>;
-  words: Array<QuizzesInter>;
   hashtags: Array<AsideHashtags>;
   mostLikedPost: PostInter | null;
   mostViewedPost: PostInter | null;
@@ -210,10 +196,6 @@ export interface PostState {
   loadMorePostsLoading: Boolean;
   loadMorePostsDone: Boolean;
   loadMorePostsError: Boolean | Error;
-
-  loadClassPostsLoading: Boolean;
-  loadClassPostsDone: Boolean;
-  loadClassPostsError: Boolean | Error;
 
   likePostLoading: Boolean;
   likePostDone: Boolean;

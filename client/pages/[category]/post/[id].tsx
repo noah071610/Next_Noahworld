@@ -20,10 +20,12 @@ import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
 import { css } from "@emotion/react";
 import dynamic from "next/dynamic";
+import Slider from "react-slick";
+import ArticleCardColumn from "../../../components/Articles/ArticleCardColumn";
+import ArticleCardRow from "../../../components/Articles/ArticleCardRow";
 dayjs.locale("kor");
 
 const CommentForm = dynamic(() => import("../../../components/Comments/CommentForm"));
-const ArticlePost = dynamic(() => import("../../../components/Articles/ArticlePost"));
 const RemoteControl = dynamic(() => import("../../../components/Comments/RemoteControl"));
 
 const Heart = styled.a`
@@ -63,24 +65,28 @@ const PostSubTitle = css`
   font-weight: bold;
 `;
 
-const MorePostWrapper = css`
-  overflow: auto;
-  height: 280px;
-  margin-top: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  div:first-of-type {
-    padding: 1rem 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-`;
-
 const PostWrapper = css`
   position: relative;
   display: flex;
   justify-content: space-between;
 `;
+
+const settings = {
+  dots: false,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 3,
+  slidesToScroll: 2,
+  responsive: [
+    {
+      breakpoint: 574,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
 const BlogPostPage = memo(() => {
   const router = useRouter();
@@ -125,7 +131,7 @@ const BlogPostPage = memo(() => {
         )}"></iframe>`;
       }
       if (v.match(/(#[^\s#+^<]+)/g)) {
-        return `<a class="hashtag">${v}</a>`;
+        return `<a href="/${post.category}?hashtag=${v.replace("#", "")}" class="hashtag">${v}</a>`;
       }
       return v;
     });
@@ -174,62 +180,66 @@ const BlogPostPage = memo(() => {
       <Head>
         <title>Noah world | {post?.title.slice(0, 10)}...</title>
       </Head>
-      <h1 style={{ lineHeight: "1.5" }} className="post_main_title">
-        {post?.title}
-      </h1>
-      <Divider className="blog_post_divier" />
-      <ul css={PostDesc}>
-        <li>{dayjs(post?.createdAt).format("YYYY.MM.DD")}</li>
-        <li>·&nbsp;{post?.hit} views</li>
-        <li>·&nbsp;{post?.PostLikers?.length} likes</li>
-      </ul>
-      <div css={PostWrapper}>
-        <div className="blog_post_article">
-          <div className="tui-editor-contents" style={{ marginBottom: "3rem" }}>
-            <img
-              alt={post?.title}
-              style={{ width: "100%", marginBottom: "6rem" }}
-              src={
-                post?.thumbnail
-                  ? post?.thumbnail
-                  : post?.imagePath
-                  ? post?.imagePath.replace(/\/thumb\//, "/original/")
-                  : "/images/blog/noImage.gif"
-              }
-              onError={handleImgError}
-            />
-            {Fullcontent && parse(Fullcontent)}
-          </div>
-          <h4 css={PostSubTitle}>
-            Do you like this Post?{" "}
-            {liked ? (
-              <HeartLiked onClick={onClickUnlike}>
-                <HeartFilled />
-              </HeartLiked>
-            ) : (
-              <Heart onClick={onClickLike}>
-                <HeartOutlined />
-              </Heart>
-            )}
-            <span style={{ fontSize: "1rem" }}>{post?.PostLikers?.length}</span>
-          </h4>
-          <CommentForm />
-          <h4 css={PostSubTitle}>More posts</h4>
-          <div css={MorePostWrapper}>
-            <div>
-              <span>Title</span>
-              <span>Date</span>
+      <main>
+        <h1 style={{ lineHeight: "1.5" }} className="post_main_title">
+          {post?.title}
+        </h1>
+        <Divider className="blog_post_divier" />
+        <ul css={PostDesc}>
+          <li>{dayjs(post?.createdAt).format("YYYY.MM.DD")}</li>
+          <li>·&nbsp;{post?.hit} views</li>
+          <li>·&nbsp;{post?.PostLikers?.length} likes</li>
+        </ul>
+        <div css={PostWrapper}>
+          <div className="blog_post_article">
+            <div className="tui-editor-contents" style={{ marginBottom: "3rem" }}>
+              <img
+                alt={post?.title}
+                style={{ width: "100%", marginBottom: "6rem" }}
+                src={
+                  post?.thumbnail
+                    ? post?.thumbnail
+                    : post?.imagePath
+                    ? post?.imagePath.replace(/\/thumb\//, "/original/")
+                    : "/images/blog/noImage.gif"
+                }
+                onError={handleImgError}
+              />
+              {Fullcontent && parse(Fullcontent)}
             </div>
-            {prevPost?.map((article, i) => (
-              <ArticlePost key={i} article={article} />
-            ))}
-            {nextPost?.map((article, i) => (
-              <ArticlePost key={i} article={article} />
-            ))}
+            <h4 css={PostSubTitle}>Another posts</h4>
+            {nextPost.length + prevPost.length > 2 ? (
+              <Slider {...settings}>
+                {nextPost?.map((v, i) => (
+                  <ArticleCardColumn smallSize={true} article={v} key={`nextPost_${i}`} />
+                ))}
+                {prevPost?.map((v, i) => (
+                  <ArticleCardColumn smallSize={true} article={v} key={`prevPost_${i}`} />
+                ))}
+              </Slider>
+            ) : (
+              nextPost
+                .concat(prevPost)
+                .map((v, i) => <ArticleCardRow smallSize={true} key={i} article={v} />)
+            )}
+            <h4 css={PostSubTitle}>
+              Do you like this Post?{" "}
+              {liked ? (
+                <HeartLiked onClick={onClickUnlike}>
+                  <HeartFilled />
+                </HeartLiked>
+              ) : (
+                <Heart onClick={onClickLike}>
+                  <HeartOutlined />
+                </Heart>
+              )}
+              <span style={{ fontSize: "1rem" }}>{post?.PostLikers?.length}</span>
+            </h4>
+            <CommentForm />
           </div>
+          <RemoteControl Fullcontent={Fullcontent} />
         </div>
-        <RemoteControl Fullcontent={Fullcontent} />
-      </div>
+      </main>
     </>
   );
 });

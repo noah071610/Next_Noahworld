@@ -10,8 +10,9 @@ export interface IStore extends Store {
 export interface ArticleInter {
   setOnHashtagFilter?: (type: boolean) => void;
   article: PostInter;
-  nocontent?: Boolean;
+  smallSize?: Boolean;
   type?: string;
+  image_src?: string;
 }
 
 export interface CommentProps {

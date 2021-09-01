@@ -3,14 +3,13 @@ import React, { FC } from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
-import { BLUE_COLOR } from "../../../config";
 import { ArticleInter } from "../../../types";
 import { useRouter } from "next/dist/client/router";
 import { ArticleCardRowWrapper } from "./styles";
 dayjs.extend(relativeTime);
 dayjs.locale("kor");
 
-const ArticleCardRow: FC<ArticleInter> = ({ article }) => {
+const ArticleCardRow: FC<ArticleInter> = ({ article, smallSize }) => {
   const router = useRouter();
   const onClickArticle = (e: React.MouseEvent) => {
     if ((e.target as Element).className === "hashtag") {
@@ -29,7 +28,10 @@ const ArticleCardRow: FC<ArticleInter> = ({ article }) => {
   return (
     <>
       {article && (
-        <ArticleCardRowWrapper onClick={onClickArticle}>
+        <ArticleCardRowWrapper
+          style={smallSize ? { padding: "1rem 0 0 0" } : {}}
+          onClick={onClickArticle}
+        >
           <div className="image-wrapper">
             <img
               alt={article.title}
@@ -62,7 +64,7 @@ const ArticleCardRow: FC<ArticleInter> = ({ article }) => {
             <p className="content">{contentWithoutHTML}</p>
             <ul className="footer">
               <li>
-                ·&nbsp;{dayjs().to(dayjs(article.createdAt), true)}
+                {dayjs().to(dayjs(article.createdAt), true)}
                 &nbsp;ago
               </li>
               <li>·&nbsp;{article.hit} views</li>

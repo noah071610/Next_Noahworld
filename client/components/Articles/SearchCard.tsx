@@ -5,7 +5,7 @@ import { SearchPostInter } from "../../@reducers/@reducerTypes";
 import { BLUE_COLOR } from "../../config";
 import Link from "next/link";
 
-const SearchList = styled.li`
+const SearchCardWrapper = styled.li`
   transition: all 0.3s;
   font-size: 1rem;
   cursor: pointer;
@@ -20,9 +20,9 @@ interface SearchedPostProps {
   posts: SearchPostInter;
 }
 
-const SearchedPosts: FC<SearchedPostProps> = memo(({ posts }) => {
+const SearchCard: FC<SearchedPostProps> = memo(({ posts }) => {
   return (
-    <SearchList>
+    <SearchCardWrapper>
       <Link href={`/${posts.category}/post/${posts.id}`}>
         <a>
           <span style={{ fontWeight: "bold" }}>Post Number</span> :{" "}
@@ -35,8 +35,8 @@ const SearchedPosts: FC<SearchedPostProps> = memo(({ posts }) => {
           {posts.content.replace(/(<([^>]+)>)/gi, "").slice(0, 50)}
         </a>
       </Link>
-    </SearchList>
+    </SearchCardWrapper>
   );
 });
 
-export default memo(SearchedPosts);
+export default SearchCard;

@@ -124,8 +124,8 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
         </li>
         <Divider type="vertical" />
         <li onClick={onClickList}>
-          {prevPost[0] ? (
-            <Link href={`/${post?.category}/post/${prevPost[0].id}`}>
+          {nextPost[0] ? (
+            <Link href={`/${post?.category}/post/${nextPost[0].id}`}>
               <a>
                 <DoubleLeftOutlined />
               </a>
@@ -136,8 +136,8 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
         </li>
         <Divider type="vertical" />
         <li onClick={onClickList}>
-          {nextPost[0] ? (
-            <Link href={`/${post?.category}/post/${nextPost[0].id}`}>
+          {prevPost[0] ? (
+            <Link href={`/${post?.category}/post/${prevPost[0].id}`}>
               <a>
                 <DoubleRightOutlined />
               </a>

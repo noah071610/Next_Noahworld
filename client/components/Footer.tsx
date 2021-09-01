@@ -97,11 +97,6 @@ const Footer: FC = memo(() => {
           <li onClick={onClickList}>- Daily</li>
         </a>
       </Link>
-      <Link href={"/class"}>
-        <a>
-          <li onClick={onClickList}>- Korean Class</li>
-        </a>
-      </Link>
     </ul>
   );
 

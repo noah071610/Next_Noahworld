@@ -71,6 +71,26 @@ router.post(
   }
 );
 
+router.post("/search", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const searchPosts = await Post.findAll({
+      where: {
+        [Op.or]: [
+          { title: { [Op.like]: `%${req.body.keyword}%` } },
+          { content: { [Op.like]: `%${req.body.keyword}%` } },
+        ],
+      },
+      attributes: {
+        exclude: ["thumbnail", "imagePath"],
+      },
+    });
+    res.status(200).json({ searchPosts, searchedKeyword: req.body.keyword });
+  } catch (error) {
+    console.error(error);
+    return next(error);
+  }
+});
+
 router.post("/recent", async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.body) {
@@ -221,13 +241,25 @@ router.get(
         const prevPost = await Post.findAll({
           order: [["id", "DESC"]],
           where: { id: { [Op.lt]: req.params.postId }, category: req.params.category },
-          attributes: ["id", "title", "createdAt", "category"],
-          limit: 5,
+          include: [
+            {
+              model: User,
+              as: "PostLikers",
+              attributes: ["id"],
+            },
+          ],
+          limit: 3,
         });
         const nextPost = await Post.findAll({
           where: { id: { [Op.gt]: req.params.postId }, category: req.params.category },
-          attributes: ["id", "title", "createdAt", "category"],
-          limit: 5,
+          limit: 3,
+          include: [
+            {
+              model: User,
+              as: "PostLikers",
+              attributes: ["id"],
+            },
+          ],
         });
         await post?.increment("hit", { by: 1 });
         if (req.params.UserId) {
@@ -328,7 +360,7 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
     });
 
     const hashtags = await Hashtag.findAll({
-      attributes: ["name"],
+      attributes: ["name", "category"],
     });
 
     const getAttributesFromPosts = await Post.findAll({
@@ -484,7 +516,7 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
       const result = await Promise.all(
         hashtags.map((tag: string) =>
           Hashtag.findOrCreate({
-            where: { name: tag.slice(1).toLowerCase() },
+            where: { name: tag.slice(1).toLowerCase(), category: req.body.category },
           })
         )
       );
@@ -536,7 +568,7 @@ router.post("/edit", async (req: Request, res: Response, next: NextFunction) => 
         const result = await Promise.all(
           hashtags.map((tag: string) =>
             Hashtag.findOrCreate({
-              where: { name: tag.slice(1).toLowerCase() },
+              where: { name: tag.slice(1).toLowerCase(), category: req.body.category },
             })
           )
         );

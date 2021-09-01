@@ -7,13 +7,10 @@ export const ArticleCardRowWrapper = styled.article`
   ${tw`p-4 cursor-pointer grid gap-6 mb-4`}
   grid-template-columns: 1.2fr 1.8fr;
   &:hover {
-    p {
-      ${tw`underline`}
-    }
     .image-wrapper {
       img {
         transform: scale(1.1);
-        opacity: 0.7;
+        opacity: 0.5;
       }
     }
   }
@@ -27,14 +24,14 @@ export const ArticleCardRowWrapper = styled.article`
   }
   .content-wrapper {
     h2 {
-      ${tw`mt-0 mb-2 text-lg`}
+      ${tw`mt-0 mb-3 text-lg`}
       ${ELLIPSIS_STYLE(1.5, 1, "1.5rem")}
     }
     .hashtag-list {
-      ${tw`mb-2`}
+      ${tw`mb-3`}
       a {
         color: ${BLUE_COLOR};
-        ${tw`hover:font-bold`}
+        ${tw`hover:font-bold text-sm`}
       }
     }
     .content {
@@ -46,6 +43,17 @@ export const ArticleCardRowWrapper = styled.article`
       ${tw`font-bold text-xs`};
       li:first-of-type {
         color: ${BLUE_COLOR};
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    ${tw`block p-0 my-10`}
+    .image-wrapper {
+      ${tw`mb-4 h-44`}
+    }
+    .content-wrapper {
+      .content {
+        ${ELLIPSIS_STYLE(1.7, 3, "auto")}
       }
     }
   }

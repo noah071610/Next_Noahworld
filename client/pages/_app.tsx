@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import "animate.css/animate.css";
 import "antd/dist/antd.css";
 import "slick-carousel/slick/slick.css";
@@ -65,9 +63,6 @@ const loadingScreen = css`
 
 function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    AOS.init({ startEvent: "load" });
-  }, []);
   useEffect(() => {
     const start = () => {
       setLoading(true);

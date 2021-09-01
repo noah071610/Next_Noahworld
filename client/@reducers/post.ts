@@ -4,10 +4,6 @@ import { CommentsInter, PostState } from "./@reducerTypes";
 const initialState = {
   techPosts: [],
   dailyPosts: [],
-  classPosts: [],
-  culturePosts: [],
-  quizzes: [],
-  words: [],
   hashtags: [],
   mostLikedPost: null,
   mostViewedPost: null,
@@ -60,10 +56,6 @@ const initialState = {
   loadMorePostsLoading: false,
   loadMorePostsDone: false,
   loadMorePostsError: false,
-
-  loadClassPostsLoading: false,
-  loadClassPostsDone: false,
-  loadClassPostsError: false,
 
   likePostLoading: false,
   likePostDone: false,
@@ -143,10 +135,6 @@ export const LOAD_MORE_POSTS_REQUEST = "LOAD_MORE_POSTS_REQUEST" as const;
 export const LOAD_MORE_POSTS_SUCCESS = "LOAD_MORE_POSTS_SUCCESS" as const;
 export const LOAD_MORE_POSTS_FAILURE = "LOAD_MORE_POSTS_FAILURE" as const;
 
-export const LOAD_CLASS_POSTS_REQUEST = "LOAD_CLASS_POSTS_REQUEST" as const;
-export const LOAD_CLASS_POSTS_SUCCESS = "LOAD_CLASS_POSTS_SUCCESS" as const;
-export const LOAD_CLASS_POSTS_FAILURE = "LOAD_CLASS_POSTS_FAILURE" as const;
-
 export const EDIT_POST_REQUEST = "EDIT_POST_REQUEST" as const;
 export const EDIT_POST_SUCCESS = "EDIT_POST_SUCCESS" as const;
 export const EDIT_POST_FAILURE = "EDIT_POST_FAILURE" as const;
@@ -214,8 +202,6 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.addPostDone = true;
         action.data.category === "tech" && draft.techPosts.unshift(action.data);
         action.data.category === "daily" && draft.dailyPosts.unshift(action.data);
-        action.data.category === "class" && draft.classPosts.unshift(action.data);
-        action.data.category === "culture" && draft.culturePosts.unshift(action.data);
         break;
       case ADD_POST_FAILURE:
         draft.addPostLoading = false;
@@ -300,23 +286,6 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.loadMorePostsLoading = false;
         draft.loadMorePostsError = action.error;
         draft.hasMorePosts = false;
-        break;
-      case LOAD_CLASS_POSTS_REQUEST:
-        draft.loadClassPostsLoading = true;
-        draft.loadClassPostsDone = false;
-        draft.loadClassPostsError = false;
-        break;
-      case LOAD_CLASS_POSTS_SUCCESS:
-        draft.loadClassPostsLoading = false;
-        draft.loadClassPostsDone = true;
-        draft.classPosts = action.data.classPosts_class;
-        draft.culturePosts = action.data.culturePosts_class;
-        draft.quizzes = action.data.quizzes;
-        draft.words = action.data.words;
-        break;
-      case LOAD_CLASS_POSTS_FAILURE:
-        draft.loadClassPostsLoading = false;
-        draft.loadClassPostsError = action.error;
         break;
       case ADD_COMMENT_REQUEST:
         draft.addCommentLoading = true;

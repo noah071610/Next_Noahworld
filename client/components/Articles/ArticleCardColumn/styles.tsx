@@ -49,4 +49,7 @@ export const ArticleCardColumnWrapper = styled.article`
       color: ${BLUE_COLOR};
     }
   }
+  @media (max-width: 576px) {
+    ${tw`px-0`}
+  }
 `;

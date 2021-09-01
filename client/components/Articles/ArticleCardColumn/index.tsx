@@ -10,7 +10,7 @@ import { ArticleCardColumnWrapper } from "./styles";
 dayjs.extend(relativeTime);
 dayjs.locale("kor");
 
-const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, nocontent }) => {
+const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, smallSize }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const onClickArticle = useCallback(
@@ -51,10 +51,12 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, noco
   return (
     <>
       {article && (
-        <ArticleCardColumnWrapper onClick={onClickArticle}>
-          <div className="image-wrapper">
+        <ArticleCardColumnWrapper
+          style={smallSize ? { padding: "0 0.5rem 0 0" } : {}}
+          onClick={onClickArticle}
+        >
+          <div style={smallSize ? { height: "180px" } : {}} className="image-wrapper">
             <img
-              style={nocontent ? { height: "140px" } : {}}
               alt={article.title}
               src={
                 article?.thumbnail
@@ -68,24 +70,23 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, noco
           </div>
           <div className="content-wrapper">
             <h2>{article.title}</h2>
-            {nocontent ? null : (
-              <>
-                <ul className="hashtag-list">
-                  {article?.Hashtags?.map((v, i) => {
-                    return (
-                      <li key={i}>
-                        <button onClick={() => onClickHashtag(v.name)} className="hashtag">
-                          #{v.name}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <p className={article?.Hashtags?.length > 0 ? "content" : "content-notags"}>
-                  {contentWithoutHTML.slice(0, 250)}
-                </p>
-              </>
-            )}
+            <ul className="hashtag-list">
+              {article?.Hashtags?.map((v, i) => {
+                return (
+                  <li key={i}>
+                    <button onClick={() => onClickHashtag(v.name)} className="hashtag">
+                      #{v.name}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+            <p
+              style={smallSize ? { WebkitLineClamp: 3, height: "auto" } : {}}
+              className={article?.Hashtags?.length > 0 ? "content" : "content-notags"}
+            >
+              {contentWithoutHTML.slice(0, 250)}
+            </p>
           </div>
           <ul className="footer">
             <li>
