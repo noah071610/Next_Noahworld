@@ -29,8 +29,6 @@ const EditorMenu: FC<EditorMenu> = memo(({ postEditOn, postValue, setPostValue }
       >
         <Radio value="tech">Infomation Technology</Radio>
         <Radio value="daily">Daily</Radio>
-        <Radio value="class">Korean Class</Radio>
-        <Radio value="culture">Korean Culture</Radio>
       </Radio.Group>
       {postEditOn ? (
         <>

@@ -17,9 +17,7 @@ import Scrollspy from "react-scrollspy";
 import { RootState } from "../../@reducers";
 import { POST_EDIT_ON } from "../../@reducers/blog";
 import { REMOVE_POST_REQUEST } from "../../@reducers/post";
-import useInput from "../../util/useInput";
 import { useRouter } from "next/dist/client/router";
-import AdminModal from "../Admin/AdminModal";
 import { css } from "@emotion/react";
 
 const RemoteControlWrapper = (FixedRemote: boolean) => css`
@@ -44,15 +42,13 @@ const RemoteControlWrapper = (FixedRemote: boolean) => css`
 
 const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { post, prevPost, nextPost, removePostDone } = useSelector(
     (state: RootState) => state.post
   );
   const { user } = useSelector((state: RootState) => state.user);
-  const [password, onChangePassword] = useInput("");
   const [FixedRemote, setFixedRemote] = useState(false);
   const [headers, setHeaders] = useState<string[]>([]);
-  const router = useRouter();
-  const [isModalVisible, setIsModalVisible] = useState(false);
   useEffect(() => {
     function scrollCallBack() {
       if (window.scrollY > 400) {
@@ -87,21 +83,12 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
     ));
   }, [headers]);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
+  const onClickDeletePost = useCallback(() => {
     dispatch({
       type: REMOVE_POST_REQUEST,
-      data: { PostId: post?.id, password, tags: post?.Hashtags },
+      data: { PostId: post?.id, tags: post?.Hashtags },
     });
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  }, [post?.id, post?.Hashtags]);
 
   useEffect(() => {
     if (removePostDone) {
@@ -182,7 +169,7 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
             </li>
             <Divider type="vertical" />
             <li>
-              <a onClick={() => showModal()}>
+              <a onClick={onClickDeletePost}>
                 <FontAwesomeIcon icon={faTrash} />
               </a>
             </li>
@@ -204,13 +191,6 @@ const RemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           <a href={`#comment`}>Comments</a>
         </Timeline.Item>
       </Scrollspy>
-      <AdminModal
-        isModalVisible={isModalVisible}
-        handleOk={handleOk}
-        handleCancel={handleCancel}
-        password={password}
-        onChangePassword={onChangePassword}
-      />
     </div>
   );
 };

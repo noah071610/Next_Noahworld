@@ -15,7 +15,6 @@ import { RootState } from "../../@reducers";
 import useInput from "../../util/useInput";
 import useToggle from "../../util/useToggle";
 import { ON_SLIDE_MENU, SEARCH_KEYWORD_REQUEST } from "../../@reducers/blog";
-import AdminModal from "../Admin/AdminModal";
 import { REMOVE_POST_REQUEST } from "../../@reducers/post";
 
 const PostTitle = styled.h4`
@@ -77,8 +76,6 @@ const SmallHeaderNav = memo(() => {
     (state: RootState) => state.post
   );
 
-  const [password, onChangePassword] = useInput("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [keyword, onChangeKeyword, setKeyword] = useInput("");
   const [onSearchForm, onClickSearchForm] = useToggle(false);
   const [onSlideArrow, onClickonSlideArrow, setonSlideArrow] = useToggle(false);
@@ -121,21 +118,12 @@ const SmallHeaderNav = memo(() => {
     });
   }, [dispatch, router, keyword, setKeyword]);
 
-  const showModal = useCallback(() => {
-    setIsModalVisible(true);
-  }, []);
-
-  const handleOk = useCallback(() => {
-    setIsModalVisible(false);
+  const onClickDeletePost = useCallback(() => {
     dispatch({
       type: REMOVE_POST_REQUEST,
-      data: { PostId: post?.id, password, tags: post?.Hashtags },
+      data: { PostId: post?.id, tags: post?.Hashtags },
     });
-  }, [dispatch, password, post?.Hashtags, post?.id]);
-
-  const handleCancel = useCallback(() => {
-    setIsModalVisible(false);
-  }, []);
+  }, [dispatch, post?.Hashtags, post?.id]);
 
   const onClickSlide = useCallback(() => {
     dispatch({
@@ -182,7 +170,7 @@ const SmallHeaderNav = memo(() => {
         </a>
         {onSlideArrow && headerTitle && (
           <SlideRemote
-            showModal={showModal}
+            onClickDeletePost={onClickDeletePost}
             post={post}
             prevPost={prevPost}
             nextPost={nextPost}
@@ -199,13 +187,6 @@ const SmallHeaderNav = memo(() => {
           <SlideMenu onClickSearchForm={onClickSearchForm} user={user} />
         </div>
       </div>
-      <AdminModal
-        isModalVisible={isModalVisible}
-        handleOk={handleOk}
-        handleCancel={handleCancel}
-        password={password}
-        onChangePassword={onChangePassword}
-      />
     </nav>
   );
 });

@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import { Post, User, Hashtag, Comment, SubComment, Quiz } from "../models";
+import { Post, User, Hashtag, Comment, SubComment } from "../models";
 import multer from "multer";
 import path from "path";
 import { Op } from "sequelize";
@@ -71,53 +71,6 @@ router.post(
   }
 );
 
-router.get("/class", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const classPosts_class = await Post.findAll({
-      where: { category: "class" },
-      order: [["createdAt", "ASC"]],
-      include: [
-        {
-          model: Hashtag,
-          attributes: ["name"],
-        },
-        {
-          model: User,
-          as: "PostLikers",
-          attributes: ["id"],
-        },
-      ],
-    });
-    const culturePosts_class = await Post.findAll({
-      where: { category: "culture" },
-      order: [["createdAt", "DESC"]],
-      include: [
-        {
-          model: Hashtag,
-          attributes: ["name"],
-        },
-        {
-          model: User,
-          as: "PostLikers",
-          attributes: ["id"],
-        },
-      ],
-    });
-    const quizzes = await Quiz.findAll({
-      where: { type: "quiz" },
-      order: [["createdAt", "DESC"]],
-    });
-    const words = await Quiz.findAll({
-      where: { type: "word" },
-      order: [["createdAt", "DESC"]],
-    });
-    res.status(200).json({ classPosts_class, culturePosts_class, quizzes, words });
-  } catch (error) {
-    console.error(error);
-    return next(error);
-  }
-});
-
 router.post("/recent", async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.body) {
@@ -152,7 +105,7 @@ router.get("/category/:category", async (req: Request, res: Response, next: Next
     const posts = await Post.findAll({
       where: { category: req.params.category },
       order: [["createdAt", "DESC"]],
-      limit: 7,
+      limit: 6,
       include: [
         {
           model: Hashtag,
@@ -169,12 +122,55 @@ router.get("/category/:category", async (req: Request, res: Response, next: Next
       where: { category: req.params.category },
       attributes: ["id"],
     });
+
     res.status(200).json({ posts, category, countPosts });
   } catch (error) {
     console.error(error);
     return next(error);
   }
 });
+
+router.get(
+  "/category/:category/:hashtag",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const category = req.params.category;
+      const posts = await Post.findAll({
+        where: { category: req.params.category },
+        order: [["createdAt", "DESC"]],
+        limit: 12,
+        include: [
+          {
+            model: Hashtag,
+            attributes: ["name"],
+            where: { name: { [Op.eq]: decodeURIComponent(req.params.hashtag) } },
+          },
+          {
+            model: User,
+            as: "PostLikers",
+            attributes: ["id"],
+          },
+        ],
+      });
+      const countPosts = await Post.findAll({
+        where: { category: req.params.category },
+        attributes: ["id"],
+        include: [
+          {
+            model: Hashtag,
+            attributes: ["name"],
+            where: { name: { [Op.eq]: decodeURIComponent(req.params.hashtag) } },
+          },
+        ],
+      });
+
+      res.status(200).json({ posts, category, countPosts });
+    } catch (error) {
+      console.error(error);
+      return next(error);
+    }
+  }
+);
 
 router.get(
   "/onePost/:postId/:UserId/:category",
@@ -471,10 +467,6 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
       res.status(401).send("You are not a Admin");
       return;
     }
-    if (req.body.password !== process.env.ADMIN_PASS) {
-      res.status(401).send("Wrong Password");
-      return;
-    }
     const hashtags = await req.body.content
       .replace(/([:'\\\/#-=`\|~+%\^&;]#[^\s#+^<]+)/g, "")
       .replace(/(#youtube:[^\s#+^<]+)/g, "")
@@ -560,10 +552,6 @@ router.post("/edit", async (req: Request, res: Response, next: NextFunction) => 
 
 router.post("/delete", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    if (req.body.password !== process.env.ADMIN_PASS) {
-      res.status(401).send("Wrong Password");
-      return;
-    }
     await SubComment.destroy({
       where: { PostId: req.body.PostId },
     });
@@ -573,6 +561,7 @@ router.post("/delete", async (req: Request, res: Response, next: NextFunction) =
     await Post.destroy({
       where: { id: req.body.PostId },
     });
+    // 미래에서온 장현수 : 이건 cascade로 하면 되잖아
     if (req.body.tags) {
       req.body.tags.map((v: { name: string }) => {
         Hashtag.destroy({

@@ -9,35 +9,18 @@ import {
   UPLOAD_IMAGES_CLEAR,
   UPLOAD_IMAGES_REQUEST,
 } from "../@reducers/post";
-import { POST_EDIT_OFF, POST_EDIT_ON, ADD_QUIZ_REQUEST } from "../@reducers/blog";
+import { POST_EDIT_OFF, POST_EDIT_ON } from "../@reducers/blog";
 import { RootState } from "../@reducers";
 import { HashtagsInter } from "../@reducers/@reducerTypes";
 import useInput from "../util/useInput";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import AdminModal from "../components/Admin/AdminModal";
 import EditorMenu from "../components/Admin/EditorMenu";
 import styled from "@emotion/styled";
-import { Button, Input, message, Radio } from "antd";
+import { Input, message } from "antd";
 import UserProfile from "../components/Profile/UserProfile";
 
 const PostEditor = dynamic(() => import("../components/Admin/Editor"), { ssr: false });
-
-const QuizForm = styled.div`
-  display: flex;
-  div {
-    width: 100%;
-    h4 {
-      margin-top: 1rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    button {
-      width: 50%;
-      margin-top: 1rem;
-    }
-  }
-`;
 
 const PostForm = styled(Form)`
   margin: 3rem 0;
@@ -78,18 +61,12 @@ const Admin = memo(() => {
     addPostDone,
     editPostDone,
   } = useSelector((state: RootState) => state.post);
-  const [content, onChangeContent, setContent] = useInput(null);
+  const [content, _, setContent] = useInput(null);
   const [thumbnail, onChangeThumbnail, setthumbnail] = useInput("");
   const [title, onChangeTitle, setTitle] = useInput("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [PostId, setPostId] = useState<number | null>(null);
   const [tags, setTags] = useState<HashtagsInter[]>();
-  const [password, onChangePassword] = useInput("");
-  const [question, onChangeQuestion] = useInput("");
-  const [answer, onChangeAnswer] = useInput("");
   const [postValue, setPostValue] = useState("tech");
-  const [classValue, setClassValue] = useState("word");
-  const [quizForm, setQuizForm] = useState(false);
   const editorRef = useRef<any>(null);
   const imageInput = useRef<HTMLInputElement | null>(null);
 
@@ -102,35 +79,15 @@ const Admin = memo(() => {
     });
   }, []);
 
-  const showEditorModal = useCallback(() => {
-    setIsModalVisible(true);
+  const onFinishPost = useCallback(() => {
     setContent(editorRef.current.getInstance().getHTML());
-  }, [editorRef]);
-
-  const showQuizModal = useCallback(() => {
-    setIsModalVisible(true);
-    setQuizForm(true);
-  }, []);
-
-  const handleOk = useCallback(() => {
-    if (quizForm) {
-      if (question === "") {
-        message.info("Please Write down question");
-        return;
-      }
-      if (answer === "") {
-        message.info("Please Write down answer");
-        return;
-      }
-    } else {
-      if (content === "") {
-        message.info("Please Write down contents");
-        return;
-      }
-      if (title === "") {
-        message.info("Please Write down title");
-        return;
-      }
+    if (content === "" || content.trim() === "") {
+      message.info("Please Write down contents");
+      return;
+    }
+    if (title === "" || title.trim() === "") {
+      message.info("Please Write down title");
+      return;
     }
     let data = {
       thumbnail,
@@ -139,17 +96,10 @@ const Admin = memo(() => {
       category: postValue,
       content,
       UserId: user?.id,
-      password,
       PostId,
       tags,
     };
-    if (content && !postEditOn && !quizForm) {
-      dispatch({
-        type: ADD_POST_REQUEST,
-        data,
-      });
-    }
-    if (content && postEditOn && !quizForm) {
+    if (postEditOn) {
       dispatch({
         type: EDIT_POST_REQUEST,
         data,
@@ -157,21 +107,14 @@ const Admin = memo(() => {
       dispatch({
         type: POST_EDIT_ON,
       });
-    }
-    if (!content && !postEditOn && quizForm) {
+    } else {
       dispatch({
-        type: ADD_QUIZ_REQUEST,
-        data: { type: classValue, question, answer, password, UserId: user?.id },
+        type: ADD_POST_REQUEST,
+        data,
       });
     }
-    setIsModalVisible(false);
-    setQuizForm(false);
   }, [
-    classValue,
     postEditOn,
-    question,
-    answer,
-    password,
     user?.id,
     content,
     title,
@@ -180,13 +123,8 @@ const Admin = memo(() => {
     PostId,
     tags,
     postValue,
-    quizForm,
+    editorRef,
   ]);
-
-  const handleCancel = useCallback(() => {
-    setIsModalVisible(false);
-    setQuizForm(false);
-  }, []);
 
   const onClickUploadImage = useCallback(() => {
     dispatch({
@@ -230,14 +168,14 @@ const Admin = memo(() => {
   useEffect(() => {
     if (addPostDone || editPostDone) {
       message.success("Post added or Edited");
-      router.push("/");
+      router.push(`/tech`);
       editorRef?.current?.getInstance().setHTML("");
     }
   }, [addPostDone, editPostDone]);
   return (
     <>
       <UserProfile />
-      <PostForm onFinish={showEditorModal}>
+      <PostForm onFinish={onFinishPost}>
         <h2>ADD POST</h2>
         <h4>Title</h4>
         <Input value={title} onChange={onChangeTitle} className="form_title" />
@@ -261,31 +199,6 @@ const Admin = memo(() => {
         <PostEditor post={post} editorRef={editorRef} />
         <EditorMenu postEditOn={postEditOn} postValue={postValue} setPostValue={setPostValue} />
       </PostForm>
-      <QuizForm>
-        <div>
-          <h2>日本語講座作成</h2>
-          <h4>設問　Question</h4>
-          <Input value={question} onChange={onChangeQuestion} />
-          <h4>答え　Answer</h4>
-          <Input.TextArea value={answer} onChange={onChangeAnswer} />
-          <Radio.Group
-            style={{ width: "50%" }}
-            onChange={(e) => setClassValue(e.target.value)}
-            value={classValue}
-          >
-            <Radio value="word">Word</Radio>
-            <Radio value="quiz">Quiz</Radio>
-          </Radio.Group>
-          <Button onClick={showQuizModal}>Submit</Button>
-        </div>
-      </QuizForm>
-      <AdminModal
-        isModalVisible={isModalVisible}
-        handleOk={handleOk}
-        handleCancel={handleCancel}
-        password={password}
-        onChangePassword={onChangePassword}
-      />
     </>
   );
 });

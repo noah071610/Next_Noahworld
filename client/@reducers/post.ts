@@ -271,7 +271,7 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.techPosts = action.data.category === "tech" ? action.data.posts : false;
         draft.dailyPosts = action.data.category === "daily" ? action.data.posts : false;
         draft.countPosts = action.data.countPosts;
-        draft.hasMorePosts = action.data.posts.length > 6;
+        draft.hasMorePosts = action.data.posts.length > 5;
         break;
       case LOAD_CATEGORY_POSTS_FAILURE:
         draft.loadCategoryPostsLoading = false;

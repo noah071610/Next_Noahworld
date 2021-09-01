@@ -20,10 +20,6 @@ const initialState = {
   searchHashTagLoading: false,
   searchHashTagDone: false,
   searchHashTagError: false,
-
-  addQuizLoading: false,
-  addQuizDone: false,
-  addQuizError: false,
 };
 
 export const MODE_CHANGE = "MODE_CHANGE" as const;
@@ -120,24 +116,6 @@ const reducer = (state: BlogState = initialState, action: any) =>
         draft.searchHashTagLoading = false;
         draft.searchHashTagDone = false;
         draft.searchHashTagError = false;
-        break;
-      case ADD_QUIZ_REQUEST:
-        draft.addQuizLoading = true;
-        draft.addQuizDone = false;
-        draft.addQuizError = false;
-        break;
-      case ADD_QUIZ_SUCCESS:
-        draft.addQuizLoading = false;
-        draft.addQuizDone = true;
-        break;
-      case ADD_QUIZ_FAILURE:
-        draft.addQuizLoading = false;
-        draft.addQuizError = action.error;
-        break;
-      case ADD_QUIZ_CLEAR:
-        draft.addQuizLoading = false;
-        draft.addQuizDone = false;
-        draft.addQuizError = false;
         break;
       default:
         break;

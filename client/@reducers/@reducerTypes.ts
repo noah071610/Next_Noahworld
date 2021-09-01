@@ -149,10 +149,6 @@ export interface BlogState {
   searchHashTagLoading: boolean;
   searchHashTagDone: boolean;
   searchHashTagError: boolean | Error;
-
-  addQuizLoading: boolean;
-  addQuizDone: boolean;
-  addQuizError: boolean | Error;
 }
 
 export interface PostState {

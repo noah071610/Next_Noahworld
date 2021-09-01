@@ -5,9 +5,7 @@ $SUB_COLOR: #5ae4a8;
 $GRAY_COLOR: rgba(0, 0, 0, 0.2);
 $BG_COLOR: rgb(247, 247, 247);
 
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Noto+Sans+KR:wght@100&display=swap");
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 // global
 
 *::-webkit-scrollbar {
@@ -113,7 +111,7 @@ video {
   font-size: 100%;
   vertical-align: baseline;
   box-sizing: border-box;
-  font-family: "Rubik", "Kosugi Maru", "Nanum Gothic Coding", sans-serif, monospace;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -143,6 +141,12 @@ li {
 }
 li {
   display: inline-block;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 blockquote,
@@ -714,15 +718,6 @@ h1 {
     &_small {
       display: none;
     }
-    &_header {
-      margin: 4rem 1rem;
-      font-size: 3rem;
-    }
-    &_count {
-      color: $BLUE_COLOR;
-      margin: 0 1rem;
-      font-size: 1.8rem;
-    }
   }
   &_class {
     &_basic {
@@ -880,10 +875,8 @@ h1 {
 }
 
 .article {
-  //common
   padding: 1rem;
   cursor: pointer;
-
   &:hover {
     .article_desc {
       text-decoration: underline;
@@ -947,6 +940,7 @@ h1 {
   }
   &_footer {
     color: rgba(0, 0, 0, 0.3);
+    font-size: 0.8rem;
   }
   &_md {
     &_footer {
@@ -1171,9 +1165,10 @@ h1 {
   [data-backticks] {
     background-color: $BLUE_COLOR;
     color: white;
-    padding: 0.1rem 0.2rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 3px;
     margin-right: 0.2rem;
+    font-size: 0.7rem;
   }
   pre {
     margin: 2px 0 8px;

@@ -4,18 +4,29 @@ import { Divider } from "antd";
 import Link from "next/link";
 import { LOAD_POSTS_REQUEST } from "../@reducers/post";
 import { LOAD_INFO_REQUEST } from "../@reducers/user";
-import CountUp from "react-countup";
 import { RootState } from "../@reducers";
 import wrapper from "../@store/configureStore";
 import axios from "axios";
 import { END } from "@redux-saga/core";
 import { IStore } from "../types";
 import dynamic from "next/dynamic";
+import ArticleCardRow from "../components/Articles/ArticleCardRow";
+import styled from "@emotion/styled";
+import tw from "twin.macro";
+import { FLEX_STYLE } from "../styles/emotion";
+import { BLUE_COLOR } from "../config";
 
-const MainArticle = dynamic(() => import("../components/Articles/MainArticle"));
 const MostArticle = dynamic(() => import("../components/Articles/MostArticle"));
 const UserProfile = dynamic(() => import("../components/Profile/UserProfile"));
-const ClassCard = dynamic(() => import("../components/Class/ClassCard"));
+
+const MoreBtn = styled.a`
+  ${tw`p-4 mt-4 w-full`}
+  ${FLEX_STYLE("center", "center")};
+  &:hover {
+    ${tw`font-bold`}
+    color:${BLUE_COLOR};
+  }
+`;
 
 const BlogMainPage = memo(() => {
   const { user } = useSelector((state: RootState) => state.user);
@@ -25,8 +36,8 @@ const BlogMainPage = memo(() => {
   return (
     <>
       {user && <UserProfile />}
-      <div className="blog">
-        <h2 className="blog_category_header header_small_on">
+      <main className="blog">
+        {/* <h2 className="blog_category_header header_small_on">
           HOME
           {techPosts && dailyPosts && (
             <span className="blog_category_count">
@@ -38,7 +49,7 @@ const BlogMainPage = memo(() => {
               &nbsp;hashtags.
             </span>
           )}
-        </h2>
+        </h2> */}
         {/*Main Manu*/}
         <section className="blog_main">
           <Divider orientation="left">
@@ -46,13 +57,31 @@ const BlogMainPage = memo(() => {
               <a>Information Technology</a>
             </Link>
           </Divider>
-          <MainArticle category={techPosts} />
+          {techPosts?.slice(0, 4).map((v, i) => (
+            <ArticleCardRow key={i} article={v} />
+          ))}
+          {techPosts.length > 4 && (
+            <Link href="/tech">
+              <MoreBtn>
+                <span>View More Articles</span>
+              </MoreBtn>
+            </Link>
+          )}
           <Divider orientation="left">
             <Link href="/daily">
               <a>Daily</a>
             </Link>
           </Divider>
-          <MainArticle category={dailyPosts} />
+          {dailyPosts?.slice(0, 4).map((v, i) => (
+            <ArticleCardRow key={i} article={v} />
+          ))}
+          {dailyPosts.length > 4 && (
+            <Link href="/daily">
+              <MoreBtn>
+                <span>View More Articles</span>
+              </MoreBtn>
+            </Link>
+          )}
         </section>
         {/*Aside Manu*/}
         <aside className="blog_aside">
@@ -84,7 +113,7 @@ const BlogMainPage = memo(() => {
             desc="Hashtags"
           />
         </aside>
-      </div>
+      </main>
       {/*Aside Manu When SM*/}
       <section className="blog_md_aside">
         <Divider />
@@ -113,7 +142,6 @@ const BlogMainPage = memo(() => {
           desc="Hashtags"
         />
       </section>
-      <ClassCard />
     </>
   );
 });

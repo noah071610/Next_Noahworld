@@ -8,6 +8,7 @@ export interface IStore extends Store {
 }
 
 export interface ArticleInter {
+  setOnHashtagFilter?: (type: boolean) => void;
   article: PostInter;
   nocontent?: Boolean;
   type?: string;

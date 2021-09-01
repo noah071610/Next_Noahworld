@@ -53,18 +53,6 @@ const HeaderNav = memo(() => {
           </Link>
         </li>
         <li className="blog_header_li">
-          <Link href="/class">
-            <a>
-              Korean Class for &nbsp;
-              <img
-                style={{ width: "1.2rem" }}
-                alt="japan_flag"
-                src="https://img.icons8.com/color/48/000000/japan.png"
-              />
-            </a>
-          </Link>
-        </li>
-        <li className="blog_header_li">
           <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
             Portfolio ⭐
           </a>

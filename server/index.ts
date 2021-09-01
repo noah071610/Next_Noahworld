@@ -86,7 +86,6 @@ app.use("/api/post", require("./routes/post"));
 app.use("/api/user", require("./routes/user"));
 app.use("/api/comment", require("./routes/comment"));
 app.use("/api/search", require("./routes/search"));
-app.use("/api/quiz", require("./routes/quiz"));
 
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 

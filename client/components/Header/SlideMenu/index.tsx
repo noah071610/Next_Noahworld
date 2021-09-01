@@ -77,18 +77,6 @@ const SlideMenu: FC<SlideMenuProps> = memo(({ onClickSearchForm, user }) => {
             <a>- Daily</a>
           </Link>
         </li>
-        <li onClick={onClickMenu}>
-          <Link href={"/class"}>
-            <a className="image_list">
-              <span>- Korean Class for &nbsp;</span>
-              <img
-                style={{ width: "1.5rem" }}
-                alt="japan_flag"
-                src="https://img.icons8.com/color/48/000000/japan.png"
-              />
-            </a>
-          </Link>
-        </li>
         <li>
           <a onClick={onClickSearchForm}>
             {" "}

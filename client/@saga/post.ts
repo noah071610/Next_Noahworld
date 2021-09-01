@@ -20,9 +20,6 @@ import {
   LIKE_POST_FAILURE,
   UNLIKE_POST_SUCCESS,
   UNLIKE_POST_FAILURE,
-  LOAD_CLASS_POSTS_REQUEST,
-  LOAD_CLASS_POSTS_SUCCESS,
-  LOAD_CLASS_POSTS_FAILURE,
   EDIT_POST_REQUEST,
   EDIT_POST_FAILURE,
   EDIT_POST_SUCCESS,
@@ -109,8 +106,8 @@ function* loadPosts() {
   }
 }
 
-function loadCategoryPostsAPI(data: string) {
-  return axios.get(`/api/post/category/${data}`);
+function loadCategoryPostsAPI(data: any) {
+  return axios.get(`/api/post/category/${data.category}/${encodeURIComponent(data.hashtag || "")}`);
 }
 
 function* loadCategoryPosts(action: LoadCategoryInter) {
@@ -142,25 +139,6 @@ function* loadMorePosts(action: LoadMorePostsInter) {
   } catch (err) {
     yield put({
       type: LOAD_MORE_POSTS_FAILURE,
-      error: err.response.data,
-    });
-  }
-}
-
-function loadClassPostsAPI() {
-  return axios.get(`/api/post/class`);
-}
-
-function* loadClassPosts() {
-  try {
-    const { data } = yield call(loadClassPostsAPI);
-    yield put({
-      type: LOAD_CLASS_POSTS_SUCCESS,
-      data,
-    });
-  } catch (err) {
-    yield put({
-      type: LOAD_CLASS_POSTS_FAILURE,
       error: err.response.data,
     });
   }
@@ -352,9 +330,6 @@ function* watchloadMorePosts() {
 function* watchLoadRecentPosts() {
   yield takeLatest(LOAD_RECENT_POSTS_REQUEST, loadRecentPosts);
 }
-function* watchloadClassPosts() {
-  yield takeLatest(LOAD_CLASS_POSTS_REQUEST, loadClassPosts);
-}
 function* watchLoadPost() {
   yield takeLatest(LOAD_POST_REQUEST, loadPost);
 }
@@ -385,7 +360,6 @@ export default function* postSaga() {
     fork(watchLoadPosts),
     fork(watchloadCategoryPosts),
     fork(watchloadMorePosts),
-    fork(watchloadClassPosts),
     fork(watchLoadPost),
     fork(watchLoadRecentPosts),
     fork(watchLikePost),
