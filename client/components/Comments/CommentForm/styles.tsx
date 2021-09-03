@@ -30,6 +30,23 @@ export const CommentFormWrapper = styled.div`
     background-color: rgba(0, 0, 0, 0.05);
   }
   @media only screen and (max-width: 576px) {
+    .icon-wrapper {
+      img {
+        ${tw`w-12 h-12`}
+      }
+      h3 {
+        ${tw`text-sm`}
+      }
+    }
+    .comment-textarea {
+      ${tw`ml-4`}
+      .ant-input {
+        ${tw`h-20`}
+      }
+      button {
+        ${tw`w-1/2 text-sm`}
+      }
+    }
     padding-right: 0;
   }
 `;

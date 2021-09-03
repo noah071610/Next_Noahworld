@@ -28,7 +28,7 @@ import Comment from "../../../components/Comments/Comment";
 import { PostPageWrapper } from "../../../layout/PostPage/styles";
 dayjs.locale("kor");
 
-const PostRemoteControl = dynamic(() => import("../../../components/PostRemoteControl"));
+const PostRemoteControl = dynamic(() => import("../../../layout/PostPage/PostRemoteControl"));
 
 const Heart = styled.a`
   display: inline-block;
@@ -77,6 +77,13 @@ const settings = {
   slidesToShow: 3,
   slidesToScroll: 2,
   responsive: [
+    {
+      breakpoint: 750,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
     {
       breakpoint: 574,
       settings: {
@@ -190,18 +197,20 @@ const BlogPostPage = memo(() => {
         </ul>
         <div className="post-main-wrapper">
           <div className="post-main">
-            <img
-              className="post-tumbnail"
-              alt={post?.title}
-              src={
-                post?.thumbnail
-                  ? post?.thumbnail
-                  : post?.imagePath
-                  ? post?.imagePath.replace(/\/thumb\//, "/original/")
-                  : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
-              }
-              onError={handleImgError}
-            />
+            {(post?.thumbnail || post?.imagePath) && (
+              <img
+                className="post-tumbnail"
+                alt={post?.title}
+                src={
+                  post?.thumbnail
+                    ? post?.thumbnail
+                    : post?.imagePath
+                    ? post?.imagePath.replace(/\/thumb\//, "/original/")
+                    : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
+                }
+                onError={handleImgError}
+              />
+            )}
             <article className="post-content">{Fullcontent && parse(Fullcontent)}</article>
             <h4 css={PostSubTitle}>Another posts</h4>
             {nextPost.length + prevPost.length > 2 ? (

@@ -15,15 +15,9 @@ import Link from "next/link";
 import React, { memo, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../@reducers";
-import { POST_EDIT_ON } from "../../../@reducers/blog";
+import { SET_POST_EDIT } from "../../../@reducers/post";
 import { REMOVE_POST_REQUEST } from "../../../@reducers/post";
 import { SlideRemoteControlWrapper } from "./styles";
-
-interface SlideRemoteProps {}
-
-const marginZero = css`
-  margin: 0;
-`;
 
 const SlideRemoteControl = () => {
   const dispatch = useDispatch();
@@ -32,7 +26,6 @@ const SlideRemoteControl = () => {
     window.scrollTo({ top: 0 });
   }, []);
   const { user } = useSelector((state: RootState) => state.user);
-
   const { post, removePostDone, prevPost, nextPost } = useSelector(
     (state: RootState) => state.post
   );
@@ -105,7 +98,8 @@ const SlideRemoteControl = () => {
             <a
               onClick={() => {
                 dispatch({
-                  type: POST_EDIT_ON,
+                  type: SET_POST_EDIT,
+                  data: true,
                 });
                 router.push("/admin");
               }}
@@ -125,4 +119,4 @@ const SlideRemoteControl = () => {
   );
 };
 
-export default memo(SlideRemoteControl);
+export default SlideRemoteControl;

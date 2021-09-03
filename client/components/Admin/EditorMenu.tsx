@@ -1,10 +1,10 @@
 import React, { FC, memo } from "react";
 import { Button, Radio } from "antd";
-import { POST_EDIT_ON } from "../../@reducers/blog";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/dist/client/router";
 import styled from "@emotion/styled";
 import { FLEX_STYLE } from "../../styles/emotion";
+import { RootState } from "../../@reducers";
 
 const EditorMenuWrapper = styled.div`
   ${FLEX_STYLE("flex-start", "center")};
@@ -14,11 +14,10 @@ const EditorMenuWrapper = styled.div`
 interface EditorMenu {
   postValue: string;
   setPostValue: (e: string) => void;
-  postEditOn: boolean;
 }
 
-const EditorMenu: FC<EditorMenu> = memo(({ postEditOn, postValue, setPostValue }) => {
-  const dispatch = useDispatch();
+const EditorMenu: FC<EditorMenu> = memo(({ postValue, setPostValue }) => {
+  const { onEditPost } = useSelector((state: RootState) => state.post);
   const router = useRouter();
   return (
     <EditorMenuWrapper>
@@ -30,14 +29,13 @@ const EditorMenu: FC<EditorMenu> = memo(({ postEditOn, postValue, setPostValue }
         <Radio value="tech">Infomation Technology</Radio>
         <Radio value="daily">Daily</Radio>
       </Radio.Group>
-      {postEditOn ? (
+      {onEditPost ? (
         <>
           <Button type="primary" htmlType="submit" style={{ width: "25%" }}>
             EDIT
           </Button>
           <Button
             onClick={() => {
-              dispatch({ type: POST_EDIT_ON });
               router.push("/");
             }}
             style={{ width: "25%" }}

@@ -35,14 +35,15 @@ import {
   UPLOAD_IMAGES_SUCCESS,
   UPLOAD_IMAGES_FAILURE,
   UPLOAD_IMAGES_CLEAR,
-  LOAD_RECENT_POSTS_REQUEST,
-  LOAD_RECENT_POSTS_SUCCESS,
-  LOAD_RECENT_POSTS_FAILURE,
   UPLOAD_POST_IMAGE_REQUEST,
   UPLOAD_POST_IMAGE_SUCCESS,
   UPLOAD_POST_IMAGE_CLEAR,
   UPLOAD_POST_IMAGE_FAILURE,
   EDIT_POST_CLEAR,
+  SEARCH_POST_SUCCESS,
+  SEARCH_POST_CLEAR,
+  SEARCH_POST_FAILURE,
+  SEARCH_POST_REQUEST,
 } from "../@reducers/post";
 import {
   AddPostInter,
@@ -54,15 +55,42 @@ import {
   LoadMorePostsInter,
   LoadPostData,
   LoadPostInter,
-  LoadRecentPostInter,
   NewPostData,
   RemovePostData,
   RemovePostInter,
+  SearchPostData,
+  SearchPostInter,
   UploadImageData,
   UploadImageInter,
   UploadPostImageInter,
 } from "./@sagaTypes";
-import { UserInter } from "../@reducers/@reducerTypes";
+
+function searchPostAPI(data: SearchPostData) {
+  return axios.post(`/api/post/search`, data);
+}
+
+function* searchPost(action: SearchPostInter) {
+  try {
+    const { data } = yield call(searchPostAPI, action.data);
+    yield put({
+      type: SEARCH_POST_SUCCESS,
+      data,
+    });
+    yield delay(3000);
+    yield put({
+      type: SEARCH_POST_CLEAR,
+    });
+  } catch (err) {
+    yield put({
+      type: SEARCH_POST_FAILURE,
+      error: err.response.data,
+    });
+    yield delay(3000);
+    yield put({
+      type: SEARCH_POST_CLEAR,
+    });
+  }
+}
 
 function addPostAPI(data: NewPostData) {
   return axios.post("/api/post", data);
@@ -157,23 +185,6 @@ function* loadPost(action: LoadPostInter) {
   } catch (err) {
     yield put({
       type: LOAD_POST_FAILURE,
-      error: err.response.data,
-    });
-  }
-}
-function loadRecentPostsAPI(data: UserInter) {
-  return axios.post(`/api/post/recent`, data);
-}
-function* loadRecentPosts(action: LoadRecentPostInter) {
-  try {
-    const { data } = yield call(loadRecentPostsAPI, action.data);
-    yield put({
-      type: LOAD_RECENT_POSTS_SUCCESS,
-      data,
-    });
-  } catch (err) {
-    yield put({
-      type: LOAD_RECENT_POSTS_FAILURE,
       error: err.response.data,
     });
   }
@@ -327,9 +338,7 @@ function* watchloadCategoryPosts() {
 function* watchloadMorePosts() {
   yield takeLatest(LOAD_MORE_POSTS_REQUEST, loadMorePosts);
 }
-function* watchLoadRecentPosts() {
-  yield takeLatest(LOAD_RECENT_POSTS_REQUEST, loadRecentPosts);
-}
+
 function* watchLoadPost() {
   yield takeLatest(LOAD_POST_REQUEST, loadPost);
 }
@@ -353,6 +362,9 @@ function* watchUploadImages() {
 function* watchUploadPostImage() {
   yield takeLatest(UPLOAD_POST_IMAGE_REQUEST, uploadPostImage);
 }
+function* watchSearchPost() {
+  yield takeLatest(SEARCH_POST_REQUEST, searchPost);
+}
 
 export default function* postSaga() {
   yield all([
@@ -361,12 +373,12 @@ export default function* postSaga() {
     fork(watchloadCategoryPosts),
     fork(watchloadMorePosts),
     fork(watchLoadPost),
-    fork(watchLoadRecentPosts),
     fork(watchLikePost),
     fork(watchUnlikePost),
     fork(watchUploadImages),
     fork(watchUploadPostImage),
     fork(watchRemovePost),
     fork(watchEditPost),
+    fork(watchSearchPost),
   ]);
 }

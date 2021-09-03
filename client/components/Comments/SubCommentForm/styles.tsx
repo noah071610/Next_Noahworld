@@ -15,8 +15,11 @@ export const SubCommentFormWrapper = styled.div`
   }
   @media only screen and (max-width: 576px) {
     ${tw`pl-2 pr-0`}
+    img {
+      ${tw`ml-0 mr-2`}
+    }
     button {
-      width: 30%;
+      ${tw`w-2/5 text-sm`}
     }
   }
 `;

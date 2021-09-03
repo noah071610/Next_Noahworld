@@ -14,29 +14,10 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Scrollspy from "react-scrollspy";
-import { RootState } from "../@reducers";
-import { POST_EDIT_ON } from "../@reducers/blog";
-import { REMOVE_POST_REQUEST } from "../@reducers/post";
+import { RootState } from "../../../@reducers";
+import { REMOVE_POST_REQUEST, SET_POST_EDIT } from "../../../@reducers/post";
 import { useRouter } from "next/dist/client/router";
-import { css } from "@emotion/react";
-import tw from "twin.macro";
-
-const PostRemoteControlWrapper = (FixedRemote: boolean) => css`
-  ${tw`w-72 pl-8 top-20 h-full top-20`}
-  position: ${FixedRemote ? "sticky" : "static"};
-  h2 {
-    ${tw`mb-4 leading-5`}
-  }
-  ul:first-of-type {
-    overflow: hidden;
-    li {
-      margin: 0;
-    }
-  }
-  @media (max-width: 830px) {
-    display: none;
-  }
-`;
+import { PostRemoteControlWrapper } from "./styles";
 
 const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   const dispatch = useDispatch();
@@ -73,9 +54,9 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
 
   const timelineLists = useCallback(() => {
     return headers.map((v, i) => (
-      <Timeline.Item color="gray" key={i} style={{ width: "100%" }}>
-        <a href={`#${i}`}>{v}</a>
-      </Timeline.Item>
+      <a className="header-contents" key={i} href={`#${i}`}>
+        {v}
+      </a>
     ));
   }, [headers]);
 
@@ -98,8 +79,8 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   }, []);
 
   return (
-    <div className="remocontrol" css={PostRemoteControlWrapper(FixedRemote)}>
-      <h2>{post?.title}</h2>
+    <aside css={PostRemoteControlWrapper(FixedRemote)}>
+      <h1>{post?.title}</h1>
       <ul>
         <li>
           <Link href={"/"}>
@@ -155,7 +136,8 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
               <a
                 onClick={() => {
                   dispatch({
-                    type: POST_EDIT_ON,
+                    type: SET_POST_EDIT,
+                    data: true,
                   });
                   router.push("/admin");
                 }}
@@ -172,22 +154,17 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           </>
         )}
       </ul>
-      <Divider style={{ margin: "0.5rem 0 3rem 0" }} />
       <Scrollspy
         style={{ margin: 0 }}
         items={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
         currentClassName="selected"
-        offset={300}
       >
         {timelineLists()}
-        <Timeline.Item
-          style={{ width: "100%", paddingBottom: 0 }}
-          className="ant-timeline-item-last"
-        >
-          <a href={`#comment`}>Comments</a>
-        </Timeline.Item>
+        <a className="header-contents" href="#comment">
+          Comments
+        </a>
       </Scrollspy>
-    </div>
+    </aside>
   );
 };
 

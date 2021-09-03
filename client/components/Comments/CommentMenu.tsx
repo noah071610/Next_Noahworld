@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import { RootState } from "../../@reducers";
 import { RED_COLOR } from "../../config";
 import { CommentsInter, UserInter } from "../../@reducers/@reducerTypes";
+import { FLEX_STYLE } from "../../styles/emotion";
 
 interface CommentMenu {
   user: UserInter;
@@ -22,16 +23,19 @@ interface CommentMenu {
 }
 
 const LikeComment = styled.a`
-  margin-right: 0.3rem;
+  svg {
+    margin-right: 0.2rem;
+  }
+  .liked {
+    color: ${RED_COLOR};
+  }
   &:hover {
     color: ${RED_COLOR};
   }
 `;
 
 const CommentMenuList = styled.ul`
-  margin: 0.5rem 0 0 0;
-  display: flex;
-  justify-content: flex-end;
+  ${FLEX_STYLE("flex-end", "center")}
 `;
 
 const CommentMenu: FC<CommentMenu> = memo(
@@ -67,24 +71,23 @@ const CommentMenu: FC<CommentMenu> = memo(
 
     return (
       <CommentMenuList>
-        {user?.id === comment.UserId && (
-          <a>
-            <FontAwesomeIcon onClick={() => setDeletePopup(true)} icon={faTrashAlt} />
-          </a>
-        )}
         {!SubCommentId && (
           <li>
-            {commentLiked ? (
-              <HeartFilled
-                style={{ color: RED_COLOR, marginRight: "0.3rem" }}
-                onClick={onClickCommentUnlike}
-              />
-            ) : (
-              <LikeComment onClick={onClickCommentLike}>
+            <LikeComment onClick={onClickCommentLike}>
+              {commentLiked ? (
+                <HeartFilled className="liked" onClick={onClickCommentUnlike} />
+              ) : (
                 <HeartOutlined />
-              </LikeComment>
-            )}
-            {comment.CommentLikers ? comment.CommentLikers.length : 0}
+              )}
+              {comment.CommentLikers ? comment.CommentLikers.length : 0}
+            </LikeComment>
+          </li>
+        )}
+        {user?.id === comment.UserId && (
+          <li>
+            <a>
+              <FontAwesomeIcon onClick={() => setDeletePopup(true)} icon={faTrashAlt} />
+            </a>
           </li>
         )}
       </CommentMenuList>

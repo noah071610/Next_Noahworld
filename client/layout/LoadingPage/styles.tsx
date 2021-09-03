@@ -23,17 +23,17 @@ export const LoadingScreenWrapper = styled.div`
     animation: bouncer 0.5s cubic-bezier(0.19, 0.57, 0.3, 0.98) infinite alternate;
   }
 
-  .bouncer div:nth-child(2) {
+  .bouncer div:nth-of-type(2) {
     animation-delay: 0.1s;
     opacity: 0.8;
   }
 
-  .bouncer div:nth-child(3) {
+  .bouncer div:nth-of-type(3) {
     animation-delay: 0.2s;
     opacity: 0.6;
   }
 
-  .bouncer div:nth-child(4) {
+  .bouncer div:nth-of-type(4) {
     animation-delay: 0.3s;
     opacity: 0.4;
   }

@@ -1,30 +1,3 @@
-import { css } from "@emotion/react";
-import { BLUE_COLOR } from "../config";
-
-export const TitleProfile = css`
-  white-space: nowrap;
-  display: inline-block;
-  margin-left: 0.5rem;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-export const NoPostProfile = css`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  opacity: 0.3;
-  img {
-    width: 100px;
-  }
-`;
-
-export const ProfilePointTitle = css`
-  color: ${BLUE_COLOR};
-  margin-left: 0.3rem;
-`;
-
 export const FLEX_STYLE = (justify: string, align: string, flexStyle?: string) => `
   display:flex;
   justify-content:${justify};

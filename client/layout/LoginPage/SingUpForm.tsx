@@ -3,7 +3,6 @@ import { Form, Input, Button, Divider, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../@reducers";
 import { SIGN_UP_REQUEST } from "../../@reducers/user";
-import { ON_SIGN_UP_PAGE } from "../../@reducers/blog";
 
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
@@ -17,7 +16,7 @@ const validateMessages = {
 };
 
 interface SignUpProps {
-  onClickLogin: () => void;
+  setOnSignUpPage: (type: boolean) => void;
 }
 
 interface SignUpForm {
@@ -26,7 +25,7 @@ interface SignUpForm {
   Password: string;
 }
 
-const BlogSignUpForm: FC<SignUpProps> = memo(({ onClickLogin }) => {
+const BlogSignUpForm: FC<SignUpProps> = memo(({ setOnSignUpPage }) => {
   const dispatch = useDispatch();
   const { signUpError, signUpDone } = useSelector((state: RootState) => state.user);
 
@@ -46,12 +45,9 @@ const BlogSignUpForm: FC<SignUpProps> = memo(({ onClickLogin }) => {
   useEffect(() => {
     if (signUpDone) {
       message.success("Log In Success! Enjoy your time.");
-      dispatch({
-        type: ON_SIGN_UP_PAGE,
-        data: false,
-      });
+      setOnSignUpPage(false);
     }
-  }, [dispatch, signUpDone]);
+  }, [signUpDone]);
   return (
     <>
       <div className="login-title">
@@ -109,7 +105,7 @@ const BlogSignUpForm: FC<SignUpProps> = memo(({ onClickLogin }) => {
           <Button type="primary" style={{ width: "50%", marginTop: "1.5rem" }} htmlType="submit">
             Sign up
           </Button>
-          <Button onClick={onClickLogin} style={{ width: "50%" }}>
+          <Button onClick={() => setOnSignUpPage(false)} style={{ width: "50%" }}>
             Go back login
           </Button>
         </Form.Item>

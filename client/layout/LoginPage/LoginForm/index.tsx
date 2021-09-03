@@ -18,7 +18,7 @@ const validateMessages = {
 };
 
 interface LoginProps {
-  onClickSignUp: () => void;
+  setOnSignUpPage: (type: boolean) => void;
 }
 
 interface LoginForm {
@@ -26,7 +26,7 @@ interface LoginForm {
   password: string;
 }
 
-const LoginSection: FC<LoginProps> = ({ onClickSignUp }) => {
+const LoginSection: FC<LoginProps> = ({ setOnSignUpPage }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { logInError, logInDone } = useSelector((state: RootState) => state.user);
@@ -87,7 +87,7 @@ const LoginSection: FC<LoginProps> = ({ onClickSignUp }) => {
           <Button type="primary" style={{ width: "50%", marginTop: "1.5rem" }} htmlType="submit">
             Login
           </Button>
-          <Button onClick={onClickSignUp} style={{ width: "50%" }}>
+          <Button onClick={() => setOnSignUpPage(true)} style={{ width: "50%" }}>
             Sign up
           </Button>
         </Form.Item>

@@ -156,4 +156,4 @@ const CropImageModal: FC<CropImageModal> = memo(({ isModalVisible, setIsModalVis
   );
 });
 
-export default memo(CropImageModal);
+export default CropImageModal;

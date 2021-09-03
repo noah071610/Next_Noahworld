@@ -91,34 +91,6 @@ router.post("/search", async (req: Request, res: Response, next: NextFunction) =
   }
 });
 
-router.post("/recent", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    if (req.body) {
-      const recentViewPost = await Post.findOne({
-        where: { id: req.body.recentView },
-        attributes: ["id", "category", "title", "hit"],
-      });
-
-      const recentCommentPost = await Post.findOne({
-        attributes: ["id", "category", "title"],
-        where: { id: req.body.recentComment },
-        include: [
-          {
-            model: Comment,
-            order: [["createdAt", "DESC"]],
-            where: { UserId: req.body.id },
-            limit: 1,
-          },
-        ],
-      });
-      res.status(200).json({ recentViewPost, recentCommentPost });
-    }
-  } catch (error) {
-    console.error(error);
-    return next(error);
-  }
-});
-
 router.get("/category/:category", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = req.params.category;
@@ -163,7 +135,7 @@ router.get(
           {
             model: Hashtag,
             attributes: ["name"],
-            where: { name: { [Op.eq]: decodeURIComponent(req.params.hashtag) } },
+            where: { name: { [Op.eq]: decodeURIComponent(req.params.hashtag) as any } },
           },
           {
             model: User,
@@ -179,7 +151,7 @@ router.get(
           {
             model: Hashtag,
             attributes: ["name"],
-            where: { name: { [Op.eq]: decodeURIComponent(req.params.hashtag) } },
+            where: { name: { [Op.eq]: decodeURIComponent(req.params.hashtag) as any } },
           },
         ],
       });
@@ -533,10 +505,6 @@ router.post("/edit", async (req: Request, res: Response, next: NextFunction) => 
   try {
     if (parseInt(req.body.UserId, 10) !== 1) {
       res.status(401).send("You are not a Admin");
-      return;
-    }
-    if (req.body.password !== process.env.ADMIN_PASS) {
-      res.status(401).send("Wrong Password");
       return;
     }
     req.body.tags &&

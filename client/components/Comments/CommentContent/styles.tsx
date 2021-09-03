@@ -6,7 +6,6 @@ export const CommentContentWrapper = styled.div`
   width: 100%;
   display: flex;
   .icon-wrapper {
-    ${FLEX_STYLE("center", "flex-start", "column")};
     img {
       ${tw`w-12 h-12 rounded-full`}
     }
@@ -19,7 +18,15 @@ export const CommentContentWrapper = styled.div`
       font-size: 0.8rem;
     }
     p {
-      ${tw`text-sm pr-8`}
+      ${tw`text-sm pr-8 mt-2`}
+    }
+  }
+  @media (max-width: 576px) {
+    .comment-content {
+      ${tw`ml-4`}
+      p {
+        ${tw`p-0`}
+      }
     }
   }
 `;

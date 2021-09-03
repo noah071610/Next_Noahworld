@@ -9,7 +9,6 @@ import wrapper from "../@store/configureStore";
 import axios from "axios";
 import { END } from "@redux-saga/core";
 import { IStore } from "../types";
-import dynamic from "next/dynamic";
 import ArticleCardRow from "../components/Articles/ArticleCardRow";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
@@ -17,8 +16,7 @@ import { FLEX_STYLE } from "../styles/emotion";
 import { BLUE_COLOR } from "../config";
 import TopArticleCard from "../components/Articles/TopArticleCard";
 import CountUp from "react-countup";
-
-const UserProfile = dynamic(() => import("../components/Profile/UserProfile"));
+import { MainPageWrapper } from "../layout/MainPage/styles";
 
 const MoreBtn = styled.a`
   ${tw`p-4 mt-4 w-full`}
@@ -29,95 +27,58 @@ const MoreBtn = styled.a`
   }
 `;
 
-const BlogMainPage = memo(() => {
-  const { user } = useSelector((state: RootState) => state.user);
+const MainPage = memo(() => {
   const { techPosts, dailyPosts, hashtags, mostLikedPost, mostViewedPost, mostCommentedPost } =
     useSelector((state: RootState) => state.post);
 
   return (
-    <>
-      {user && <UserProfile />}
-      <main className="blog">
-        {/*Main Manu*/}
-        <section className="blog_main">
-          <h2 className="blog_main_count">
-            HOME
-            {techPosts && dailyPosts && (
-              <span className="count-number">
-                +
-                <CountUp duration={2} start={0} end={techPosts.concat(dailyPosts).length} />
-                &nbsp;posts.&nbsp;+
-                <CountUp duration={2} start={0} end={hashtags?.length} />
-                &nbsp;hashtags.
-              </span>
-            )}
-          </h2>
-          <Divider orientation="left">
-            <Link href="/tech">
-              <a>Information Technology</a>
-            </Link>
-          </Divider>
-          {techPosts?.slice(0, 4).map((v, i) => (
-            <ArticleCardRow key={i} article={v} />
-          ))}
-          {techPosts.length > 4 && (
-            <Link href="/tech">
-              <MoreBtn>
-                <span>View More Articles</span>
-              </MoreBtn>
-            </Link>
+    <MainPageWrapper>
+      <section>
+        <h2 className="main-title">
+          HOME
+          {techPosts && dailyPosts && (
+            <span className="post-count">
+              +
+              <CountUp duration={2} start={0} end={techPosts.concat(dailyPosts).length} />
+              &nbsp;posts.&nbsp;+
+              <CountUp duration={2} start={0} end={hashtags?.length} />
+              &nbsp;hashtags.
+            </span>
           )}
-          <Divider orientation="left">
-            <Link href="/daily">
-              <a>Daily</a>
-            </Link>
-          </Divider>
-          {dailyPosts?.slice(0, 4).map((v, i) => (
-            <ArticleCardRow key={i} article={v} />
-          ))}
-          {dailyPosts.length > 4 && (
-            <Link href="/daily">
-              <MoreBtn>
-                <span>View More Articles</span>
-              </MoreBtn>
-            </Link>
-          )}
-        </section>
-        {/*Aside Manu*/}
-        <aside className="blog_aside">
-          <TopArticleCard
-            image_src="https://img.icons8.com/doodle/48/000000/trophy--v1.png"
-            type="like"
-            article={mostLikedPost}
-          />
-          <TopArticleCard
-            image_src="https://img.icons8.com/doodle/96/000000/goal.png"
-            type="view"
-            article={mostViewedPost}
-          />
-          <TopArticleCard
-            image_src="https://img.icons8.com/doodle/96/000000/speech-bubble-with-dots.png"
-            type="comments"
-            article={mostCommentedPost}
-          />
-          <Divider />
-          <ul className="blog_aside_tag">
-            {hashtags &&
-              hashtags.map((v, i) => {
-                return (
-                  <li onClick={() => window.scrollTo({ top: 0 })} key={i}>
-                    <Link href={`/${v.category}?hashtag=${v.name}`}>
-                      <a>#{v.name}</a>
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
-        </aside>
-      </main>
-      {/*Aside Manu When SM*/}
-      <section className="blog_md_aside">
-        <Divider />
+        </h2>
+        <Divider orientation="left">
+          <Link href="/tech">
+            <a>Information Technology</a>
+          </Link>
+        </Divider>
+        {techPosts?.slice(0, 4).map((v, i) => (
+          <ArticleCardRow key={i} article={v} />
+        ))}
+        {techPosts.length > 4 && (
+          <Link href="/tech">
+            <MoreBtn>
+              <span>View More Articles</span>
+            </MoreBtn>
+          </Link>
+        )}
+        <Divider orientation="left">
+          <Link href="/daily">
+            <a>Daily</a>
+          </Link>
+        </Divider>
+        {dailyPosts?.slice(0, 4).map((v, i) => (
+          <ArticleCardRow key={i} article={v} />
+        ))}
+        {dailyPosts.length > 4 && (
+          <Link href="/daily">
+            <MoreBtn>
+              <span>View More Articles</span>
+            </MoreBtn>
+          </Link>
+        )}
+      </section>
+      {/*Aside Manu*/}
+      <aside>
         <TopArticleCard
           image_src="https://img.icons8.com/doodle/48/000000/trophy--v1.png"
           type="like"
@@ -134,7 +95,7 @@ const BlogMainPage = memo(() => {
           article={mostCommentedPost}
         />
         <Divider />
-        <ul className="blog_aside_tag">
+        <ul className="hashtag-list">
           {hashtags &&
             hashtags.map((v, i) => {
               return (
@@ -146,8 +107,8 @@ const BlogMainPage = memo(() => {
               );
             })}
         </ul>
-      </section>
-    </>
+      </aside>
+    </MainPageWrapper>
   );
 });
 
@@ -170,4 +131,4 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   };
 });
 
-export default BlogMainPage;
+export default MainPage;

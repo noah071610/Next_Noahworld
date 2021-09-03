@@ -4,7 +4,7 @@ import { BLUE_COLOR } from "../../../config";
 import { ELLIPSIS_STYLE } from "../../../styles/emotion";
 
 export const ArticleCardRowWrapper = styled.article`
-  ${tw`p-4 cursor-pointer grid gap-6 mb-4`}
+  ${tw`cursor-pointer grid gap-6 my-8`}
   grid-template-columns: 1.2fr 1.8fr;
   &:hover {
     .image-wrapper {
@@ -36,7 +36,7 @@ export const ArticleCardRowWrapper = styled.article`
     }
     .content {
       ${tw`text-sm`}
-      ${ELLIPSIS_STYLE(1.7, 7, "7.5rem")}
+      ${ELLIPSIS_STYLE(1.7, 5, "7.5rem")}
     }
     .footer {
       color: rgba(0, 0, 0, 0.3);

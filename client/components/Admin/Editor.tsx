@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import { useDispatch, useSelector } from "react-redux";
 import { UPLOAD_POST_IMAGE_REQUEST } from "../../@reducers/post";
 import { RootState } from "../../@reducers";
 import Prism from "prismjs";
+import "@toast-ui/editor/dist/toastui-editor.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 
 function PostEditor({ post, editorRef }): JSX.Element {
   const dispatch = useDispatch();
-  const { postEditOn } = useSelector((state: RootState) => state.blog);
+  const { onEditPost } = useSelector((state: RootState) => state.post);
   return (
     <Editor
       placeholder="Welcome Noah!"
       height="600px"
-      initialValue={postEditOn && postEditOn ? post?.content : ""}
+      initialValue={onEditPost && onEditPost ? post?.content : ""}
       initialEditType="markdown"
       useCommandShortcut={true}
       usageStatistics={false}

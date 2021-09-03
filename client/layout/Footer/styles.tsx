@@ -40,3 +40,16 @@ export const FooterWrapper = styled.footer`
     }
   }
 `;
+
+export const FooterMenuList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  li {
+    padding: 0.7rem 1.5rem;
+  }
+  @media (max-width: 768px) {
+    li {
+      padding: 0.7rem 1.5rem;
+    }
+  }
+`;

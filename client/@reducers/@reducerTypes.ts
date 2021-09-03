@@ -121,22 +121,6 @@ export interface UserInter {
   PostLiked: Array<PostLikersInter>;
 }
 
-export interface BlogState {
-  posts: string[];
-  onSignUpPage: boolean;
-  postEditOn: boolean;
-  searchPosts: Array<SearchPostInter>;
-  searchedKeyword: object | null;
-
-  searchKeywordLoading: boolean;
-  searchKeywordDone: boolean;
-  searchKeywordError: boolean | Error;
-
-  searchHashTagLoading: boolean;
-  searchHashTagDone: boolean;
-  searchHashTagError: boolean | Error;
-}
-
 export interface PostState {
   techPosts: Array<PostInter>;
   dailyPosts: Array<PostInter>;
@@ -145,13 +129,18 @@ export interface PostState {
   mostViewedPost: PostInter | null;
   mostCommentedPost: PostInter | null;
   post: PostInter | null;
+  searchPosts: Array<SearchPostInter>;
+  searchedKeyword: object | null;
   prevPost: Array<PostInter>;
   nextPost: Array<PostInter>;
   countPosts: string[];
   imagePath: string | null;
   postImagePath: string | null;
-  recentViewPost: RecentPostInter | null;
-  recentCommentPost: RecentPostInter | null;
+  onEditPost: boolean;
+
+  searchPostLoading: boolean;
+  searchPostDone: boolean;
+  searchPostError: boolean | Error;
 
   addPostLoading: Boolean;
   addPostDone: Boolean;

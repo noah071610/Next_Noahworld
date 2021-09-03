@@ -12,16 +12,18 @@ import SlideRemoteControl from "./SlideRemoteControl";
 import { RootState } from "../../@reducers";
 import useInput from "../../util/useInput";
 import useToggle from "../../util/useToggle";
-import { SEARCH_KEYWORD_REQUEST } from "../../@reducers/blog";
+import { SEARCH_POST_REQUEST } from "../../@reducers/post";
 import { HeaderMainWrapper, MoblieHeaderWrapper } from "./styles";
+import Profile from "../../components/Profile";
 
 const MoblieHeader = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [keyword, onChangeKeyword, setKeyword] = useInput("");
-  const [onSearchForm, onClickSearchForm] = useToggle(false);
+  const [onSearchForm, onClickSearchForm, setSearchForm] = useToggle(false);
   const [onRemoteControl, setOnRemoteControl] = useState(false);
   const [onPostHeader, setOnPostHeader] = useState(false);
+  const [onProfile, setOnProfile] = useState(false);
   const [onSlideMenu, setOnSlideMenu] = useState(false);
   const { post } = useSelector((state: RootState) => state.post);
   useEffect(() => {
@@ -42,7 +44,7 @@ const MoblieHeader = () => {
 
   const onSearchContent = useCallback(() => {
     dispatch({
-      type: SEARCH_KEYWORD_REQUEST,
+      type: SEARCH_POST_REQUEST,
       data: { keyword },
     });
     if (keyword.charAt(0) === "#") {
@@ -55,21 +57,36 @@ const MoblieHeader = () => {
     setOnSlideMenu(false);
   }, [router, keyword, setKeyword]);
 
-  const onClickSlideMenuBtn = useCallback(() => {
-    setOnSlideMenu((prev) => !prev);
+  const onClickRemoteControlBtn = useCallback(() => {
+    setOnRemoteControl((prev) => !prev);
+    setOnSlideMenu(false);
+    setOnProfile(false);
+  }, []);
+
+  const onClickProfileBtn = useCallback(() => {
+    setOnProfile((prev) => !prev);
+    setOnSlideMenu(false);
     setOnRemoteControl(false);
   }, []);
 
-  const onClickRemoteControlBtn = useCallback(() => {
-    setOnSlideMenu(false);
-    setOnRemoteControl((prev) => !prev);
-  }, []);
+  const onClickSlideMenuBtn = useCallback(() => {
+    if (onProfile) {
+      setOnProfile(false);
+      setSearchForm(false);
+      return;
+    }
+    setOnSlideMenu((prev) => !prev);
+    setOnRemoteControl(false);
+    setSearchForm(false);
+  }, [onProfile]);
 
   return (
     <>
       <MoblieHeaderWrapper
         style={
-          onSlideMenu ? { borderBottom: "none" } : { borderBottom: "1px solid rgba(0, 0, 0, 0.1)" }
+          onSlideMenu || onProfile
+            ? { borderBottom: "none" }
+            : { borderBottom: "1px solid rgba(0, 0, 0, 0.1)" }
         }
       >
         <div css={HeaderMainWrapper(onPostHeader, onSearchForm)}>
@@ -89,18 +106,29 @@ const MoblieHeader = () => {
                 icon={faChevronDown}
               />
             </button>
-            <Input.Search value={keyword} onChange={onChangeKeyword} onSearch={onSearchContent} />
+            <Input.Search
+              style={{ width: "100%", paddingRight: "1rem" }}
+              value={keyword}
+              onChange={onChangeKeyword}
+              onSearch={onSearchContent}
+            />
           </div>
         </div>
         <button className="header-menu-btn" onClick={onClickSlideMenuBtn}>
-          {onSlideMenu ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} />}
+          {onSlideMenu || onProfile ? (
+            <FontAwesomeIcon icon={faTimes} />
+          ) : (
+            <FontAwesomeIcon icon={faBars} />
+          )}
         </button>
         <SlideMenu
           onSlideMenu={onSlideMenu}
           onClickSearchForm={onClickSearchForm}
           setOnSlideMenu={setOnSlideMenu}
+          onClickProfileBtn={onClickProfileBtn}
         />
         {onRemoteControl && onPostHeader && <SlideRemoteControl />}
+        {onProfile && <Profile isMobile={true} />}
       </MoblieHeaderWrapper>
       <div className="body-margin" />
     </>

@@ -27,7 +27,6 @@ import {
   AddCommentInter,
   AddSubCommentData,
   AddSubCommentInter,
-  EditCommentData,
   LikeCommentData,
   LikeCommentInter,
   RemoveCommentInter,

@@ -29,10 +29,7 @@ const ArticleCardRow: FC<ArticleInter> = ({ article, smallSize }) => {
   return (
     <>
       {article && (
-        <ArticleCardRowWrapper
-          style={smallSize ? { padding: "1rem 0 0 0" } : {}}
-          onClick={onClickArticle}
-        >
+        <ArticleCardRowWrapper onClick={onClickArticle}>
           <div className="image-wrapper">
             <img
               alt={article.title}

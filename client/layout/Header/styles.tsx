@@ -9,10 +9,6 @@ export const HeaderWrapper = styled.header`
     width: 1120px;
     .logo {
       width: 560px;
-      &:hover {
-        -webkit-animation: pulse 0.5s;
-        animation: pulse 0.5s;
-      }
     }
     .login-menu {
       ${tw`absolute bottom-4 right-0`}

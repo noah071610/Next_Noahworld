@@ -1,4 +1,4 @@
-import { faSearch, faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faSignInAlt, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React, { FC, memo, useCallback } from "react";
@@ -11,88 +11,92 @@ interface SlideMenuProps {
   onClickSearchForm: () => void;
   onSlideMenu: boolean;
   setOnSlideMenu: (type: boolean) => void;
+  onClickProfileBtn: () => void;
 }
 
-const SlideMenu: FC<SlideMenuProps> = memo(({ onClickSearchForm, onSlideMenu, setOnSlideMenu }) => {
-  const { user } = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
-  const onClickMenu = useCallback(() => {
-    window.scrollTo({ top: 0 });
-    setOnSlideMenu(false);
-  }, []);
-  const onClickLogOut = useCallback(() => {
-    dispatch({
-      type: LOG_OUT_REQUEST,
-    });
-    setOnSlideMenu(false);
-  }, [dispatch]);
+const SlideMenu: FC<SlideMenuProps> = memo(
+  ({ onClickSearchForm, onSlideMenu, setOnSlideMenu, onClickProfileBtn }) => {
+    const { user } = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
+    const onClickMenu = useCallback(() => {
+      window.scrollTo({ top: 0 });
+      setOnSlideMenu(false);
+    }, []);
+    const onClickLogOut = useCallback(() => {
+      dispatch({
+        type: LOG_OUT_REQUEST,
+      });
+      setOnSlideMenu(false);
+    }, []);
 
-  return (
-    <nav css={SlideMenuWrapper(onSlideMenu)}>
-      <div className="slide-menu-inner">
-        <ul>
-          <h2>Blog</h2>
-          <li onClick={onClickMenu}>
+    return (
+      <nav css={SlideMenuWrapper(onSlideMenu)}>
+        <div className="slide-menu-inner">
+          <ul>
             <Link href={"/"}>
-              <a>- Home</a>
-            </Link>
-          </li>
-          <li onClick={onClickMenu}>
-            <Link href={"/tech"}>
-              <a>- Info Tech</a>
-            </Link>
-          </li>
-          <li onClick={onClickMenu}>
-            <Link href={"/daily"}>
-              <a>- Daily</a>
-            </Link>
-          </li>
-          <li>
-            <a onClick={onClickSearchForm}>
-              - Search <FontAwesomeIcon icon={faSearch} />
-            </a>
-          </li>
-        </ul>
-        <ul>
-          <h2>Direct Link</h2>
-          <li onClick={onClickMenu}>
-            <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
-              - Portfolio
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/noah071610" target="_blank" rel="noreferrer">
-              - Git
-            </a>
-          </li>
-          <li onClick={onClickMenu}>
-            <a href="https://api.noahworld.site/auth/google">
-              - Google Login{" "}
-              <img
-                alt="google_icon"
-                src="https://img.icons8.com/fluent/16/000000/google-logo.png"
-              />
-            </a>
-          </li>
-          {user ? (
-            <li>
-              <a onClick={onClickLogOut}>
-                - Log out <FontAwesomeIcon icon={faSignOutAlt} />
+              <a>
+                <li onClick={onClickMenu}>Home</li>
               </a>
-            </li>
-          ) : (
-            <li>
-              <Link href={"/login"}>
-                <a onClick={onClickMenu}>
-                  - Log In & Sign Up <FontAwesomeIcon icon={faSignInAlt} />
+            </Link>
+            <Link href={"/tech"}>
+              <a>
+                {" "}
+                <li onClick={onClickMenu}>Info Tech</li>
+              </a>
+            </Link>
+            <Link href={"/daily"}>
+              <a>
+                <li onClick={onClickMenu}>Daily</li>
+              </a>
+            </Link>
+            <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
+              <li onClick={onClickMenu}>Portfolio</li>
+            </a>
+          </ul>
+          <ul>
+            <a onClick={onClickSearchForm}>
+              <li>
+                Search <FontAwesomeIcon icon={faSearch} />
+              </li>
+            </a>
+            {user ? (
+              <>
+                <a onClick={onClickProfileBtn}>
+                  <li>
+                    View Profile <FontAwesomeIcon icon={faUser} />
+                  </li>
                 </a>
-              </Link>
-            </li>
-          )}
-        </ul>
-      </div>
-    </nav>
-  );
-});
+                <a onClick={onClickLogOut}>
+                  <li>
+                    Log out <FontAwesomeIcon icon={faSignOutAlt} />
+                  </li>
+                </a>
+              </>
+            ) : (
+              <>
+                <a href="https://api.noahworld.site/auth/google">
+                  <li onClick={onClickMenu}>
+                    Google Login{" "}
+                    <img
+                      alt="google_icon"
+                      src="https://img.icons8.com/fluent/16/000000/google-logo.png"
+                    />
+                  </li>
+                </a>
+                <Link href={"/login"}>
+                  <a onClick={onClickMenu}>
+                    <li>
+                      Log In & Sign Up <FontAwesomeIcon icon={faSignInAlt} />
+                    </li>
+                  </a>
+                </Link>
+              </>
+            )}
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+);
 
-export default memo(SlideMenu);
+export default SlideMenu;

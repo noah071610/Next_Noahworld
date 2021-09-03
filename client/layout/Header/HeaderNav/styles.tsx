@@ -11,7 +11,7 @@ export const HeaderNavWrapper = styled.nav`
   .nav-inner {
     transition: all 0.5s;
     ${FLEX_STYLE("space-between", "center")};
-    ${tw`mx-auto py-5`}
+    ${tw`mx-auto py-4`}
     width: 1120px;
     ul {
       ${tw`inline-block`}

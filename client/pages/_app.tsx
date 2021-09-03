@@ -1,61 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import "animate.css/animate.css";
 import "antd/dist/antd.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "@toast-ui/editor/dist/toastui-editor.css";
 import "prismjs/themes/prism.css";
 import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
-import "../styles/style.scss";
+import "../styles/font.css";
 import wrapper from "../@store/configureStore";
-import { css, Global } from "@emotion/react";
+import { Global } from "@emotion/react";
 import AppLayout from "../layout/AppLayout";
 import { Router } from "next/dist/client/router";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
 import MoblieHeader from "../layout/MobileHeader";
 import LoadingScreen from "../layout/LoadingPage";
-
-const reset = css`
-  .ant-row {
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-  }
-  .ant-table-pagination {
-    display: none !important;
-  }
-  p {
-    margin: 0.5rem auto;
-  }
-  h1,
-  h2,
-  h3 {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-  h2 {
-    font-size: 1.1rem;
-  }
-  a {
-    color: black;
-    text-decoration: none;
-  }
-  blockquote {
-    border-color: #1187cf !important;
-  }
-  .ant-divider {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  .ant-divider-with-text {
-    background-color: rgba(0, 0, 0, 0);
-    &::before,
-    &::after {
-      border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
-    }
-  }
-`;
+import { globalStyles } from "../styles/global";
 
 function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
@@ -84,7 +43,7 @@ function App({ Component, pageProps }) {
         <LoadingScreen />
       ) : (
         <>
-          <Global styles={reset} />
+          <Global styles={globalStyles} />
           <Header />
           <MoblieHeader />
           <AppLayout>

@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { LOAD_INFO_REQUEST } from "../../@reducers/user";
 import axios from "axios";
 import styled from "@emotion/styled";
-import UserProfile from "../../components/Profile/UserProfile";
+import Profile from "../../components/Profile";
 import ArticleCardColumn from "../../components/Articles/ArticleCardColumn";
 import tw from "twin.macro";
 import { BLUE_COLOR } from "../../config";
@@ -52,7 +52,6 @@ const BlogCategoryPage = () => {
     (state: RootState) => state.post
   );
   const [onHashtagFilter, setOnHashtagFilter] = useState(false);
-  const { user } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     function onScroll() {
@@ -122,7 +121,6 @@ const BlogCategoryPage = () => {
       <Head>
         <title>Noah world | {category}</title>
       </Head>
-      {user && <UserProfile />}
       <main>
         <CategoryPageHeader>
           <h1>

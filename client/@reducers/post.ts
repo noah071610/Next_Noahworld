@@ -2,20 +2,25 @@ import produce from "immer";
 import { CommentsInter, PostState } from "./@reducerTypes";
 
 const initialState = {
+  post: null,
   techPosts: [],
   dailyPosts: [],
   hashtags: [],
-  mostLikedPost: null,
-  mostViewedPost: null,
-  mostCommentedPost: null,
-  post: null,
   prevPost: [],
   nextPost: [],
   countPosts: [],
+  searchPosts: [],
+  mostLikedPost: null,
+  mostViewedPost: null,
+  mostCommentedPost: null,
   imagePath: null,
   postImagePath: null,
-  recentViewPost: null,
-  recentCommentPost: null,
+  onEditPost: false,
+
+  searchedKeyword: null,
+  searchPostLoading: false,
+  searchPostDone: false,
+  searchPostError: false,
 
   addPostLoading: false,
   addPostDone: false,
@@ -127,6 +132,11 @@ export const LOAD_POSTS_REQUEST = "LOAD_POSTS_REQUEST" as const;
 export const LOAD_POSTS_SUCCESS = "LOAD_POSTS_SUCCESS" as const;
 export const LOAD_POSTS_FAILURE = "LOAD_POSTS_FAILURE" as const;
 
+export const SEARCH_POST_REQUEST = "SEARCH_POST_REQUEST" as const;
+export const SEARCH_POST_SUCCESS = "SEARCH_POST_SUCCESS" as const;
+export const SEARCH_POST_FAILURE = "SEARCH_POST_FAILURE" as const;
+export const SEARCH_POST_CLEAR = "SEARCH_POST_CLEAR" as const;
+
 export const LOAD_CATEGORY_POSTS_REQUEST = "LOAD_CATEGORY_POSTS_REQUEST" as const;
 export const LOAD_CATEGORY_POSTS_SUCCESS = "LOAD_CATEGORY_POSTS_SUCCESS" as const;
 export const LOAD_CATEGORY_POSTS_FAILURE = "LOAD_CATEGORY_POSTS_FAILURE" as const;
@@ -179,9 +189,35 @@ export const REMOVE_SUB_COMMENT_REQUEST = "REMOVE_SUB_COMMENT_REQUEST" as const;
 export const REMOVE_SUB_COMMENT_SUCCESS = "REMOVE_SUB_COMMENT_SUCCESS" as const;
 export const REMOVE_SUB_COMMENT_FAILURE = "REMOVE_SUB_COMMENT_FAILURE" as const;
 
+export const SET_POST_EDIT = "SET_POST_EDIT" as const;
+
 const reducer = (state: PostState = initialState, action: any) =>
   produce(state, (draft: any) => {
     switch (action.type) {
+      case SET_POST_EDIT:
+        draft.onEditPost = action.data;
+        break;
+      case SEARCH_POST_REQUEST:
+        draft.searchPostLoading = true;
+        draft.searchPostDone = false;
+        draft.searchPostError = false;
+        break;
+      case SEARCH_POST_SUCCESS: {
+        draft.searchPosts = action.data.searchPosts;
+        draft.searchPostLoading = false;
+        draft.searchPostDone = true;
+        draft.searchedKeyword = action.data.searchedKeyword;
+        break;
+      }
+      case SEARCH_POST_FAILURE:
+        draft.searchPostLoading = false;
+        draft.searchPostError = action.error;
+        break;
+      case SEARCH_POST_CLEAR:
+        draft.searchPostLoading = false;
+        draft.searchPostDone = false;
+        draft.searchPostError = false;
+        break;
       case ADD_POST_REQUEST:
         draft.addPostLoading = true;
         draft.addPostError = false;
@@ -336,6 +372,7 @@ const reducer = (state: PostState = initialState, action: any) =>
       case EDIT_POST_SUCCESS:
         draft.editPostLoading = false;
         draft.editPostDone = true;
+        draft.onEditPost = false;
         break;
       case EDIT_POST_FAILURE:
         draft.editPostLoading = false;
@@ -485,21 +522,6 @@ const reducer = (state: PostState = initialState, action: any) =>
       case UPLOAD_POST_IMAGE_CLEAR:
         draft.uploadPostImageLoading = false;
         draft.uploadPostImageDone = false;
-        break;
-      case LOAD_RECENT_POSTS_REQUEST:
-        draft.loadRecentPostsLoading = true;
-        draft.loadRecentPostsDone = false;
-        draft.loadRecentPostsError = false;
-        break;
-      case LOAD_RECENT_POSTS_SUCCESS:
-        draft.loadRecentPostsLoading = false;
-        draft.loadRecentPostsDone = true;
-        draft.recentViewPost = action.data.recentViewPost;
-        draft.recentCommentPost = action.data.recentCommentPost;
-        break;
-      case LOAD_RECENT_POSTS_FAILURE:
-        draft.loadRecentPostsLoading = false;
-        draft.loadRecentPostsError = action.error;
         break;
       default:
         break;

@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Divider, Popover, message } from "antd";
-import React, { FC, memo, useCallback, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 import { RootState } from "../../@reducers";
-import InfoModal from "../../components/Profile/InfoModal";
-import { FooterWrapper } from "./styles";
+import InfoModal from "../../components/Modal/InfoModal";
+import { FooterMenuList, FooterWrapper } from "./styles";
 
 const FooterDivider = styled(Divider)`
   background-color: white;
@@ -37,17 +37,17 @@ const Footer: FC = () => {
   }, []);
 
   const social_content = (
-    <ul className="footer-list">
+    <FooterMenuList>
       <a href="https://github.com/noah071610" target="_blank" rel="noreferrer">
         <li>Git</li>
       </a>
       <a href="https://www.instagram.com/salmonchobab/" target="_blank" rel="noreferrer">
         <li>Instagram</li>
       </a>
-    </ul>
+    </FooterMenuList>
   );
   const info_content = (
-    <ul className="footer-list">
+    <FooterMenuList>
       <a
         onClick={() => {
           if (!user) {
@@ -79,10 +79,10 @@ const Footer: FC = () => {
       <a onClick={onClickNicknameBtn}>
         <li>Change Nickname</li>
       </a>
-    </ul>
+    </FooterMenuList>
   );
   const quickview_content = (
-    <ul className="footer-list">
+    <FooterMenuList>
       <Link href={"/"}>
         <a>
           <li onClick={onClickList}>Home</li>
@@ -98,7 +98,7 @@ const Footer: FC = () => {
           <li onClick={onClickList}>Daily</li>
         </a>
       </Link>
-    </ul>
+    </FooterMenuList>
   );
 
   return (

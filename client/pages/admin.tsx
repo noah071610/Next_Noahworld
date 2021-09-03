@@ -9,7 +9,6 @@ import {
   UPLOAD_IMAGES_CLEAR,
   UPLOAD_IMAGES_REQUEST,
 } from "../@reducers/post";
-import { POST_EDIT_OFF, POST_EDIT_ON } from "../@reducers/blog";
 import { RootState } from "../@reducers";
 import { HashtagsInter } from "../@reducers/@reducerTypes";
 import useInput from "../util/useInput";
@@ -18,7 +17,6 @@ import dynamic from "next/dynamic";
 import EditorMenu from "../components/Admin/EditorMenu";
 import styled from "@emotion/styled";
 import { Input, message } from "antd";
-import UserProfile from "../components/Profile/UserProfile";
 
 const PostEditor = dynamic(() => import("../components/Admin/Editor"), { ssr: false });
 
@@ -51,9 +49,10 @@ const Admin = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.user);
-  const { postEditOn } = useSelector((state: RootState) => state.blog);
+  const editorRef = useRef<any>(null);
   const {
     post,
+    onEditPost,
     uploadImagesDone,
     imagePath,
     postImagePath,
@@ -61,15 +60,12 @@ const Admin = () => {
     addPostDone,
     editPostDone,
   } = useSelector((state: RootState) => state.post);
-  const [content, _, setContent] = useInput(null);
   const [thumbnail, onChangeThumbnail, setthumbnail] = useInput("");
   const [title, onChangeTitle, setTitle] = useInput("");
   const [PostId, setPostId] = useState<number | null>(null);
   const [tags, setTags] = useState<HashtagsInter[]>();
   const [postValue, setPostValue] = useState("tech");
-  const editorRef = useRef<any>(null);
   const imageInput = useRef<HTMLInputElement | null>(null);
-
   const onChangeImages = useCallback((e) => {
     const imageFormData = new FormData();
     imageFormData.append("image", e.target.files[0]);
@@ -80,8 +76,7 @@ const Admin = () => {
   }, []);
 
   const onFinishPost = useCallback(() => {
-    setContent(editorRef.current.getInstance().getHTML());
-    if (content === "" || content.trim() === "") {
+    if (editorRef?.current?.getInstance().getHTML() === "") {
       message.info("Please Write down contents");
       return;
     }
@@ -94,18 +89,15 @@ const Admin = () => {
       title,
       imagePath,
       category: postValue,
-      content,
+      content: editorRef?.current?.getInstance().getHTML(),
       UserId: user?.id,
       PostId,
       tags,
     };
-    if (postEditOn) {
+    if (onEditPost) {
       dispatch({
         type: EDIT_POST_REQUEST,
         data,
-      });
-      dispatch({
-        type: POST_EDIT_ON,
       });
     } else {
       dispatch({
@@ -113,18 +105,7 @@ const Admin = () => {
         data,
       });
     }
-  }, [
-    postEditOn,
-    user?.id,
-    content,
-    title,
-    imagePath,
-    thumbnail,
-    PostId,
-    tags,
-    postValue,
-    editorRef,
-  ]);
+  }, [onEditPost, user, title, imagePath, thumbnail, PostId, tags, postValue, editorRef]);
 
   const onClickUploadImage = useCallback(() => {
     dispatch({
@@ -140,17 +121,12 @@ const Admin = () => {
     dispatch({
       type: UPLOAD_IMAGES_CLEAR,
     });
-    if (postEditOn && post) {
-      setContent(post.content);
+    if (onEditPost && post) {
       setTitle(post.title);
       setthumbnail(post.thumbnail);
       setPostValue(post.category);
       setPostId(post.id);
       setTags(post?.Hashtags);
-    } else {
-      dispatch({
-        type: POST_EDIT_OFF,
-      });
     }
   }, [user, post]);
 
@@ -173,33 +149,30 @@ const Admin = () => {
     }
   }, [addPostDone, editPostDone]);
   return (
-    <>
-      <UserProfile />
-      <PostForm onFinish={onFinishPost}>
-        <h2>ADD POST</h2>
-        <h4>Title</h4>
-        <Input value={title} onChange={onChangeTitle} className="form_title" />
-        <h4>Thumbnail</h4>
-        <div className="editor_title">
-          <Input
-            value={thumbnail}
-            onChange={onChangeThumbnail}
-            placeholder="http://"
-            disabled={uploadImagesDone ? true : false}
-            className="form_image"
-          />{" "}
-          <span>or</span>
-          <input type="file" name="image" multiple ref={imageInput} onChange={onChangeImages} />
-          {uploadImagesDone ? (
-            <button className="public_btn" onClick={onClickUploadImage}>
-              CALCLE IMAGE
-            </button>
-          ) : null}
-        </div>
-        <PostEditor post={post} editorRef={editorRef} />
-        <EditorMenu postEditOn={postEditOn} postValue={postValue} setPostValue={setPostValue} />
-      </PostForm>
-    </>
+    <PostForm onFinish={onFinishPost}>
+      <h2>ADD POST</h2>
+      <h4>Title</h4>
+      <Input value={title} onChange={onChangeTitle} className="form_title" />
+      <h4>Thumbnail</h4>
+      <div className="editor_title">
+        <Input
+          value={thumbnail}
+          onChange={onChangeThumbnail}
+          placeholder="http://"
+          disabled={uploadImagesDone ? true : false}
+          className="form_image"
+        />{" "}
+        <span>or</span>
+        <input type="file" name="image" multiple ref={imageInput} onChange={onChangeImages} />
+        {uploadImagesDone && (
+          <button className="public_btn" onClick={onClickUploadImage}>
+            CALCLE IMAGE
+          </button>
+        )}
+      </div>
+      <PostEditor post={post} editorRef={editorRef} />
+      <EditorMenu postValue={postValue} setPostValue={setPostValue} />
+    </PostForm>
   );
 };
 

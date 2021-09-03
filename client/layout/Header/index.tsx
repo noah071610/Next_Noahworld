@@ -1,23 +1,28 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 import { message } from "antd";
 import { LOG_OUT_REQUEST } from "../../@reducers/user";
 import { RootState } from "../../@reducers";
 import { useRouter } from "next/dist/client/router";
 import HeaderNav from "./HeaderNav";
 import { HeaderWrapper } from "./styles";
+import Profile from "../../components/Profile";
 
 const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { user, logOutDone, logOutError } = useSelector((state: RootState) => state.user);
+  const [onProfile, setOnProfile] = useState(false);
   const onClickLogOut = useCallback(() => {
     dispatch({
       type: LOG_OUT_REQUEST,
     });
+  }, []);
+  const onClickProfile = useCallback(() => {
+    setOnProfile((prev) => !prev);
   }, []);
 
   useEffect(() => {
@@ -40,11 +45,18 @@ const Header = () => {
         </Link>
         <ul className="login-menu">
           {user ? (
-            <a onClick={onClickLogOut}>
-              <li>
-                Log out <FontAwesomeIcon style={{ marginLeft: "0.3rem" }} icon={faSignOutAlt} />
-              </li>
-            </a>
+            <>
+              <a onClick={onClickLogOut}>
+                <li>
+                  Log out <FontAwesomeIcon icon={faSignOutAlt} />
+                </li>
+              </a>
+              <a onClick={onClickProfile}>
+                <li>
+                  View Profile <FontAwesomeIcon icon={faUser} />
+                </li>
+              </a>
+            </>
           ) : (
             <>
               <Link href={"/login"}>
@@ -66,8 +78,9 @@ const Header = () => {
             </>
           )}
         </ul>
+        {onProfile && <Profile />}
       </div>
-      <HeaderNav />
+      <HeaderNav setOnProfile={setOnProfile} />
     </HeaderWrapper>
   );
 };

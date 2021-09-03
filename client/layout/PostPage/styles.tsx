@@ -5,7 +5,7 @@ import { FLEX_STYLE } from "../../styles/emotion";
 
 export const PostPageWrapper = styled.main`
   .post-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     line-height: 1.5;
   }
   .post-desc {
@@ -13,11 +13,12 @@ export const PostPageWrapper = styled.main`
     ${FLEX_STYLE("flex-start", "center")};
   }
   .post-main-wrapper {
+    width: 1120px;
     ${tw`relative`}
     ${FLEX_STYLE("space-between", "flex-start")};
     .post-main {
-      width: 840px;
       padding: 0 1rem;
+      width: 840px;
       .post-tumbnail {
         ${tw`w-full mb-24`}
       }
@@ -111,6 +112,7 @@ export const PostPageWrapper = styled.main`
       font-size: 1.7rem;
     }
     .post-main-wrapper {
+      ${tw`w-full`}
       .post-main {
         ${tw`w-full p-0`}
         .post-content {

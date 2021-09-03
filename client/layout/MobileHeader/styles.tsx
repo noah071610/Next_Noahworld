@@ -18,8 +18,9 @@ export const MoblieHeaderWrapper = styled.header`
 `;
 
 export const HeaderMainWrapper = (onPostHeader: boolean, onSearchForm: Boolean) => css`
-  ${tw`h-8 overflow-hidden`}
+  ${tw`w-full h-8 overflow-hidden`}
   .header-main-inner {
+    ${tw`w-full`}
     ${onSearchForm
       ? "transform:translateY(-66%)"
       : onPostHeader

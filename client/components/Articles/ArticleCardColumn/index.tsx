@@ -52,11 +52,8 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, smal
   return (
     <>
       {article && (
-        <ArticleCardColumnWrapper
-          style={smallSize ? { padding: "0 0.5rem 0 0" } : {}}
-          onClick={onClickArticle}
-        >
-          <div style={smallSize ? { height: "180px" } : {}} className="image-wrapper">
+        <article css={ArticleCardColumnWrapper(smallSize)} onClick={onClickArticle}>
+          <div className="image-wrapper">
             <img
               alt={article.title}
               src={
@@ -82,10 +79,7 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, smal
                 );
               })}
             </ul>
-            <p
-              style={smallSize ? { WebkitLineClamp: 3, height: "auto" } : {}}
-              className={article?.Hashtags?.length > 0 ? "content" : "content-notags"}
-            >
+            <p className={article?.Hashtags?.length > 0 ? "content" : "content-notags"}>
               {contentWithoutHTML.slice(0, 250)}
             </p>
           </div>
@@ -97,7 +91,7 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, smal
             <li>·&nbsp;{article.hit} views</li>
             <li>·&nbsp;{article.PostLikers && article.PostLikers.length} Likes</li>
           </ul>
-        </ArticleCardColumnWrapper>
+        </article>
       )}
     </>
   );

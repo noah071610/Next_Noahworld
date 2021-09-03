@@ -1,10 +1,11 @@
-import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import tw from "twin.macro";
 import { BLUE_COLOR } from "../../../config";
 import { ELLIPSIS_STYLE } from "../../../styles/emotion";
 
-export const ArticleCardColumnWrapper = styled.article`
-  ${tw`p-4 cursor-pointer`}
+export const ArticleCardColumnWrapper = (smallSize: Boolean) => css`
+  ${tw`cursor-pointer`}
+  ${smallSize ? tw`pr-2` : tw`p-4`}
   &:hover {
     .image-wrapper {
       img {
@@ -15,6 +16,7 @@ export const ArticleCardColumnWrapper = styled.article`
   }
   .image-wrapper {
     ${tw`overflow-hidden w-full h-52 mb-4`}
+    ${smallSize ? tw`h-44` : tw`h-52`}
     img {
       ${tw`w-full h-full`}
       transition: 0.3s all;
@@ -35,11 +37,11 @@ export const ArticleCardColumnWrapper = styled.article`
     }
     .content {
       ${tw`text-xs`}
-      ${ELLIPSIS_STYLE(1.8, 4, "5.5rem")}
+      ${smallSize ? ELLIPSIS_STYLE(1.8, 3, "auto") : ELLIPSIS_STYLE(1.8, 4, "5.5rem")}
     }
     .content-notags {
-      ${tw`text-xs mt-4`}
-      ${ELLIPSIS_STYLE(1.8, 5, "6.7rem")}
+      ${tw`text-xs mt-4 mb-3`}
+      ${smallSize ? ELLIPSIS_STYLE(1.8, 3, "auto") : ELLIPSIS_STYLE(1.8, 5, "6.7rem")}
     }
   }
   .footer {

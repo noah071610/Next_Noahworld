@@ -10,11 +10,33 @@ import { LOAD_INFO_REQUEST } from "../../@reducers/user";
 import { IStore } from "../../types";
 import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
-import { SEARCH_KEYWORD_REQUEST } from "../../@reducers/blog";
+import { SEARCH_POST_REQUEST } from "../../@reducers/post";
 import { FLEX_STYLE } from "../../styles/emotion";
 import SearchCard from "../../components/Articles/SearchCard";
 import styled from "@emotion/styled";
 import tw from "twin.macro";
+import { BLUE_COLOR } from "../../config";
+
+const SearchPageTitle = styled.h1`
+  ${tw`my-20 mx-4`}
+  font-size: 2.3rem;
+  line-height: 1.3;
+  .title-count {
+    color: ${BLUE_COLOR};
+    margin-left: 1rem;
+    font-size: 1.2rem;
+  }
+  @media (max-width: 576px) {
+    .title-main {
+      ${tw`block`}
+    }
+    .title-count {
+      ${tw`m-0`}
+    }
+    margin: 3rem 1rem;
+    font-size: 1.4rem;
+  }
+`;
 
 const NoSearchPost = styled.li`
   ${tw`w-full py-16 relative`}
@@ -29,7 +51,7 @@ const NoSearchPost = styled.li`
 `;
 
 const BlogSearchPage = () => {
-  const { searchedKeyword, searchPosts } = useSelector((state: RootState) => state.blog);
+  const { searchedKeyword, searchPosts } = useSelector((state: RootState) => state.post);
   const router = useRouter();
 
   return (
@@ -37,15 +59,14 @@ const BlogSearchPage = () => {
       <Head>
         <title>Noah world | {router.query.keyword}</title>
       </Head>
-      <h2 className="search_title">
-        SEARCH POSTS <br className="br_search" />
-        <span>"{searchedKeyword && searchedKeyword}"</span>
-        <span>
+      <SearchPageTitle>
+        <span className="title-main">SEARCH POSTS "{searchedKeyword && searchedKeyword}"</span>
+        <span className="title-count">
           +&nbsp;
           <CountUp duration={4} start={0} end={searchPosts?.length || 0} />
           &nbsp;posts searched
         </span>
-      </h2>
+      </SearchPageTitle>
       <Divider style={{ marginBottom: 0 }} />
       <ul>
         {searchPosts.length > 0 ? (
@@ -78,7 +99,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     type: LOAD_INFO_REQUEST,
   });
   store.dispatch({
-    type: SEARCH_KEYWORD_REQUEST,
+    type: SEARCH_POST_REQUEST,
     data: { keyword },
   });
   store.dispatch(END);

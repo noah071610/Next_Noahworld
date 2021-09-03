@@ -4,7 +4,7 @@ import {
   LOAD_CATEGORY_POSTS_REQUEST,
   LOAD_MORE_POSTS_REQUEST,
   LOAD_POST_REQUEST,
-  LOAD_RECENT_POSTS_REQUEST,
+  SEARCH_POST_REQUEST,
   REMOVE_POST_REQUEST,
   UNLIKE_POST_REQUEST,
   UPLOAD_IMAGES_REQUEST,
@@ -20,7 +20,6 @@ import {
   SIGN_UP_REQUEST,
   WITHDRWAL_REQUEST,
 } from "../@reducers/user";
-import { SEARCH_KEYWORD_REQUEST } from "../@reducers/blog";
 import { UserInter, HashtagsInter } from "../@reducers/@reducerTypes";
 import {
   ADD_COMMENT_REQUEST,
@@ -32,12 +31,12 @@ import {
   UNLIKE_COMMENT_REQUEST,
 } from "../@reducers/post";
 
-export interface SearchKeywordInter {
-  type: typeof SEARCH_KEYWORD_REQUEST;
-  data: SearchKeywordData;
+export interface SearchPostInter {
+  type: typeof SEARCH_POST_REQUEST;
+  data: SearchPostData;
 }
 
-export interface SearchKeywordData {
+export interface SearchPostData {
   keyword: string;
 }
 
@@ -124,11 +123,6 @@ export interface AddCommentInter {
 export interface RemoveCommentInter {
   type: typeof REMOVE_COMMENT_REQUEST;
   data: number;
-}
-
-export interface EditCommentData {
-  content: string;
-  CommentId: number;
 }
 
 export interface LikeCommentData {
@@ -256,11 +250,6 @@ export interface RemovePostData {
 export interface RemovePostInter {
   type: typeof REMOVE_POST_REQUEST;
   data: RemovePostData;
-}
-
-export interface LoadRecentPostInter {
-  type: typeof LOAD_RECENT_POSTS_REQUEST;
-  data: UserInter;
 }
 
 export interface LoadPostData {

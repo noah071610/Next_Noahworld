@@ -23,7 +23,7 @@ export const TopArticleCardWrapper = styled.article`
     }
   }
   h2 {
-    ${tw`leading-6`}
+    ${tw`leading-6 text-lg`}
   }
   ul {
     ${tw`text-xs mt-3`}

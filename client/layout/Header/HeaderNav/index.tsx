@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
 import useInput from "../../../util/useInput";
-import { SEARCH_KEYWORD_REQUEST } from "../../../@reducers/blog";
 import { HeaderNavWrapper, SearchBar } from "./styles";
+import { SEARCH_POST_REQUEST } from "../../../@reducers/post";
 
-const HeaderNav = () => {
+const HeaderNav = ({ setOnProfile }: { setOnProfile: (type: boolean) => void }) => {
   const dispatch = useDispatch();
   const [FixedNavbar, setFixedNavbar] = useState(false);
   const router = useRouter();
@@ -17,6 +17,7 @@ const HeaderNav = () => {
     function scrollCallBack() {
       if (window.scrollY >= 275) {
         setFixedNavbar(true);
+        setOnProfile(false);
       } else {
         setFixedNavbar(false);
       }
@@ -33,7 +34,7 @@ const HeaderNav = () => {
       return;
     }
     dispatch({
-      type: SEARCH_KEYWORD_REQUEST,
+      type: SEARCH_POST_REQUEST,
       data: { keyword },
     });
     router.push(`/search/${keyword}`);
@@ -61,7 +62,7 @@ const HeaderNav = () => {
             </li>
             <li>
               <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
-                Portfolio ⭐
+                Portfolio
               </a>
             </li>
           </ul>
