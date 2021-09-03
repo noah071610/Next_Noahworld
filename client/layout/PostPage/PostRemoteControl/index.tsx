@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider, message, Timeline } from "antd";
+import { Divider, message } from "antd";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";

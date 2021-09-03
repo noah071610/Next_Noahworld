@@ -3,6 +3,7 @@ import { CommentsInter, PostState } from "./@reducerTypes";
 
 const initialState = {
   post: null,
+  postPath: null,
   techPosts: [],
   dailyPosts: [],
   hashtags: [],
@@ -226,8 +227,13 @@ const reducer = (state: PostState = initialState, action: any) =>
       case ADD_POST_SUCCESS:
         draft.addPostLoading = false;
         draft.addPostDone = true;
-        action.data.category === "tech" && draft.techPosts.unshift(action.data);
-        action.data.category === "daily" && draft.dailyPosts.unshift(action.data);
+        if (action.data.category === "tech") {
+          draft.techPosts.unshift(action.data);
+          draft.postPath = `${action.data.category}/post/${action.data.id}`;
+        } else {
+          draft.dailyPosts.unshift(action.data);
+          draft.postPath = `${action.data.category}/post/${action.data.id}`;
+        }
         break;
       case ADD_POST_FAILURE:
         draft.addPostLoading = false;

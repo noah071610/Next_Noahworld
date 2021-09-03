@@ -129,6 +129,7 @@ export interface PostState {
   mostViewedPost: PostInter | null;
   mostCommentedPost: PostInter | null;
   post: PostInter | null;
+  postPath: string | null;
   searchPosts: Array<SearchPostInter>;
   searchedKeyword: object | null;
   prevPost: Array<PostInter>;

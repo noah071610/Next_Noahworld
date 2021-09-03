@@ -49,6 +49,7 @@ const Admin = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.user);
+  const [content, setContent] = useState("");
   const editorRef = useRef<any>(null);
   const {
     post,
@@ -59,6 +60,7 @@ const Admin = () => {
     uploadPostImageDone,
     addPostDone,
     editPostDone,
+    postPath,
   } = useSelector((state: RootState) => state.post);
   const [thumbnail, onChangeThumbnail, setthumbnail] = useInput("");
   const [title, onChangeTitle, setTitle] = useInput("");
@@ -127,8 +129,10 @@ const Admin = () => {
       setPostValue(post.category);
       setPostId(post.id);
       setTags(post?.Hashtags);
+      setContent(post?.content);
+      editorRef?.current?.getInstance().setHTML(post?.content);
     }
-  }, [user, post]);
+  }, [user, post, editorRef]);
 
   useEffect(() => {
     if (uploadPostImageDone) {
@@ -142,12 +146,17 @@ const Admin = () => {
   }, [uploadPostImageDone]);
 
   useEffect(() => {
-    if (addPostDone || editPostDone) {
-      message.success("Post added or Edited");
-      router.push(`/tech`);
+    if (addPostDone) {
+      message.success("Post added");
+      router.push(postPath);
       editorRef?.current?.getInstance().setHTML("");
     }
-  }, [addPostDone, editPostDone]);
+    if (editPostDone) {
+      message.success("Post Edited");
+      router.push(`/${postValue}/post/${PostId}`);
+      editorRef?.current?.getInstance().setHTML("");
+    }
+  }, [addPostDone, editPostDone, postValue, PostId]);
   return (
     <PostForm onFinish={onFinishPost}>
       <h2>ADD POST</h2>
@@ -170,7 +179,7 @@ const Admin = () => {
           </button>
         )}
       </div>
-      <PostEditor post={post} editorRef={editorRef} />
+      <PostEditor content={content} editorRef={editorRef} />
       <EditorMenu postValue={postValue} setPostValue={setPostValue} />
     </PostForm>
   );
