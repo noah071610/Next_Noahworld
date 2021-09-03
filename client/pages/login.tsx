@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ON_SIGN_UP_PAGE } from "../@reducers/blog";
 import { RootState } from "../@reducers";
@@ -17,7 +17,6 @@ import { useCallback } from "react";
 
 const LoginWrapper = styled.main`
   ${GRID_STYLE("2rem", "1fr 1fr")};
-  ${tw`pt-8`}
   .login-poster {
     ${FLEX_STYLE("center", "center")};
     img {

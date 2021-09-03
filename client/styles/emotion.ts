@@ -1,14 +1,6 @@
 import { css } from "@emotion/react";
 import { BLUE_COLOR } from "../config";
 
-export const marginCSS = (top, right, bottom, left) => css`
-  margin: ${top} ${right} ${bottom} ${left};
-`;
-
-export const paddingCSS = (top, right, bottom, left) => css`
-  padding: ${top} ${right} ${bottom} ${left};
-`;
-
 export const TitleProfile = css`
   white-space: nowrap;
   display: inline-block;
@@ -31,14 +23,6 @@ export const NoPostProfile = css`
 export const ProfilePointTitle = css`
   color: ${BLUE_COLOR};
   margin-left: 0.3rem;
-`;
-
-export const RGB_BLACK = (opacity: number) => `
-  rgba(0,0,0,${opacity})
-`;
-
-export const BORDER_THIN = (border: string, px?: number) => `
-  ${border}:${px ? px : "1"}px solid rgba(0,0,0,0.15)
 `;
 
 export const FLEX_STYLE = (justify: string, align: string, flexStyle?: string) => `

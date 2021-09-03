@@ -47,7 +47,7 @@ const PostForm = styled(Form)`
   }
 `;
 
-const Admin = memo(() => {
+const Admin = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.user);
@@ -201,6 +201,6 @@ const Admin = memo(() => {
       </PostForm>
     </>
   );
-});
+};
 
 export default Admin;

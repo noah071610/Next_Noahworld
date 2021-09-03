@@ -25,6 +25,7 @@ import ArticleCardColumn from "../../../components/Articles/ArticleCardColumn";
 import ArticleCardRow from "../../../components/Articles/ArticleCardRow";
 import CommentForm from "../../../components/Comments/CommentForm";
 import Comment from "../../../components/Comments/Comment";
+import { PostPageWrapper } from "../../../layout/PostPage/styles";
 dayjs.locale("kor");
 
 const PostRemoteControl = dynamic(() => import("../../../components/PostRemoteControl"));
@@ -62,24 +63,11 @@ const HeartLiked = styled.a`
     }
   }
 `;
-const PostDesc = css`
-  display: flex;
-  justify-content: flex-start;
-  font-size: 1.1rem;
-  margin-bottom: 5rem;
-  color: rgba(0, 0, 0, 0.2);
-`;
 
 const PostSubTitle = css`
   margin: 5rem 0 1rem 0;
   font-size: 1.5rem;
   font-weight: bold;
-`;
-
-const PostWrapper = css`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
 `;
 
 const settings = {
@@ -192,33 +180,29 @@ const BlogPostPage = memo(() => {
       <Head>
         <title>Noah world | {post?.title.slice(0, 10)}...</title>
       </Head>
-      <main>
-        <h1 style={{ lineHeight: "1.5" }} className="post_main_title">
-          {post?.title}
-        </h1>
-        <Divider className="blog_post_divier" />
-        <ul css={PostDesc}>
+      <PostPageWrapper>
+        <h1 className="post-title">{post?.title}</h1>
+        <Divider />
+        <ul className="post-desc">
           <li>{dayjs(post?.createdAt).format("YYYY.MM.DD")}</li>
           <li>·&nbsp;{post?.hit} views</li>
           <li>·&nbsp;{post?.PostLikers?.length} likes</li>
         </ul>
-        <div css={PostWrapper}>
-          <div className="blog_post_article">
-            <div className="tui-editor-contents" style={{ marginBottom: "3rem" }}>
-              <img
-                alt={post?.title}
-                style={{ width: "100%", marginBottom: "6rem" }}
-                src={
-                  post?.thumbnail
-                    ? post?.thumbnail
-                    : post?.imagePath
-                    ? post?.imagePath.replace(/\/thumb\//, "/original/")
-                    : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
-                }
-                onError={handleImgError}
-              />
-              {Fullcontent && parse(Fullcontent)}
-            </div>
+        <div className="post-main-wrapper">
+          <div className="post-main">
+            <img
+              className="post-tumbnail"
+              alt={post?.title}
+              src={
+                post?.thumbnail
+                  ? post?.thumbnail
+                  : post?.imagePath
+                  ? post?.imagePath.replace(/\/thumb\//, "/original/")
+                  : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
+              }
+              onError={handleImgError}
+            />
+            <article className="post-content">{Fullcontent && parse(Fullcontent)}</article>
             <h4 css={PostSubTitle}>Another posts</h4>
             {nextPost.length + prevPost.length > 2 ? (
               <Slider {...settings}>
@@ -263,7 +247,7 @@ const BlogPostPage = memo(() => {
           </div>
           <PostRemoteControl Fullcontent={Fullcontent} />
         </div>
-      </main>
+      </PostPageWrapper>
     </>
   );
 });

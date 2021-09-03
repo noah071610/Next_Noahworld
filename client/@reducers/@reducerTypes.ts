@@ -126,7 +126,6 @@ export interface BlogState {
   onSignUpPage: boolean;
   postEditOn: boolean;
   searchPosts: Array<SearchPostInter>;
-  onSlideMenu: boolean;
   searchedKeyword: object | null;
 
   searchKeywordLoading: boolean;

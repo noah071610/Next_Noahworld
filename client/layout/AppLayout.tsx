@@ -2,7 +2,7 @@ import { DoubleLeftOutlined } from "@ant-design/icons";
 import React, { memo, useCallback } from "react";
 import styled from "@emotion/styled";
 import Footer from "./Footer";
-import Header from "../components/Header";
+import Header from "./Header";
 import { keyframes } from "@emotion/react";
 import tw from "twin.macro";
 
@@ -41,10 +41,7 @@ const AppLayout = ({ children }) => {
 
   return (
     <Wrapper>
-      <div className="page">
-        <Header />
-        {children}
-      </div>
+      <div className="page">{children}</div>
       <Scroll className="scroll">
         <DoubleLeftOutlined onClick={scrollToTop} rotate={90} />
       </Scroll>

@@ -6,7 +6,6 @@ const initialState = {
   onSignUpPage: false,
   postEditOn: false,
   searchPosts: [],
-  onSlideMenu: false,
   searchedKeyword: null,
   searchKeywordLoading: false,
   searchKeywordDone: false,
@@ -18,10 +17,8 @@ const initialState = {
 };
 
 export const ON_SIGN_UP_PAGE = "ON_SIGN_UP_PAGE" as const;
-export const REMOVE_IMAGE = "REMOVE_IMAGE" as const;
 export const POST_EDIT_ON = "POST_EDIT_ON" as const;
 export const POST_EDIT_OFF = "POST_EDIT_OFF" as const;
-export const ON_SLIDE_MENU = "ON_SLIDE_MENU" as const;
 
 export const SEARCH_KEYWORD_REQUEST = "SEARCH_KEYWORD_REQUEST" as const;
 export const SEARCH_KEYWORD_SUCCESS = "SEARCH_KEYWORD_SUCCESS" as const;
@@ -36,9 +33,6 @@ const reducer = (state: BlogState = initialState, action: any) =>
         break;
       case POST_EDIT_ON:
         draft.postEditOn = !draft.postEditOn;
-        break;
-      case ON_SLIDE_MENU:
-        draft.onSlideMenu = !draft.onSlideMenu;
         break;
       case POST_EDIT_OFF:
         draft.postEditOn = false;

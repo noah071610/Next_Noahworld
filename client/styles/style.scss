@@ -1,28 +1,22 @@
-// preset
+// ===========PRESET==================
 $BLUE_COLOR: #1187cf;
-$MAIN_COLOR: #d5f7e6;
-$SUB_COLOR: #5ae4a8;
-$GRAY_COLOR: rgba(0, 0, 0, 0.2);
-$BG_COLOR: rgb(247, 247, 247);
 
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-// global
+
+// ===========GLOBAL==================
 
 *::-webkit-scrollbar {
   width: 7px;
 }
 
-/* Track */
 *::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-/* Handle */
 *::-webkit-scrollbar-thumb {
   background: rgb(185, 185, 185);
 }
 
-/* Handle on hover */
 *::-webkit-scrollbar-thumb:hover {
   background: rgb(153, 153, 153);
 }
@@ -113,7 +107,6 @@ video {
   box-sizing: border-box;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
-/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -138,9 +131,18 @@ ol,
 ul,
 li {
   list-style: none;
+  margin: 0;
 }
 li {
   display: inline-block;
+  margin-right: 0.5rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+h1 {
+  font-size: 4rem;
 }
 
 button {
@@ -170,69 +172,42 @@ a {
   font-size: 0.9rem;
 }
 
+// ===========KEYFRAMES==================
+
 @keyframes underLining {
   100% {
     background-size: 100% 100%;
   }
 }
 
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  padding: 0 3rem !important;
+  .ant-input {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+.static {
+  position: static;
+}
+.body-margin {
+  height: 63px;
+  display: none;
+  @media (max-width: 830px) {
+    display: block;
+  }
+}
+
+// qurified
+
 .profile_table {
   display: none;
-}
-
-.bouncer {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
-  width: 100px;
-  height: 100px;
-}
-
-.bouncer div {
-  width: 20px;
-  height: 20px;
-  background-color: #0077ff;
-  border-radius: 50%;
-  animation: bouncer 0.5s cubic-bezier(0.19, 0.57, 0.3, 0.98) infinite alternate;
-  /* use https://cubic-bezier.com/ to customize the curve */
-}
-
-.bouncer div:nth-child(2) {
-  animation-delay: 0.1s;
-  opacity: 0.8;
-}
-
-.bouncer div:nth-child(3) {
-  animation-delay: 0.2s;
-  opacity: 0.6;
-}
-
-.bouncer div:nth-child(4) {
-  animation-delay: 0.3s;
-  opacity: 0.4;
-}
-
-@keyframes bouncer {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-50px);
-  }
-}
-
-li {
-  margin-right: 0.5rem;
-  &:last-child {
-    margin-right: 0;
-  }
-}
-ul {
-  margin: 0;
-}
-
-h1 {
-  font-size: 4rem;
 }
 
 .selected {
@@ -265,10 +240,6 @@ h1 {
     left: 0;
     transition: all 0.3s;
   }
-}
-
-.static {
-  position: static;
 }
 
 .public {
@@ -341,15 +312,15 @@ h1 {
   }
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    visibility: visible;
-    opacity: 1;
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  li {
+    padding: 0.7rem 1.5rem;
   }
 }
+
+// qurified
 
 .blog {
   margin-top: 2rem;
@@ -357,10 +328,6 @@ h1 {
   &_main {
     width: 70%;
     margin-right: 2rem;
-    &_big {
-      margin-bottom: 3rem;
-      display: block;
-    }
     &_count {
       padding: 0 1rem;
       margin: 2rem 0;
@@ -373,59 +340,6 @@ h1 {
     }
   }
   &_header {
-    &_small {
-      display: none;
-    }
-    &_social {
-      margin-right: 1rem;
-    }
-    &_logout {
-      position: absolute;
-      bottom: -2rem;
-      right: 0;
-      margin-right: 1.4rem;
-    }
-    &_login {
-      position: absolute;
-      bottom: -2rem;
-      right: 1.15rem;
-      display: flex;
-      .btn_login {
-        margin-right: 1.5rem;
-      }
-      .btn_google {
-        display: flex;
-        align-items: center;
-        img {
-          margin-left: 0.3rem;
-          width: 0.9rem;
-        }
-      }
-    }
-    &_ul {
-      display: flex;
-      align-items: center;
-      margin: 0;
-      .icon {
-        font-size: 1.5rem;
-      }
-    }
-    &_li {
-      margin-right: 3rem;
-      &:last-child {
-        margin-right: 0;
-      }
-      a {
-        display: flex;
-        align-items: center;
-        background-image: linear-gradient(transparent calc(100% - 1.5px), $BLUE_COLOR 5px);
-        background-repeat: no-repeat;
-        background-size: 0% 100%;
-        &:hover {
-          animation: underLining 0.2s forwards;
-        }
-      }
-    }
     &_profile {
       width: 100%;
       margin: 0 auto;
@@ -434,20 +348,6 @@ h1 {
       margin-top: 1rem;
       background-color: white;
       position: relative;
-    }
-    &_nav {
-      transition: all 0.5s;
-      width: 100%;
-      height: 70px;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 1rem;
-    }
-    &_small_nav {
-      display: none;
     }
   }
 
@@ -466,60 +366,11 @@ h1 {
     }
   }
 
-  &_post {
-    &_article {
-      width: 850px;
-    }
-    &_divier {
-      width: 850px;
-    }
-  }
   &_md {
     &_aside {
       display: none;
     }
   }
-}
-
-.footer-list {
-  display: flex;
-  flex-direction: column;
-  li {
-    padding: 0.7rem 1.5rem;
-  }
-}
-
-.logo {
-  width: 560px;
-}
-.space_small_on {
-  height: 3rem;
-  display: none;
-}
-
-.header {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  &_logo {
-    height: 180px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 3rem;
-    position: relative;
-    z-index: 2;
-    background-color: white;
-  }
-}
-
-.youtube {
-  width: 100%;
-  height: 500px;
-}
-
-.br_search {
-  display: none;
 }
 
 .search_title {
@@ -533,102 +384,6 @@ h1 {
     color: BLUE_COLOR;
     margin: 0 1rem;
     font-size: 1.2rem;
-  }
-}
-
-.post_main_title {
-  margin-top: 5rem;
-  font-size: 3rem;
-}
-
-.tui-editor-contents {
-  h1 {
-    font-size: 1.6rem;
-    margin: 1.5rem 0;
-  }
-  h2 {
-    font-size: 1.4rem;
-    margin: 1.5rem 0;
-  }
-  h3 {
-    font-size: 1.2rem;
-    margin: 1.5rem 0;
-  }
-  h4 {
-    margin: 1.5rem 0;
-  }
-  a {
-    color: $BLUE_COLOR;
-  }
-  img {
-    width: 65%;
-  }
-  p {
-    font-size: 0.9rem;
-    line-height: 1.8;
-    margin: 0;
-    padding-bottom: 1rem;
-  }
-  blockquote {
-    border-left: 5px solid $BLUE_COLOR;
-    margin-bottom: 1rem;
-    padding: 0.5rem 0 0.5rem 1rem;
-    p {
-      padding: 0;
-    }
-  }
-  ul {
-    list-style-type: disc;
-    list-style: inherit;
-    list-style-position: inside;
-  }
-  ol {
-    list-style-type: decimal;
-    list-style: decimal;
-    list-style-position: inside;
-  }
-  li {
-    display: list-item;
-    list-style: inherit;
-    list-style-position: inside;
-    p {
-      padding: 0;
-      display: initial;
-    }
-  }
-  span {
-    font-size: 1rem;
-  }
-  [data-backticks] {
-    background-color: $BLUE_COLOR;
-    color: white;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
-    margin-right: 0.2rem;
-    font-size: 0.7rem;
-  }
-  pre {
-    margin: 2px 0 8px;
-    padding: 1rem;
-    font-size: 0.83rem;
-    span {
-      font-size: 0.83rem;
-    }
-    line-height: 1.7;
-    background-color: #f4f7f8;
-  }
-}
-
-.fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
-  z-index: 1;
-  padding: 0 3rem !important;
-  .ant-input {
-    background-color: rgba(255, 255, 255, 0.1) !important;
   }
 }
 
@@ -652,24 +407,6 @@ h1 {
 }
 
 @media only screen and (max-width: 830px) {
-  .fixed {
-    padding: 0 !important;
-    z-index: 2;
-  }
-  .post_main_title {
-    margin-top: 3rem;
-    font-size: 2rem;
-  }
-  .space_small_on {
-    height: 3rem;
-    display: block;
-  }
-  .header_logo {
-    display: none;
-  }
-  .header_small_on {
-    display: block;
-  }
   .blog {
     &_category_header {
       display: block;
@@ -689,73 +426,11 @@ h1 {
       &_loginout {
         display: none;
       }
-      &_small {
-        display: block;
-        &_nav {
-          width: 100%;
-          height: 70px;
-          top: 0;
-          left: 0;
-          position: fixed;
-          display: flex;
-          justify-content: space-between;
-          background-color: white;
-          padding: 0 1rem;
-          z-index: 2;
-        }
-      }
-    }
-  }
-  .slide_title {
-    width: 100%;
-    padding: 0 1rem 1rem 1rem;
-    position: absolute;
-    background-color: white;
-    top: 68px;
-    left: 0;
-    box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-top: none;
-    z-index: 1;
-    animation: fadeIn 0.5s;
-  }
-  .slide_menu {
-    width: 100%;
-    padding: 1rem;
-    position: absolute;
-    background-color: white;
-    top: 68px;
-    left: 0;
-    box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-top: none;
-    z-index: 1;
-    li {
-      width: 100%;
-      transition: all 0.3s;
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-        color: black;
-      }
     }
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .youtube {
-    height: 400px;
-  }
-  .tui-editor-contents {
-    img {
-      width: 100%;
-    }
-    p {
-      font-size: 13px;
-    }
-    span {
-      font-size: 13px;
-    }
-  }
   .footer-list {
     li {
       padding: 0.7rem 1.5rem;
@@ -803,40 +478,10 @@ h1 {
         font-size: 1.2rem;
       }
     }
-    &_main {
-      &_big {
-        margin-bottom: 3rem;
-        display: none;
-      }
-      &_small {
-        display: flex;
-      }
-    }
-  }
-}
-@media only screen and (max-width: 490px) {
-  .blog_footer_list {
-    li {
-      a {
-        font-size: 0.65rem;
-      }
-    }
   }
 }
 
 @media only screen and (max-width: 400px) {
-  .youtube {
-    height: 200px;
-  }
-  .slide_menu {
-    li {
-      font-size: 0.8rem;
-    }
-  }
-  .post_main_title {
-    margin-top: 1rem;
-    font-size: 1.5rem;
-  }
   .blog {
     &_category_count {
       margin: 0;

@@ -13,6 +13,9 @@ import { css, Global } from "@emotion/react";
 import AppLayout from "../layout/AppLayout";
 import { Router } from "next/dist/client/router";
 import Footer from "../layout/Footer";
+import Header from "../layout/Header";
+import MoblieHeader from "../layout/MobileHeader";
+import LoadingScreen from "../layout/LoadingPage";
 
 const reset = css`
   .ant-row {
@@ -54,14 +57,6 @@ const reset = css`
   }
 `;
 
-const loadingScreen = css`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -86,17 +81,12 @@ function App({ Component, pageProps }) {
         <title>Noah world</title>
       </Head>
       {loading ? (
-        <div css={loadingScreen}>
-          <div className="bouncer">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
+        <LoadingScreen />
       ) : (
         <>
           <Global styles={reset} />
+          <Header />
+          <MoblieHeader />
           <AppLayout>
             <Component {...pageProps} />
           </AppLayout>

@@ -62,9 +62,7 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   }, []);
 
   useEffect(() => {
-    let contentHeaders = document.querySelectorAll(
-      ".tui-editor-contents h1, .tui-editor-contents h2"
-    );
+    let contentHeaders = document.querySelectorAll(".post-content h1, .post-content h2");
     let arr: string[] = [];
     contentHeaders.forEach((v, i) => {
       v.setAttribute("id", String(i));
@@ -178,7 +176,7 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
       <Scrollspy
         style={{ margin: 0 }}
         items={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
-        currentClassName="blog_post_selected"
+        currentClassName="selected"
         offset={300}
       >
         {timelineLists()}
