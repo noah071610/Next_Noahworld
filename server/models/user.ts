@@ -8,8 +8,6 @@ class User extends Model {
   public email!: string;
   public name!: string;
   public icon?: string;
-  public recentView?: number;
-  public recentComment?: number;
   public password?: string;
   public admin?: boolean;
   public createdAt!: Date;
@@ -33,14 +31,6 @@ User.init(
     },
     icon: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
-    recentView: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    recentComment: {
-      type: DataTypes.INTEGER,
       allowNull: true,
     },
     password: {

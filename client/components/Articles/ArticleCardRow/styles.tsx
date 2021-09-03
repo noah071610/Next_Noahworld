@@ -15,7 +15,8 @@ export const ArticleCardRowWrapper = styled.article`
     }
   }
   .image-wrapper {
-    ${tw`overflow-hidden`}
+    ${tw`overflow-hidden`};
+    height: 180px;
     img {
       ${tw`w-full h-full`}
       transition: 0.3s all;
@@ -35,8 +36,8 @@ export const ArticleCardRowWrapper = styled.article`
       }
     }
     .content {
-      ${tw`text-sm`}
-      ${ELLIPSIS_STYLE(1.7, 5, "7.5rem")}
+      ${tw`text-xs`}
+      ${ELLIPSIS_STYLE(1.8, 4, "auto")}
     }
     .footer {
       color: rgba(0, 0, 0, 0.3);

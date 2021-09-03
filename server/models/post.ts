@@ -7,7 +7,7 @@ import User from "./user";
 class Post extends Model {
   public id!: number;
   public hit?: number;
-  public category!: string;
+  public category!: "tech" | "daily";
   public thumbnail?: string;
   public imagePath?: string;
   public title!: string;

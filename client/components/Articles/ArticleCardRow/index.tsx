@@ -9,7 +9,7 @@ import { ArticleCardRowWrapper } from "./styles";
 dayjs.extend(relativeTime);
 dayjs.locale("kor");
 
-const ArticleCardRow: FC<ArticleInter> = ({ article, smallSize }) => {
+const ArticleCardRow: FC<ArticleInter> = ({ article }) => {
   const router = useRouter();
   const onClickArticle = (e: React.MouseEvent) => {
     if ((e.target as Element).className === "hashtag") {
