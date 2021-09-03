@@ -12,7 +12,7 @@ import CropImageModal from "../Modal/CropImageModal";
 import { Camera, Close, ProfileWrapper } from "./styles";
 import Link from "next/link";
 
-const Profile = ({ isMobile }: { isMobile: boolean }) => {
+const Profile = ({ isMobile }: { isMobile?: boolean }) => {
   const dispatch = useDispatch();
   const { user, addIconDone, removeIconDone } = useSelector((state: RootState) => state.user);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);

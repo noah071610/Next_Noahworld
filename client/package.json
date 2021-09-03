@@ -15,7 +15,6 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@toast-ui/editor-plugin-code-syntax-highlight": "^3.0.0",
     "@toast-ui/react-editor": "^3.0.3",
-    "animate.css": "^4.1.1",
     "antd": "^4.16.12",
     "axios": "^0.21.1",
     "dayjs": "^1.10.6",

@@ -6,7 +6,6 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { SubCommentProps } from "../../../types";
 import { RootState } from "../../../@reducers";
-import useInput from "../../../util/useInput";
 import { REMOVE_SUB_COMMENT_REQUEST } from "../../../@reducers/post";
 import CommentContent from "../CommentContent";
 import CommentMenu from "../CommentMenu";
@@ -19,9 +18,6 @@ const SubComments: FC<SubCommentProps> = ({ subComment, CommentId }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.user);
   const [deletePopup, setDeletePopup] = useState(false);
-  const [editForm, setEditForm] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [editText, onChangeEditText] = useInput(subComment?.content);
   const SubCommentId = subComment?.id;
   const onClickRemoveComment = useCallback(() => {
     if (!user) {
@@ -44,20 +40,10 @@ const SubComments: FC<SubCommentProps> = ({ subComment, CommentId }) => {
       {subComment?.User && (
         <SubCommentWrapper>
           <SpeechBubble>
-            <CommentContent
-              comment={subComment}
-              editText={editText}
-              editForm={editForm}
-              onChangeEditText={onChangeEditText}
-            />
+            <CommentContent comment={subComment} />
             <CommentMenu
-              user={user}
               SubCommentId={SubCommentId}
-              CommentId={CommentId}
               comment={subComment}
-              editText={editText}
-              editForm={editForm}
-              setEditForm={setEditForm}
               setDeletePopup={setDeletePopup}
             />
             {deletePopup && (

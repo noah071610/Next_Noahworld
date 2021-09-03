@@ -25,8 +25,6 @@ const Comment: FC<CommentProps> = memo(({ comment }) => {
   const [deletePopup, setDeletePopup] = useState(false);
   const [subCommentForm, setSubCommentForm] = useState(false);
   const [moreSubComments, onClickMoreSubComments, setMoreSubComments] = useToggle(false);
-  const [editForm, setEditForm] = useState(false);
-  const [editText, onChangeEditText] = useInput(comment.content);
   const CommentId = comment?.id;
 
   const onClickRemoveComment = useCallback(() => {
@@ -73,21 +71,8 @@ const Comment: FC<CommentProps> = memo(({ comment }) => {
       {comment.User && (
         <EntireCommentWrapper>
           <CommentWrapper onClick={onClickComment}>
-            <CommentContent
-              comment={comment}
-              editText={editText}
-              editForm={editForm}
-              onChangeEditText={onChangeEditText}
-            />
-            <CommentMenu
-              user={user}
-              CommentId={CommentId}
-              comment={comment}
-              editText={editText}
-              editForm={editForm}
-              setEditForm={setEditForm}
-              setDeletePopup={setDeletePopup}
-            />
+            <CommentContent comment={comment} />
+            <CommentMenu comment={comment} setDeletePopup={setDeletePopup} />
             {deletePopup && (
               <CommentPopup
                 popup_message="Would you really like to delete? 😢"
