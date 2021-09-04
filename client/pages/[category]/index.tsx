@@ -88,7 +88,15 @@ const BlogCategoryPage = () => {
       //메모리릭을 방지하기위해 unmount시 removeEventListner
       window.removeEventListener("scroll", onScroll);
     };
-  }, [hasMorePosts, techPosts, dailyPosts, loadMorePostsLoading, category, onHashtagFilter]);
+  }, [
+    hasMorePosts,
+    techPosts,
+    dailyPosts,
+    loadMorePostsLoading,
+    category,
+    onHashtagFilter,
+    dispatch,
+  ]);
 
   const onClickHashtag = useCallback(
     (hashtag: string) => {
@@ -101,7 +109,7 @@ const BlogCategoryPage = () => {
       });
       setOnHashtagFilter(true);
     },
-    [category]
+    [category, dispatch]
   );
 
   const onClickAllHashtag = useCallback(() => {
@@ -116,7 +124,7 @@ const BlogCategoryPage = () => {
       });
     }
     setOnHashtagFilter(false);
-  }, [category, hashtag, category]);
+  }, [category, hashtag, category, dispatch]);
 
   return (
     <>
