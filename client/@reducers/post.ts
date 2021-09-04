@@ -317,7 +317,7 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.dailyPosts = moreDailyPosts;
         //불러온 포스트가 limit값인 6개라는것은 불러온 포스트가 더 있다는 의미이다.
         //만약 갯수가 딱 맞아서 다음 값이 없다고 해도 그 요청은 0개임으로 false가 된다.
-        draft.hasMorePosts = action.data.morePosts.length === 6;
+        draft.hasMorePosts = action.data.morePosts.length === 9;
         break;
       case LOAD_MORE_POSTS_FAILURE:
         draft.loadMorePostsLoading = false;

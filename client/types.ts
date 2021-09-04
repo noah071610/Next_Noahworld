@@ -1,4 +1,3 @@
-import { IconDefinition } from "@fortawesome/fontawesome-common-types";
 import { Task } from "@redux-saga/types";
 import { Store } from "redux";
 import { CommentsInter, PostInter, SubCommentsInter } from "./@reducers/@reducerTypes";

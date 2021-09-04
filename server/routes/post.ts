@@ -91,11 +91,43 @@ router.post("/search", async (req: Request, res: Response, next: NextFunction) =
   }
 });
 
+router.get("/morepost/:category", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const category = req.params.category;
+    let where = {
+      //Last ID 보다 낮은 즉, 이전게시물들을 찾습니다.
+      [Op.and]: [{ id: { [Op.lt]: req.query.lastId } }, { category }],
+    };
+    const morePosts = await Post.findAll({
+      //6개씩 불러오고 게시날짜를 내림차로 정렬합니다.
+      where,
+      limit: 9,
+      order: [["createdAt", "DESC"]],
+      include: [
+        //해시태그, 좋아요한 유저를 받아옵니다.
+        {
+          model: Hashtag,
+          attributes: ["name"],
+        },
+        {
+          model: User,
+          as: "PostLikers",
+          attributes: ["id"],
+        },
+      ],
+    });
+    res.status(200).json({ morePosts, category });
+  } catch (error) {
+    console.error(error);
+    return next(error);
+  }
+});
+
 router.get("/category/:category", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = req.params.category;
     const posts = await Post.findAll({
-      where: { category: req.params.category },
+      where: { category },
       order: [["createdAt", "DESC"]],
       limit: 9,
       include: [
@@ -111,7 +143,7 @@ router.get("/category/:category", async (req: Request, res: Response, next: Next
       ],
     });
     const countPosts = await Post.findAll({
-      where: { category: req.params.category },
+      where: { category },
       attributes: ["id"],
     });
 
@@ -128,7 +160,7 @@ router.get(
     try {
       const category = req.params.category;
       const posts = await Post.findAll({
-        where: { category: req.params.category },
+        where: { category },
         order: [["createdAt", "DESC"]],
         limit: 12,
         include: [
@@ -145,7 +177,7 @@ router.get(
         ],
       });
       const countPosts = await Post.findAll({
-        where: { category: req.params.category },
+        where: { category },
         attributes: ["id"],
         include: [
           {
@@ -585,38 +617,6 @@ router.post("/delete", async (req: Request, res: Response, next: NextFunction) =
       });
     }
     res.status(200).send({ success: true });
-  } catch (error) {
-    console.error(error);
-    return next(error);
-  }
-});
-
-router.get("/morepost/:category", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const category = req.params.category;
-    let where = {
-      //Last ID 보다 낮은 즉, 이전게시물들을 찾습니다.
-      [Op.and]: [{ id: { [Op.lt]: req.query.lastId } }, { category }],
-    };
-    const morePosts = await Post.findAll({
-      //6개씩 불러오고 게시날짜를 내림차로 정렬합니다.
-      where,
-      limit: 9,
-      order: [["createdAt", "DESC"]],
-      include: [
-        //해시태그, 좋아요한 유저를 받아옵니다.
-        {
-          model: Hashtag,
-          attributes: ["name"],
-        },
-        {
-          model: User,
-          as: "PostLikers",
-          attributes: ["id"],
-        },
-      ],
-    });
-    res.status(200).json({ morePosts, category });
   } catch (error) {
     console.error(error);
     return next(error);
