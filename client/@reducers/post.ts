@@ -75,10 +75,6 @@ const initialState = {
   addCommentDone: false,
   addCommentError: false,
 
-  editCommentLoading: false,
-  editCommentDone: false,
-  editCommentError: false,
-
   removeCommentLoading: false,
   removeCommentDone: false,
   removeCommentError: false,
@@ -94,10 +90,6 @@ const initialState = {
   addSubCommentLoading: false,
   addSubCommentDone: false,
   addSubCommentError: false,
-
-  editSubCommentLoading: false,
-  editSubCommentDone: false,
-  editSubCommentError: false,
 
   removeSubCommentLoading: false,
   removeSubCommentDone: false,
@@ -125,9 +117,9 @@ export const LOAD_POST_REQUEST = "LOAD_POST_REQUEST" as const;
 export const LOAD_POST_SUCCESS = "LOAD_POST_SUCCESS" as const;
 export const LOAD_POST_FAILURE = "LOAD_POST_FAILURE" as const;
 
-export const LOAD_RECENT_POSTS_REQUEST = "LOAD_RECENT_POSTS_REQUEST" as const;
-export const LOAD_RECENT_POSTS_SUCCESS = "LOAD_RECENT_POSTS_SUCCESS" as const;
-export const LOAD_RECENT_POSTS_FAILURE = "LOAD_RECENT_POSTS_FAILURE" as const;
+export const LOAD_SIDE_POST_REQUEST = "LOAD_SIDE_POST_REQUEST" as const;
+export const LOAD_SIDE_POST_SUCCESS = "LOAD_SIDE_POST_SUCCESS" as const;
+export const LOAD_SIDE_POST_FAILURE = "LOAD_SIDE_POST_FAILURE" as const;
 
 export const LOAD_POSTS_REQUEST = "LOAD_POSTS_REQUEST" as const;
 export const LOAD_POSTS_SUCCESS = "LOAD_POSTS_SUCCESS" as const;
@@ -259,24 +251,37 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.mostCommentedPost = action.data.mostCommentedPost;
         break;
       case LOAD_POSTS_FAILURE:
-        draft.loadPostsLoading = false;
-        draft.loadPostsError = action.error;
+        draft.loadPostLoading = false;
+        draft.loadPostError = action.error;
         break;
       case LOAD_POST_REQUEST:
-        draft.loadPostsLoading = true;
-        draft.loadPostsDone = false;
-        draft.loadPostsError = false;
+        draft.loadPostLoading = true;
+        draft.loadPostDone = false;
+        draft.loadPostError = false;
         break;
       case LOAD_POST_SUCCESS:
-        draft.loadPostsLoading = false;
-        draft.loadPostsDone = true;
+        draft.loadPostLoading = false;
+        draft.loadPostDone = true;
         draft.post = action.data.post;
-        draft.prevPost = action.data.prevPost;
-        draft.nextPost = action.data.nextPost;
         break;
       case LOAD_POST_FAILURE:
         draft.loadPostsLoading = false;
         draft.loadPostsError = action.error;
+        break;
+      case LOAD_SIDE_POST_REQUEST:
+        draft.loadSidePostLoading = true;
+        draft.loadSidePostDone = false;
+        draft.loadSidePostError = false;
+        break;
+      case LOAD_SIDE_POST_SUCCESS:
+        draft.loadSidePostLoading = false;
+        draft.loadSidePostDone = true;
+        draft.prevPost = action.data.prevPost;
+        draft.nextPost = action.data.nextPost;
+        break;
+      case LOAD_SIDE_POST_FAILURE:
+        draft.loadSidePostLoading = false;
+        draft.loadSidePostError = action.error;
         break;
       case LOAD_CATEGORY_POSTS_REQUEST:
         draft.loadCategoryPostsLoading = true;
@@ -289,7 +294,7 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.techPosts = action.data.category === "tech" ? action.data.posts : false;
         draft.dailyPosts = action.data.category === "daily" ? action.data.posts : false;
         draft.countPosts = action.data.countPosts;
-        draft.hasMorePosts = action.data.posts.length > 5;
+        draft.hasMorePosts = action.data.posts.length > 8;
         break;
       case LOAD_CATEGORY_POSTS_FAILURE:
         draft.loadCategoryPostsLoading = false;
@@ -339,7 +344,6 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.addCommentDone = false;
         draft.addCommentError = false;
         break;
-
       case LIKE_POST_REQUEST:
         draft.likePostLoading = true;
         draft.likePostDone = false;

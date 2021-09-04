@@ -107,7 +107,7 @@ const MoblieHeader = () => {
               />
             </button>
             <Input.Search
-              style={{ width: "100%", paddingRight: "1rem" }}
+              style={{ width: "100%", paddingRight: "1rem", margin: "0.05rem 0" }}
               value={keyword}
               onChange={onChangeKeyword}
               onSearch={onSearchContent}

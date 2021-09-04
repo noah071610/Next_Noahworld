@@ -24,9 +24,3 @@ export interface SubCommentProps {
   subComment?: SubCommentsInter;
   CommentId: number;
 }
-
-export interface NavProps {
-  icon: IconDefinition;
-  explain: string;
-  name: string;
-}

@@ -44,6 +44,9 @@ import {
   SEARCH_POST_CLEAR,
   SEARCH_POST_FAILURE,
   SEARCH_POST_REQUEST,
+  LOAD_SIDE_POST_REQUEST,
+  LOAD_SIDE_POST_SUCCESS,
+  LOAD_SIDE_POST_FAILURE,
 } from "../@reducers/post";
 import {
   AddPostInter,
@@ -55,6 +58,8 @@ import {
   LoadMorePostsInter,
   LoadPostData,
   LoadPostInter,
+  LoadSidePostData,
+  LoadSidePostInter,
   NewPostData,
   RemovePostData,
   RemovePostInter,
@@ -173,7 +178,7 @@ function* loadMorePosts(action: LoadMorePostsInter) {
 }
 
 function loadPostAPI(data: LoadPostData) {
-  return axios.get(`/api/post/onePost/${data.postId}/${data.UserId}/${data.category}`);
+  return axios.get(`/api/post/onePost/${data.postId}/${data.category}/${data.ssr}`);
 }
 function* loadPost(action: LoadPostInter) {
   try {
@@ -185,6 +190,24 @@ function* loadPost(action: LoadPostInter) {
   } catch (err) {
     yield put({
       type: LOAD_POST_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function loadSidePostAPI(data: LoadSidePostData) {
+  return axios.get(`/api/post/sidePost/${data.postId}/${data.category}`);
+}
+function* loadSidePost(action: LoadSidePostInter) {
+  try {
+    const { data } = yield call(loadSidePostAPI, action.data);
+    yield put({
+      type: LOAD_SIDE_POST_SUCCESS,
+      data,
+    });
+  } catch (err) {
+    yield put({
+      type: LOAD_SIDE_POST_FAILURE,
       error: err.response.data,
     });
   }
@@ -343,6 +366,10 @@ function* watchLoadPost() {
   yield takeLatest(LOAD_POST_REQUEST, loadPost);
 }
 
+function* watchLoadSidePost() {
+  yield takeLatest(LOAD_SIDE_POST_REQUEST, loadSidePost);
+}
+
 function* watchLikePost() {
   yield takeLatest(LIKE_POST_REQUEST, likePost);
 }
@@ -373,6 +400,7 @@ export default function* postSaga() {
     fork(watchloadCategoryPosts),
     fork(watchloadMorePosts),
     fork(watchLoadPost),
+    fork(watchLoadSidePost),
     fork(watchLikePost),
     fork(watchUnlikePost),
     fork(watchUploadImages),

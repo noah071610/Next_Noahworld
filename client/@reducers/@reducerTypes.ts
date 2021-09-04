@@ -111,8 +111,6 @@ export interface UserInter {
   email: string;
   name: string;
   icon: string;
-  recentView: number;
-  recentComment: number;
   admin: number | null;
   createdAt: string;
   updatedAt: string;
@@ -125,11 +123,11 @@ export interface PostState {
   techPosts: Array<PostInter>;
   dailyPosts: Array<PostInter>;
   hashtags: Array<AsideHashtags>;
+  post: PostInter | null;
+  postPath: string | null;
   mostLikedPost: PostInter | null;
   mostViewedPost: PostInter | null;
   mostCommentedPost: PostInter | null;
-  post: PostInter | null;
-  postPath: string | null;
   searchPosts: Array<SearchPostInter>;
   searchedKeyword: object | null;
   prevPost: Array<PostInter>;
@@ -195,10 +193,6 @@ export interface PostState {
   addCommentDone: Boolean;
   addCommentError: Boolean | Error;
 
-  editCommentLoading: Boolean;
-  editCommentDone: Boolean;
-  editCommentError: Boolean | Error;
-
   removeCommentLoading: Boolean;
   removeCommentDone: Boolean;
   removeCommentError: Boolean | Error;
@@ -214,10 +208,6 @@ export interface PostState {
   addSubCommentLoading: Boolean;
   addSubCommentDone: Boolean;
   addSubCommentError: Boolean | Error;
-
-  editSubCommentLoading: Boolean;
-  editSubCommentDone: Boolean;
-  editSubCommentError: Boolean | Error;
 
   removeSubCommentLoading: Boolean;
   removeSubCommentDone: Boolean;

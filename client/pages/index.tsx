@@ -27,7 +27,7 @@ const MoreBtn = styled.a`
   }
 `;
 
-const MainPage = memo(() => {
+const MainPage = () => {
   const { techPosts, dailyPosts, hashtags, mostLikedPost, mostViewedPost, mostCommentedPost } =
     useSelector((state: RootState) => state.post);
 
@@ -110,7 +110,7 @@ const MainPage = memo(() => {
       </aside>
     </MainPageWrapper>
   );
-});
+};
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
   const cookie = req ? req.headers.cookie : "";

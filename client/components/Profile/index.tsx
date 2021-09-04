@@ -7,7 +7,6 @@ import { Divider, message } from "antd";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { RootState } from "../../@reducers";
 import { REMOVE_ICON_REQUEST } from "../../@reducers/user";
-import { LOAD_RECENT_POSTS_REQUEST } from "../../@reducers/post";
 import CropImageModal from "../Modal/CropImageModal";
 import { Camera, Close, ProfileWrapper } from "./styles";
 import Link from "next/link";
@@ -25,16 +24,6 @@ const Profile = ({ isMobile }: { isMobile?: boolean }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addIconDone, removeIconDone]);
-
-  useEffect(() => {
-    if (!user) {
-      return;
-    }
-    dispatch({
-      type: LOAD_RECENT_POSTS_REQUEST,
-      data: user,
-    });
-  }, [dispatch, user]);
 
   const handleImgError = (e: React.SyntheticEvent) => {
     (e.target as HTMLImageElement).src = "/images/blog/default-user.png";

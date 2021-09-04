@@ -203,12 +203,6 @@ export const globalStyles = css`
     }
   }
 
-  .selected {
-    .ant-timeline-item-head {
-      border-color: ${BLUE_COLOR};
-    }
-  }
-
   .slick-arrow {
     top: 50%;
     width: 2rem;
@@ -224,6 +218,12 @@ export const globalStyles = css`
     &:hover {
       right: 0.5rem;
       transition: all 0.3s;
+    }
+    @media (max-width: 576px) {
+      right: 1%;
+      &:hover {
+        right: 0;
+      }
     }
   }
   .slick-prev {

@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 import { LOAD_INFO_REQUEST } from "../../@reducers/user";
 import axios from "axios";
 import styled from "@emotion/styled";
-import Profile from "../../components/Profile";
 import ArticleCardColumn from "../../components/Articles/ArticleCardColumn";
 import tw from "twin.macro";
 import { BLUE_COLOR } from "../../config";
@@ -27,7 +26,10 @@ const CategoryPageHeader = styled.section`
   .hashtag-list {
     ${tw`pb-4 pr-40`}
     button {
-      ${tw`text-sm`}
+      ${tw`text-sm p-0 mr-3`}
+      li {
+        ${tw`p-0 m-0`}
+      }
       &:hover {
         color: ${BLUE_COLOR};
       }
@@ -64,7 +66,7 @@ const BlogCategoryPage = () => {
         if (
           hasMorePosts &&
           !loadMorePostsLoading &&
-          (techPosts || dailyPosts).length > 5 &&
+          (techPosts || dailyPosts).length > 8 &&
           !onHashtagFilter
         ) {
           //포스트가 더 있고 , 포스트를 로딩중이 아니고 , 포스트가 7개 초과이면 ( )

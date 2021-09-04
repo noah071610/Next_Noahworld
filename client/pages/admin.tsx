@@ -130,7 +130,6 @@ const Admin = () => {
       setPostId(post.id);
       setTags(post?.Hashtags);
       setContent(post?.content);
-      editorRef?.current?.getInstance().setHTML(post?.content);
     }
   }, [user, post, editorRef]);
 

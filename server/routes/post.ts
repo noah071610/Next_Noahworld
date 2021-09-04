@@ -97,7 +97,7 @@ router.get("/category/:category", async (req: Request, res: Response, next: Next
     const posts = await Post.findAll({
       where: { category: req.params.category },
       order: [["createdAt", "DESC"]],
-      limit: 6,
+      limit: 9,
       include: [
         {
           model: Hashtag,
@@ -165,88 +165,95 @@ router.get(
 );
 
 router.get(
-  "/onePost/:postId/:UserId/:category",
+  "/onePost/:postId/:category/:ssr",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      if (req.params) {
-        const post = await Post.findOne({
-          where: { id: req.params.postId },
-          include: [
-            {
-              model: User,
-              attributes: ["id", "name"],
-            },
-            {
-              model: Hashtag,
-              attributes: ["name"],
-            },
-            {
-              model: Comment,
-              include: [
-                {
-                  model: User,
-                  attributes: ["id", "name", "icon"],
-                },
-                {
-                  model: User,
-                  as: "CommentLikers",
-                  attributes: ["id"],
-                },
-                {
-                  model: SubComment,
-                  include: [
-                    {
-                      model: User,
-                      attributes: ["id", "name", "icon"],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              model: User,
-              as: "PostLikers",
-              attributes: ["id"],
-            },
-          ],
-        });
-        const prevPost = await Post.findAll({
-          order: [["id", "DESC"]],
-          where: { id: { [Op.lt]: req.params.postId }, category: req.params.category },
-          include: [
-            {
-              model: User,
-              as: "PostLikers",
-              attributes: ["id"],
-            },
-          ],
-          limit: 3,
-        });
-        const nextPost = await Post.findAll({
-          where: { id: { [Op.gt]: req.params.postId }, category: req.params.category },
-          limit: 3,
-          include: [
-            {
-              model: User,
-              as: "PostLikers",
-              attributes: ["id"],
-            },
-          ],
-        });
-        await post?.increment("hit", { by: 1 });
-        if (req.params.UserId) {
-          User.update(
-            {
-              recentView: parseInt(req.params.postId, 10),
-            },
-            { where: { id: parseInt(req.params.UserId, 10) } }
-          );
-        }
-        if (!post) {
-          return res.status(404).send("Not Found, please check PostId TT");
-        }
-        res.status(200).json({ post, prevPost, nextPost });
+      const post = await Post.findOne({
+        where: { id: req.params.postId },
+        include: [
+          {
+            model: User,
+            attributes: ["id", "name"],
+          },
+          {
+            model: Hashtag,
+            attributes: ["name"],
+          },
+          {
+            model: Comment,
+            include: [
+              {
+                model: User,
+                attributes: ["id", "name", "icon"],
+              },
+              {
+                model: User,
+                as: "CommentLikers",
+                attributes: ["id"],
+              },
+              {
+                model: SubComment,
+                include: [
+                  {
+                    model: User,
+                    attributes: ["id", "name", "icon"],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            model: User,
+            as: "PostLikers",
+            attributes: ["id"],
+          },
+        ],
+      });
+      if (!post) {
+        return res.status(404).send("Not Found, please check PostId TT");
       }
+      if (req.params.ssr === "true") {
+        await post?.increment("hit", { by: 1 });
+      }
+      res.status(200).json({ post });
+    } catch (error) {
+      console.error(error);
+      return next(error);
+    }
+  }
+);
+
+router.get(
+  "/sidePost/:postId/:category",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const prevPost = await Post.findAll({
+        order: [["id", "DESC"]],
+        where: { id: { [Op.lt]: req.params.postId }, category: req.params.category },
+        include: [
+          {
+            model: User,
+            as: "PostLikers",
+            attributes: ["id"],
+          },
+        ],
+        limit: 3,
+      });
+      const nextPost = await Post.findAll({
+        where: { id: { [Op.gt]: req.params.postId }, category: req.params.category },
+        limit: 3,
+        include: [
+          {
+            model: User,
+            as: "PostLikers",
+            attributes: ["id"],
+          },
+        ],
+      });
+      if (!prevPost || !nextPost) {
+        return res.status(404).send("Not Found, please check PostId TT");
+      }
+      res.status(200).json({ prevPost, nextPost });
     } catch (error) {
       console.error(error);
       return next(error);
@@ -314,6 +321,7 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
           attributes: ["id"],
         },
       ],
+      limit: 5,
     });
     const dailyPosts = await Post.findAll({
       where: { category: "daily" },
@@ -329,6 +337,7 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
           attributes: ["id"],
         },
       ],
+      limit: 5,
     });
 
     const hashtags = await Hashtag.findAll({
@@ -437,6 +446,12 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
         mostViewedPost,
         mostLikedPost,
         mostCommentedPost,
+        hashtags,
+      });
+    } else {
+      res.status(200).json({
+        techPosts,
+        dailyPosts,
         hashtags,
       });
     }
@@ -586,7 +601,7 @@ router.get("/morepost/:category", async (req: Request, res: Response, next: Next
     const morePosts = await Post.findAll({
       //6개씩 불러오고 게시날짜를 내림차로 정렬합니다.
       where,
-      limit: 6,
+      limit: 9,
       order: [["createdAt", "DESC"]],
       include: [
         //해시태그, 좋아요한 유저를 받아옵니다.

@@ -9,6 +9,7 @@ import {
   UNLIKE_POST_REQUEST,
   UPLOAD_IMAGES_REQUEST,
   UPLOAD_POST_IMAGE_REQUEST,
+  LOAD_SIDE_POST_REQUEST,
 } from "../@reducers/post";
 import {
   ADD_ICON_REQUEST,
@@ -254,11 +255,21 @@ export interface RemovePostInter {
 
 export interface LoadPostData {
   postId: number;
-  UserId: number;
+  ssr: boolean;
+  category: string;
+}
+
+export interface LoadSidePostData {
+  postId: number;
   category: string;
 }
 
 export interface LoadPostInter {
   type: typeof LOAD_POST_REQUEST;
   data: LoadPostData;
+}
+
+export interface LoadSidePostInter {
+  type: typeof LOAD_SIDE_POST_REQUEST;
+  data: LoadSidePostData;
 }

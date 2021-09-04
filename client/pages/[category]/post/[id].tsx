@@ -5,7 +5,12 @@ import React, { memo, useCallback, useEffect, useState } from "react";
 import parse from "html-react-parser";
 import { Divider, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { LIKE_POST_REQUEST, LOAD_POST_REQUEST, UNLIKE_POST_REQUEST } from "../../../@reducers/post";
+import {
+  LIKE_POST_REQUEST,
+  LOAD_POST_REQUEST,
+  LOAD_SIDE_POST_REQUEST,
+  UNLIKE_POST_REQUEST,
+} from "../../../@reducers/post";
 import styled from "@emotion/styled";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { LOAD_INFO_REQUEST } from "../../../@reducers/user";
@@ -26,9 +31,8 @@ import ArticleCardRow from "../../../components/Articles/ArticleCardRow";
 import CommentForm from "../../../components/Comments/CommentForm";
 import Comment from "../../../components/Comments/Comment";
 import { PostPageWrapper } from "../../../layout/PostPage/styles";
+import PostRemoteControl from "../../../layout/PostPage/PostRemoteControl";
 dayjs.locale("kor");
-
-const PostRemoteControl = dynamic(() => import("../../../layout/PostPage/PostRemoteControl"));
 
 const Heart = styled.a`
   display: inline-block;
@@ -38,6 +42,9 @@ const Heart = styled.a`
     color: ${RED_COLOR};
     -webkit-animation: heartBeat 1s;
     animation: heartBeat 1s;
+  }
+  @media (max-width: 576px) {
+    font-size: 1.2rem;
   }
 `;
 
@@ -62,12 +69,18 @@ const HeartLiked = styled.a`
       color: ${RED_COLOR};
     }
   }
+  @media (max-width: 576px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const PostSubTitle = css`
   margin: 5rem 0 1rem 0;
   font-size: 1.5rem;
   font-weight: bold;
+  @media (max-width: 576px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const settings = {
@@ -155,7 +168,7 @@ const BlogPostPage = memo(() => {
   useEffect(() => {
     dispatch({
       type: LOAD_POST_REQUEST,
-      data: { postId: router.query.id, UserId: user?.id, category: router.query.category },
+      data: { postId: router.query.id, category: router.query.category },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addCommentDone, unlikePostDone, likePostDone, removeCommentDone, removeSubCommentDone]);
@@ -250,7 +263,7 @@ const BlogPostPage = memo(() => {
                   alt="noComment"
                   src="https://icons.iconarchive.com/icons/iconsmind/outline/256/Inbox-Empty-icon.png"
                 />
-                <h3>No Comments...</h3>
+                <h3>No Comments</h3>
               </NoComment>
             )}
           </div>
@@ -272,6 +285,10 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   });
   store.dispatch({
     type: LOAD_POST_REQUEST,
+    data: { postId: params.id, category: params.category, ssr: true },
+  });
+  store.dispatch({
+    type: LOAD_SIDE_POST_REQUEST,
     data: { postId: params.id, category: params.category },
   });
   store.dispatch(END);
@@ -281,4 +298,4 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   };
 });
 
-export default memo(BlogPostPage);
+export default BlogPostPage;
