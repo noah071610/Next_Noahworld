@@ -6,6 +6,8 @@ import Link from "next/link";
 import { ArticleInter } from "../../../types";
 import { useRouter } from "next/dist/client/router";
 import { ArticleCardRowWrapper } from "./styles";
+import { NO_POST_URL } from "../../../config";
+import { handleImgError } from "../../../util/errorHandler";
 dayjs.extend(relativeTime);
 dayjs.locale("kor");
 
@@ -22,10 +24,7 @@ const ArticleCardRow: FC<ArticleInter> = ({ article }) => {
     ?.replace(/(<([^>]+)>)/gi, "")
     .replace(/(#youtube:.*)/g, "(Youtube Video Link)")
     .replace(/&.*;/gi, "");
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src =
-      "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png";
-  };
+
   return (
     <>
       {article && (
@@ -33,14 +32,8 @@ const ArticleCardRow: FC<ArticleInter> = ({ article }) => {
           <div className="image-wrapper">
             <img
               alt={article.title}
-              src={
-                article?.thumbnail
-                  ? article.thumbnail
-                  : article.imagePath
-                  ? article.imagePath.replace(/\/thumb\//, "/original/")
-                  : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
-              }
-              onError={handleImgError}
+              src={article?.thumbnail || NO_POST_URL}
+              onError={(e) => handleImgError(e, "post")}
             />
           </div>
           <div className="content-wrapper">

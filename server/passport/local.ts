@@ -73,7 +73,7 @@ export default () => {
           }
         } catch (error) {
           console.log(error);
-          return cb(error);
+          return cb(error as any);
         }
       }
     )

@@ -6,11 +6,11 @@ import Form from "antd/lib/form/Form";
 import {
   ADD_POST_REQUEST,
   EDIT_POST_REQUEST,
-  UPLOAD_IMAGES_CLEAR,
-  UPLOAD_IMAGES_REQUEST,
+  SET_POST_EDIT,
+  UPLOAD_THUMBNAIL_CLEAR,
+  UPLOAD_THUMBNAIL_REQUEST,
 } from "../@reducers/post";
 import { RootState } from "../@reducers";
-import { HashtagsInter } from "../@reducers/@reducerTypes";
 import useInput from "../util/useInput";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -49,13 +49,12 @@ const Admin = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.user);
-  const [content, setContent] = useState("");
   const editorRef = useRef<any>(null);
   const {
     post,
     onEditPost,
-    uploadImagesDone,
-    imagePath,
+    uploadThumbnailDone,
+    thumbnailPath,
     postImagePath,
     uploadPostImageDone,
     addPostDone,
@@ -65,14 +64,14 @@ const Admin = () => {
   const [thumbnail, onChangeThumbnail, setthumbnail] = useInput("");
   const [title, onChangeTitle, setTitle] = useInput("");
   const [PostId, setPostId] = useState<number | null>(null);
-  const [tags, setTags] = useState<HashtagsInter[]>();
   const [postValue, setPostValue] = useState("tech");
   const imageInput = useRef<HTMLInputElement | null>(null);
-  const onChangeImages = useCallback((e) => {
+
+  const onChangeFile = useCallback((e) => {
     const imageFormData = new FormData();
     imageFormData.append("image", e.target.files[0]);
     dispatch({
-      type: UPLOAD_IMAGES_REQUEST,
+      type: UPLOAD_THUMBNAIL_REQUEST,
       data: imageFormData,
     });
   }, []);
@@ -87,14 +86,12 @@ const Admin = () => {
       return;
     }
     let data = {
-      thumbnail,
+      thumbnail: thumbnailPath || thumbnail,
       title,
-      imagePath,
       category: postValue,
       content: editorRef?.current?.getInstance().getHTML(),
       UserId: user?.id,
       PostId,
-      tags,
     };
     if (onEditPost) {
       dispatch({
@@ -107,11 +104,11 @@ const Admin = () => {
         data,
       });
     }
-  }, [onEditPost, user, title, imagePath, thumbnail, PostId, tags, postValue, editorRef]);
+  }, [onEditPost, user, title, thumbnailPath, thumbnail, PostId, postValue, editorRef]);
 
   const onClickUploadImage = useCallback(() => {
     dispatch({
-      type: UPLOAD_IMAGES_CLEAR,
+      type: UPLOAD_THUMBNAIL_CLEAR,
     });
     setthumbnail("");
   }, []);
@@ -120,18 +117,13 @@ const Admin = () => {
     if (!user || !user.admin || user.id !== 1) {
       router.back();
     }
-    dispatch({
-      type: UPLOAD_IMAGES_CLEAR,
-    });
     if (onEditPost && post) {
       setTitle(post.title);
       setthumbnail(post.thumbnail);
       setPostValue(post.category);
       setPostId(post.id);
-      setTags(post?.Hashtags);
-      setContent(post?.content);
     }
-  }, [user, post, editorRef]);
+  }, [user, post]);
 
   useEffect(() => {
     if (uploadPostImageDone) {
@@ -142,20 +134,26 @@ const Admin = () => {
             `<img src="${postImagePath}" alt="post_image" />`
         );
     }
-  }, [uploadPostImageDone]);
+  }, [uploadPostImageDone, editorRef]);
 
   useEffect(() => {
     if (addPostDone) {
       message.success("Post added");
       router.push(postPath);
-      editorRef?.current?.getInstance().setHTML("");
     }
+  }, [addPostDone, postPath]);
+
+  useEffect(() => {
     if (editPostDone) {
       message.success("Post Edited");
       router.push(`/${postValue}/post/${PostId}`);
-      editorRef?.current?.getInstance().setHTML("");
+      dispatch({
+        type: SET_POST_EDIT,
+        data: false,
+      });
     }
-  }, [addPostDone, editPostDone, postValue, PostId]);
+  }, [postValue, PostId, editPostDone]);
+
   return (
     <PostForm onFinish={onFinishPost}>
       <h2>ADD POST</h2>
@@ -167,18 +165,18 @@ const Admin = () => {
           value={thumbnail}
           onChange={onChangeThumbnail}
           placeholder="http://"
-          disabled={uploadImagesDone ? true : false}
+          disabled={uploadThumbnailDone ? true : false}
           className="form_image"
         />{" "}
         <span>or</span>
-        <input type="file" name="image" multiple ref={imageInput} onChange={onChangeImages} />
-        {uploadImagesDone && (
+        <input type="file" name="image" multiple ref={imageInput} onChange={onChangeFile} />
+        {uploadThumbnailDone && (
           <button className="public_btn" onClick={onClickUploadImage}>
             CALCLE IMAGE
           </button>
         )}
       </div>
-      <PostEditor content={content} editorRef={editorRef} />
+      <PostEditor editorRef={editorRef} />
       <EditorMenu postValue={postValue} setPostValue={setPostValue} />
     </PostForm>
   );

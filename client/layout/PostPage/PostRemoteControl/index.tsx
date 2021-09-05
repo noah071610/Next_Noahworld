@@ -63,9 +63,9 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   const onClickDeletePost = useCallback(() => {
     dispatch({
       type: REMOVE_POST_REQUEST,
-      data: { PostId: post?.id, tags: post?.Hashtags },
+      data: { PostId: post?.id },
     });
-  }, [post?.id, post?.Hashtags]);
+  }, [post?.id]);
 
   useEffect(() => {
     if (removePostDone) {

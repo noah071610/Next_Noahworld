@@ -24,9 +24,9 @@ const CategoryPageHeader = styled.section`
     }
   }
   .hashtag-list {
-    ${tw`pb-4 pr-40`}
+    ${tw`pr-40`}
     button {
-      ${tw`text-sm p-0 mr-3`}
+      ${tw`text-sm p-0 mr-3 mb-3`}
       li {
         ${tw`p-0 m-0`}
       }
@@ -50,9 +50,8 @@ const BlogCategoryPage = () => {
   const router = useRouter();
   const { category, hashtag } = router.query;
   const dispatch = useDispatch();
-  const { techPosts, dailyPosts, hasMorePosts, loadMorePostsLoading, countPosts } = useSelector(
-    (state: RootState) => state.post
-  );
+  const { techPosts, dailyPosts, hasMorePosts, loadMorePostsLoading, countPosts, hashtags } =
+    useSelector((state: RootState) => state.post);
   const [onHashtagFilter, setOnHashtagFilter] = useState(false);
 
   useEffect(() => {
@@ -142,15 +141,11 @@ const BlogCategoryPage = () => {
             </span>
           </h1>
           <ul className="hashtag-list">
-            {(techPosts || dailyPosts)
-              .map((v) => v.Hashtags.map((v) => v.name))
-              ?.flat()
-              .filter((v, i, arr) => i === arr.findIndex((t) => v === t))
-              .map((v, i) => (
-                <button onClick={() => onClickHashtag(v)} key={`hashtag_${i}`}>
-                  <li>#{v}</li>
-                </button>
-              ))}
+            {hashtags.map((v, i) => (
+              <button onClick={() => onClickHashtag(v.name)} key={`hashtag_${i}`}>
+                <li>#{v.name}</li>
+              </button>
+            ))}
             {(onHashtagFilter || hashtag) && (
               <button onClick={onClickAllHashtag} key={`hashtag_viewAll`}>
                 <li># View All Posts</li>

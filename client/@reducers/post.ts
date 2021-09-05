@@ -14,7 +14,7 @@ const initialState = {
   mostLikedPost: null,
   mostViewedPost: null,
   mostCommentedPost: null,
-  imagePath: null,
+  thumbnailPath: null,
   postImagePath: null,
   onEditPost: false,
 
@@ -27,9 +27,9 @@ const initialState = {
   addPostDone: false,
   addPostError: false,
 
-  uploadImagesLoading: false,
-  uploadImagesDone: false,
-  uploadImagesError: false,
+  uploadThumbnailLoading: false,
+  uploadThumbnailDone: false,
+  uploadThumbnailError: false,
 
   uploadPostImageLoading: false,
   uploadPostImageDone: false,
@@ -98,10 +98,10 @@ const initialState = {
   hasMorePosts: false,
 };
 
-export const UPLOAD_IMAGES_REQUEST = "UPLOAD_IMAGES_REQUEST" as const;
-export const UPLOAD_IMAGES_SUCCESS = "UPLOAD_IMAGES_SUCCESS" as const;
-export const UPLOAD_IMAGES_FAILURE = "UPLOAD_IMAGES_FAILURE" as const;
-export const UPLOAD_IMAGES_CLEAR = "UPLOAD_IMAGES_CLEAR" as const;
+export const UPLOAD_THUMBNAIL_REQUEST = "UPLOAD_THUMBNAIL_REQUEST" as const;
+export const UPLOAD_THUMBNAIL_SUCCESS = "UPLOAD_THUMBNAIL_SUCCESS" as const;
+export const UPLOAD_THUMBNAIL_FAILURE = "UPLOAD_THUMBNAIL_FAILURE" as const;
+export const UPLOAD_THUMBNAIL_CLEAR = "UPLOAD_THUMBNAIL_CLEAR" as const;
 
 export const UPLOAD_POST_IMAGE_REQUEST = "UPLOAD_POST_IMAGE_REQUEST" as const;
 export const UPLOAD_POST_IMAGE_SUCCESS = "UPLOAD_POST_IMAGE_SUCCESS" as const;
@@ -246,9 +246,9 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.techPosts = action.data.techPosts;
         draft.dailyPosts = action.data.dailyPosts;
         draft.hashtags = action.data.hashtags;
-        draft.mostViewedPost = action.data.mostViewedPost;
-        draft.mostLikedPost = action.data.mostLikedPost;
-        draft.mostCommentedPost = action.data.mostCommentedPost;
+        draft.mostViewedPost = action.data.mostViewedPost || null;
+        draft.mostLikedPost = action.data.mostLikedPost || null;
+        draft.mostCommentedPost = action.data.mostCommentedPost || null;
         break;
       case LOAD_POSTS_FAILURE:
         draft.loadPostLoading = false;
@@ -294,6 +294,7 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.techPosts = action.data.category === "tech" ? action.data.posts : false;
         draft.dailyPosts = action.data.category === "daily" ? action.data.posts : false;
         draft.countPosts = action.data.countPosts;
+        draft.hashtags = action.data.hashtags;
         draft.hasMorePosts = action.data.posts.length > 8;
         break;
       case LOAD_CATEGORY_POSTS_FAILURE:
@@ -495,24 +496,24 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.removeSubCommentLoading = false;
         draft.removeSubCommentError = action.error;
         break;
-      case UPLOAD_IMAGES_REQUEST:
-        draft.uploadImagesLoading = true;
-        draft.uploadImagesDone = false;
-        draft.uploadImagesError = false;
+      case UPLOAD_THUMBNAIL_REQUEST:
+        draft.uploadThumbnailLoading = true;
+        draft.uploadThumbnailDone = false;
+        draft.uploadThumbnailError = false;
         break;
-      case UPLOAD_IMAGES_SUCCESS: {
-        draft.imagePath = action.data;
-        draft.uploadImagesLoading = false;
-        draft.uploadImagesDone = true;
+      case UPLOAD_THUMBNAIL_SUCCESS: {
+        draft.thumbnailPath = action.data;
+        draft.uploadThumbnailLoading = false;
+        draft.uploadThumbnailDone = true;
         break;
       }
-      case UPLOAD_IMAGES_FAILURE:
-        draft.uploadImagesLoading = false;
-        draft.uploadImagesError = action.error;
+      case UPLOAD_THUMBNAIL_FAILURE:
+        draft.uploadThumbnailLoading = false;
+        draft.uploadThumbnailError = action.error;
         break;
-      case UPLOAD_IMAGES_CLEAR:
-        draft.uploadImagesLoading = false;
-        draft.uploadImagesDone = false;
+      case UPLOAD_THUMBNAIL_CLEAR:
+        draft.uploadThumbnailLoading = false;
+        draft.uploadThumbnailDone = false;
         break;
       case UPLOAD_POST_IMAGE_REQUEST:
         draft.uploadPostImageLoading = true;

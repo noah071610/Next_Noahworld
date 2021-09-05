@@ -10,6 +10,8 @@ import { REMOVE_ICON_REQUEST } from "../../@reducers/user";
 import CropImageModal from "../Modal/CropImageModal";
 import { Camera, Close, ProfileWrapper } from "./styles";
 import Link from "next/link";
+import { handleImgError } from "../../util/errorHandler";
+import { DEFAULT_USER_ICON } from "../../config";
 
 const Profile = ({ isMobile }: { isMobile?: boolean }) => {
   const dispatch = useDispatch();
@@ -25,15 +27,11 @@ const Profile = ({ isMobile }: { isMobile?: boolean }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addIconDone, removeIconDone]);
 
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = "/images/blog/default-user.png";
-  };
-
   return (
     <ProfileWrapper style={isMobile ? { width: "100%", border: "none" } : {}}>
       <div className="icon-wrapper">
         <img
-          src={user?.icon.replace(/\/thumb\//, "/original/")}
+          src={user?.icon.replace(/\/thumb\//, "/original/") || DEFAULT_USER_ICON}
           onError={handleImgError}
           alt="profile_img"
         />

@@ -5,7 +5,9 @@ import React, { FC, memo, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../@reducers";
 import { ADD_SUB_COMMENT_REQUEST } from "../../../@reducers/post";
+import { DEFAULT_USER_ICON } from "../../../config";
 import { SubCommentProps } from "../../../types";
+import { handleImgError } from "../../../util/errorHandler";
 import useInput from "../../../util/useInput";
 import { SubCommentFormWrapper } from "./styles";
 
@@ -36,21 +38,9 @@ const SubCommentForm: FC<SubCommentProps> = ({ CommentId }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = `/images/blog/default-user.png`;
-  };
-
   return (
     <SubCommentFormWrapper>
-      <img
-        src={
-          user?.icon
-            ? user.icon.replace(/\/thumb\//, "/original/")
-            : "/images/blog/default-user.png"
-        }
-        alt="profile"
-        onError={handleImgError}
-      />
+      <img src={user?.icon || DEFAULT_USER_ICON} alt="profile" onError={handleImgError} />
       <div>
         <input
           className="public_input"

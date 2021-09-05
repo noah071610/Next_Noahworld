@@ -9,6 +9,8 @@ import { ADD_COMMENT_REQUEST } from "../../../@reducers/post";
 import useInput from "../../../util/useInput";
 import { CommentFormWrapper } from "./styles";
 import CommentPopup from "../CommentPopup";
+import { handleImgError } from "../../../util/errorHandler";
+import { DEFAULT_USER_ICON } from "../../../config";
 
 const CommentForm = memo(() => {
   const { user } = useSelector((state: RootState) => state.user);
@@ -32,10 +34,6 @@ const CommentForm = memo(() => {
     setContent("");
   }, [content, dispatch, post?.id, setContent, user]);
 
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = `/images/blog/default-user.png`;
-  };
-
   const onClickComment = useCallback(() => {
     if (!user) {
       setLoginSuggestPopup(true);
@@ -52,15 +50,7 @@ const CommentForm = memo(() => {
   return (
     <CommentFormWrapper onClick={onClickComment} id="comment">
       <div className="icon-wrapper">
-        <img
-          src={
-            user?.icon
-              ? user.icon.replace(/\/thumb\//, "/original/")
-              : "/images/blog/default-user.png"
-          }
-          alt="profile"
-          onError={handleImgError}
-        />
+        <img src={user?.icon || DEFAULT_USER_ICON} alt="profile" onError={handleImgError} />
         <h3>{user ? user.name : "Guest"}</h3>
       </div>
       <div className="comment-textarea">

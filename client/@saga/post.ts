@@ -30,11 +30,11 @@ import {
   LOAD_MORE_POSTS_REQUEST,
   LOAD_MORE_POSTS_SUCCESS,
   LOAD_MORE_POSTS_FAILURE,
-  UPLOAD_IMAGES_REQUEST,
+  UPLOAD_THUMBNAIL_REQUEST,
   ADD_POST_CLEAR,
-  UPLOAD_IMAGES_SUCCESS,
-  UPLOAD_IMAGES_FAILURE,
-  UPLOAD_IMAGES_CLEAR,
+  UPLOAD_THUMBNAIL_SUCCESS,
+  UPLOAD_THUMBNAIL_FAILURE,
+  UPLOAD_THUMBNAIL_CLEAR,
   UPLOAD_POST_IMAGE_REQUEST,
   UPLOAD_POST_IMAGE_SUCCESS,
   UPLOAD_POST_IMAGE_CLEAR,
@@ -66,8 +66,9 @@ import {
   SearchPostData,
   SearchPostInter,
   UploadImageData,
-  UploadImageInter,
+  UploadThumbnailInter,
   UploadPostImageInter,
+  LoadCategoryData,
 } from "./@sagaTypes";
 
 function searchPostAPI(data: SearchPostData) {
@@ -139,8 +140,10 @@ function* loadPosts() {
   }
 }
 
-function loadCategoryPostsAPI(data: any) {
-  return axios.get(`/api/post/category/${data.category}/${encodeURIComponent(data.hashtag || "")}`);
+function loadCategoryPostsAPI(data: LoadCategoryData) {
+  return axios.get(
+    `/api/post/category/${data.category}?hashtag=${encodeURIComponent(data.hashtag || "")}`
+  );
 }
 
 function* loadCategoryPosts(action: LoadCategoryInter) {
@@ -253,24 +256,24 @@ function* unlikePost(action: LikePostInter) {
   }
 }
 
-function uploadImagesAPI(data: UploadImageData) {
-  return axios.post("/api/post/images", data);
+function uploadThumbnailAPI(data: UploadImageData) {
+  return axios.post("/api/post/thumbnail", data);
 }
 
-function* uploadImages(action: UploadImageInter) {
+function* uploadThumbnail(action: UploadThumbnailInter) {
   try {
-    const { data } = yield call(uploadImagesAPI, action.data);
+    const { data } = yield call(uploadThumbnailAPI, action.data);
     yield put({
-      type: UPLOAD_IMAGES_SUCCESS,
+      type: UPLOAD_THUMBNAIL_SUCCESS,
       data,
     });
     yield delay(3000);
     yield put({
-      type: UPLOAD_IMAGES_CLEAR,
+      type: UPLOAD_THUMBNAIL_CLEAR,
     });
   } catch (err) {
     yield put({
-      type: UPLOAD_IMAGES_FAILURE,
+      type: UPLOAD_THUMBNAIL_FAILURE,
       error: err.response.data,
     });
   }
@@ -383,8 +386,8 @@ function* watchRemovePost() {
 function* watchEditPost() {
   yield takeLatest(EDIT_POST_REQUEST, editPost);
 }
-function* watchUploadImages() {
-  yield takeLatest(UPLOAD_IMAGES_REQUEST, uploadImages);
+function* watchUploadThumbnail() {
+  yield takeLatest(UPLOAD_THUMBNAIL_REQUEST, uploadThumbnail);
 }
 function* watchUploadPostImage() {
   yield takeLatest(UPLOAD_POST_IMAGE_REQUEST, uploadPostImage);
@@ -403,7 +406,7 @@ export default function* postSaga() {
     fork(watchLoadSidePost),
     fork(watchLikePost),
     fork(watchUnlikePost),
-    fork(watchUploadImages),
+    fork(watchUploadThumbnail),
     fork(watchUploadPostImage),
     fork(watchRemovePost),
     fork(watchEditPost),

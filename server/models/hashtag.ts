@@ -30,7 +30,10 @@ Hashtag.init(
   }
 );
 export const associate = (db: dbType) => {
-  db.Hashtag.belongsToMany(db.Post, { through: "PostHashtag" });
+  db.Hashtag.belongsToMany(db.Post, {
+    through: "PostHashtag",
+    onDelete: "cascade",
+  });
 };
 
 export default Hashtag;

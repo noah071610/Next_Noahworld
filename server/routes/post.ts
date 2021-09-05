@@ -46,7 +46,7 @@ router.post(
 );
 
 router.post(
-  "/images",
+  "/thumbnail",
   upload.single("image"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -81,7 +81,7 @@ router.post("/search", async (req: Request, res: Response, next: NextFunction) =
         ],
       },
       attributes: {
-        exclude: ["thumbnail", "imagePath"],
+        exclude: ["thumbnail"],
       },
     });
     res.status(200).json({ searchPosts, searchedKeyword: req.body.keyword });
@@ -126,75 +126,55 @@ router.get("/morepost/:category", async (req: Request, res: Response, next: Next
 router.get("/category/:category", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = req.params.category;
-    const posts = await Post.findAll({
-      where: { category },
-      order: [["createdAt", "DESC"]],
-      limit: 9,
-      include: [
-        {
-          model: Hashtag,
-          attributes: ["name"],
-        },
-        {
-          model: User,
-          as: "PostLikers",
-          attributes: ["id"],
-        },
-      ],
-    });
-    const countPosts = await Post.findAll({
-      where: { category },
-      attributes: ["id"],
-    });
-
-    res.status(200).json({ posts, category, countPosts });
-  } catch (error) {
-    console.error(error);
-    return next(error);
-  }
-});
-
-router.get(
-  "/category/:category/:hashtag",
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const category = req.params.category;
-      const posts = await Post.findAll({
-        where: { category },
-        order: [["createdAt", "DESC"]],
-        limit: 12,
-        include: [
+    const hashtag = decodeURIComponent((req.query.hashtag as string) || "");
+    const include = hashtag
+      ? [
           {
             model: Hashtag,
             attributes: ["name"],
-            where: { name: { [Op.eq]: decodeURIComponent(req.params.hashtag) as any } },
+            where: { name: { [Op.in]: [hashtag] } },
           },
           {
             model: User,
             as: "PostLikers",
             attributes: ["id"],
           },
-        ],
-      });
-      const countPosts = await Post.findAll({
-        where: { category },
-        attributes: ["id"],
-        include: [
+        ]
+      : [
           {
             model: Hashtag,
             attributes: ["name"],
-            where: { name: { [Op.eq]: decodeURIComponent(req.params.hashtag) as any } },
           },
-        ],
+          {
+            model: User,
+            as: "PostLikers",
+            attributes: ["id"],
+          },
+        ];
+    const posts = await Post.findAll({
+      where: { category },
+      order: [["createdAt", "DESC"]],
+      include,
+    });
+    const countPosts = await Post.findAll({
+      where: { category },
+      attributes: ["id"],
+      include,
+    });
+    if (hashtag) {
+      res.status(200).json({ posts, category, countPosts, hashtags: [{ name: hashtag }] });
+    } else {
+      const hashtags = await Hashtag.findAll({
+        where: { category },
+        attributes: ["name"],
       });
-
-      res.status(200).json({ posts, category, countPosts });
-    } catch (error) {
-      console.error(error);
-      return next(error);
+      res.status(200).json({ posts, category, countPosts, hashtags });
     }
+  } catch (error) {
+    console.error(error);
+    return next(error);
   }
-);
+});
 
 router.get(
   "/onePost/:postId/:category/:ssr",
@@ -525,7 +505,6 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     const post = await Post.create({
       hit: 0,
       thumbnail: req.body.thumbnail,
-      imagePath: req.body.imagePath,
       title: req.body.title,
       content: req.body.content,
       category: req.body.category,
@@ -554,41 +533,38 @@ router.post("/edit", async (req: Request, res: Response, next: NextFunction) => 
       res.status(401).send("You are not a Admin");
       return;
     }
-    req.body.tags &&
-      req.body.tags.map((v: { name: string }) => {
-        Hashtag.destroy({
-          where: { name: v.name },
-        });
-      });
-    const hashtags = await req.body.content
-      .replace(/([:'\\\/#-=`\|~+%\^&;]#[^\s#+^<]+)/g, "")
-      .replace(/(#youtube:[^\s#+^<]+)/g, "")
-      .replace(/(&.*;)/g, "")
-      .match(/(#[^\s#+^<]+)/g);
+
     await Post.update(
       {
         thumbnail: req.body.thumbnail,
-        imagePath: req.body.imagePath,
         title: req.body.title,
         content: req.body.content,
         UserId: req.body.UserId,
       },
       { where: { id: parseInt(req.body.PostId, 10) } }
     );
-    if (req.body.PostId) {
-      const prevPost = await Post.findOne({
-        where: { id: req.body.PostId },
-      });
-      if (hashtags) {
-        const result = await Promise.all(
-          hashtags.map((tag: string) =>
-            Hashtag.findOrCreate({
-              where: { name: tag.slice(1).toLowerCase(), category: req.body.category },
-            })
-          )
-        );
-        prevPost?.addHashtags(result.map((v: any) => v[0]));
-      }
+    const prevPost = await Post.findOne({
+      where: { id: parseInt(req.body.PostId, 10) },
+    });
+
+    const prevHashtags = await prevPost?.getHashtags();
+    if (prevHashtags) {
+      await prevPost?.removeHashtags(prevHashtags.map((v) => v.id));
+    }
+    const hashtags = await req.body.content
+      .replace(/([:'\\\/#-=`\|~+%\^&;]#[^\s#+^<]+)/g, "")
+      .replace(/(#youtube:[^\s#+^<]+)/g, "")
+      .match(/(#[^\s#+^<]+)/g);
+
+    if (hashtags) {
+      const result = await Promise.all(
+        hashtags.map((tag: string) =>
+          Hashtag.findOrCreate({
+            where: { name: tag.slice(1).toLowerCase(), category: req.body.category },
+          })
+        )
+      );
+      await prevPost?.addHashtags(result.map((v: any) => v[0]));
     }
     res.status(201).send({ success: true });
   } catch (error) {
@@ -599,23 +575,9 @@ router.post("/edit", async (req: Request, res: Response, next: NextFunction) => 
 
 router.post("/delete", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await SubComment.destroy({
-      where: { PostId: req.body.PostId },
-    });
-    await Comment.destroy({
-      where: { PostId: req.body.PostId },
-    });
     await Post.destroy({
       where: { id: req.body.PostId },
     });
-    // 미래에서온 장현수 : 이건 cascade로 하면 되잖아
-    if (req.body.tags) {
-      req.body.tags.map((v: { name: string }) => {
-        Hashtag.destroy({
-          where: { name: v.name },
-        });
-      });
-    }
     res.status(200).send({ success: true });
   } catch (error) {
     console.error(error);

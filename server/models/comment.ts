@@ -35,7 +35,7 @@ Comment.init(
 export const associate = (db: dbType) => {
   db.Comment.belongsTo(db.User);
   db.Comment.belongsTo(db.Post);
-  db.Comment.hasMany(db.SubComment);
+  db.Comment.hasMany(db.SubComment, { onDelete: "cascade" });
   db.Comment.belongsToMany(db.User, {
     through: "CommentLike",
     as: "CommentLikers",

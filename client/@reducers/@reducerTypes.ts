@@ -50,7 +50,6 @@ export interface PostInter {
   hit: number;
   category: string;
   thumbnail?: string;
-  imagePath?: string;
   title: string;
   content?: string;
   createdAt: string;
@@ -133,7 +132,7 @@ export interface PostState {
   prevPost: Array<PostInter>;
   nextPost: Array<PostInter>;
   countPosts: string[];
-  imagePath: string | null;
+  thumbnailPath: string | null;
   postImagePath: string | null;
   onEditPost: boolean;
 
@@ -145,9 +144,9 @@ export interface PostState {
   addPostDone: Boolean;
   addPostError: Boolean | Error;
 
-  uploadImagesLoading: Boolean;
-  uploadImagesDone: Boolean;
-  uploadImagesError: Boolean | Error;
+  uploadThumbnailLoading: Boolean;
+  uploadThumbnailDone: Boolean;
+  uploadThumbnailError: Boolean | Error;
 
   uploadPostImageLoading: Boolean;
   uploadPostImageDone: Boolean;

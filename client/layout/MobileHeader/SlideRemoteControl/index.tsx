@@ -33,9 +33,9 @@ const SlideRemoteControl = () => {
   const onClickDeletePost = useCallback(() => {
     dispatch({
       type: REMOVE_POST_REQUEST,
-      data: { PostId: post?.id, tags: post?.Hashtags },
+      data: { PostId: post?.id },
     });
-  }, [dispatch, post?.Hashtags, post?.id]);
+  }, [dispatch, post?.id]);
 
   useEffect(() => {
     if (removePostDone) {

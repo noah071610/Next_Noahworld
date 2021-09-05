@@ -17,14 +17,13 @@ import { LOAD_INFO_REQUEST } from "../../../@reducers/user";
 import dayjs from "dayjs";
 import { RootState } from "../../../@reducers";
 import Head from "next/head";
-import { RED_COLOR } from "../../../config";
+import { NO_POST_URL, RED_COLOR } from "../../../config";
 import wrapper from "../../../@store/configureStore";
 import axios from "axios";
 import { IStore } from "../../../types";
 import { END } from "@redux-saga/core";
 import { useRouter } from "next/dist/client/router";
 import { css } from "@emotion/react";
-import dynamic from "next/dynamic";
 import Slider from "react-slick";
 import ArticleCardColumn from "../../../components/Articles/ArticleCardColumn";
 import ArticleCardRow from "../../../components/Articles/ArticleCardRow";
@@ -32,6 +31,7 @@ import CommentForm from "../../../components/Comments/CommentForm";
 import Comment from "../../../components/Comments/Comment";
 import { PostPageWrapper } from "../../../layout/PostPage/styles";
 import PostRemoteControl from "../../../layout/PostPage/PostRemoteControl";
+import { handleImgError } from "../../../util/errorHandler";
 dayjs.locale("kor");
 
 const Heart = styled.a`
@@ -107,7 +107,7 @@ const settings = {
   ],
 };
 
-const BlogPostPage = memo(() => {
+const BlogPostPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
@@ -190,11 +190,6 @@ const BlogPostPage = memo(() => {
     });
   }, [post?.id, user?.id]);
 
-  const handleImgError = useCallback((e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src =
-      "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png";
-  }, []);
-
   return (
     <>
       <Head>
@@ -210,20 +205,12 @@ const BlogPostPage = memo(() => {
         </ul>
         <div className="post-main-wrapper">
           <div className="post-main">
-            {(post?.thumbnail || post?.imagePath) && (
-              <img
-                className="post-tumbnail"
-                alt={post?.title}
-                src={
-                  post?.thumbnail
-                    ? post?.thumbnail
-                    : post?.imagePath
-                    ? post?.imagePath.replace(/\/thumb\//, "/original/")
-                    : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
-                }
-                onError={handleImgError}
-              />
-            )}
+            <img
+              className="post-tumbnail"
+              alt={post?.title}
+              src={post?.thumbnail.replace(/\/thumb\//, "/original/") || NO_POST_URL}
+              onError={(e) => handleImgError(e, "post")}
+            />
             <article className="post-content">{Fullcontent && parse(Fullcontent)}</article>
             <h4 css={PostSubTitle}>Another posts</h4>
             {nextPost.length + prevPost.length > 2 ? (
@@ -272,7 +259,7 @@ const BlogPostPage = memo(() => {
       </PostPageWrapper>
     </>
   );
-});
+};
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, params }) => {
   const cookie = req ? req.headers.cookie : "";

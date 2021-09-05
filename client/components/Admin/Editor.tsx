@@ -7,13 +7,14 @@ import Prism from "prismjs";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 
-function PostEditor({ editorRef, content }): JSX.Element {
+function PostEditor({ editorRef }): JSX.Element {
   const dispatch = useDispatch();
+  const { post } = useSelector((state: RootState) => state.post);
   return (
     <Editor
       placeholder="Welcome Noah!"
       height="600px"
-      initialValue={content}
+      initialValue={post?.content}
       initialEditType="markdown"
       useCommandShortcut={true}
       usageStatistics={false}

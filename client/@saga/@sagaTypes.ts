@@ -7,7 +7,7 @@ import {
   SEARCH_POST_REQUEST,
   REMOVE_POST_REQUEST,
   UNLIKE_POST_REQUEST,
-  UPLOAD_IMAGES_REQUEST,
+  UPLOAD_THUMBNAIL_REQUEST,
   UPLOAD_POST_IMAGE_REQUEST,
   LOAD_SIDE_POST_REQUEST,
 } from "../@reducers/post";
@@ -170,8 +170,8 @@ export interface UploadImageData {
   imageFormData: FormData;
 }
 
-export interface UploadImageInter {
-  type: typeof UPLOAD_IMAGES_REQUEST;
+export interface UploadThumbnailInter {
+  type: typeof UPLOAD_THUMBNAIL_REQUEST;
   data: UploadImageData;
 }
 
@@ -183,7 +183,6 @@ export interface UploadPostImageInter {
 export interface NewPostData {
   thumbnail?: string;
   title: string;
-  imagePath?: string;
   category: string;
   content: string;
   UserId: number;
@@ -204,7 +203,12 @@ export interface EditPostInter {
 
 export interface LoadCategoryInter {
   type: typeof LOAD_CATEGORY_POSTS_REQUEST;
-  data: string;
+  data: LoadCategoryData;
+}
+
+export interface LoadCategoryData {
+  category: string;
+  hashtag?: string;
 }
 
 export interface LoadMorePostsData {

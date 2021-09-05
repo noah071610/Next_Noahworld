@@ -1,4 +1,10 @@
-import { BelongsToManyAddAssociationsMixin, DataTypes, Model } from "sequelize";
+import {
+  BelongsToManyAddAssociationsMixin,
+  BelongsToManyGetAssociationsMixin,
+  BelongsToManyRemoveAssociationsMixin,
+  DataTypes,
+  Model,
+} from "sequelize";
 import Comment from "./comment";
 import { dbType } from "./index";
 import { sequelize } from "./sequelize";
@@ -9,7 +15,6 @@ class Post extends Model {
   public hit?: number;
   public category!: "tech" | "daily";
   public thumbnail?: string;
-  public imagePath?: string;
   public title!: string;
   public content!: string;
   public createdAt!: Date;
@@ -20,6 +25,8 @@ class Post extends Model {
   public addPostLikers!: BelongsToManyAddAssociationsMixin<Post, number>;
   public removePostLikers!: BelongsToManyAddAssociationsMixin<Post, number>;
   public addHashtags!: BelongsToManyAddAssociationsMixin<Post, string>;
+  public removeHashtags!: BelongsToManyRemoveAssociationsMixin<Post, number>;
+  public getHashtags!: BelongsToManyGetAssociationsMixin<Post>;
 }
 
 Post.init(
@@ -29,14 +36,10 @@ Post.init(
       allowNull: false,
     },
     category: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
     thumbnail: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    imagePath: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
@@ -60,13 +63,18 @@ Post.init(
 
 export const associate = (db: dbType) => {
   db.Post.belongsTo(db.User);
-  db.Post.hasMany(db.Image);
-  db.Post.hasMany(db.Comment);
-  db.Post.hasMany(db.SubComment);
-  db.Post.belongsToMany(db.Hashtag, { through: "PostHashtag" });
+  db.Post.hasMany(db.Image, { onDelete: "cascade" });
+  db.Post.hasMany(db.Comment, { onDelete: "cascade" });
+  db.Post.hasMany(db.SubComment, { onDelete: "cascade" });
+  db.Post.belongsToMany(db.Hashtag, {
+    through: "PostHashtag",
+    onDelete: "cascade",
+    onUpdate: "cascade",
+  });
   db.Post.belongsToMany(db.User, {
     through: "PostLike",
     as: "PostLikers",
+    onDelete: "cascade",
   });
 };
 

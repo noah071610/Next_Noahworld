@@ -5,7 +5,9 @@ import { useRouter } from "next/dist/client/router";
 import React, { FC, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { LOAD_CATEGORY_POSTS_REQUEST } from "../../../@reducers/post";
+import { NO_POST_URL } from "../../../config";
 import { ArticleInter } from "../../../types";
+import { handleImgError } from "../../../util/errorHandler";
 import { ArticleCardColumnWrapper } from "./styles";
 dayjs.extend(relativeTime);
 dayjs.locale("kor");
@@ -27,10 +29,6 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, smal
     ?.replace(/(<([^>]+)>)/gi, "")
     .replace(/(#youtube:.*)/g, "(Youtube Video Link)")
     .replace(/&.*;/gi, "");
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src =
-      "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png";
-  };
 
   const onClickHashtag = useCallback(
     (hashtag: string) => {
@@ -56,14 +54,8 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, smal
           <div className="image-wrapper">
             <img
               alt={article.title}
-              src={
-                article?.thumbnail
-                  ? article.thumbnail
-                  : article.imagePath
-                  ? article.imagePath.replace(/\/thumb\//, "/original/")
-                  : "https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
-              }
-              onError={handleImgError}
+              src={article?.thumbnail || NO_POST_URL}
+              onError={(e) => handleImgError(e, "post")}
             />
           </div>
           <div className="content-wrapper">

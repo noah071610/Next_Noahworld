@@ -48,15 +48,17 @@ User.init(
 
 export const associate = (db: dbType) => {
   db.User.hasMany(db.Post);
-  db.User.hasMany(db.Comment);
-  db.User.hasMany(db.SubComment);
+  db.User.hasMany(db.Comment, { onDelete: "cascade" });
+  db.User.hasMany(db.SubComment, { onDelete: "cascade" });
   db.User.belongsToMany(db.Post, {
     through: "PostLike",
     as: "PostLiked",
+    onDelete: "cascade",
   });
   db.User.belongsToMany(db.Comment, {
     through: "CommentLike",
     as: "CommentLiked",
+    onDelete: "cascade",
   });
 };
 

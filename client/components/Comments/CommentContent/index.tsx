@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import React, { FC, memo } from "react";
 import { CommentsInter } from "../../../@reducers/@reducerTypes";
+import { DEFAULT_USER_ICON } from "../../../config";
+import { handleImgError } from "../../../util/errorHandler";
 import { CommentContentWrapper } from "./styles";
 
 interface CommentContent {
@@ -8,22 +10,10 @@ interface CommentContent {
 }
 
 const CommentContent: FC<CommentContent> = memo(({ comment }) => {
-  const handleImgError = (e: React.SyntheticEvent) => {
-    (e.target as HTMLImageElement).src = `/images/blog/default-user.png`;
-  };
-
   return (
     <CommentContentWrapper>
       <div className="icon-wrapper">
-        <img
-          src={
-            comment.User?.icon
-              ? comment.User.icon.replace(/\/thumb\//, "/original/")
-              : "/images/blog/default-user.png"
-          }
-          onError={handleImgError}
-          alt="profile"
-        />
+        <img src={comment.User?.icon || DEFAULT_USER_ICON} onError={handleImgError} alt="profile" />
       </div>
       <div className="comment-content">
         <span>{comment.User.name}</span>
