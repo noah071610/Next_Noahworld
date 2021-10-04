@@ -9,7 +9,7 @@ const initialState = {
   hashtags: [],
   prevPost: [],
   nextPost: [],
-  countPosts: [],
+  postCount: 0,
   searchPosts: [],
   mostLikedPost: null,
   mostViewedPost: null,
@@ -293,7 +293,7 @@ const reducer = (state: PostState = initialState, action: any) =>
         draft.loadCategoryPostsDone = true;
         draft.techPosts = action.data.category === "tech" ? action.data.posts : false;
         draft.dailyPosts = action.data.category === "daily" ? action.data.posts : false;
-        draft.countPosts = action.data.countPosts;
+        draft.postCount = action.data.postCount;
         draft.hashtags = action.data.hashtags;
         draft.hasMorePosts = action.data.posts.length > 8;
         break;

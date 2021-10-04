@@ -150,7 +150,7 @@ const BlogPostPage = () => {
         )}"></iframe>`;
       }
       if (v.match(/(#[^\s#+^<]+)/g)) {
-        return `<a href="/${post.category}?hashtag=${v.replace("#", "")}">${v}</a>`;
+        return `<a href="/${post.category}?hashtag=${v?.replace("#", "")}">${v}</a>`;
       }
       return v;
     });
@@ -208,7 +208,7 @@ const BlogPostPage = () => {
             <img
               className="post-tumbnail"
               alt={post?.title}
-              src={post?.thumbnail.replace(/\/thumb\//, "/original/") || NO_POST_URL}
+              src={post?.thumbnail?.replace(/\/thumb\//, "/original/") || NO_POST_URL}
               onError={(e) => handleImgError(e, "post")}
             />
             <article className="post-content">{Fullcontent && parse(Fullcontent)}</article>

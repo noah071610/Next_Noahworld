@@ -15,33 +15,43 @@ import ArticleCardColumn from "../../components/Articles/ArticleCardColumn";
 import tw from "twin.macro";
 import { BLUE_COLOR } from "../../config";
 const CategoryPageHeader = styled.section`
-  ${tw`p-4 mt-8`}
+  ${tw`my-14`}
   h1 {
-    ${tw`mt-0 mb-4 text-3xl`}
+    ${tw`mt-0 mb-6 text-3xl`}
     .post-count {
       ${tw`ml-4 text-xl`}
       color:${BLUE_COLOR}
     }
   }
   .hashtag-list {
-    ${tw`pr-40`}
     button {
-      ${tw`text-sm p-0 mr-3 mb-3`}
+      ${tw`rounded-md mr-2 mb-3 p-0`}
+      border:1px solid rgba(0,0,0,0.1);
       li {
-        ${tw`p-0 m-0`}
+        ${tw`py-2 px-4`}
       }
       &:hover {
-        color: ${BLUE_COLOR};
+        border: 1px solid ${BLUE_COLOR};
       }
     }
   }
   @media (max-width: 830px) {
-    ${tw`mt-0`}
+    .hashtag-list {
+      button {
+        ${tw`mb-2`}
+        li {
+          ${tw`py-1 px-2 text-sm`}
+        }
+      }
+    }
   }
   @media (max-width: 576px) {
-    ${tw`px-0`}
     .hashtag-list {
-      ${tw`px-0`}
+      button {
+        li {
+          ${tw`text-xs`}
+        }
+      }
     }
   }
 `;
@@ -50,7 +60,7 @@ const BlogCategoryPage = () => {
   const router = useRouter();
   const { category, hashtag } = router.query;
   const dispatch = useDispatch();
-  const { techPosts, dailyPosts, hasMorePosts, loadMorePostsLoading, countPosts, hashtags } =
+  const { techPosts, dailyPosts, hasMorePosts, loadMorePostsLoading, postCount, hashtags } =
     useSelector((state: RootState) => state.post);
   const [onHashtagFilter, setOnHashtagFilter] = useState(false);
 
@@ -87,15 +97,7 @@ const BlogCategoryPage = () => {
       //메모리릭을 방지하기위해 unmount시 removeEventListner
       window.removeEventListener("scroll", onScroll);
     };
-  }, [
-    hasMorePosts,
-    techPosts,
-    dailyPosts,
-    loadMorePostsLoading,
-    category,
-    onHashtagFilter,
-    dispatch,
-  ]);
+  }, [hasMorePosts, techPosts, dailyPosts, loadMorePostsLoading, category, onHashtagFilter]);
 
   const onClickHashtag = useCallback(
     (hashtag: string) => {
@@ -136,7 +138,7 @@ const BlogCategoryPage = () => {
             {(category as string).toUpperCase() + " POSTS"}
             <span className="post-count">
               +&nbsp;
-              {countPosts?.length}
+              {postCount}
               &nbsp;Posts.
             </span>
           </h1>
@@ -148,12 +150,12 @@ const BlogCategoryPage = () => {
             ))}
             {(onHashtagFilter || hashtag) && (
               <button onClick={onClickAllHashtag} key={`hashtag_viewAll`}>
-                <li># View All Posts</li>
+                <li>View All Posts</li>
               </button>
             )}
           </ul>
         </CategoryPageHeader>
-        <Row>
+        <Row gutter={[24, 24]}>
           {(techPosts || dailyPosts).map((v, i) => (
             <Col key={i} xs={24} sm={12} lg={8}>
               <ArticleCardColumn setOnHashtagFilter={setOnHashtagFilter} article={v} />

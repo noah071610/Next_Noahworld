@@ -28,6 +28,9 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   const { user } = useSelector((state: RootState) => state.user);
   const [FixedRemote, setFixedRemote] = useState(false);
   const [headers, setHeaders] = useState<string[]>([]);
+  const [headerArray, setHeaderArray] = useState(
+    Array.from({ length: 20 }, (_, i) => i.toString())
+  );
   useEffect(() => {
     function scrollCallBack() {
       if (window.scrollY > 400) {
@@ -43,19 +46,25 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
   }, []);
 
   useEffect(() => {
-    let contentHeaders = document.querySelectorAll(".post-content h1, .post-content h2");
+    let contentHeaders = document.querySelectorAll(
+      ".post-content h1, .post-content h2, .post-content h3"
+    );
     let arr: string[] = [];
     contentHeaders.forEach((v, i) => {
       v.setAttribute("id", String(i));
-      arr.push(v.innerHTML);
+      arr.push(v.innerHTML + v.tagName);
     });
     setHeaders(arr);
   }, [Fullcontent]);
 
   const timelineLists = useCallback(() => {
     return headers.map((v, i) => (
-      <a className="header-contents" key={i} href={`#${i}`}>
-        {v}
+      <a
+        className={v.slice(-2) === "H3" ? "remote-header-small" : "remote-header-large"}
+        key={i}
+        href={`#${i}`}
+      >
+        {v.slice(0, -2)}
       </a>
     ));
   }, [headers]);
@@ -154,13 +163,9 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           </>
         )}
       </ul>
-      <Scrollspy
-        style={{ margin: 0 }}
-        items={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
-        currentClassName="selected"
-      >
+      <Scrollspy style={{ margin: 0 }} items={headerArray} currentClassName="selected">
         {timelineLists()}
-        <a className="header-contents" href="#comment">
+        <a className="remote-header-large" href="#comment">
           Comments
         </a>
       </Scrollspy>

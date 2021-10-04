@@ -15,8 +15,12 @@ export const PostRemoteControlWrapper = (FixedRemote: boolean) => css`
       margin: 0;
     }
   }
-  .header-contents {
+  .remote-header-large {
     ${tw`block py-3 pl-4`}
+    border-left:3px solid rgba(0,0,0,0.15);
+  }
+  .remote-header-small {
+    ${tw`block py-1 pl-8 text-sm`}
     border-left:3px solid rgba(0,0,0,0.15);
   }
   .selected {

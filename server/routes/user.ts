@@ -20,7 +20,7 @@ const upload = multer({
   storage: multerS3({
     // AWS.S3에 이미지를 저장하는 과정입니다.
     s3: new AWS.S3(),
-    bucket: "noah-world",
+    bucket: "noahworld",
     key(req: Request, file: Express.Multer.File, cb) {
       cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
     },
@@ -35,10 +35,10 @@ router.post(
     //유저가 file을 업로드하는 방식으로 아이콘을 업데이트한 경우
     try {
       User.update(
-        { icon: (req.file as Express.MulterS3.File).location.replace(/\/original\//, "/thumb/") },
+        { icon: (req.file as Express.MulterS3.File).location },
         { where: { id: req.body.id } }
       );
-      res.json((req.file as Express.MulterS3.File).location.replace(/\/original\//, "/thumb/"));
+      res.json((req.file as Express.MulterS3.File).location);
     } catch (error) {
       console.error(error);
       return next(error);

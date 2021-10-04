@@ -58,7 +58,7 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, smal
               onError={(e) => handleImgError(e, "post")}
             />
           </div>
-          <div className="content-wrapper">
+          <div className="article-content-wrapper">
             <h2>{article.title}</h2>
             <ul className="hashtag-list">
               {article?.Hashtags?.map((v, i) => {
@@ -75,7 +75,7 @@ const ArticleCardColumn: FC<ArticleInter> = ({ setOnHashtagFilter, article, smal
               {contentWithoutHTML.slice(0, 250)}
             </p>
           </div>
-          <ul className="footer">
+          <ul className="article-footer">
             <li>
               {dayjs().to(dayjs(article.createdAt), true)}
               &nbsp;ago

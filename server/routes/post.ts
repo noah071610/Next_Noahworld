@@ -17,7 +17,7 @@ AWS.config.update({
 const upload = multer({
   storage: multerS3({
     s3: new AWS.S3(),
-    bucket: "noah-world",
+    bucket: "noahworld",
     key(req, file, cb) {
       cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
     },
@@ -102,7 +102,7 @@ router.get("/morepost/:category", async (req: Request, res: Response, next: Next
       //6개씩 불러오고 게시날짜를 내림차로 정렬합니다.
       where,
       limit: 9,
-      order: [["createdAt", "DESC"]],
+      order: [["id", "DESC"]],
       include: [
         //해시태그, 좋아요한 유저를 받아옵니다.
         {
@@ -153,8 +153,9 @@ router.get("/category/:category", async (req: Request, res: Response, next: Next
         ];
     const posts = await Post.findAll({
       where: { category },
-      order: [["createdAt", "DESC"]],
+      order: [["id", "DESC"]],
       include,
+      limit: 9,
     });
     const countPosts = await Post.findAll({
       where: { category },
@@ -162,13 +163,15 @@ router.get("/category/:category", async (req: Request, res: Response, next: Next
       include,
     });
     if (hashtag) {
-      res.status(200).json({ posts, category, countPosts, hashtags: [{ name: hashtag }] });
+      res
+        .status(200)
+        .json({ posts, category, postCount: countPosts.length, hashtags: [{ name: hashtag }] });
     } else {
       const hashtags = await Hashtag.findAll({
         where: { category },
         attributes: ["name"],
       });
-      res.status(200).json({ posts, category, countPosts, hashtags });
+      res.status(200).json({ posts, category, postCount: countPosts.length, hashtags });
     }
   } catch (error) {
     console.error(error);

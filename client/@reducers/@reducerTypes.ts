@@ -131,7 +131,7 @@ export interface PostState {
   searchedKeyword: object | null;
   prevPost: Array<PostInter>;
   nextPost: Array<PostInter>;
-  countPosts: string[];
+  postCount: number;
   thumbnailPath: string | null;
   postImagePath: string | null;
   onEditPost: boolean;

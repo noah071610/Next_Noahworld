@@ -5,7 +5,8 @@ import { ELLIPSIS_STYLE } from "../../../styles/emotion";
 
 export const ArticleCardColumnWrapper = (smallSize: Boolean) => css`
   ${tw`cursor-pointer`}
-  ${smallSize ? tw`pr-2` : tw`p-4`}
+  border:1px solid rgba(0,0,0,0.1);
+  ${smallSize ? tw`pr-2` : tw`p-0`}
   &:hover {
     .image-wrapper {
       img {
@@ -15,17 +16,17 @@ export const ArticleCardColumnWrapper = (smallSize: Boolean) => css`
     }
   }
   .image-wrapper {
-    ${tw`overflow-hidden w-full h-52 mb-4`}
+    ${tw`overflow-hidden w-full h-52`}
     ${smallSize ? tw`h-44` : tw`h-52`}
     img {
       ${tw`w-full h-full`}
       transition: 0.3s all;
-      border: 0.3px solid rgba(0, 0, 0, 0.1);
     }
   }
-  .content-wrapper {
+  .article-content-wrapper {
+    ${tw`pt-4 px-4 pb-2`}
     h2 {
-      ${tw`mt-0 mb-2 text-lg`}
+      ${tw`text-lg`}
       ${ELLIPSIS_STYLE(1.5, 1, "auto")}
     }
     .hashtag-list {
@@ -44,9 +45,9 @@ export const ArticleCardColumnWrapper = (smallSize: Boolean) => css`
       ${smallSize ? ELLIPSIS_STYLE(1.8, 3, "auto") : ELLIPSIS_STYLE(1.8, 5, "6.7rem")}
     }
   }
-  .footer {
+  .article-footer {
     color: rgba(0, 0, 0, 0.3);
-    ${tw`font-bold text-xs`};
+    ${tw`font-bold text-xs p-4 pt-0`};
     li:first-of-type {
       color: ${BLUE_COLOR};
     }
