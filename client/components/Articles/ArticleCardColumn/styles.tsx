@@ -5,7 +5,7 @@ import { ELLIPSIS_STYLE } from "../../../styles/emotion";
 
 export const ArticleCardColumnWrapper = (smallSize: Boolean) => css`
   ${tw`cursor-pointer`}
-  border:1px solid rgba(0,0,0,0.1);
+  ${!smallSize && `border:1px solid rgba(0,0,0,0.1);`}
   ${smallSize ? tw`pr-2` : tw`p-0`}
   &:hover {
     .image-wrapper {
@@ -24,7 +24,7 @@ export const ArticleCardColumnWrapper = (smallSize: Boolean) => css`
     }
   }
   .article-content-wrapper {
-    ${tw`pt-4 px-4 pb-2`}
+    ${smallSize ? tw`pt-4` : tw`pt-4 px-4 pb-2`}
     h2 {
       ${tw`text-lg`}
       ${ELLIPSIS_STYLE(1.5, 1, "auto")}
@@ -47,7 +47,8 @@ export const ArticleCardColumnWrapper = (smallSize: Boolean) => css`
   }
   .article-footer {
     color: rgba(0, 0, 0, 0.3);
-    ${tw`font-bold text-xs p-4 pt-0`};
+    ${smallSize ? tw`p-0` : tw`p-4 pt-0`}
+    ${tw`font-bold text-xs`};
     li:first-of-type {
       color: ${BLUE_COLOR};
     }

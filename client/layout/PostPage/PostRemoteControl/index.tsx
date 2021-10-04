@@ -163,7 +163,12 @@ const PostRemoteControl: FC<{ Fullcontent: string }> = ({ Fullcontent }) => {
           </>
         )}
       </ul>
-      <Scrollspy style={{ margin: 0 }} items={headerArray} currentClassName="selected">
+      <Scrollspy
+        className="header-list"
+        style={{ margin: 0 }}
+        items={headerArray}
+        currentClassName="selected"
+      >
         {timelineLists()}
         <a className="remote-header-large" href="#comment">
           Comments
