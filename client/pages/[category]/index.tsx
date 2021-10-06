@@ -24,7 +24,7 @@ const CategoryPageHeader = styled.section`
     }
   }
   .hashtag-list {
-    ${tw`pr-28`}
+    ${tw`pr-48`}
     button {
       transition: 0.15s all;
       background: #50586c;

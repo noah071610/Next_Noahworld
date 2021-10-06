@@ -27,9 +27,6 @@ export const MainPageWrapper = styled.main`
           &:hover {
             ${tw`bg-blue-100`}
           }
-          &:last-child {
-            margin-right: 0;
-          }
         }
       }
     }
