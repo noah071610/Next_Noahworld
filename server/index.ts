@@ -13,7 +13,8 @@ import hpp from "hpp";
 
 const app = express();
 const prod: boolean = process.env.NODE_ENV === "production";
-const port = 5000;
+const port = process.env.PORT;
+const clientURL = process.env.CLIENT_URL;
 
 app.disable("x-powered-by");
 
@@ -37,7 +38,7 @@ if (prod) {
   app.use(helmet({ contentSecurityPolicy: false }));
   app.use(
     cors({
-      origin: "https://noahworld.site",
+      origin: clientURL,
       credentials: true,
     })
   );
@@ -90,9 +91,9 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "em
 
 app.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "https://noahworld.site" }),
+  passport.authenticate("google", { failureRedirect: clientURL }),
   function (req: Request, res: Response) {
-    res.redirect("https://noahworld.site");
+    res.redirect(clientURL!);
   }
 );
 

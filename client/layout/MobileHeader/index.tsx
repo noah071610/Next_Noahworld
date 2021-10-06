@@ -94,7 +94,7 @@ const MoblieHeader = () => {
             <Link href={"/"}>
               <a className="logo">
                 <img alt="header_logo" src="/images/blog/logo_icon.png" />
-                <span className="logo_span">Noah World</span>
+                <span className="logo_span">Noah_World</span>
               </a>
             </Link>
             <button className="post-title" onClick={onClickRemoteControlBtn}>

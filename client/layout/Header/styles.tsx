@@ -5,10 +5,16 @@ import { FLEX_STYLE } from "../../styles/emotion";
 export const HeaderWrapper = styled.header`
   ${tw`relative w-full`}
   .header-inner {
-    ${tw`relative pt-12 pb-20 mx-auto`}
+    ${tw`relative py-20 mx-auto`}
+    ${FLEX_STYLE("center", "center")}
     width: 1120px;
-    .logo {
-      width: 560px;
+    .header-logo {
+      ${FLEX_STYLE("center", "center")}
+      ${tw`font-bold`}
+      font-size:4rem;
+      img{
+        ${tw`w-12 h-12 mx-2`}
+      }
     }
     .login-menu {
       ${tw`absolute bottom-4 right-0`}

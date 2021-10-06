@@ -15,11 +15,20 @@ export const MainPageWrapper = styled.main`
   }
   aside {
     .hashtag-list {
-      padding: 1rem;
-      li {
-        margin: 0.5rem 1rem 0.5rem 0;
-        &:last-child {
-          margin-right: 0;
+      padding: 0 1rem;
+      a {
+        margin-right: 0.25rem;
+        li {
+          transition: 0.15s all;
+          background: #50586c;
+          ${tw`text-sm rounded-md text-white py-1 px-4`}
+          &:hover {
+            color: black;
+            ${tw`bg-blue-100`}
+          }
+          &:last-child {
+            margin-right: 0;
+          }
         }
       }
     }

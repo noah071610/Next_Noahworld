@@ -44,11 +44,6 @@ const SlideMenu: FC<SlideMenuProps> = memo(
                 <li onClick={onClickMenu}>Info Tech</li>
               </a>
             </Link>
-            <Link href={"/daily"}>
-              <a>
-                <li onClick={onClickMenu}>Daily</li>
-              </a>
-            </Link>
             <a href="https://JShyunsoo.site" target="_blank" rel="noreferrer">
               <li onClick={onClickMenu}>Portfolio</li>
             </a>

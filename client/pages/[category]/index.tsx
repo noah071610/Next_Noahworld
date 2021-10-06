@@ -24,19 +24,19 @@ const CategoryPageHeader = styled.section`
     }
   }
   .hashtag-list {
+    ${tw`pr-28`}
     button {
-      ${tw`rounded-md mr-2 mb-3 p-0`}
-      border:1px solid rgba(0,0,0,0.1);
+      transition: 0.15s all;
+      background: #50586c;
+      ${tw`text-sm rounded-md mr-1 text-white hover:bg-blue-200`}
       li {
-        ${tw`py-2 px-4`}
-      }
-      &:hover {
-        border: 1px solid ${BLUE_COLOR};
+        ${tw`py-1 px-4`}
       }
     }
   }
   @media (max-width: 830px) {
     .hashtag-list {
+      ${tw`pr-0`}
       button {
         ${tw`mb-2`}
         li {

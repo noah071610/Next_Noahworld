@@ -99,11 +99,11 @@ const MainPage = () => {
           {hashtags &&
             hashtags.map((v, i) => {
               return (
-                <li onClick={() => window.scrollTo({ top: 0 })} key={i}>
-                  <Link href={`/${v.category}?hashtag=${v.name}`}>
-                    <a>#{v.name}</a>
-                  </Link>
-                </li>
+                <Link href={`/${v.category}?hashtag=${v.name}`} key={i}>
+                  <a>
+                    <li onClick={() => window.scrollTo({ top: 0 })}>#{v.name}</li>
+                  </a>
+                </Link>
               );
             })}
         </ul>

@@ -6,14 +6,15 @@ import { Input } from "antd";
 
 export const HeaderNavWrapper = styled.nav`
   ${tw`w-full`}
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   .nav-inner {
+    position: relative;
     transition: all 0.5s;
+    height: 60px;
     ${FLEX_STYLE("space-between", "center")};
-    ${tw`mx-auto py-4`}
+    ${tw`mx-auto py-3`}
     width: 1120px;
-    ul {
+    .nav-left {
       ${tw`inline-block`}
       li {
         ${tw`mr-12 pb-1`}
@@ -27,6 +28,14 @@ export const HeaderNavWrapper = styled.nav`
           }
           animation: underLining 0.2s forwards;
         }
+      }
+    }
+    .nav-right {
+      ${FLEX_STYLE("space-between", "center")};
+      a {
+        ${FLEX_STYLE("center", "center")};
+        font-size: 1.5rem;
+        margin-left: 1rem;
       }
     }
     @media (max-width: 1120px) {

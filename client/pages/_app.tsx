@@ -39,19 +39,11 @@ function App({ Component, pageProps }) {
       <Head>
         <title>Noah world</title>
       </Head>
-      {loading ? (
-        <LoadingScreen />
-      ) : (
-        <>
-          <Global styles={globalStyles} />
-          <Header />
-          <MoblieHeader />
-          <AppLayout>
-            <Component {...pageProps} />
-          </AppLayout>
-          <Footer />
-        </>
-      )}
+      <Global styles={globalStyles} />
+      <Header />
+      <MoblieHeader />
+      <AppLayout>{loading ? <LoadingScreen /> : <Component {...pageProps} />}</AppLayout>
+      <Footer />
     </>
   );
 }

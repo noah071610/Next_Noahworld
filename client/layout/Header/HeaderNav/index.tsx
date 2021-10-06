@@ -1,17 +1,32 @@
 import { message } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
-import useInput from "../../../util/useInput";
-import { HeaderNavWrapper, SearchBar } from "./styles";
-import { SEARCH_POST_REQUEST } from "../../../@reducers/post";
+import { HeaderNavWrapper } from "./styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPowerOff, faUserCircle, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { LOG_OUT_REQUEST } from "../../../@reducers/user";
+import { RootState } from "../../../@reducers";
+import Profile from "../../../components/Profile";
+import SearchForm from "./SearchForm";
 
-const HeaderNav = ({ setOnProfile }: { setOnProfile: (type: boolean) => void }) => {
+const HeaderNav = () => {
   const dispatch = useDispatch();
   const [FixedNavbar, setFixedNavbar] = useState(false);
   const router = useRouter();
-  const [keyword, onChangeKeyword, setKeyword] = useInput("");
+  const [onProfile, setOnProfile] = useState(false);
+  const { user, logOutDone, logOutError } = useSelector((state: RootState) => state.user);
+
+  useEffect(() => {
+    if (logOutDone) {
+      message.success("Log out is done, Thank you for visiting.");
+      router.push("/");
+    }
+    if (logOutError) {
+      message.error("Unexpected Erorr! please try again or feedback to us");
+    }
+  }, [logOutDone, logOutError]);
 
   useEffect(() => {
     function scrollCallBack() {
@@ -28,36 +43,27 @@ const HeaderNav = ({ setOnProfile }: { setOnProfile: (type: boolean) => void }) 
     };
   }, []);
 
-  const onSearchContent = useCallback(() => {
-    if (keyword.length < 2) {
-      message.error("Keyword is required to have more then 1 letter");
-      return;
-    }
+  const onClickLogOut = useCallback(() => {
     dispatch({
-      type: SEARCH_POST_REQUEST,
-      data: { keyword },
+      type: LOG_OUT_REQUEST,
     });
-    router.push(`/search/${keyword}`);
-    setKeyword("");
-  }, [dispatch, router, keyword, setKeyword]);
+  }, []);
+  const onClickProfile = useCallback(() => {
+    setOnProfile((prev) => !prev);
+  }, []);
   return (
     <>
       <HeaderNavWrapper className={FixedNavbar ? "fixed" : "static"}>
         <div className="nav-inner">
-          <ul>
+          <ul className="nav-left">
             <li>
               <Link href="/">
-                <a>Home</a>
+                <a>home</a>
               </Link>
             </li>
             <li>
               <Link href="/tech">
-                <a>Info Tech</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/daily">
-                <a>Daily</a>
+                <a>post</a>
               </Link>
             </li>
             <li>
@@ -66,7 +72,32 @@ const HeaderNav = ({ setOnProfile }: { setOnProfile: (type: boolean) => void }) 
               </a>
             </li>
           </ul>
-          <SearchBar value={keyword} onChange={onChangeKeyword} onSearch={onSearchContent} />
+          <ul className="nav-right">
+            <SearchForm />
+            {user ? (
+              <>
+                <a onClick={onClickProfile}>
+                  <li>
+                    <FontAwesomeIcon icon={faUserCircle} />
+                  </li>
+                </a>
+                <a onClick={onClickLogOut}>
+                  <li>
+                    <FontAwesomeIcon icon={faPowerOff} />
+                  </li>
+                </a>
+              </>
+            ) : (
+              <Link href="/login">
+                <a>
+                  <li>
+                    <FontAwesomeIcon icon={faUserPlus} />
+                  </li>
+                </a>
+              </Link>
+            )}
+          </ul>
+          {onProfile && <Profile />}
         </div>
       </HeaderNavWrapper>
       {FixedNavbar && <div style={{ height: "70px" }} />}
