@@ -17,12 +17,13 @@ export const MainPageWrapper = styled.main`
     .hashtag-list {
       padding: 0 1rem;
       a {
-        margin-right: 0.25rem;
-        margin-bottom: 0.5rem;
         li {
           transition: 0.15s all;
+          margin-bottom: 0.35rem;
+          margin-right: 0.25rem;
           background: #50586c;
-          ${tw`text-sm rounded-md text-white py-1 px-4`}
+          font-size: 0.75rem;
+          ${tw`rounded-md text-white py-1 px-4`}
           &:hover {
             ${tw`bg-blue-100`}
           }
