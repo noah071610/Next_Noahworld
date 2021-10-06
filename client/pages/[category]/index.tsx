@@ -28,9 +28,9 @@ const CategoryPageHeader = styled.section`
     button {
       transition: 0.15s all;
       background: #50586c;
-      ${tw`text-sm rounded-md mr-1 text-white hover:bg-blue-200`}
+      ${tw`text-sm rounded-md p-0 mr-1 mb-2 text-white hover:bg-blue-200`}
       li {
-        ${tw`py-1 px-4`}
+        ${tw`py-1 px-3`}
       }
     }
   }
