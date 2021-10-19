@@ -64,11 +64,13 @@ export const PostPageWrapper = styled.main`
         list-style-type: disc;
         list-style: inherit;
         list-style-position: inside;
+        padding-bottom: 1rem;
       }
       ol {
         list-style-type: decimal;
         list-style: decimal;
         list-style-position: inside;
+        padding-bottom: 1rem;
       }
       li {
         display: list-item;
@@ -91,13 +93,13 @@ export const PostPageWrapper = styled.main`
         font-size: 0.7rem;
       }
       pre {
-        margin: 2px 0 8px;
+        margin: 1rem 0 2rem 0;
         padding: 1rem;
         font-size: 0.83rem;
         span {
           font-size: 0.83rem;
         }
-        line-height: 1.7;
+        line-height: 1.9;
         background-color: #f4f7f8;
       }
       .youtube {
