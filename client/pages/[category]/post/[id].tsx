@@ -193,7 +193,25 @@ const BlogPostPage = () => {
   return (
     <>
       <Head>
-        <title>Noah world | {post?.title.slice(0, 10)}...</title>
+        <title>{post?.title.slice(0, 30)}... | Noah world</title>
+        <meta
+          name="description"
+          content={Fullcontent?.replace(/(<([^>]+)>)/gi, "")
+            .replace(/&nbsp;|&amp;/gi, "")
+            .slice(0, 150)}
+        />
+        <meta property="og:title" content={`${post?.title} | Noah world`} />
+        <meta
+          property="og:description"
+          content={Fullcontent?.replace(/(<([^>]+)>)/gi, "")
+            .replace(/&nbsp;|&amp;/gi, "")
+            .slice(0, 150)}
+        />
+        <meta property="og:image" content={post?.thumbnail || NO_POST_URL} />
+        <meta
+          property="og:url"
+          content={`https://noahworld.site/${post?.category}/post/${post?.id}`}
+        />
       </Head>
       <PostPageWrapper>
         <h1 className="post-title">{post?.title}</h1>
